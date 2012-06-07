@@ -248,8 +248,7 @@
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</EmbedManifest>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</EmbedManifest>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='basis|Android'">
-    </IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(AndroidIncludeDir);$(AndroidStlIncludeDir);</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(WindowsSdkDir)\include;$(VCInstallDir)include</IncludePath>
@@ -273,8 +272,7 @@
     <ReferencePath Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">$(VCInstallDir)lib\amd64</ReferencePath>
     <ReferencePath Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(VCInstallDir)lib\amd64</ReferencePath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='basis|Android'">
-    </LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(AndroidLibDir);$(AndroidStlLibPath);</LibraryPath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(VCInstallDir)lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib</LibraryPath>
