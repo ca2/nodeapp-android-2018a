@@ -17,7 +17,7 @@
 #include <sys/resource.h>
 
 
-namespace ca
+/*namespace ca
 {
 
 
@@ -55,4 +55,4 @@ inline enum ::ca::thread_priority get_thread_priority_normal()
 
       return ::ca::thread_priority_normal;
 
-}
+}*/

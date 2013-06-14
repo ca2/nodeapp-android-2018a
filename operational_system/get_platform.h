@@ -5,6 +5,9 @@
 #endif 
 
 
+#define _STRINGS_H_
+
+
 #include "linux_system.h"
 
 
