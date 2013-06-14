@@ -1,7 +1,8 @@
 #pragma once
 
-
-#define LINUX
+#ifndef ANDROID
+#define ANDROID
+#endif 
 
 
 #include "linux_system.h"
