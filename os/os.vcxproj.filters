@@ -27,240 +27,159 @@
     <Filter Include="Header Files\operational_system\cross\linux">
       <UniqueIdentifier>{474232c1-9519-4032-b9c4-25c8d63fddbc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\operational_system\NewFilter1">
+      <UniqueIdentifier>{9c2068ca-7f74-4591-908d-e19f834f4ee3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operational_system\cross\win">
+      <UniqueIdentifier>{d1a0a613-62e6-4e86-ab7d-94c2b440eeb1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="afxabort.cpp">
+    <ClCompile Include="and_afxabort.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="afxmem.cpp">
+    <ClCompile Include="and_afxmem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="afxstate.cpp">
+    <ClCompile Include="and_afxstate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="appcore.cpp">
+    <ClCompile Include="and_appcore.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="appinit.cpp">
+    <ClCompile Include="and_appinit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="application.cpp">
+    <ClCompile Include="and_application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="appmodul.cpp">
+    <ClCompile Include="and_appmodul.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="appterm.cpp">
+    <ClCompile Include="and_appterm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bitmap.cpp">
+    <ClCompile Include="and_bitmap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="brush.cpp">
+    <ClCompile Include="and_brush.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dib.cpp">
+    <ClCompile Include="and_dib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dir.cpp">
+    <ClCompile Include="and_dir.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="draw_dib.cpp">
+    <ClCompile Include="and_dumpinit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dumpinit.cpp">
+    <ClCompile Include="and_except.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="except.cpp">
+    <ClCompile Include="and_factory_exchange.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="factory_exchange.cpp">
+    <ClCompile Include="and_folder_watch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="font.cpp">
+    <ClCompile Include="and_font.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="genResource.cpp">
+    <ClCompile Include="and_resource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="graphics.cpp">
+    <ClCompile Include="and_graphics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="graphics_object.cpp">
+    <ClCompile Include="and_graphics_object.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="handle.cpp">
+    <ClCompile Include="and_handle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="and_ip_enum.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="palette.cpp">
+    <ClCompile Include="and_shell.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pen.cpp">
+    <ClCompile Include="and.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="preview_dc.cpp">
+    <ClCompile Include="and1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="thread.cpp">
+    <ClCompile Include="and2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="thread_local_storage.cpp">
+    <ClCompile Include="and_error.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UACTools.cpp">
+    <ClCompile Include="and_file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="util.cpp">
+    <ClCompile Include="and_file_set.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WFileFind.cpp">
+    <ClCompile Include="and_file_system.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="window.cpp">
+    <ClCompile Include="and_stdio_file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="window_draw.cpp">
+    <ClCompile Include="and_main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="trace.cpp">
+    <ClCompile Include="and_os.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="folder_watch.cpp">
+    <ClCompile Include="and_palette.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="port_forward.cpp">
+    <ClCompile Include="and_pen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ip_enum.cpp">
+    <ClCompile Include="and_port_forward.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LinuxShell.cpp">
+    <ClCompile Include="and_preview_dc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lnx.cpp">
+    <ClCompile Include="and_region.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lnx1.cpp">
+    <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lnx2.cpp">
+    <ClCompile Include="and_thread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LnxBrush.cpp">
+    <ClCompile Include="and_thread_local_storage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LnxFile.cpp">
+    <ClCompile Include="and_trace.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LnxFileSet.cpp">
+    <ClCompile Include="and_util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LnxFileSystem.cpp">
+    <ClCompile Include="and_wfile_find.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LnxResource.cpp">
+    <ClCompile Include="and_window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LnxStdioFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lnx_error.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="osi.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="rgn.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StdAfx.cpp">
+    <ClCompile Include="and_window_draw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="application.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bitmap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="brush.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="dib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="dir.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="draw_dib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="factory_exchange.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="font.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gen_1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics_object.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="handle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="implementation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="palette.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="state.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="thread.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="thread_slots.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UACTools.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WFileFind.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="window.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="window_draw.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\win.h">
       <Filter>External Include</Filter>
     </ClInclude>
     <ClInclude Include="..\include\win32_system.h">
       <Filter>External Include</Filter>
-    </ClInclude>
-    <ClInclude Include="folder_watch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="port_forward.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ip_enum.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\operational_system\_.h">
       <Filter>Header Files\operational_system</Filter>
@@ -283,92 +202,170 @@
     <ClInclude Include="..\operational_system\version_cpu.h">
       <Filter>Header Files\operational_system</Filter>
     </ClInclude>
-    <ClInclude Include="..\operational_system\cross\win\base_tsd.h">
+    <ClInclude Include="..\operational_system\_c.h">
+      <Filter>Header Files\operational_system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\_ca.h">
+      <Filter>Header Files\operational_system</Filter>
+    </ClInclude>
+    <ClInclude Include="and_afximpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\operational_system\cross\win\win.h">
+    <ClInclude Include="and_application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\operational_system\cross\win\win_base.h">
+    <ClInclude Include="and_bitmap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\operational_system\cross\win\win_crt.h">
+    <ClInclude Include="and_brush.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\operational_system\cross\win\win_crtdefs.h">
+    <ClInclude Include="and_dib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\operational_system\cross\win\win_def.h">
+    <ClInclude Include="and_dir.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\operational_system\cross\win\win_errno.h">
+    <ClInclude Include="and_factory_exchange.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\operational_system\cross\win\win_error.h">
+    <ClInclude Include="and_folder_watch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\operational_system\cross\win\win_file.h">
+    <ClInclude Include="and_font.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\operational_system\cross\win\win_gdi.h">
+    <ClInclude Include="and_gen_1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\operational_system\cross\win\win_mmsystem.h">
+    <ClInclude Include="and_graphics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\operational_system\cross\win\win_nls.h">
+    <ClInclude Include="and_graphics_object.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\operational_system\cross\win\win_nt.h">
+    <ClInclude Include="and_handle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\operational_system\cross\win\win_user.h">
+    <ClInclude Include="and_implementation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\operational_system\linux_system.h">
+    <ClInclude Include="and_ip_enum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="and_shell.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="and.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="and1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="and_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="and_file.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="and_file_set.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="and_file_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="and_resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="and_stdio_file.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="and_os.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="and_palette.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="and_pen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="and_port_forward.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="and_region.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="and_state.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="and_thread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="and_thread_slots.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\operational_system\version_linux.h">
+      <Filter>Header Files\operational_system</Filter>
+    </ClInclude>
+    <ClInclude Include="and_file_find.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AfxImpl.H">
+    <ClInclude Include="..\operational_system\cross\win\win.h">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\win\win_base.h">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\win\win_crt.h">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\win\win_crtdefs.h">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\win\win_def.h">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\win\win_errno.h">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\win\win_error.h">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\win\win_file.h">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\win\win_gdi.h">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\win\win_mmsystem.h">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\win\win_nls.h">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\win\win_nt.h">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\win\win_user.h">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\win\win_base_tsd.h">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </ClInclude>
+    <ClInclude Include="and_window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LinuxShell.h">
+    <ClInclude Include="and_window_draw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="lnx.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\operational_system\oswindow.h">
+      <Filter>Header Files\operational_system</Filter>
     </ClInclude>
-    <ClInclude Include="lnx1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LnxFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LnxFileSet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LnxFileSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LnxResource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LnxStdioFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lnx_internal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="osi.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="rgn.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\operational_system\android_system.h">
+      <Filter>Header Files\operational_system</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

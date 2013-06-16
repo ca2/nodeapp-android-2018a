@@ -1,6 +1,8 @@
 #pragma once
 
 
+
+
 // define portable types for 32-bit / 64-bit OS
 typedef int32_t BOOL;
 typedef uint8_t BYTE;
@@ -20,13 +22,6 @@ typedef int32_t LONG;
 template < typename t1, typename t2 >
 class simple_map;
 
-typedef struct tagPOINT
-{
-    LONG  x;
-    LONG  y;
-} POINT, *PPOINT, NEAR *NPPOINT, FAR *LPPOINT;
-
-
 class hthread;
 
 namespace ca
@@ -34,9 +29,12 @@ namespace ca
 
 
    class thread_base;
+   class window;
 
 
 } // namespace ca
+
+
 
 
 class oswindow_data;
@@ -73,9 +71,6 @@ class CLASS_DECL_c oswindow_data
 public:
 
 
-   osdisplay                     m_osdisplay;
-   Window                        m_window;
-   Visual *                      m_pvisual;
    bool                          m_bMessageOnlyWindow;
    ::user::interaction_base *    m_pui;
    HTHREAD                       m_hthread;
@@ -85,14 +80,6 @@ public:
 
    static oswindow_dataptra * s_pdataptra;
    static simple_mutex * s_pmutex;
-
-   static Atom s_atomLongType;
-   static Atom s_atomLongStyle;
-   static Atom s_atomLongStyleEx;
-
-   static Atom get_window_long_atom(int32_t nIndex);
-
-
 
 
    oswindow_data();
@@ -126,36 +113,6 @@ public:
    bool operator != (const void * p) const
    {
       return this != p;
-   }
-
-   Display * display()
-   {
-      return this == NULL ? NULL : m_osdisplay->display();
-   }
-
-   Display * display() const
-   {
-      return this == NULL ? NULL : m_osdisplay->display();
-   }
-
-   Window window()
-   {
-      return this == NULL ? None : m_window;
-   }
-
-   Window window() const
-   {
-      return this == NULL ? None : m_window;
-   }
-
-   Visual * visual()
-   {
-      return this == NULL ? NULL : m_pvisual;
-   }
-
-   Visual * visual() const
-   {
-      return this == NULL ? NULL : m_pvisual;
    }
 
 
@@ -201,13 +158,11 @@ public:
 
 
 CLASS_DECL_c int32_t oswindow_find_message_only_window(::user::interaction_base * puibaseMessageWindow);
-CLASS_DECL_c int32_t oswindow_find(Display * pdisplay, Window window);
-CLASS_DECL_c int32_t oswindow_find(Window window);
+CLASS_DECL_c int32_t oswindow_find(::ca::window * pwindow);
 CLASS_DECL_c oswindow_data * oswindow_get_message_only_window(::user::interaction_base * puibaseMessageWindow);
-CLASS_DECL_c oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual = NULL);
-CLASS_DECL_c oswindow_data * oswindow_get(Window window);
-CLASS_DECL_c oswindow oswindow_defer_get(Window w);
-CLASS_DECL_c bool oswindow_remove(Display * pdisplay, Window window);
+CLASS_DECL_c oswindow_data * oswindow_get(::ca::window * pwindow);
+CLASS_DECL_c oswindow oswindow_defer_get(::ca::window * pwindow);
+CLASS_DECL_c bool oswindow_remove(::ca::window * pwindow);
 CLASS_DECL_c bool oswindow_remove_message_only_window(::user::interaction_base * puibaseMessageOnlyWindow);
 
 

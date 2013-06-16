@@ -1,14 +1,7 @@
 #pragma once
 
-#ifndef ANDROID
-#define ANDROID
-#endif 
 
-
-#define _STRINGS_H_
-
-
-#include "linux_system.h"
+#include "android_system.h"
 
 
 #include "bare_operational_system.h"
@@ -95,6 +88,14 @@ typedef void * PVOID;
 
 
 #include "cross/win/win.h"
+
+
+#include "oswindow.h"
+
+
+
+
+
 
 
 

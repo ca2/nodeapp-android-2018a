@@ -43,7 +43,8 @@
 #include <errno.h>
 #include <malloc.h>
 #include <inttypes.h>
-
+#include <sys/socket.h>
+#include <netinet/in.h>
 
 #define _gmtime64 gmtime
 #define _stricmp  stricmp
