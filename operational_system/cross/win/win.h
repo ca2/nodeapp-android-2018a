@@ -1,7 +1,29 @@
 #pragma once
 
 
-#include "win_base_tsd.h"
+
+struct win_handle;
+
+
+typedef struct win_handle * HANDLE;
+typedef HANDLE *PHANDLE, *LPHANDLE;
+
+
+
+#define WINE_NO_UNICODE_MACROS
+#define WINE_UNICODE_NATIVE
+#define _WCTYPE_T_DEFINED
+
+
+#ifdef WINE_NO_UNICODE_MACROS
+# define DECL_WINELIB_TYPE_AW(type)  /* nothing */
+#else
+# define DECL_WINELIB_TYPE_AW(type)  typedef WINELIB_NAME_AW(type) type;
+#endif
+
+
+
+#include "base_tsd.h"
 #include "win_def.h"
 #include "win_crt.h"
 
@@ -21,32 +43,32 @@ struct tagHandle
 
 };
 
-typedef struct tagHandle * HANDLE;
+//typedef struct tagHandle * HANDLE;
 
 
-typedef unsigned int       DWORD;
-typedef int                 BOOL;
+typedef uint32_t       DWORD;
+//typedef int32_t                 WINBOOL;
 typedef unsigned char       BYTE;
-typedef unsigned short      WORD;
-typedef float               FLOAT;
-typedef FLOAT               *PFLOAT;
-typedef BOOL near           *PBOOL;
-typedef BOOL far            *LPBOOL;
-typedef BYTE near           *PBYTE;
-typedef BYTE far            *LPBYTE;
-typedef int near            *PINT;
-typedef int far             *LPINT;
-typedef WORD near           *PWORD;
-typedef WORD far            *LPWORD;
-typedef int far            *LPLONG;
-typedef DWORD near          *PDWORD;
-typedef DWORD far           *LPDWORD;
-typedef void far            *LPVOID;
-typedef CONST void far      *LPCVOID;
+//typedef unsigned short      WORD;
+//typedef float               FLOAT;
+//typedef FLOAT               *PFLOAT;
+//typedef WINBOOL near           *PBOOL;
+//typedef WINBOOL far            *LPBOOL;
+//typedef BYTE near           *PBYTE;
+//typedef BYTE far            *LPBYTE;
+//typedef int32_t near            *PINT;
+//typedef int32_t far             *LPINT;
+//typedef WORD near           *PWORD;
+//typedef WORD far            *LPWORD;
+//typedef int32_t far            *LPLONG;
+//typedef DWORD near          *PDWORD;
+//typedef DWORD far           *LPDWORD;
+//typedef void far            *LPVOID;
+//typedef CONST void far      *LPCVOID;
 
-typedef int                 INT;
-typedef unsigned int        UINT;
-typedef unsigned int        *PUINT;
+//typedef int32_t                 INT;
+//typedef uint32_t        UINT;
+//typedef uint32_t        *PUINT;
 
 
 
@@ -54,12 +76,12 @@ typedef unsigned int        *PUINT;
 
 
 
-typedef void * LPVOID;
-typedef const void * LPCVOID;
+//typedef void * LPVOID;
+//typedef const void * LPCVOID;
 
-typedef const char * LPCSTR;
+//typedef const char * LPCSTR;
 typedef LPCSTR LPCTSTR;
-typedef char * LPSTR;
+//typedef char * LPSTR;
 typedef LPSTR LPTSTR;
 
 
@@ -72,8 +94,8 @@ typedef LPSTR LPTSTR;
 #define VOID void
 typedef char CHAR;
 typedef short SHORT;
-typedef int LONG;
-typedef int INT;
+typedef int32_t LONG;
+typedef int32_t INT;
 #endif
 
 //
@@ -81,7 +103,7 @@ typedef int INT;
 //
 
 #ifndef _MAC
-typedef wchar_t WCHAR;    // wc,   16-bit UNICODE character
+//typedef wchar_t WCHAR;    // wc,   16-bit UNICODE character
 #else
 // some Macintosh compilers don't define wchar_t in a convenient location, or define it as a char
 typedef unsigned short WCHAR;    // wc,   16-bit UNICODE character
@@ -97,15 +119,15 @@ typedef unsigned short WCHAR;    // wc,   16-bit UNICODE character
 #endif
 
 
-typedef WCHAR *PWCHAR, *LPWCH, *PWCH;
-typedef CONST WCHAR *LPCWCH, *PCWCH;
+//////typedef WCHAR *PWCHAR, *LPWCH, *PWCH;
+//typedef CONST WCHAR *LPCWCH, *PCWCH;
 
 // null terminated
-typedef  WCHAR *NWPSTR, *LPWSTR, *PWSTR;
+//typedef  WCHAR *NWPSTR, *LPWSTR, *PWSTR;
 typedef  PWSTR *PZPWSTR;
 typedef  CONST PWSTR *PCZPWSTR;
 typedef  WCHAR UNALIGNED *LPUWSTR, *PUWSTR;
-typedef  CONST WCHAR *LPCWSTR, *PCWSTR;
+//typedef  CONST WCHAR *LPCWSTR, *PCWSTR;
 typedef  PCWSTR *PZPCWSTR;
 typedef  CONST WCHAR UNALIGNED *LPCUWSTR, *PCUWSTR;
 
@@ -123,13 +145,13 @@ typedef  CONST WCHAR UNALIGNED *PCUNZWCH;
 //
 // ANSI (Multi-byte Character) types
 //
-typedef CHAR *PCHAR, *LPCH, *PCH;
-typedef CONST CHAR *LPCCH, *PCCH;
+//typedef CHAR *PCHAR, *LPCH, *PCH;
+//typedef CONST CHAR *LPCCH, *PCCH;
 
-typedef  CHAR *NPSTR, *LPSTR, *PSTR;
+//typedef  CHAR *NPSTR, *LPSTR, *PSTR;
 typedef  PSTR *PZPSTR;
 typedef  CONST PSTR *PCZPSTR;
-typedef  CONST CHAR *LPCSTR, *PCSTR;
+//typedef  CONST CHAR *LPCSTR, *PCSTR;
 typedef  PCSTR *PZPCSTR;
 
 typedef  CHAR *PZZSTR;
@@ -148,22 +170,21 @@ typedef unsigned char TBYTE , *PTBYTE ;
 
 typedef LPCH LPTCH, PTCH;
 typedef LPCCH LPCTCH, PCTCH;
-typedef LPSTR PTSTR, LPTSTR, PUTSTR, LPUTSTR;
-typedef LPCSTR PCTSTR, LPCTSTR, PCUTSTR, LPCUTSTR;
+//typedef LPSTR PTSTR, LPTSTR, PUTSTR, LPUTSTR;
+//typedef LPCSTR PCTSTR, LPCTSTR, PCUTSTR, LPCUTSTR;
 typedef PZZSTR PZZTSTR, PUZZTSTR;
 typedef PCZZSTR PCZZTSTR, PCUZZTSTR;
 typedef PNZCH PNZTCH, PUNZTCH;
 typedef PCNZCH PCNZTCH, PCUNZTCH;
-#define __TEXT(quote) quote         // r_winnt
 
 #define TEXT(quote) __TEXT(quote)   // r_winnt
 
 
-typedef SHORT *PSHORT;
-typedef LONG *PLONG;
+//typedef SHORT *PSHORT;
+//typedef LONG *PLONG;
 
 
-typedef void *HINSTANCE;
+//typedef void *HINSTANCE;
 
 #ifndef GUID_DEFINED
 #define GUID_DEFINED
@@ -195,7 +216,7 @@ typedef struct _GUID {
 
 #define DECLSPEC_NO_RETURN
 void RaiseException(DWORD dwExceptionCode, DWORD dwExceptionFlags, DWORD nNumberOfArguments, const ulong_ptr *lpArguments);
-typedef int errno_t;
+typedef int32_t errno_t;
 
 
 #ifdef __cplusplus
@@ -206,6 +227,7 @@ typedef int errno_t;
 
 
 MY_EXTERN_C DWORD GetLastError();
+MY_EXTERN_C DWORD SetLastError(DWORD dw);
 
 
 #define MAKELPARAM(x, y)            ((x & 0xffff) |((y & 0xffff) << 16))
@@ -225,7 +247,7 @@ MY_EXTERN_C DWORD GetLastError();
 
 #include "win_file.h"
 
-
+#include "win_mmeapi.h"
 #include "win_mmsystem.h"
 
 
@@ -239,3 +261,11 @@ MY_EXTERN_C DWORD GetLastError();
 #define c_cdecl __cdecl
 
 //#define c_decl __cdecl
+
+
+
+#include "ntstatus.h"
+
+
+
+#include "win_common_controls.h"

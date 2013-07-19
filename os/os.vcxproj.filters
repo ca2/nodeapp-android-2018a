@@ -35,146 +35,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="and_afxabort.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_afxmem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_afxstate.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_appcore.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_appinit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_application.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_appmodul.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_appterm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_bitmap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_brush.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_dib.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_dir.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_dumpinit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_except.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_factory_exchange.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_folder_watch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_font.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_resource.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_graphics.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_graphics_object.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_handle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_ip_enum.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_shell.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_error.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_file.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_file_set.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_file_system.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_stdio_file.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_os.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_palette.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_pen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_port_forward.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_preview_dc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_region.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="framework.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_thread.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_thread_local_storage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_trace.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_util.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_wfile_find.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="and_window_draw.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\include\win.h">
       <Filter>External Include</Filter>
     </ClInclude>
@@ -208,110 +68,8 @@
     <ClInclude Include="..\operational_system\_ca.h">
       <Filter>Header Files\operational_system</Filter>
     </ClInclude>
-    <ClInclude Include="and_afximpl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_application.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_bitmap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_brush.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_dib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_dir.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_factory_exchange.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_folder_watch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_font.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_gen_1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_graphics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_graphics_object.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_handle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_implementation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_ip_enum.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_shell.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_internal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_file.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_file_set.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_file_system.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_stdio_file.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_os.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_palette.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_pen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_port_forward.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_region.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_state.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_thread.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_thread_slots.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\operational_system\version_linux.h">
       <Filter>Header Files\operational_system</Filter>
-    </ClInclude>
-    <ClInclude Include="and_file_find.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\operational_system\cross\win\win.h">
       <Filter>Header Files\operational_system\cross\win</Filter>
@@ -355,17 +113,300 @@
     <ClInclude Include="..\operational_system\cross\win\win_base_tsd.h">
       <Filter>Header Files\operational_system\cross\win</Filter>
     </ClInclude>
-    <ClInclude Include="and_window.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="and_window_draw.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\operational_system\oswindow.h">
       <Filter>Header Files\operational_system</Filter>
     </ClInclude>
     <ClInclude Include="..\operational_system\android_system.h">
       <Filter>Header Files\operational_system</Filter>
     </ClInclude>
+    <ClInclude Include="android.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_afximpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_bitmap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_brush.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_dib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_dir.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_factory_exchange.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_file.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_file_find.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_file_set.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_file_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_folder_watch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_font.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_gen_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_graphics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_graphics_object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_handle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_implementation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_ip_enum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_os.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_palette.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_pen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_port_forward.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_region.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_shell.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_state.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_stdio_file.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_thread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_thread_slots.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_window_draw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\general\general_windows.h">
+      <Filter>Header Files\operational_system\cross\general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\general\general.h">
+      <Filter>Header Files\operational_system\cross\general</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\cross.h">
+      <Filter>Header Files\operational_system\cross</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\win\base_tsd.h">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\win\ntstatus.h">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\win\poppack.h">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\win\pshpack2.h">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\win\pshpack4.h">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\win\pshpack8.h">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\win\win_common_controls.h">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\win\win_guid_def.h">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cross\win\win_mmeapi.h">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="android.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_afxabort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_afxmem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_afxstate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_appcore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_appinit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_appmodul.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_appterm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_bitmap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_brush.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_dib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_dir.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_dumpinit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_error.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_except.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_factory_exchange.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_file.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_file_set.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_file_system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_folder_watch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_font.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_graphics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_graphics_object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_handle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_ip_enum.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_os.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_palette.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_pen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_port_forward.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_preview_dc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_region.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_resource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_shell.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_stdio_file.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_thread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_thread_local_storage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_trace.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_wfile_find.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_window_draw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\operational_system\cross\win\win_user.h.bak">
+      <Filter>Header Files\operational_system\cross\win</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -1,7 +1,10 @@
 #pragma once
 
 
+#define CREATE_SUSPENDED 0x00000004
 
+#define IGNORE              0       // Ignore signal
+#define INFINITE            0xFFFFFFFF  // Infinite timeout
 
 
 
@@ -61,7 +64,7 @@ typedef struct _OVERLAPPED_ENTRY {
 typedef struct _SECURITY_ATTRIBUTES {
     DWORD nLength;
     LPVOID lpSecurityDescriptor;
-    BOOL bInheritHandle;
+    WINBOOL bInheritHandle;
 } SECURITY_ATTRIBUTES, *PSECURITY_ATTRIBUTES, *LPSECURITY_ATTRIBUTES;
 
 typedef struct _PROCESS_INFORMATION {
@@ -98,7 +101,7 @@ SetFilePointer(
     );
 
 
-BOOL
+WINBOOL
 WINAPI
 WriteFile(
     HANDLE hFile,
@@ -108,7 +111,7 @@ WriteFile(
     LPOVERLAPPED lpOverlapped
     );
 
-BOOL
+WINBOOL
 WINAPI
 ReadFile(
     HANDLE hFile,
@@ -118,14 +121,14 @@ ReadFile(
     LPOVERLAPPED lpOverlapped
     );
 
-BOOL
+WINBOOL
 WINAPI
 FlushFileBuffers(
     HANDLE hFile
     );
 
 
-BOOL
+WINBOOL
 WINAPI
 CloseHandle(
     HANDLE hObject
@@ -172,7 +175,9 @@ typedef PTHREAD_START_ROUTINE LPTHREAD_START_ROUTINE;
 
 typedef struct _PROC_THREAD_ATTRIBUTE_LIST *PPROC_THREAD_ATTRIBUTE_LIST, *LPPROC_THREAD_ATTRIBUTE_LIST;
 
-HANDLE
+//class simple_event;
+
+HTHREAD
 WINAPI
 CreateThread(
     LPSECURITY_ATTRIBUTES lpThreadAttributes,
@@ -193,7 +198,7 @@ Sleep(
 
 
 
-#define FORMAT_MESSAGE_ALLOCATE_BUFFER 0x00000100
+#define FORMAT_MESSAGE_ALLOcaTE_BUFFER 0x00000100
 #define FORMAT_MESSAGE_IGNORE_INSERTS  0x00000200
 #define FORMAT_MESSAGE_FROM_STRING     0x00000400
 #define FORMAT_MESSAGE_FROM_HMODULE    0x00000800

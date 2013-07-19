@@ -20,16 +20,24 @@ struct tagLOGBRUSH;
 struct tagLOGRGN;
 
 
+typedef struct tagPOINT
+{
+    LONG  x;
+    LONG  y;
+} POINT, *PPOINT, NEAR *NPPOINT, FAR *LPPOINT;
+
+
+
 
 /* Ternary raster operations */
 #define SRCCOPY             (DWORD)0x00CC0020 /* dest = source                   */
 #define SRCPAINT            (DWORD)0x00EE0086 /* dest = source OR dest           */
-#define SRCAND              (DWORD)0x008800C6 /* dest = source AND dest          */
+#define SRcaND              (DWORD)0x008800C6 /* dest = source AND dest          */
 #define SRCINVERT           (DWORD)0x00660046 /* dest = source XOR dest          */
 #define SRCERASE            (DWORD)0x00440328 /* dest = source AND (NOT dest )   */
 #define NOTSRCCOPY          (DWORD)0x00330008 /* dest = (NOT source)             */
 #define NOTSRCERASE         (DWORD)0x001100A6 /* dest = (NOT src) AND (NOT dest) */
-#define MERGECOPY           (DWORD)0x00C000CA /* dest = (source AND pattern)     */
+#define MERGECOPY           (DWORD)0x00C000ca /* dest = (source AND pattern)     */
 #define MERGEPAINT          (DWORD)0x00BB0226 /* dest = (NOT source) OR dest     */
 #define PATCOPY             (DWORD)0x00F00021 /* dest = pattern                  */
 #define PATPAINT            (DWORD)0x00FB0A09 /* dest = DPSnoo                   */
@@ -40,7 +48,7 @@ struct tagLOGRGN;
 #if(WINVER >= 0x0500)
 
 #define NOMIRRORBITMAP               (DWORD)0x80000000 /* Do not Mirror the bitmap in this call */
-#define CAPTUREBLT                   (DWORD)0x40000000 /* Include layered windows */
+#define caPTUREBLT                   (DWORD)0x40000000 /* Include layered windows */
 #endif /* WINVER >= 0x0500 */
 
 
@@ -51,7 +59,7 @@ struct tagLOGRGN;
 #define LCS_WINDOWS_COLOR_SPACE 'Win '  // Windows default color space
 
 typedef LONG   LCSCSTYPE;
-#define LCS_CALIBRATED_RGB              0x00000000L
+#define LCS_caLIBRATED_RGB              0x00000000L
 
 typedef LONG    LCSGAMUTMATCH;
 #define LCS_GM_BUSINESS                 0x00000001L
@@ -123,7 +131,7 @@ typedef struct tagRGBTRIPLE {
         BYTE    rgbtGreen;
         BYTE    rgbtRed;
 } RGBTRIPLE, *PRGBTRIPLE, NEAR *NPRGBTRIPLE, FAR *LPRGBTRIPLE;
-//#include <poppack.h>
+//#include "poppack.h"
 
 
 /* ICM Color Definitions */
@@ -147,8 +155,8 @@ typedef CIEXYZTRIPLE    FAR *LPCIEXYZTRIPLE;
 
 
 
-typedef DWORD   COLORREF;
-typedef DWORD   *LPCOLORREF;
+//typedef DWORD   COLORREF;
+//typedef DWORD   *LPCOLORREF;
 
 
 
@@ -286,7 +294,7 @@ typedef LPFONT HFONT;
 
 
 /* Font Weights */
-#define FW_DONTCARE         0
+#define FW_DONTcaRE         0
 #define FW_THIN             100
 #define FW_EXTRALIGHT       200
 #define FW_LIGHT            300
@@ -305,7 +313,7 @@ typedef LPFONT HFONT;
 
 
 
-typedef struct tagTEXTMETRICA
+typedef struct tagTEXTMETRIca
 {
     LONG        tmHeight;
     LONG        tmAscent;
@@ -327,7 +335,7 @@ typedef struct tagTEXTMETRICA
     BYTE        tmStruckOut;
     BYTE        tmPitchAndFamily;
     BYTE        tmCharSet;
-} TEXTMETRICA, *PTEXTMETRICA, NEAR *NPTEXTMETRICA, FAR *LPTEXTMETRICA;
+} TEXTMETRIca, *PTEXTMETRIca, NEAR *NPTEXTMETRIca, FAR *LPTEXTMETRIca;
 typedef struct tagTEXTMETRICW
 {
     LONG        tmHeight;
@@ -357,10 +365,10 @@ typedef PTEXTMETRICW PTEXTMETRIC;
 typedef NPTEXTMETRICW NPTEXTMETRIC;
 typedef LPTEXTMETRICW LPTEXTMETRIC;
 #else
-typedef TEXTMETRICA TEXTMETRIC;
-typedef PTEXTMETRICA PTEXTMETRIC;
-typedef NPTEXTMETRICA NPTEXTMETRIC;
-typedef LPTEXTMETRICA LPTEXTMETRIC;
+typedef TEXTMETRIca TEXTMETRIC;
+typedef PTEXTMETRIca PTEXTMETRIC;
+typedef NPTEXTMETRIca NPTEXTMETRIC;
+typedef LPTEXTMETRIca LPTEXTMETRIC;
 #endif // UNICODE
 
 
@@ -425,10 +433,10 @@ typedef LPEXTLOGPEN HPEN;
 #define PS_ALTERNATE        8
 #define PS_STYLE_MASK       0x0000000F
 
-#define PS_ENDCAP_ROUND     0x00000000
-#define PS_ENDCAP_SQUARE    0x00000100
-#define PS_ENDCAP_FLAT      0x00000200
-#define PS_ENDCAP_MASK      0x00000F00
+#define PS_ENDcaP_ROUND     0x00000000
+#define PS_ENDcaP_SQUARE    0x00000100
+#define PS_ENDcaP_FLAT      0x00000200
+#define PS_ENDcaP_MASK      0x00000F00
 
 #define PS_JOIN_ROUND       0x00000000
 #define PS_JOIN_BEVEL       0x00001000
@@ -523,6 +531,12 @@ typedef struct tagBITMAPINFOHEADER{
         DWORD      biClrImportant;
 } BITMAPINFOHEADER, FAR *LPBITMAPINFOHEADER, *PBITMAPINFOHEADER;
 
+typedef struct tagBITMAPINFO {
+  BITMAPINFOHEADER bmiHeader;
+  RGBQUAD          bmiColors[1];
+} BITMAPINFO, *PBITMAPINFO;
+
+
 #if(WINVER >= 0x0400)
 typedef struct {
         DWORD        bV4Size;
@@ -576,6 +590,29 @@ typedef struct {
         DWORD        bV5Reserved;
 } BITMAPV5HEADER, FAR *LPBITMAPV5HEADER, *PBITMAPV5HEADER;
 
+
+
+typedef struct tagBITMAPINFOHEADER{
+  DWORD biSize;
+  LONG  biWidth;
+  LONG  biHeight;
+  WORD  biPlanes;
+  WORD  biBitCount;
+  DWORD biCompression;
+  DWORD biSizeImage;
+  LONG  biXPelsPerMeter;
+  LONG  biYPelsPerMeter;
+  DWORD biClrUsed;
+  DWORD biClrImportant;
+} BITMAPINFOHEADER, *PBITMAPINFOHEADER;
+
+typedef struct tagBITMAPINFO {
+  BITMAPINFOHEADER bmiHeader;
+  RGBQUAD          bmiColors[1];
+} BITMAPINFO, *PBITMAPINFO;
+
+
+
 // Values for bV5CSType
 #define PROFILE_LINKED          'LINK'
 #define PROFILE_EMBEDDED        'MBED'
@@ -595,7 +632,7 @@ typedef struct {
 struct tagBITMAPINFO;
 
 
-typedef struct tagBITMAPINFO  BITMAPINFO, FAR *LPBITMAPINFO, *PBITMAPINFO;
+typedef struct tagBITMAPINFO  FAR *LPBITMAPINFO;
 
 
 typedef LPBITMAPINFO HBITMAP;
@@ -670,25 +707,25 @@ typedef struct tagLOGRGN  LOGRGN, *PLOGRGN, NEAR *NPLOGRGN, FAR *LPLOGRGN;
 typedef LPLOGRGN HRGN;
 
 
-HBITMAP CreateCompatibleBitmap(HDC hdc, int cx, int cy);
+HBITMAP CreateCompatibleBitmap(HDC hdc, int32_t cx, int32_t cy);
 
 
-BOOL BitBlt(HDC hdcDest, int nXDest, int nYDest, int nWidth, int nHeight, HDC hdcSrc, int nXSrc, int nYSrc, DWORD dwRop);
+WINBOOL BitBlt(HDC hdcDest, int32_t nXDest, int32_t nYDest, int32_t nWidth, int32_t nHeight, HDC hdcSrc, int32_t nXSrc, int32_t nYSrc, DWORD dwRop);
 
 
-BOOL SetViewportOrgEx(HDC hdc, int X, int Y, LPPOINT lpPoint);
+//WINBOOL SetViewportOrgEx(HDC hdc, int32_t X, int32_t Y, LPPOINT lpPoint);
 
 
 
-BOOL GetClientRect(HWND hwnd, LPRECT lprect);
+WINBOOL GetClientRect(oswindow hwnd, LPRECT lprect);
 
-BOOL GetWindowRect(HWND hwnd, LPRECT lprect);
+WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect);
 
-int FillRect(HDC hDC, const RECT *lprc, HBRUSH hbr);
+int32_t FillRect(HDC hDC, const RECT *lprc, HBRUSH hbr);
 
-BOOL ReleaseDC(HWND hwnd, HDC hdc);
+WINBOOL ReleaseDC(oswindow hwnd, HDC hdc);
 
-HDC GetWindowDC(HWND hwnd);
+HDC GetWindowDC(oswindow hwnd);
 
 
 HBRUSH CreateSolidBrush(COLORREF color);

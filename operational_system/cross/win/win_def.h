@@ -66,7 +66,7 @@ typedef char *PSZ;
 
 #define far
 #define near
-#if (!defined(_MAC)) && ((_MSC_VER >= 800) || defined(_STDCALL_SUPPORTED))
+#if (!defined(_MAC)) && ((_MSC_VER >= 800) || defined(_STDcaLL_SUPPORTED))
 #define pascal __stdcall
 #else
 #define pascal
@@ -95,7 +95,7 @@ typedef char *PSZ;
 #else
 #define PASCAL
 #endif
-#elif (_MSC_VER >= 800) || defined(_STDCALL_SUPPORTED)
+#elif (_MSC_VER >= 800) || defined(_STDcaLL_SUPPORTED)
 #define CALLBACK    __stdcall
 #define WINAPI      __stdcall
 #define WINAPIV     __cdecl
@@ -125,29 +125,29 @@ typedef char *PSZ;
 #define CONST               const
 #endif
 
-typedef unsigned int       DWORD;
-typedef int                 BOOL;
+typedef uint32_t       DWORD;
+typedef int32_t                 WINBOOL;
 typedef unsigned char       BYTE;
 typedef unsigned short      WORD;
 typedef float               FLOAT;
 typedef FLOAT               *PFLOAT;
-typedef BOOL near           *PBOOL;
-typedef BOOL far            *LPBOOL;
+typedef WINBOOL near           *PBOOL;
+typedef WINBOOL far            *LPBOOL;
 typedef BYTE near           *PBYTE;
 typedef BYTE far            *LPBYTE;
-typedef int near            *PINT;
-typedef int far             *LPINT;
+typedef int32_t near            *PINT;
+typedef int32_t far             *LPINT;
 typedef WORD near           *PWORD;
 typedef WORD far            *LPWORD;
-typedef int far            *LPLONG;
+typedef int32_t far            *LPLONG;
 typedef DWORD near          *PDWORD;
 typedef DWORD far           *LPDWORD;
 typedef void far            *LPVOID;
 typedef CONST void far      *LPCVOID;
 
-typedef int                 INT;
-typedef unsigned int        UINT;
-typedef unsigned int        *PUINT;
+typedef int32_t                 INT;
+//typedef uint32_t        UINT;
+typedef uint32_t        *PUINT;
 
 #ifndef NT_INCLUDED
 #include "win_nt.h"
@@ -156,9 +156,9 @@ typedef unsigned int        *PUINT;
 // xxx #include <specstrings.h>
 
 /* Types use for passing & returning polymorphic values */
-typedef uint_ptr            WPARAM;
-typedef long_ptr            LPARAM;
-typedef long_ptr            LRESULT;
+//typedef uint_ptr            WPARAM;
+//typedef long_ptr            LPARAM;
+//typedef long_ptr            LRESULT;
 
 
 #define MAKEWORD(a, b)      ((WORD)(((BYTE)(((dword_ptr)(a)) & 0xff)) | ((WORD)((BYTE)(((dword_ptr)(b)) & 0xff))) << 8))
@@ -170,7 +170,7 @@ typedef long_ptr            LRESULT;
 
 
 #ifndef WIN_INTERNAL
-//DECLARE_HANDLE            (HWND);
+//DECLARE_HANDLE            (oswindow);
 //DECLARE_HANDLE            (HHOOK);
 #ifdef WINABLE
 //DECLARE_HANDLE            (HEVENT);
@@ -182,9 +182,9 @@ typedef WORD                ATOM;
 /*typedef HANDLE NEAR         *SPHANDLE;
 typedef HANDLE FAR          *LPHANDLE;
 typedef HANDLE              HGLOBAL;
-typedef HANDLE              HLOCAL;
+typedef HANDLE              HLOcaL;
 typedef HANDLE              GLOBALHANDLE;
-typedef HANDLE              LOCALHANDLE;*/
+typedef HANDLE              LOcaLHANDLE;*/
 #ifndef _MANAGED
 #ifndef _MAC
 #ifdef _WIN64
@@ -192,14 +192,14 @@ typedef int_ptr (FAR WINAPI *FARPROC)();
 typedef int_ptr (NEAR WINAPI *NEARPROC)();
 typedef int_ptr (WINAPI *PROC)();
 #else
-typedef int (FAR WINAPI *FARPROC)();
-typedef int (NEAR WINAPI *NEARPROC)();
-typedef int (WINAPI *PROC)();
+typedef int32_t (FAR WINAPI *FARPROC)();
+typedef int32_t (NEAR WINAPI *NEARPROC)();
+typedef int32_t (WINAPI *PROC)();
 #endif  // _WIN64
 #else
-typedef int (CALLBACK *FARPROC)();
-typedef int (CALLBACK *NEARPROC)();
-typedef int (CALLBACK *PROC)();
+typedef int32_t (CALLBACK *FARPROC)();
+typedef int32_t (CALLBACK *NEARPROC)();
+typedef int32_t (CALLBACK *PROC)();
 #endif
 #else
 typedef int_ptr (WINAPI *FARPROC)(void);
@@ -241,7 +241,7 @@ DECLARE_HANDLE(HICON);
 #if !defined(_MAC) || !defined(WIN_INTERNAL)
 DECLARE_HANDLE(HMENU);
 #endif
-DECLARE_HANDLE(HMETAFILE);
+DECLARE_HANDLE(HMETAFILE);*/
 DECLARE_HANDLE(HINSTANCE);
 typedef HINSTANCE HMODULE;      /* HMODULEs can be used in place of HINSTANCEs */
 /*#if !defined(_MAC) || !defined(GDI_INTERNAL)
@@ -269,7 +269,7 @@ DECLARE_HANDLE(HUMPD);
 #endif /* WINVER >= 0x0500 */
 
 /*#ifndef _MAC
-typedef int HFILE;
+typedef int32_t HFILE;
 typedef HICON HCURSOR;      /* HICONs & HCURSORs are polymorphic */
 //#else
 //typedef short HFILE;
@@ -301,11 +301,11 @@ typedef struct _RECTL       /* rcl */
 
 typedef const RECTL FAR* LPCRECTL;
 
-typedef struct tagPOINT
+/*typedef struct tagPOINT
 {
     LONG  x;
     LONG  y;
-} POINT, *PPOINT, NEAR *NPPOINT, FAR *LPPOINT;
+} POINT, *PPOINT, NEAR *NPPOINT, FAR *LPPOINT;*/
 
 typedef struct _POINTL      /* ptl  */
 {
