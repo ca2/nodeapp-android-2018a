@@ -11,6 +11,8 @@
 #endif
 
 
+
+
 string get_error_message(DWORD dwError);
 
 ::ca2::application *     win_instantiate_application(::ca2::application * pappSystem, const char * pszId);
@@ -18,7 +20,8 @@ string get_error_message(DWORD dwError);
 /////////////////////////////////////////////////////////////////////////////
 // explicit initialization for general purpose classes
 
-CLASS_DECL_ANDROID BOOL AfxInitialize(BOOL bDLL = FALSE, DWORD dwVersion = _MFC_VER);
+//CLASS_DECL_ANDROID BOOL AfxInitialize(BOOL bDLL = FALSE, DWORD dwVersion = _MFC_VER);
+CLASS_DECL_ANDROID BOOL AfxInitialize(BOOL bDLL = FALSE, DWORD dwVersion = 0);
 
 /////////////////////////////////////////////////////////////////////////////
 // stop on a specific primitive::memory request

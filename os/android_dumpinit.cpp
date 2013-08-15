@@ -17,15 +17,15 @@ void __cdecl _AfxCrtDumpClient(void * pvData, size_t nBytes)
       if(_CrtReportBlockType(pvData) != _AFX_CLIENT_BLOCK)
          return;
 
-      ::radix::object * pca = (::radix::object * ) pvData;
+      ::ca2::object * pca = (::ca2::object * ) pvData;
 
-      ::radix::object * pobject = NULL;
+      ::ca2::object * pobject = NULL;
 
       /*for(int i = 0; i < 256; i++)
       {
          try
          {
-            pobject = dynamic_cast < ::radix::object * > ((::radix::object *)&((int_ptr *)pca)[i]);
+            pobject = dynamic_cast < ::ca2::object * > ((::ca2::object *)&((int_ptr *)pca)[i]);
          }
          catch(std::__non_rtti_object & e)
          {
@@ -51,7 +51,7 @@ void __cdecl _AfxCrtDumpClient(void * pvData, size_t nBytes)
       }
       if(false) // else
       {
-         ::radix::object & obj = *pobject;
+         ::ca2::object & obj = *pobject;
          // short form
          ATL_CRT_ERRORCHECK_SPRINTF(_snprintf_s(sz, _countof(sz), _countof(sz) - 1, "a %hs object at $%p, %u bytes long\n", typeid(obj).name(), pvData, nBytes));
          afxdump << sz;

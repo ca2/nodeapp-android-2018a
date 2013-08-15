@@ -9,8 +9,9 @@ namespace android
       int function();
    };
 
+/* 
    CLASS_DECL_ANDROID HINSTANCE   LoadLibrary(const char * lpsz);
-   CLASS_DECL_ANDROID BOOL        SHGetSpecialFolderPath(HWND hwnd, string &str, int csidl, BOOL fCreate);
+   CLASS_DECL_ANDROID BOOL        SHGetSpecialFolderPath(oswindow hwnd, string &str, int csidl, BOOL fCreate);
    CLASS_DECL_ANDROID DWORD       GetFileAttributes(const char * lpFileName);
    CLASS_DECL_ANDROID BOOL        CreateDirectory(const char * lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
    CLASS_DECL_ANDROID DWORD       GetCurrentDirectory(string & str);
@@ -20,6 +21,8 @@ namespace android
    CLASS_DECL_ANDROID BOOL        DeleteFile(const char * lpFileName);
    CLASS_DECL_ANDROID int         GetMenuStringW(HMENU hMenu, UINT uIDItem, string & str, UINT flags);
    CLASS_DECL_ANDROID void        TimeToFileTime(::ca2::application * papp, const class time& time, LPFILETIME pFileTime);
+
+*/
 
 } // namespace android
 
@@ -60,21 +63,21 @@ void CLASS_DECL_ANDROID AfxAbort();
 CLASS_DECL_ANDROID const char * AfxRegisterWndClass(UINT nClassStyle,
    HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
 
-CLASS_DECL_ANDROID BOOL AfxRegisterClass(WNDCLASS* lpWndClass);
+// xxx CLASS_DECL_lnx bool __register_class(WNDCLASS* lpWndClass);
 
 // helper to initialize rich edit 1.0 control
 CLASS_DECL_ANDROID BOOL AfxInitRichEdit();
 // helper to initialize rich edit 2.0 control
 CLASS_DECL_ANDROID BOOL AfxInitRichEdit2();
 
-CLASS_DECL_ANDROID LRESULT CALLBACK AfxWndProc(HWND hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
-CLASS_DECL_ANDROID WNDPROC AfxGetAfxWndProc();
-#define AfxWndProc (*AfxGetAfxWndProc())
+CLASS_DECL_ANDROID LRESULT CALLBACK AfxWndProc(oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+// xxx CLASS_DECL_lnx WNDPROC __get_window_procedure();
+// xxx #define __window_procedure (*__get_window_procedure())
 
 typedef void (__MSG_CALL ::ca2::window::*__PMSGW)(void);
    // like '__PMSG' but for ::ca2::window derived classes only
 
-typedef void (__MSG_CALL ::radix::thread::*__PMSGT)(void);
+typedef void (__MSG_CALL ::ca2::thread::*__PMSGT)(void);
    // like '__PMSG' but for thread-derived classes only
 
 
@@ -88,13 +91,13 @@ CLASS_DECL_ANDROID BOOL AfxDiagnosticInit(void);
 
 
 CLASS_DECL_ANDROID ::android::thread * AfxGetThread();
-CLASS_DECL_ANDROID void AfxSetThread(::radix::thread * pthread);
+CLASS_DECL_ANDROID void AfxSetThread(::ca2::thread * pthread);
 CLASS_DECL_ANDROID MSG* AfxGetCurrentMessage();
 
-CLASS_DECL_ANDROID void AfxEndThread(::radix::application * papp, UINT nExitCode, BOOL bDelete = TRUE);
+CLASS_DECL_ANDROID void AfxEndThread(::ca2::application * papp, UINT nExitCode, BOOL bDelete = TRUE);
 
 CLASS_DECL_ANDROID void AfxInitThread();
-CLASS_DECL_ANDROID void AfxTermThread(::radix::application * papp, HINSTANCE hInstTerm = NULL);
+CLASS_DECL_ANDROID void AfxTermThread(::ca2::application * papp, HINSTANCE hInstTerm = NULL);
 
 /////////////////////////////////////////////////////////////////////////////
 // Global functions for access to the one and only application
@@ -125,7 +128,7 @@ CLASS_DECL_ANDROID void AfxTermThread(::radix::application * papp, HINSTANCE hIn
   // __in_z LPTSTR lpCmdLine, __in int nCmdShow);
 CLASS_DECL_ANDROID void AfxWinTerm();
 
-CLASS_DECL_ANDROID ::radix::application* AfxGetApp();
+CLASS_DECL_ANDROID ::ca2::application* AfxGetApp();
 CLASS_DECL_ANDROID ::user::interaction* AfxGetMainWnd();
 //CLASS_DECL_ANDROID HINSTANCE CLASS_DECL_ANDROID System.m_hInstance;
 CLASS_DECL_ANDROID HINSTANCE AfxGetResourceHandle();

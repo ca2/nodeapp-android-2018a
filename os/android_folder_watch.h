@@ -5,7 +5,7 @@ namespace android
 
    class CLASS_DECL_ANDROID folder_watch :
       virtual public ::ex2::folder_watch,
-      virtual public ::radix::thread
+      virtual public ::ca2::thread
    {
    public:
       

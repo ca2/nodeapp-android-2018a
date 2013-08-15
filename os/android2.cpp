@@ -1,8 +1,8 @@
 #include "framework.h"
 
 // Global helper functions
- CLASS_DECL_ANDROID ::radix::application * AfxGetApp()
-{ return dynamic_cast < ::radix::application * > (afxCurrentWinApp); }
+ CLASS_DECL_ANDROID ::ca2::application * AfxGetApp()
+{ return dynamic_cast < ::ca2::application * > (afxCurrentWinApp); }
 
  CLASS_DECL_ANDROID HINSTANCE AfxGetInstanceHandle()
    { ASSERT(afxCurrentInstanceHandle != NULL);
@@ -16,7 +16,7 @@
    { ASSERT(afxCurrentAppName != NULL); return afxCurrentAppName; }
  CLASS_DECL_ANDROID ::user::interaction * AfxGetMainWnd()
 {
-      ::radix::thread* pThread = dynamic_cast < ::radix::thread * > (::android::get_thread());
+      ::ca2::thread* pThread = dynamic_cast < ::ca2::thread * > (::android::get_thread());
       return pThread != NULL ? pThread->GetMainWnd() : NULL;
  }
 

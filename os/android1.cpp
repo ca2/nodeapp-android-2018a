@@ -13,7 +13,7 @@ namespace android
       return ::LoadLibraryW(::ca2::international::utf8_to_unicode(lpsz));
    }
 
-   BOOL CLASS_DECL_ANDROID SHGetSpecialFolderPath(HWND hwnd, string &str, int csidl, BOOL fCreate)
+   BOOL CLASS_DECL_ANDROID SHGetSpecialFolderPath(oswindow hwnd, string &str, int csidl, BOOL fCreate)
    {
       return ::SHGetSpecialFolderPathW(hwnd, wstringtou(str, MAX_PATH * 8), csidl, fCreate);
    }

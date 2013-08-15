@@ -191,11 +191,11 @@ namespace android
       ::ca2::window * window_from_os_data(void * pdata);
       ::ca2::window * window_from_os_data_permanent(void * pdata);
 
-      virtual ::radix::thread * GetThread();
-      virtual void set_thread(::radix::thread * pthread);
+      virtual ::ca2::thread * GetThread();
+      virtual void set_thread(::ca2::thread * pthread);
 
       virtual ::ca2::window * FindWindow(const char * lpszClassName, const char * lpszWindowName);
-      virtual ::ca2::window * FindWindowEx(HWND hwndParent, HWND hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+      virtual ::ca2::window * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 
       virtual void get_time(struct timeval *p);
       virtual void set_env_var(const string & var,const string & value);

@@ -385,7 +385,7 @@ namespace android
          // check for missing AfxLockTempMap calls
          if (AfxGetModuleThreadState()->m_pCurrentWinThread->m_nTempMapLock != 0)
          {
-            TRACE(::radix::trace::category_AppMsg, 0, "Warning: Temp ::collection::map lock count non-zero (%ld).\n",
+            TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Temp ::collection::map lock count non-zero (%ld).\n",
                AfxGetModuleThreadState()->m_pCurrentWinThread->m_nTempMapLock);
          }
    #endif
@@ -683,18 +683,18 @@ namespace android
 
    ::ca2::window * application::window_from_os_data(void * pdata)
    {
-      return ::android::window::from_handle((HWND) pdata);
+      return ::android::window::from_handle((oswindow) pdata);
    }
 
    ::ca2::window * application::window_from_os_data_permanent(void * pdata)
    {
-      ::ca2::window * pwnd = ::android::window::FromHandlePermanent((HWND) pdata);
+      ::ca2::window * pwnd = ::android::window::FromHandlePermanent((oswindow) pdata);
       if(pwnd != NULL)
          return pwnd;
       user::LPWndArray wndptra = System.frames();
       for(int i = 0; i < wndptra.get_count(); i++)
       {
-         if(wndptra[i]->get_safe_handle() == (HWND) pdata)
+         if(wndptra[i]->get_safe_handle() == (oswindow) pdata)
          {
             return wndptra[i]->get_wnd();
          }
@@ -702,15 +702,15 @@ namespace android
       return NULL;
    }
 
-   ::radix::thread * application::GetThread()
+   ::ca2::thread * application::GetThread()
    {
       if(AfxGetThread() == NULL)
          return NULL;
       else
-         return dynamic_cast < ::radix::thread * > (AfxGetThread()->m_p);
+         return dynamic_cast < ::ca2::thread * > (AfxGetThread()->m_p);
    }
 
-   void application::set_thread(::radix::thread * pthread)
+   void application::set_thread(::ca2::thread * pthread)
    {
       AfxSetThread(pthread);
    }
@@ -825,7 +825,7 @@ namespace android
       return window::FindWindow(lpszClassName, lpszWindowName);
    }
 
-   ::ca2::window * application::FindWindowEx(HWND hwndParent, HWND hwndChildAfter, const char * lpszClass, const char * lpszWindow)
+   ::ca2::window * application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
    {
       return window::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow);
    }

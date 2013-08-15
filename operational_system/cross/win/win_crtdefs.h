@@ -158,14 +158,17 @@ typedef __int64 DECLSPEC_ALIGN(8) __time64_t;
 # define _USE_32BIT_TIME_T
 #endif
 
+/*
 #ifndef _TIME_T_DEFINED
 #ifdef _USE_32BIT_TIME_T
-//typedef __time32_t time_t;
+typedef __time32_t time_t;
 #else
 typedef __time64_t time_t;
 #endif
 #define _TIME_T_DEFINED
 #endif
+*/
+
 
 #ifndef _WCHAR_T_DEFINED
 #ifndef __cplusplus

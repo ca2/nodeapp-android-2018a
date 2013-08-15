@@ -1009,12 +1009,12 @@ namespace android
 #ifdef DEBUG
    void graphics::assert_valid() const
    {
-      ::radix::object::assert_valid();
+      ::ca2::object::assert_valid();
    }
 
    void graphics::dump(dump_context & dumpcontext) const
    {
-      ::radix::object::dump(dumpcontext);
+      ::ca2::object::dump(dumpcontext);
 
       dumpcontext << "get_handle1() = " << get_handle1();
       dumpcontext << "\nm_hAttribDC = " << get_handle2();
@@ -1094,7 +1094,7 @@ namespace android
       hdc_map* pMap = afxMapHDC();
       if (pMap != NULL && pMap->lookup_permanent(get_handle1()) == this)
       {
-         TRACE(::radix::trace::category_AppMsg, 0, "Cannot Set Output hDC on Attached graphics.\n");
+         TRACE(::ca2::trace::category_AppMsg, 0, "Cannot Set Output hDC on Attached graphics.\n");
          ASSERT(FALSE);
       }
 #endif
@@ -1112,7 +1112,7 @@ namespace android
       hdc_map* pMap = afxMapHDC();
       if (pMap != NULL && pMap->lookup_permanent(get_handle1()) == this)
       {
-         TRACE(::radix::trace::category_AppMsg, 0, "Cannot Release Output hDC on Attached graphics.\n");
+         TRACE(::ca2::trace::category_AppMsg, 0, "Cannot Release Output hDC on Attached graphics.\n");
          ASSERT(FALSE);
       }
 #endif
@@ -1699,7 +1699,7 @@ namespace android
          HRGN hRgn = ::CreateRectRgn(0, 0, 0, 0);
          if (::GetClipRgn(get_handle1(), hRgn) < 0 || !::SelectClipRgn(get_handle2(), hRgn))
          {
-            TRACE(::radix::trace::category_AppMsg, 0, "Error: unable to transfer clip region in graphics::SelectClipPath!\n");
+            TRACE(::ca2::trace::category_AppMsg, 0, "Error: unable to transfer clip region in graphics::SelectClipPath!\n");
             bResult = FALSE;
          }
          ::DeleteObject(hRgn);
@@ -2061,11 +2061,11 @@ namespace android
    // IMPLEMENT_DYNAMIC(user_exception, base_exception)
    //user_exception _simpleUserException(FALSE, __IDS_USER_EXCEPTION);
 
-   // IMPLEMENT_DYNCREATE(graphics, ::radix::object)
+   // IMPLEMENT_DYNCREATE(graphics, ::ca2::object)
    // IMPLEMENT_DYNAMIC(CClientDC, graphics)
    // IMPLEMENT_DYNAMIC(CWindowDC, graphics)
    // IMPLEMENT_DYNAMIC(CPaintDC, graphics)
-   // IMPLEMENT_DYNCREATE(::ca2::graphics_object, ::radix::object)
+   // IMPLEMENT_DYNCREATE(::ca2::graphics_object, ::ca2::object)
 
    // IMPLEMENT_DYNAMIC(pen, ::ca2::graphics_object)
    // IMPLEMENT_DYNAMIC(::ca2::brush, ::ca2::graphics_object)

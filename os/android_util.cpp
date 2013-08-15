@@ -25,7 +25,7 @@
    return TRUE;
 }*/
 
-BOOL CLASS_DECL_ANDROID _AfxIsComboBoxControl(HWND hWnd, UINT nStyle)
+BOOL CLASS_DECL_ANDROID _AfxIsComboBoxControl(oswindow hWnd, UINT nStyle)
 {
    if (hWnd == NULL)
       return FALSE;
@@ -39,7 +39,7 @@ BOOL CLASS_DECL_ANDROID _AfxIsComboBoxControl(HWND hWnd, UINT nStyle)
    return ::AfxInvariantStrICmp(szCompare, "combobox") == 0;
 }
 
-BOOL CLASS_DECL_ANDROID _AfxCompareClassName(HWND hWnd, const char * lpszClassName)
+BOOL CLASS_DECL_ANDROID _AfxCompareClassName(oswindow hWnd, const char * lpszClassName)
 {
    ASSERT(::IsWindow(hWnd));
    char szTemp[32];
@@ -47,13 +47,13 @@ BOOL CLASS_DECL_ANDROID _AfxCompareClassName(HWND hWnd, const char * lpszClassNa
    return ::AfxInvariantStrICmp(szTemp, lpszClassName) == 0;
 }
 
-HWND CLASS_DECL_ANDROID _AfxChildWindowFromPoint(HWND hWnd, POINT pt)
+oswindow CLASS_DECL_ANDROID _AfxChildWindowFromPoint(oswindow hWnd, POINT pt)
 {
    ASSERT(hWnd != NULL);
 
    // check child windows
    ::ClientToScreen(hWnd, &pt);
-   HWND hWndChild = ::GetWindow(hWnd, GW_CHILD);
+   oswindow hWndChild = ::GetWindow(hWnd, GW_CHILD);
    for (; hWndChild != NULL; hWndChild = ::GetWindow(hWndChild, GW_HWNDNEXT))
    {
       if (_AfxGetDlgCtrlID(hWndChild) != (WORD)0 &&
@@ -98,11 +98,11 @@ void CLASS_DECL_ANDROID AfxDeleteObject(HGDIOBJ* pObject)
    }
 }
 /*
-void CLASS_DECL_ANDROID AfxCancelModes(HWND hWndRcvr)
+void CLASS_DECL_ANDROID AfxCancelModes(oswindow hWndRcvr)
 {
    // if we receive a message destined for a ::ca2::window, cancel any combobox
    //  popups that could be in toolbars or dialog bars
-   HWND hWndCancel = ::GetFocus();
+   oswindow hWndCancel = ::GetFocus();
    if (hWndCancel == NULL)
       return;     // nothing to cancel
 
@@ -158,7 +158,7 @@ int __CDECL AfxCriticalNewHandler(size_t nSize)
 {
    // called during critical primitive::memory allocation
    //  free up part of the cast's safety cache
-//   TRACE(::radix::trace::category_Memory, 0, "Warning: Critical primitive::memory allocation failed!\n");
+//   TRACE(::ca2::trace::category_Memory, 0, "Warning: Critical primitive::memory allocation failed!\n");
    _AFX_THREAD_STATE* pThreadState = AfxGetThreadState();
    if (pThreadState != NULL && pThreadState->m_pSafetyPoolBuffer != NULL)
    {
@@ -166,7 +166,7 @@ int __CDECL AfxCriticalNewHandler(size_t nSize)
       if (nOldBufferSize <= nSize + MIN_MALLOC_OVERHEAD)
       {
          // give it all up
-  ///       TRACE(::radix::trace::category_Memory, 0, "Warning: Freeing application's primitive::memory safety pool!\n");
+  ///       TRACE(::ca2::trace::category_Memory, 0, "Warning: Freeing application's primitive::memory safety pool!\n");
          free(pThreadState->m_pSafetyPoolBuffer);
          pThreadState->m_pSafetyPoolBuffer = NULL;
       }
@@ -176,13 +176,13 @@ int __CDECL AfxCriticalNewHandler(size_t nSize)
          _expand(pThreadState->m_pSafetyPoolBuffer,
             nOldBufferSize - (nSize + MIN_MALLOC_OVERHEAD));
          AfxEnableMemoryTracking(bEnable);
-//         TRACE(::radix::trace::category_Memory, 0, "Warning: Shrinking safety pool from %d to %d to satisfy request of %d bytes.\n",
+//         TRACE(::ca2::trace::category_Memory, 0, "Warning: Shrinking safety pool from %d to %d to satisfy request of %d bytes.\n",
   //           nOldBufferSize, _msize(pThreadState->m_pSafetyPoolBuffer), nSize);
       }
       return 1;       // retry it
    }
 
-//   TRACE(::radix::trace::category_Memory, 0, "ERROR: Critical primitive::memory allocation from safety pool failed!\n");
+//   TRACE(::ca2::trace::category_Memory, 0, "ERROR: Critical primitive::memory allocation from safety pool failed!\n");
    AfxThrowMemoryException();      // oops
 }
 #endif // !_AFX_PORTABLE

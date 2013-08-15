@@ -17,10 +17,10 @@
 //      necessary for the definition of WindowsThread.
 //
 //  Most Windows objects are represented with a HANDLE, including
-//      the most important ones, HWND, HDC, HPEN, HFONT etc.
+//      the most important ones, oswindow, HDC, HPEN, HFONT etc.
 //  We want C++ objects to wrap these handle based objects whenever we can.
 //  Since Windows objects can be created outside of C++ (eg: calling
-//      ::CreateWindow will return an HWND with no C++ wrapper) we must
+//      ::CreateWindow will return an oswindow with no C++ wrapper) we must
 //      support a reasonably uniform mapping from permanent handles
 //      (i.e. the ones allocated in C++) and temporary handles (i.e.
 //      the ones allocated in C, but passed through a C++ interface.
@@ -77,7 +77,7 @@ public:
    inline H2 set_handle2(H2 h) { return static_cast < H2 > (m_handlea[1] = static_cast < HANDLE > (h)); }
 };
 
-   typedef handle1 < HWND > hwnd_handle;
+   typedef handle1 < oswindow > hwnd_handle;
    typedef handle1 < HMENU > hmenu_handle;
    typedef handle2 < HDC, HDC > hdc_handle;
    typedef handle1 < HGDIOBJ > hgdiobj_handle;
@@ -91,11 +91,11 @@ public:
 template<class TYPE>
 struct ConstructDestruct
 {
-   static void PASCAL Construct(::radix::object* pObject)
+   static void PASCAL Construct(::ca2::object* pObject)
    {
       new (pObject) TYPE;
    }
-   static void PASCAL Destruct(::radix::object* pObject)
+   static void PASCAL Destruct(::ca2::object* pObject)
    {
       TYPE* p = dynamic_cast < TYPE * > (pObject);
       p->~TYPE();
@@ -151,7 +151,7 @@ public:
    CT * lookup_permanent(HANDLE h);
    CT * lookup_temporary(HANDLE h);
 
-   friend class ::radix::thread;
+   friend class ::ca2::thread;
 };
 
 class CLASS_DECL_ANDROID hwnd_map :
@@ -275,7 +275,7 @@ CT* handle_map < HT, CT >::from_handle(HANDLE h, CT * (*pfnAllocator) (::ca2::ap
    AfxEnableMemoryTracking(bEnable);
 
    // now set the handle in the object
-   HANDLE* ph = pTemp->m_handlea;  // after ::radix::object
+   HANDLE* ph = pTemp->m_handlea;  // after ::ca2::object
    ph[0] = h;
    if (HT::s_iHandleCount == 2)
       ph[1] = h;
@@ -347,7 +347,7 @@ void handle_map < HT, CT >::delete_temp()
 
       // zero out the handles
       ASSERT(HT::s_iHandleCount == 1 || HT::s_iHandleCount == 2);
-      HANDLE* ph = pTemp->m_handlea;  // after ::radix::object
+      HANDLE* ph = pTemp->m_handlea;  // after ::ca2::object
       ASSERT(ph[0] == h || ph[0] == NULL);
       ph[0] = NULL;
       if (HT::s_iHandleCount == 2)

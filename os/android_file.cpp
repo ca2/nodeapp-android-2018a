@@ -716,13 +716,13 @@ void CLASS_DECL_ANDROID vfxGetModuleShortFileName(HINSTANCE hInst, string& strSh
 #ifdef _DEBUG
 void WinFile::assert_valid() const
 {
-   ::radix::object::assert_valid();
+   ::ca2::object::assert_valid();
    // we permit the descriptor m_hFile to be any value for derived classes
 }
 
 void WinFile::dump(dump_context & dumpcontext) const
 {
-   ::radix::object::dump(dumpcontext);
+   ::ca2::object::dump(dumpcontext);
 
    dumpcontext << "with handle " << (UINT)m_hFile;
    dumpcontext << " and name \"" << m_strFileName << "\"";
@@ -731,7 +731,7 @@ void WinFile::dump(dump_context & dumpcontext) const
 #endif
 
 
-// IMPLEMENT_DYNAMIC(WinFile, ::radix::object)
+// IMPLEMENT_DYNAMIC(WinFile, ::ca2::object)
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -1037,7 +1037,7 @@ BOOL WinFileException::GetErrorMessage(string & str, PUINT pnHelpContext)
 #ifdef _DEBUG
 void WinFileException::dump(dump_context & dumpcontext) const
 {
-   ::radix::object::dump(dumpcontext);
+   ::ca2::object::dump(dumpcontext);
 
    dumpcontext << "m_cause = ";
    if (m_cause >= 0 && m_cause < _countof(rgszFileExceptionCause))

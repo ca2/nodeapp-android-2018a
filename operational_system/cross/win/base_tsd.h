@@ -125,7 +125,7 @@ typedef ULONG_PTR        DWORD_PTR, *PDWORD_PTR;
 
 #else
 
-//#define __int3264 __int32
+#define __int3264 __int32
 
 typedef long          INT_PTR, *PINT_PTR;
 typedef unsigned long UINT_PTR, *PUINT_PTR;

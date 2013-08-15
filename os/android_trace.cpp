@@ -212,7 +212,7 @@ static void TraceDDE(const char * lpszPrefix, const MSG* pMsg)
       if (!UnpackDDElParam(WM_DDE_EXECUTE, pMsg->lParam,
          &nDummy, (uint_ptr*)&hCommands))
       {
-//         ::OutputDebugString(::radix::trace::category_AppMsg, 0, "Warning: Unable to unpack WM_DDE_EXECUTE lParam %08lX.\n",
+//         ::OutputDebugString(::ca2::trace::category_AppMsg, 0, "Warning: Unable to unpack WM_DDE_EXECUTE lParam %08lX.\n",
   //          pMsg->lParam);
          return;
       }
@@ -220,7 +220,7 @@ static void TraceDDE(const char * lpszPrefix, const MSG* pMsg)
 
       const char * lpszCommands = (const char *)::GlobalLock(hCommands);
       ENSURE_THROW(lpszCommands != NULL, ::AfxThrowMemoryException() );
-//      ::OutputDebugString(::radix::trace::category_AppMsg, 0, "%s: Execute '%s'.\n", lpszPrefix, lpszCommands);
+//      ::OutputDebugString(::ca2::trace::category_AppMsg, 0, "%s: Execute '%s'.\n", lpszPrefix, lpszCommands);
       ::GlobalUnlock(hCommands);
    }
    else if (pMsg->message == WM_DDE_ADVISE)
@@ -231,7 +231,7 @@ static void TraceDDE(const char * lpszPrefix, const MSG* pMsg)
       if (!UnpackDDElParam(WM_DDE_ADVISE, pMsg->lParam,
          (uint_ptr*)&hAdvise, &nItem))
       {
-//         ::OutputDebugString(::radix::trace::category_AppMsg, 0, "Warning: Unable to unpack WM_DDE_ADVISE lParam %08lX.\n",
+//         ::OutputDebugString(::ca2::trace::category_AppMsg, 0, "Warning: Unable to unpack WM_DDE_ADVISE lParam %08lX.\n",
 //            pMsg->lParam);
        return;
       }
@@ -326,11 +326,11 @@ void _AfxTraceMsg(const char * lpszPrefix, ::ca2::signal_object * pobj)
    if (lpszMsgName != NULL)
    {
 #ifdef _WIN64
-      //TRACE(::radix::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = %s (%p, %p)\n",
+      //TRACE(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = %s (%p, %p)\n",
         // lpszPrefix, pbase->m_hwnd, lpszMsgName,
          //pbase->m_wparam, pbase->m_lparam);
 #else
-    //  ::OutputDebugString(::radix::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = %s (0x%08X, 0x%08X)\n",
+    //  ::OutputDebugString(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = %s (0x%08X, 0x%08X)\n",
 //         lpszPrefix, pbase->m_hwnd, lpszMsgName,
   //       pbase->m_wparam, pbase->m_lparam);
 #endif
@@ -338,11 +338,11 @@ void _AfxTraceMsg(const char * lpszPrefix, ::ca2::signal_object * pobj)
    else
    {
 #ifdef _WIN64
-//      ::OutputDebugString(::radix::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = 0x%04X (%p, %p)\n",
+//      ::OutputDebugString(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = 0x%04X (%p, %p)\n",
   //       lpszPrefix, pbase->m_hwnd, lpszMsgName,
     //     pbase->m_wparam, pbase->m_lparam);
 #else
-//      ::OutputDebugString(::radix::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = 0x%04X (0x%08X, 0x%08X)\n",
+//      ::OutputDebugString(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = 0x%04X (0x%08X, 0x%08X)\n",
   //       lpszPrefix, pbase->m_hwnd, lpszMsgName,
     //     pbase->m_wparam, pbase->m_lparam);
 #endif
@@ -408,11 +408,11 @@ void _AfxTraceMsg(const char * lpszPrefix, LPMSG lpmsg)
    if (lpszMsgName != NULL)
    {
 #ifdef WIN64
-//      TRACE(::radix::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = %hs (%p, %p)\n",
+//      TRACE(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = %hs (%p, %p)\n",
   //       lpszPrefix, pMsg->hwnd, lpszMsgName,
     //     pMsg->wParam, pMsg->lParam);
 #else
-//      ::OutputDebugString(::radix::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = %hs (0x%08X, 0x%08X)\n",
+//      ::OutputDebugString(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = %hs (0x%08X, 0x%08X)\n",
   //       lpszPrefix, lpmsg->hwnd, lpszMsgName,
     //     lpmsg->wParam, lpmsg->lParam);
 #endif
@@ -420,11 +420,11 @@ void _AfxTraceMsg(const char * lpszPrefix, LPMSG lpmsg)
    else
    {
 #ifdef WIN64
-      //::OutputDebugString(::radix::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = 0x%04X (%p, %p)\n",
+      //::OutputDebugString(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = 0x%04X (%p, %p)\n",
         // lpszPrefix, pMsg->hwnd, lpszMsgName,
          //pMsg->wParam, pMsg->lParam);
 #else
-      //::OutputDebugString(::radix::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = 0x%04X (0x%08X, 0x%08X)\n",
+      //::OutputDebugString(::ca2::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = 0x%04X (0x%08X, 0x%08X)\n",
         // lpszPrefix, lpmsg->hwnd, lpszMsgName,
          //lpmsg->wParam, lpmsg->lParam);
 #endif

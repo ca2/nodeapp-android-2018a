@@ -1,9 +1,8 @@
 #pragma once
 
 
-#ifdef _DEBUG
 #define DEBUG
-#endif
+
 
 #ifndef ANDROID
 #define ANDROID
@@ -45,7 +44,7 @@
 #endif
 
 
-
+#define BSD_STYLE_SOCKETS
 
 
 

@@ -20,7 +20,7 @@ namespace android
 {
 
    class CLASS_DECL_ANDROID thread :
-      virtual public ::radix::thread,
+      virtual public ::ca2::thread,
       virtual public ::ca2::message_window_simple_callback
    {
    public:
@@ -76,7 +76,7 @@ namespace android
       void set_os_data(void * pvoidOsData);
       void set_os_int(int_ptr iData);
 
-      virtual void set_p(::radix::thread * p);
+      virtual void set_p(::ca2::thread * p);
 
       thread(::ca2::application * papp);
 

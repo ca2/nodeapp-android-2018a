@@ -343,7 +343,7 @@ __MODULE_THREAD_STATE::~__MODULE_THREAD_STATE()
 /////////////////////////////////////////////////////////////////////////////
 // __MODULE_STATE for base application
 
-LRESULT CALLBACK AfxWndProcBase(HWND, UINT, WPARAM, LPARAM);
+LRESULT CALLBACK AfxWndProcBase(oswindow, UINT, WPARAM, LPARAM);
 
 class _AFX_BASE_MODULE_STATE : public __MODULE_STATE
 {
@@ -362,7 +362,7 @@ PROCESS_LOCAL(_AFX_BASE_MODULE_STATE, _afxBaseModuleState)
 
 #undef AfxWndProc
 LRESULT CALLBACK
-AfxWndProcBase(HWND hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
+AfxWndProcBase(oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
 {
    return AfxWndProc(hWnd, nMsg, wParam, lParam);
 }
@@ -408,7 +408,7 @@ BOOL CLASS_DECL_ANDROID AfxIsModuleDll()
 
 BOOL CLASS_DECL_ANDROID AfxInitCurrentStateApp()
 {
-   ::radix::application* pApp = AfxGetModuleState()->m_pCurrentWinApp;
+   ::ca2::application* pApp = AfxGetModuleState()->m_pCurrentWinApp;
    if (pApp != NULL && !pApp->initialize_instance())
    {
       // Init Failed

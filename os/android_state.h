@@ -94,7 +94,7 @@ public:
 
 #ifndef _AFX_NO_SOCKET_SUPPORT
    // WinSock specific thread state
-   HWND m_hSocketWindow;
+   oswindow m_hSocketWindow;
 #ifdef _ApplicationFrameworkDLL
    CEmbeddedButActsLikePtr<CMapPtrToPtr> m_pmapSocketHandle;
    CEmbeddedButActsLikePtr<CMapPtrToPtr> m_pmapDeadSockets;
@@ -159,7 +159,7 @@ public:
 #endif
    ~__MODULE_STATE();
 
-   ::radix::application* m_pCurrentWinApp;
+   ::ca2::application* m_pCurrentWinApp;
    HINSTANCE m_hCurrentInstanceHandle;
    HINSTANCE m_hCurrentResourceHandle;
    const char * m_lpszCurrentAppName;
@@ -307,7 +307,7 @@ public:
    ::ca2::window * m_pAlternateWndInit;      // special case commdlg hooking
    DWORD m_dwPropStyle;
    DWORD m_dwPropExStyle;
-   HWND m_hWndInit;
+   oswindow m_hWndInit;
    HHOOK m_hHookOldCbtFilter;
    HHOOK m_hHookOldMsgFilter;
 
@@ -322,10 +322,10 @@ public:
 
    // other ::ca2::window modal data
    MSG m_lastSentMsg;              // see ::ca2::window::message_handler
-   HWND m_hTrackingWindow;         // see ::ca2::window::TrackPopupMenu
+   oswindow m_hTrackingWindow;         // see ::ca2::window::TrackPopupMenu
    HMENU m_hTrackingMenu;
    char m_szTempClassName[_AFX_TEMP_CLASS_NAME_SIZE];    // see System.RegisterWndClass
-   HWND m_hLockoutNotifyWindow;    // see ::ca2::window::OnCommand
+   oswindow m_hLockoutNotifyWindow;    // see ::ca2::window::OnCommand
    BOOL m_bInMsgFilter;
 
    // other framework modal data

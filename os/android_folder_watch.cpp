@@ -5,7 +5,7 @@ namespace android
 
    folder_watch::folder_watch(::ca2::application * papp) :
       ca2(papp),
-      ::radix::thread(papp)
+      ::ca2::thread(papp)
    {
    }
 

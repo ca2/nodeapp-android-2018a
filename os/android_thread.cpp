@@ -81,7 +81,7 @@ UINT APIENTRY _AfxThreadEntry(void * pParam)
       // thread inherits cast's main ::ca2::window if not already set
       //if (papp != NULL && GetMainWnd() == NULL)
       {
-         // just attach the HWND
+         // just attach the oswindow
          // trans         threadWnd.Attach(pApp->GetMainWnd()->get_handle());
          //GetMainWnd() = pApp->GetMainWnd();
       }
@@ -91,13 +91,13 @@ UINT APIENTRY _AfxThreadEntry(void * pParam)
       // Note: DELETE_EXCEPTION(e) not required.
 
       // exception happened during thread initialization!!
-      //TRACE(::radix::trace::category_AppMsg, 0, "Warning: Error during thread initialization!\n");
+      //TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Error during thread initialization!\n");
 
       // set error flag and allow the creating thread to notice the error
 //         threadWnd.Detach();
       pStartup->bError = TRUE;
       VERIFY(::SetEvent(pStartup->hEvent));
-      AfxEndThread(dynamic_cast < ::radix::application * > (pThread->m_papp), (UINT)-1, FALSE);
+      AfxEndThread(dynamic_cast < ::ca2::application * > (pThread->m_papp), (UINT)-1, FALSE);
       ASSERT(FALSE);  // unreachable
    }
 
@@ -132,7 +132,7 @@ CLASS_DECL_ANDROID ::lnx::thread * AfxGetThread()
 }
 
 
-CLASS_DECL_ANDROID void AfxSetThread(::radix::thread * pthread)
+CLASS_DECL_ANDROID void AfxSetThread(::ca2::thread * pthread)
 {
    // check for current thread in module thread state
    __MODULE_THREAD_STATE* pState = AfxGetModuleThreadState();
@@ -170,7 +170,7 @@ CLASS_DECL_ANDROID void AfxInternalProcessWndProcException(base_exception*, ::ca
 
 CLASS_DECL_ANDROID void AfxProcessWndProcException(base_exception* e, ::ca2::signal_object * pobj)
 {
-   ::radix::thread *pThread = App(pobj->get_app()).GetThread();
+   ::ca2::thread *pThread = App(pobj->get_app()).GetThread();
    if( pThread )
       return pThread->ProcessWndProcException( e, pobj );
    else
@@ -185,7 +185,7 @@ void AfxInternalPreTranslateMessage(::ca2::signal_object * pobj)
 
       //   ASSERT_VALID(this);
 
-      ::radix::thread *pThread = dynamic_cast < ::radix::thread * > (::lnx::get_thread());
+      ::ca2::thread *pThread = dynamic_cast < ::ca2::thread * > (::lnx::get_thread());
       if( pThread )
       {
          // if this is a thread-message, short-circuit this function
@@ -261,7 +261,7 @@ void AfxInternalPreTranslateMessage(::ca2::signal_object * pobj)
 
 void __cdecl AfxPreTranslateMessage(::ca2::signal_object * pobj)
 {
-   ::radix::thread *pThread = App(pobj->get_app()).GetThread();
+   ::ca2::thread *pThread = App(pobj->get_app()).GetThread();
    if( pThread )
       return pThread->pre_translate_message( pobj );
    else
@@ -329,7 +329,7 @@ BOOL AfxInternalIsIdleMessage(LPMSG lpmsg)
 
 BOOL __cdecl AfxIsIdleMessage(::ca2::signal_object * pobj)
 {
-   ::radix::thread *pThread = App(pobj->get_app()).GetThread();
+   ::ca2::thread *pThread = App(pobj->get_app()).GetThread();
    if( pThread )
       return pThread->is_idle_message(pobj);
    else
@@ -367,7 +367,7 @@ BOOL __cdecl AfxIsIdleMessage(MSG* pMsg)
 
    return pThread;
 }*/
-void CLASS_DECL_ANDROID AfxEndThread(::radix::application * papp, UINT nExitCode, BOOL bDelete)
+void CLASS_DECL_ANDROID AfxEndThread(::ca2::application * papp, UINT nExitCode, BOOL bDelete)
 {
    // remove current thread object from primitive::memory
    __MODULE_THREAD_STATE* pState = AfxGetModuleThreadState();
@@ -390,7 +390,7 @@ void CLASS_DECL_ANDROID AfxEndThread(::radix::application * papp, UINT nExitCode
 }
 
 extern thread_slot_data* _afxThreadData;
-void CLASS_DECL_ANDROID AfxTermThread(::radix::application * papp, HINSTANCE hInstTerm)
+void CLASS_DECL_ANDROID AfxTermThread(::ca2::application * papp, HINSTANCE hInstTerm)
 {
 
    try
@@ -439,7 +439,7 @@ void CLASS_DECL_ANDROID AfxInitThread()
 namespace lnx
 {
 
-   void thread::set_p(::radix::thread * p)
+   void thread::set_p(::ca2::thread * p)
    {
       m_p = p;
    }
@@ -469,7 +469,7 @@ namespace lnx
       ca2(papp),
       message_window_simple_callback(papp),//,
       //m_evFinish(FALSE, TRUE)
-      radix::thread(NULL)
+      ca2::thread(NULL)
    {
       m_evFinish.SetEvent();
       m_pAppThread = dynamic_cast < ::ca2::thread * > (papp);
@@ -804,7 +804,7 @@ namespace lnx
    startup.dwCreateFlags = dwCreateFlags;
    if (startup.hEvent == NULL || startup.hEvent2 == NULL)
    {
-      TRACE(::radix::trace::category_AppMsg, 0, "Warning: CreateEvent failed in thread::CreateThread.\n");
+      TRACE(::ca2::trace::category_AppMsg, 0, "Warning: CreateEvent failed in thread::CreateThread.\n");
       if (startup.hEvent != NULL)
          ::CloseHandle(startup.hEvent);
       if (startup.hEvent2 != NULL)
@@ -867,7 +867,7 @@ void thread::Delete()
       if(m_pappDelete != NULL)
          delete m_pappDelete;
       m_evFinish.SetEvent();
-      ::radix::thread * pthread = dynamic_cast < ::radix::thread * > (m_p);
+      ::ca2::thread * pthread = dynamic_cast < ::ca2::thread * > (m_p);
       if(pthread->m_peventReady != NULL)
       {
          ::SetEvent((HANDLE) pthread->m_peventReady);
@@ -912,8 +912,8 @@ void thread::Delete()
       // for tracking the idle time state
       BOOL bIdle = TRUE;
       LONG lIdleCount = 0;
-      ::radix::application * pappThis1 = dynamic_cast < ::radix::application * > (this);
-      ::radix::application * pappThis2 = dynamic_cast < ::radix::application * > (m_p);
+      ::ca2::application * pappThis1 = dynamic_cast < ::ca2::application * > (this);
+      ::ca2::application * pappThis2 = dynamic_cast < ::ca2::application * > (m_p);
 
       // acquire and dispatch messages until a WM_QUIT message is received.
       MSG msg;
@@ -1012,7 +1012,7 @@ void thread::Delete()
          // Check for missing LockTempMap calls
          if(m_nTempMapLock != 0)
          {
-            TRACE(::radix::trace::category_AppMsg, 0, "Warning: Temp ::collection::map lock count non-zero (%ld).\n", m_nTempMapLock);
+            TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Temp ::collection::map lock count non-zero (%ld).\n", m_nTempMapLock);
          }
          LockTempMaps();
          UnlockTempMaps(-1);
@@ -1141,8 +1141,8 @@ void thread::Delete()
          if (pState->m_nTempMapLock == 0)
          {
             // free temp maps, OLE DLLs, etc.
-            AfxLockTempMaps(dynamic_cast < ::radix::application * > (m_p->m_papp));
-            AfxUnlockTempMaps(dynamic_cast < ::radix::application * > (m_p->m_papp));
+            AfxLockTempMaps(dynamic_cast < ::ca2::application * > (m_p->m_papp));
+            AfxUnlockTempMaps(dynamic_cast < ::ca2::application * > (m_p->m_papp));
          }*/
       }
 
@@ -1353,7 +1353,7 @@ void thread::Delete()
          MSG msg;
          if(!::GetMessage(&msg, NULL, NULL, NULL))
          {
-            TRACE(::radix::trace::category_AppMsg, 1, "thread::pump_message - Received WM_QUIT.\n");
+            TRACE(::ca2::trace::category_AppMsg, 1, "thread::pump_message - Received WM_QUIT.\n");
             m_nDisablePumpCount++; // application must die
             // Note: prevents calling message loop things in 'exit_instance'
             // will never be decremented
@@ -1362,7 +1362,7 @@ void thread::Delete()
 
          if(m_nDisablePumpCount != 0)
          {
-            TRACE(::radix::trace::category_AppMsg, 0, "Error: thread::pump_message called when not permitted.\n");
+            TRACE(::ca2::trace::category_AppMsg, 0, "Error: thread::pump_message called when not permitted.\n");
             ASSERT(FALSE);
          }
 
@@ -1546,7 +1546,7 @@ void thread::Delete()
       catch(base_exception * pe)
       {
          AfxProcessWndProcException(pe, pbase);
-         TRACE(::radix::trace::category_AppMsg, 0, "Warning: Uncaught exception in message_handler (returning %ld).\n", pbase->get_lresult());
+         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Uncaught exception in message_handler (returning %ld).\n", pbase->get_lresult());
          pe->Delete();
       }
    run:
@@ -1610,7 +1610,7 @@ void thread::Delete()
 
 
 #ifndef _AFX_PORTABLE
-      ::radix::application * papp = dynamic_cast < ::radix::application * > (get_app());
+      ::ca2::application * papp = dynamic_cast < ::ca2::application * > (get_app());
       _AFX_THREAD_STATE* pThreadState = _afxThreadState.GetDataNA();
       if( pThreadState != NULL )
       {
@@ -1635,7 +1635,7 @@ void thread::Delete()
                pThreadState->m_pSafetyPoolBuffer = malloc(papp->m_nSafetyPoolSize);
                if (pThreadState->m_pSafetyPoolBuffer == NULL)
                {
-//                  TRACE(::radix::trace::category_AppMsg, 0, "Warning: failed to reclaim %d bytes for primitive::memory safety pool.\n",
+//                  TRACE(::ca2::trace::category_AppMsg, 0, "Warning: failed to reclaim %d bytes for primitive::memory safety pool.\n",
   //                   pApp->m_nSafetyPoolSize);
                   // at least get the old buffer back
                   if (nOldSize != 0)
@@ -1671,7 +1671,7 @@ void thread::Delete()
 
       ::lnx::thread* pThread = pStartup->pThread;
 
-      ::radix::application* papp = dynamic_cast < ::radix::application * > (get_app());
+      ::ca2::application* papp = dynamic_cast < ::ca2::application * > (get_app());
       m_evFinish.ResetEvent();
       _001InstallMessageHandling(pThread);
       m_p->_001InstallMessageHandling(pThread);
@@ -1781,7 +1781,7 @@ void thread::Delete()
       {
          // cleanup and shutdown the thread
 //         threadWnd.Detach();
-         AfxEndThread(dynamic_cast < ::radix::application * > (m_papp), nResult);
+         AfxEndThread(dynamic_cast < ::ca2::application * > (m_papp), nResult);
       }
       catch(...)
       {
@@ -2314,7 +2314,7 @@ _AFX_THREAD_STATE *pState = AfxGetThreadState();
 if (!::GetMessage(&(pState->m_msgCur), NULL, NULL, NULL))
 {
 #ifdef DEBUG
-TRACE(::radix::trace::category_AppMsg, 1, "thread::pump_message - Received WM_QUIT.\n");
+TRACE(::ca2::trace::category_AppMsg, 1, "thread::pump_message - Received WM_QUIT.\n");
 pState->m_nDisablePumpCount++; // application must die
 #endif
 // Note: prevents calling message loop things in 'exit_instance'
@@ -2325,7 +2325,7 @@ return FALSE;
 #ifdef DEBUG
 if (pState->m_nDisablePumpCount != 0)
 {
-TRACE(::radix::trace::category_AppMsg, 0, "Error: thread::pump_message called when not permitted.\n");
+TRACE(::ca2::trace::category_AppMsg, 0, "Error: thread::pump_message called when not permitted.\n");
 ASSERT(FALSE);
 }
 #endif
@@ -2551,7 +2551,7 @@ startup.hEvent2 = ::CreateEvent(NULL, TRUE, FALSE, NULL);
 startup.dwCreateFlags = dwCreateFlags;
 if (startup.hEvent == NULL || startup.hEvent2 == NULL)
 {
-TRACE(::radix::trace::category_AppMsg, 0, "Warning: CreateEvent failed in thread::CreateThread.\n");
+TRACE(::ca2::trace::category_AppMsg, 0, "Warning: CreateEvent failed in thread::CreateThread.\n");
 if (startup.hEvent != NULL)
 ::CloseHandle(startup.hEvent);
 if (startup.hEvent2 != NULL)
@@ -2864,8 +2864,8 @@ return AfxInternalProcessWndProcException( e, pMsg );
 
 LRESULT CALLBACK _AfxMsgFilterHook(int code, WPARAM wParam, LPARAM lParam)
 {
-   ::radix::thread* pthread;
-   if (afxContextIsDLL || (code < 0 && code != MSGF_DDEMGR) || (pthread = dynamic_cast < ::radix::thread * > (::lnx::get_thread())) == NULL)
+   ::ca2::thread* pthread;
+   if (afxContextIsDLL || (code < 0 && code != MSGF_DDEMGR) || (pthread = dynamic_cast < ::ca2::thread * > (::lnx::get_thread())) == NULL)
    {
       return ::CallNextHookEx(_afxThreadState->m_hHookOldMsgFilter, code, wParam, lParam);
    }

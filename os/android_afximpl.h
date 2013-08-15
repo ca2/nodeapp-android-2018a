@@ -83,10 +83,10 @@ public:
 	BOOL (WINAPI* m_pfnAutoSubclass)(HINSTANCE);
 	BOOL (WINAPI* m_pfnUnAutoSubclass)();
 	BOOL (WINAPI* m_pfnColorChange)();
-	BOOL (WINAPI* m_pfnSubclassDlgEx)(HWND, DWORD);
+	BOOL (WINAPI* m_pfnSubclassDlgEx)(oswindow, DWORD);
 	void (WINAPI* m_pfnWinIniChange)();
-	BOOL (WINAPI* m_pfnSubclassCtl)(HWND);
-	BOOL (WINAPI* m_pfnSubclassCtlEx)(HWND, int);
+	BOOL (WINAPI* m_pfnSubclassCtl)(oswindow);
+	BOOL (WINAPI* m_pfnSubclassCtlEx)(oswindow, int);
 };
 
 EXTERN_PROCESS_LOCAL(_AFX_CTL3D_STATE, _afxCtl3dState)
@@ -228,7 +228,7 @@ BOOL _API AfxEndDeferRegisterClass(LONG fToRegister);
 typedef struct tagAFX_OLDTOOLINFO {
 	UINT cbSize;
 	UINT uFlags;
-	HWND hwnd;
+	oswindow hwnd;
 	UINT uId;
 	RECT rect;
 	HINSTANCE hinst;
@@ -265,12 +265,12 @@ typedef struct tagAFX_OLDTOOLINFO {
 #define __WNDOLECONTROL   __WNDCLASS("OleControl")
 
 // dialog/commdlg hook procs
-BOOL CALLBACK AfxDlgProc(HWND, UINT, WPARAM, LPARAM);
-UINT CALLBACK _AfxCommDlgProc(HWND hWnd, UINT, WPARAM, LPARAM);
+BOOL CALLBACK AfxDlgProc(oswindow, UINT, WPARAM, LPARAM);
+UINT CALLBACK _AfxCommDlgProc(oswindow hWnd, UINT, WPARAM, LPARAM);
 
 // support for standard dialogs
 extern UINT _afxMsgSETRGB;
-typedef UINT (CALLBACK* COMMDLGPROC)(HWND, UINT, UINT, LONG);
+typedef UINT (CALLBACK* COMMDLGPROC)(oswindow, UINT, UINT, LONG);
 
 /////////////////////////////////////////////////////////////////////////////
 // Extended dialog templates (new in Win95)
@@ -308,18 +308,18 @@ typedef struct
 /////////////////////////////////////////////////////////////////////////////
 // Special helpers
 
-void _API AfxCancelModes(HWND hWndRcvr);
-HWND _API AfxGetParentOwner(HWND hWnd);
-BOOL _API AfxIsDescendant(HWND hWndParent, HWND hWndChild);
+void _API AfxCancelModes(oswindow hWndRcvr);
+oswindow _API AfxGetParentOwner(oswindow hWnd);
+BOOL _API AfxIsDescendant(oswindow hWndParent, oswindow hWndChild);
 BOOL _API AfxHelpEnabled();  // determine if ID_HELP handler exists
 void _API AfxDeleteObject(HGDIOBJ* pObject);
 BOOL _API AfxCustomLogFont(UINT nIDS, LOGFONT* pLogFont);
 BOOL _API AfxGetPropSheetFont(CString& strFace, WORD& wSize, BOOL bWizard);
 
-BOOL _API _AfxIsComboBoxControl(HWND hWnd, UINT nStyle);
+BOOL _API _AfxIsComboBoxControl(oswindow hWnd, UINT nStyle);
 BOOL _API _AfxCheckCenterDialog(LPCTSTR lpszResource);
-BOOL _API _AfxCompareClassName(HWND hWnd, LPCTSTR lpszClassName);
-HWND _API _AfxChildWindowFromPoint(HWND, POINT);
+BOOL _API _AfxCompareClassName(oswindow hWnd, LPCTSTR lpszClassName);
+oswindow _API _AfxChildWindowFromPoint(oswindow, POINT);
 
 // for determining version of COMCTL32.DLL
 #define VERSION_WIN4    MAKELONG(0, 4)

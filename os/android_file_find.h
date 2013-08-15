@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ANDROID FileFind : public ::radix::object
+class CLASS_DECL_ANDROID FileFind : public ::ca2::object
 {
 public:
    FileFind();

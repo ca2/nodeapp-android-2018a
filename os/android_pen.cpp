@@ -88,11 +88,11 @@ namespace android
       // IMPLEMENT_DYNAMIC(user_exception, base_exception)
       //user_exception _simpleUserException(FALSE, __IDS_USER_EXCEPTION);
 
-      // IMPLEMENT_DYNCREATE(::ca2::graphics_sp, ::radix::object)
+      // IMPLEMENT_DYNCREATE(::ca2::graphics_sp, ::ca2::object)
       // IMPLEMENT_DYNAMIC(CClientDC, ::ca2::graphics_sp)
       // IMPLEMENT_DYNAMIC(CWindowDC, ::ca2::graphics_sp)
       // IMPLEMENT_DYNAMIC(CPaintDC, ::ca2::graphics_sp)
-      // IMPLEMENT_DYNCREATE(::ca2::graphics_object, ::radix::object)
+      // IMPLEMENT_DYNCREATE(::ca2::graphics_object, ::ca2::object)
 
       // IMPLEMENT_DYNAMIC(pen, ::ca2::graphics_object)
       // IMPLEMENT_DYNAMIC(::ca2::brush, ::ca2::graphics_object)

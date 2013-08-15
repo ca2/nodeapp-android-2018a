@@ -427,8 +427,7 @@
       </HeaderFileName>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>
-      </AdditionalOptions>
+      <AdditionalOptions>-std=c++11 -Wno-conversion-null</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_VMSANDROID_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>

@@ -6,8 +6,8 @@ CLASS_DECL_ANDROID BOOL AfxEndDeferRegisterClass(LONG fToRegister, const char **
 
 
 // Temporary ::collection::map management (locks temp ::collection::map on current thread)
-//CLASS_DECL_ANDROID void AfxLockTempMaps(::radix::application * papp);
-//CLASS_DECL_ANDROID BOOL AfxUnlockTempMaps(::radix::application * papp, BOOL bDeleteTemps = TRUE);
+//CLASS_DECL_ANDROID void AfxLockTempMaps(::ca2::application * papp);
+//CLASS_DECL_ANDROID BOOL AfxUnlockTempMaps(::ca2::application * papp, BOOL bDeleteTemps = TRUE);
 
 
 
@@ -22,15 +22,15 @@ extern CLASS_DECL_ANDROID const char _afxWndOleControl[];
 /////////////////////////////////////////////////////////////////////////////
 // Special helpers
 
-CLASS_DECL_ANDROID void AfxCancelModes(HWND hWndRcvr);
+CLASS_DECL_ANDROID void AfxCancelModes(oswindow hWndRcvr);
 CLASS_DECL_ANDROID BOOL AfxHelpEnabled();  // determine if ID_HELP handler exists
 CLASS_DECL_ANDROID BOOL AfxCustomLogFont(UINT nIDS, LOGFONT* pLogFont);
 CLASS_DECL_ANDROID BOOL AfxGetPropSheetFont(string & strFace, WORD& wSize, BOOL bWizard);
 
-CLASS_DECL_ANDROID BOOL _AfxIsComboBoxControl(HWND hWnd, UINT nStyle);
+CLASS_DECL_ANDROID BOOL _AfxIsComboBoxControl(oswindow hWnd, UINT nStyle);
 CLASS_DECL_ANDROID BOOL _AfxCheckCenterDialog(const char * lpszResource);
-CLASS_DECL_ANDROID BOOL _AfxCompareClassName(HWND hWnd, const char * lpszClassName);
-CLASS_DECL_ANDROID HWND _AfxChildWindowFromPoint(HWND, POINT);
+CLASS_DECL_ANDROID BOOL _AfxCompareClassName(oswindow hWnd, const char * lpszClassName);
+CLASS_DECL_ANDROID oswindow _AfxChildWindowFromPoint(oswindow, POINT);
 
 // for determining version of COMCTL32.DLL
 #define VERSION_WIN4    MAKELONG(0, 4)

@@ -5,7 +5,7 @@
 
 void CLASS_DECL_ANDROID AfxAbort()
 {
-//   TRACE(::radix::trace::category_AppMsg, 0, "AfxAbort called.\n");
+//   TRACE(::ca2::trace::category_AppMsg, 0, "AfxAbort called.\n");
 
    AfxWinTerm();
    abort();

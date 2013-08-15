@@ -4,9 +4,9 @@ namespace android
 {
 
    CLASS_DECL_ANDROID LRESULT CALLBACK _AfxSendMsgHook(int, WPARAM, LPARAM);
-   //CLASS_DECL_ANDROID void _AfxStandardSubclass(HWND);
+   //CLASS_DECL_ANDROID void _AfxStandardSubclass(oswindow);
    CLASS_DECL_ANDROID LRESULT CALLBACK _AfxCbtFilterHook(int, WPARAM, LPARAM);
-   CLASS_DECL_ANDROID LRESULT AfxCallWndProc(::user::interaction * pWnd, HWND hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+   CLASS_DECL_ANDROID LRESULT AfxCallWndProc(::user::interaction * pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
 
    class CLASS_DECL_ANDROID window :
       virtual public ::ca2::window,
@@ -23,7 +23,7 @@ namespace android
 
       window();
       window(::ca2::application * papp);
-      virtual void construct(HWND hwnd);
+      virtual void construct(oswindow hwnd);
 
       virtual void on_delete(::ca2::ca2 * poc);
 
@@ -47,7 +47,7 @@ namespace android
       //virtual ::user::interaction * GetOwner();
       virtual void SetOwner(::user::interaction * pOwnerWnd);
 
-      virtual HWND _get_handle();
+      virtual oswindow _get_handle();
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
@@ -73,17 +73,17 @@ namespace android
       virtual ::ca2::window * from_os_data(void * pdata);
       virtual void * get_os_data() const;
 
-      static window * PASCAL from_handle(HWND hWnd);
-      static window * PASCAL FromHandlePermanent(HWND hWnd);
+      static window * PASCAL from_handle(oswindow hWnd);
+      static window * PASCAL FromHandlePermanent(oswindow hWnd);
       static void PASCAL DeleteTempMap();
-      BOOL Attach(HWND hWndNew);
-      HWND Detach();
+      BOOL Attach(oswindow hWndNew);
+      oswindow Detach();
 
       // subclassing/unsubclassing functions
       virtual void pre_subclass_window();
-      BOOL SubclassWindow(HWND hWnd);
+      BOOL SubclassWindow(oswindow hWnd);
       BOOL SubclassDlgItem(UINT nID, ::ca2::window * pParent);
-      HWND UnsubclassWindow();
+      oswindow UnsubclassWindow();
 
       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
       BOOL ExecuteDlgInit(const char * lpszResourceName);
@@ -101,7 +101,7 @@ namespace android
       virtual BOOL CreateEx(DWORD dwExStyle, const char * lpszClassName,
          const char * lpszWindowName, DWORD dwStyle,
          int x, int y, int nWidth, int nHeight,
-         HWND hWndParent, id id, LPVOID lpParam = NULL);
+         oswindow hWndParent, id id, LPVOID lpParam = NULL);
 
       virtual BOOL CreateEx(DWORD dwExStyle, const char * lpszClassName,
          const char * lpszWindowName, DWORD dwStyle,
@@ -121,8 +121,8 @@ namespace android
 
          // get immediate child with given ID
       using ::user::interaction::GetDlgItem;
-      void GetDlgItem(id id, HWND* phWnd) const;
-         // as above, but returns HWND
+      void GetDlgItem(id id, oswindow* phWnd) const;
+         // as above, but returns oswindow
       using ::user::interaction::GetDescendantWindow;
       ::user::interaction * GetDescendantWindow(id id);
          // like GetDlgItem but recursive
@@ -135,7 +135,7 @@ namespace android
       ::user::interaction* GetTopLevelOwner();
       ::user::interaction* GetParentOwner();
       frame_window* GetTopLevelFrame();
-      static ::ca2::window * PASCAL GetSafeOwner(::ca2::window * pParent = NULL, HWND* pWndTop = NULL);
+      static ::ca2::window * PASCAL GetSafeOwner(::ca2::window * pParent = NULL, oswindow* pWndTop = NULL);
 
       virtual BOOL IsWindow();
 
@@ -271,7 +271,7 @@ namespace android
 
    // Timer Functions
       virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse,
-         void (CALLBACK* lpfnTimer)(HWND, UINT, uint_ptr, DWORD));
+         void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, DWORD));
       virtual BOOL KillTimer(uint_ptr nIDEvent);
 
    // Window State Functions
@@ -360,7 +360,7 @@ namespace android
       virtual ::ca2::window * ChildWindowFromPoint(POINT point);
       virtual ::ca2::window * ChildWindowFromPoint(POINT point, UINT nFlags);
       static ::ca2::window * PASCAL FindWindow(const char * lpszClassName, const char * lpszWindowName);
-      static ::ca2::window * FindWindowEx(HWND hwndParent, HWND hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+      static ::ca2::window * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 
       virtual ::user::interaction * GetNextWindow(UINT nFlag = GW_HWNDNEXT);
       virtual ::user::interaction * GetTopWindow();
@@ -391,8 +391,8 @@ namespace android
    #endif   // WINVER >= 0x0500
 
    // Clipboard Functions
-      virtual BOOL ChangeClipboardChain(HWND hWndNext);
-      virtual HWND SetClipboardViewer();
+      virtual BOOL ChangeClipboardChain(oswindow hWndNext);
+      virtual oswindow SetClipboardViewer();
       virtual BOOL OpenClipboard();
       static ::ca2::window * PASCAL GetClipboardOwner();
       static ::ca2::window * PASCAL GetClipboardViewer();
@@ -563,7 +563,7 @@ namespace android
 
    // Clipboard message handler member functions
       afx_msg void OnAskCbFormatName(__in UINT nMaxCount, __out_ecount_z(nMaxCount) LPTSTR lpszString);
-      afx_msg void OnChangeCbChain(HWND hWndRemove, HWND hWndAfter);
+      afx_msg void OnChangeCbChain(oswindow hWndRemove, oswindow hWndAfter);
       afx_msg void OnDestroyClipboard();
       afx_msg void OnDrawClipboard();
       afx_msg void OnHScrollClipboard(::ca2::window * pClipAppWnd, UINT nSBCode, UINT nPos);
@@ -626,7 +626,7 @@ namespace android
       virtual BOOL OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
          // return TRUE if parent should not process this message
       BOOL ReflectChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
-      static BOOL PASCAL ReflectLastMsg(HWND hWndChild, LRESULT* pResult = NULL);
+      static BOOL PASCAL ReflectLastMsg(oswindow hWndChild, LRESULT* pResult = NULL);
 
    // Implementation
       virtual ~window();
@@ -635,7 +635,7 @@ namespace android
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
    #endif
-      static BOOL PASCAL GrayCtlColor(HDC hDC, HWND hWnd, UINT nCtlColor,
+      static BOOL PASCAL GrayCtlColor(HDC hDC, oswindow hWnd, UINT nCtlColor,
          HBRUSH hbrGray, COLORREF clrText);
 
 
@@ -643,19 +643,19 @@ namespace android
       BOOL HandleFloatingSysCommand(UINT nID, LPARAM lParam);
       BOOL IsTopParentActive();
       void ActivateTopParent();
-      virtual void WalkPreTranslateTree(HWND hWndStop, ::ca2::signal_object * pobj);
+      virtual void WalkPreTranslateTree(oswindow hWndStop, ::ca2::signal_object * pobj);
       static ::user::interaction * PASCAL GetDescendantWindow(::user::interaction * hWnd, id id);
-      static void PASCAL SendMessageToDescendants(HWND hWnd, UINT message,
+      static void PASCAL SendMessageToDescendants(oswindow hWnd, UINT message,
          WPARAM wParam, LPARAM lParam, BOOL bDeep, BOOL bOnlyPerm);
       virtual BOOL IsFrameWnd(); // is_kind_of(&typeid(frame_window)))
       virtual void on_final_release();
-      static BOOL PASCAL ModifyStyle(HWND hWnd, DWORD dwRemove, DWORD dwAdd,
+      static BOOL PASCAL ModifyStyle(oswindow hWnd, DWORD dwRemove, DWORD dwAdd,
          UINT nFlags);
-      static BOOL PASCAL ModifyStyleEx(HWND hWnd, DWORD dwRemove, DWORD dwAdd,
+      static BOOL PASCAL ModifyStyleEx(oswindow hWnd, DWORD dwRemove, DWORD dwAdd,
          UINT nFlags);
       static void PASCAL _FilterToolTipMessage(MSG* pMsg, ::ca2::window * pWnd);
       BOOL _EnableToolTips(BOOL bEnable, UINT nFlag);
-      static HWND PASCAL GetSafeOwner_(HWND hWnd, HWND* pWndTop);
+      static oswindow PASCAL GetSafeOwner_(oswindow hWnd, oswindow* pWndTop);
       void PrepareForHelp();
 
       //UINT m_nFlags;      // see WF_ flags above
@@ -676,9 +676,9 @@ namespace android
 
       // implementation of message dispatch/hooking
       CLASS_DECL_ANDROID friend LRESULT CALLBACK _AfxSendMsgHook(int, WPARAM, LPARAM);
-      //CLASS_DECL_ANDROID friend void _AfxStandardSubclass(HWND);
+      //CLASS_DECL_ANDROID friend void _AfxStandardSubclass(oswindow);
       CLASS_DECL_ANDROID friend LRESULT CALLBACK _AfxCbtFilterHook(int, WPARAM, LPARAM);
-      CLASS_DECL_ANDROID friend LRESULT AfxCallWndProc(::user::interaction * pWnd, HWND hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+      CLASS_DECL_ANDROID friend LRESULT AfxCallWndProc(::user::interaction * pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
 
       // standard message implementation
       afx_msg LRESULT OnNTCtlColor(WPARAM wParam, LPARAM lParam);
@@ -686,7 +686,7 @@ namespace android
       afx_msg LRESULT OnDragList(WPARAM, LPARAM);
 
       static BOOL CALLBACK GetAppsEnumWindowsProc(
-            HWND hwnd,
+            oswindow hwnd,
             LPARAM lParam);
 
       static void get_app_wnda(user::HWNDArray & wnda);

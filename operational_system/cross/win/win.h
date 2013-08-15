@@ -269,3 +269,7 @@ MY_EXTERN_C DWORD SetLastError(DWORD dw);
 
 
 #include "win_common_controls.h"
+
+
+
+#define INVALID_HANDLE_VALUE ((HANDLE) (INT_PTR) -1)

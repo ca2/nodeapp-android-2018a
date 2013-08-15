@@ -790,7 +790,7 @@ BOOL preview_dc::GrayString(::ca2::brush*,
             BOOL (CALLBACK *)(HDC, LPARAM, int),
                LPARAM lpData, int nCount, int x, int y, int, int)
 {
-   TRACE(::radix::trace::category_AppMsg, 0, "TextOut() substituted for GrayString() in Print Preview.\n");
+   TRACE(::ca2::trace::category_AppMsg, 0, "TextOut() substituted for GrayString() in Print Preview.\n");
    return TextOut(x, y, (const char *)lpData, nCount);
 }
 

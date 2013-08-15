@@ -324,7 +324,7 @@ int64_t FileFind::get_length() const
 #ifdef DEBUG
 void FileFind::dump(dump_context & dumpcontext) const
 {
-   ::radix::object::dump(dumpcontext);
+   ::ca2::object::dump(dumpcontext);
    dumpcontext << "\nm_hContext = " << (UINT) m_hContext;
 }
 
@@ -343,4 +343,4 @@ void FileFind::assert_valid() const
 #endif
 
 
-// IMPLEMENT_DYNAMIC(FileFind, ::radix::object)
+// IMPLEMENT_DYNAMIC(FileFind, ::ca2::object)
