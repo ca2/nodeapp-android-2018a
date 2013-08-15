@@ -1346,30 +1346,18 @@
     <ClInclude Include="android1.h" />
     <ClInclude Include="android_afximpl.h" />
     <ClInclude Include="android_application.h" />
-    <ClInclude Include="android_bitmap.h" />
-    <ClInclude Include="android_brush.h" />
-    <ClInclude Include="android_dib.h" />
+    <ClInclude Include="android_crypt.h" />
     <ClInclude Include="android_dir.h" />
     <ClInclude Include="android_factory_exchange.h" />
     <ClInclude Include="android_file.h" />
-    <ClInclude Include="android_file_find.h" />
     <ClInclude Include="android_file_set.h" />
     <ClInclude Include="android_file_system.h" />
-    <ClInclude Include="android_folder_watch.h" />
-    <ClInclude Include="android_font.h" />
     <ClInclude Include="android_gen_1.h" />
-    <ClInclude Include="android_graphics.h" />
-    <ClInclude Include="android_graphics_object.h" />
-    <ClInclude Include="android_handle.h" />
     <ClInclude Include="android_implementation.h" />
     <ClInclude Include="android_internal.h" />
     <ClInclude Include="android_ip_enum.h" />
     <ClInclude Include="android_os.h" />
-    <ClInclude Include="android_palette.h" />
-    <ClInclude Include="android_pen.h" />
     <ClInclude Include="android_port_forward.h" />
-    <ClInclude Include="android_region.h" />
-    <ClInclude Include="android_resource.h" />
     <ClInclude Include="android_shell.h" />
     <ClInclude Include="android_state.h" />
     <ClInclude Include="android_stdio_file.h" />
@@ -1378,6 +1366,7 @@
     <ClInclude Include="android_window.h" />
     <ClInclude Include="android_window_draw.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="android_copydesk.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\app\appseed\ca\ca.vcxproj">
@@ -1395,13 +1384,10 @@
     <ClCompile Include="android_afxmem.cpp" />
     <ClCompile Include="android_afxstate.cpp" />
     <ClCompile Include="android_appcore.cpp" />
-    <ClCompile Include="android_appinit.cpp" />
     <ClCompile Include="android_application.cpp" />
     <ClCompile Include="android_appmodul.cpp" />
     <ClCompile Include="android_appterm.cpp" />
-    <ClCompile Include="android_bitmap.cpp" />
-    <ClCompile Include="android_brush.cpp" />
-    <ClCompile Include="android_dib.cpp" />
+    <ClCompile Include="android_crypt.cpp" />
     <ClCompile Include="android_dir.cpp" />
     <ClCompile Include="android_dumpinit.cpp" />
     <ClCompile Include="android_error.cpp" />
@@ -1410,30 +1396,20 @@
     <ClCompile Include="android_file.cpp" />
     <ClCompile Include="android_file_set.cpp" />
     <ClCompile Include="android_file_system.cpp" />
-    <ClCompile Include="android_folder_watch.cpp" />
-    <ClCompile Include="android_font.cpp" />
-    <ClCompile Include="android_graphics.cpp" />
-    <ClCompile Include="android_graphics_object.cpp" />
-    <ClCompile Include="android_handle.cpp" />
     <ClCompile Include="android_ip_enum.cpp" />
     <ClCompile Include="android_main.cpp" />
     <ClCompile Include="android_os.cpp" />
-    <ClCompile Include="android_palette.cpp" />
-    <ClCompile Include="android_pen.cpp" />
     <ClCompile Include="android_port_forward.cpp" />
-    <ClCompile Include="android_preview_dc.cpp" />
-    <ClCompile Include="android_region.cpp" />
-    <ClCompile Include="android_resource.cpp" />
     <ClCompile Include="android_shell.cpp" />
     <ClCompile Include="android_stdio_file.cpp" />
     <ClCompile Include="android_thread.cpp" />
     <ClCompile Include="android_thread_local_storage.cpp" />
     <ClCompile Include="android_trace.cpp" />
     <ClCompile Include="android_util.cpp" />
-    <ClCompile Include="android_wfile_find.cpp" />
     <ClCompile Include="android_window.cpp" />
     <ClCompile Include="android_window_draw.cpp" />
     <ClCompile Include="framework.cpp" />
+    <ClCompile Include="android_copydesk.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\operational_system\cross\win\win_user.h.bak" />

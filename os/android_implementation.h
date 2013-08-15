@@ -33,7 +33,7 @@ CLASS_DECL_ANDROID BOOL _AfxCompareClassName(oswindow hWnd, const char * lpszCla
 CLASS_DECL_ANDROID oswindow _AfxChildWindowFromPoint(oswindow, POINT);
 
 // for determining version of COMCTL32.DLL
-#define VERSION_WIN4    MAKELONG(0, 4)
+#define VERSION_ANDROID4    MAKELONG(0, 4)
 #define VERSION_IE3             MAKELONG(70, 4)
 #define VERSION_IE4             MAKELONG(71, 4)
 #define VERSION_IE401   MAKELONG(72, 4)

@@ -4,194 +4,127 @@
 class FileException;
 struct FileStatus;
 
+
 void CLASS_DECL_ANDROID vfxGetRoot(const wchar_t * lpszPath, string& wstrRoot);
+void CLASS_DECL_ANDROID vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
+
 
 /////////////////////////////////////////////////////////////////////////////
 // File - raw unbuffered disk file I/O
 
-class CLASS_DECL_ANDROID WinFile :
-   virtual public ex1::file
-{
-public:
 
-   enum Attribute {
-      normal =    0x00,
-      readOnly =  0x01,
-      hidden =    0x02,
-      system =    0x04,
-      volume =    0x08,
-      directory = 0x10,
-      archive =   0x20
+namespace android
+{
+
+
+   class CLASS_DECL_ANDROID file :
+      virtual public ::ca2::file
+   {
+   public:
+
+
+      enum Attribute
+      {
+         normal =    0x00,
+         readOnly =  0x01,
+         hidden =    0x02,
+         system =    0x04,
+         volume =    0x08,
+         directory = 0x10,
+         archive =   0x20
       };
 
-   enum SeekPosition { begin = 0x0, current = 0x1, end = 0x2 };
+      enum
+      {
 
-   enum { hFileNull = -1 };
+         hFileNull = -1
 
-   zip::Util  * m_pziputil;
+      };
 
-// Constructors
-   WinFile(::ca2::application * papp);
-   WinFile(::ca2::application * papp, int hFile);
-   WinFile(::ca2::application * papp, const char * lpszFileName, UINT nOpenFlags);
+      enum BufferCommand
+      {
 
-// Attributes
-   UINT m_hFile;
-   operator HFILE() const;
+         bufferRead,
+         bufferWrite,
+         bufferCommit,
+         bufferCheck
 
-   virtual DWORD_PTR GetPosition() const;
-   BOOL GetStatus(ex1::file_status & rStatus) const;
-   virtual string GetFileName() const;
-   virtual string GetFileTitle() const;
-   virtual string GetFilePath() const;
-   virtual void SetFilePath(const char * lpszNewName);
+      };
 
-// Operations
-   virtual BOOL open(const char * lpszFileName, UINT nOpenFlags,
-      ex1::file_exception_sp * pError = NULL);
+      zip::Util *    m_pziputil;
+      bool           m_bCloseOnDelete;
+      string         m_strFileName;
+      wstring        m_wstrFileName;
+      int32_t            m_iFile;
 
-/*
-   static void PASCAL Rename(const char * lpszOldName,
-            const char * lpszNewName);
-   static void PASCAL remov(const char * lpszFileName);*/
-   virtual BOOL PASCAL GetStatus(const char * lpszFileName,
-            ::ex1::file_status& rStatus);
-   /*static void PASCAL SetStatus(const char * lpszFileName,
-            const ::ex1::file_status& status);
-*/
 
-   DWORD_PTR seek_to_end();
-   void seek_to_begin();
+      file(sp(::ca2::application) papp);
+      file(sp(::ca2::application) papp, int32_t hFile);
+      file(sp(::ca2::application) papp, const char * lpszFileName, UINT nOpenFlags);
+      virtual ~file();
 
-   // backward compatible ReadHuge and WriteHuge
-   DWORD_PTR ReadHuge(void * lpBuffer, DWORD_PTR dwCount);
-   void WriteHuge(const void * lpBuffer, DWORD_PTR dwCount);
 
-// Overridables
-   virtual ex1::file * Duplicate() const;
+      virtual file_position get_position() const;
 
-   virtual INT_PTR seek(INT_PTR lOff, UINT nFrom);
-   virtual void SetLength(DWORD_PTR dwNewLen);
-   virtual DWORD_PTR get_length() const;
 
-   virtual DWORD_PTR read(void * lpBuf, DWORD_PTR nCount);
-   virtual void write(const void * lpBuf, DWORD_PTR nCount);
+      bool GetStatus(::ca2::file_status & rStatus) const;
+      virtual string GetFileName() const;
+      virtual string GetFileTitle() const;
+      virtual string GetFilePath() const;
+      virtual void SetFilePath(const char * lpszNewName);
 
-   virtual void LockRange(DWORD_PTR dwPos, DWORD_PTR dwCount);
-   virtual void UnlockRange(DWORD_PTR dwPos, DWORD_PTR dwCount);
+      virtual bool open(const char * lpszFileName, UINT nOpenFlags);
 
-   virtual void Abort();
-   virtual void Flush();
-   virtual void close();
+      virtual bool PASCAL GetStatus(const char * lpszFileName, ::ca2::file_status& rStatus);
 
-// ementation
-public:
-   virtual bool IsOpened();
-   virtual ~WinFile();
-#ifdef _DEBUG
-   virtual void assert_valid() const;
-   virtual void dump(dump_context & dumpcontext) const;
-#endif
-   enum BufferCommand { bufferRead, bufferWrite, bufferCommit, bufferCheck };
-   virtual DWORD_PTR GetBufferPtr(UINT nCommand, DWORD_PTR nCount = 0,
-      void ** ppBufStart = NULL, void ** ppBufMax = NULL);
+      uint64_t ReadHuge(void * lpBuffer, uint64_t dwCount);
+      void WriteHuge(const void * lpBuffer, uint64_t dwCount);
 
-protected:
-   BOOL m_bCloseOnDelete;
-   string m_strFileName;
-};
+      virtual sp(::ca2::file) Duplicate() const;
 
-class CLASS_DECL_ANDROID WinFileException :
-   virtual public ex1::file_exception
-{
-public:
-   enum
-   {
-      none,
-      generic,
-      fileNotFound,
-      badPath,
-      tooManyOpenFiles,
-      accessDenied,
-      invalidFile,
-      removeCurrentDir,
-      directoryFull,
-      badSeek,
-      hardIO,
-      sharingViolation,
-      lockViolation,
-      diskFull,
-      endOfFile
+      virtual file_position seek(file_offset lOff, ::ca2::e_seek nFrom);
+      virtual void set_length(file_size dwNewLen);
+      virtual file_size get_length() const;
+
+      virtual ::primitive::memory_size read(void * lpBuf, ::primitive::memory_size nCount);
+      virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
+
+      virtual void LockRange(file_position dwPos, file_size dwCount);
+      virtual void UnlockRange(file_position dwPos, file_size dwCount);
+
+      virtual void Abort();
+      virtual void Flush();
+      virtual void close();
+
+      virtual bool IsOpened();
+      virtual void assert_valid() const;
+      virtual void dump(dump_context & dumpcontext) const;
+
+      virtual uint64_t GetBufferPtr(UINT nCommand, uint64_t nCount = 0, void ** ppBufStart = NULL, void ** ppBufMax = NULL);
+
+
    };
 
-// Constructor
-   WinFileException(::ca2::application * papp, int cause = none, LONG lOsError = -1,
-      const char * lpszArchiveName = NULL);
 
-// Attributes
-   int      m_cause;
-   LONG     m_lOsError;
-   string   m_strFileName;
+   namespace file_exception
+   {
 
 
-   virtual int get_cause();
-   virtual LONG get_os_error();
-   virtual string get_file_path();
+      int32_t PASCAL OsErrorToException(LONG lOsError);
+      int32_t PASCAL ErrnoToException(int32_t nErrno);
+      void PASCAL ThrowOsError(sp(::ca2::application) papp, LONG lOsError, const char * lpszFileName = NULL);
+      void PASCAL ThrowErrno(sp(::ca2::application) papp, int32_t nErrno, const char * lpszFileName = NULL);
 
 
-// Operations
-   // convert a App dependent error code to a Cause
-   static int PASCAL OsErrorToException(LONG lOsError);
-   static int PASCAL ErrnoToException(int nErrno);
-
-   // helper functions to throw exception after converting to a Cause
-   static void PASCAL ThrowOsError(::ca2::application * papp, LONG lOsError, const char * lpszFileName = NULL);
-   static void PASCAL ThrowErrno(::ca2::application * papp, int nErrno, const char * lpszFileName = NULL);
-
-// ementation
-public:
-   virtual ~WinFileException();
-#ifdef _DEBUG
-   virtual void dump(dump_context&) const;
-#endif
-   virtual BOOL GetErrorMessage(string & str, PUINT pnHelpContext = NULL);
-};
-
-inline WinFileException::WinFileException(::ca2::application * papp, int cause, LONG lOsError,
-                                          const char * pstrFileName /* = NULL */) :
-   ca2(papp),
-   ex1::file_exception(papp)
-   { m_cause = cause; m_lOsError = lOsError; m_strFileName = pstrFileName; }
-inline WinFileException::~WinFileException()
-   { }
+   }  // namespace file_exception
 
 
-// ex1::filesp
-inline WinFile::operator HFILE() const
-   { return m_hFile; }
-inline DWORD_PTR WinFile::ReadHuge(void * lpBuffer, DWORD_PTR dwCount)
-   { return (DWORD_PTR) read(lpBuffer, (UINT)dwCount); }
-inline void WinFile::WriteHuge(const void * lpBuffer, DWORD_PTR dwCount)
-   { write(lpBuffer, (UINT)dwCount); }
-inline DWORD_PTR WinFile::seek_to_end()
-   { return seek(0, WinFile::end); }
-inline void WinFile::seek_to_begin()
-   { seek(0, WinFile::begin); }
+} // namepsace android
 
-/////////////////////////////////////////////////////////////////////////////
-// File status
 
-/*struct FileStatus
-{
-   class time m_ctime;          // creation date/time of file
-   class time m_mtime;          // last modification date/time of file
-   class time m_atime;          // last access date/time of file
-   LONG m_size;            // logical size of file in bytes
-   BYTE m_attribute;       // logical OR of ex1::filesp::Attribute enum values
-   BYTE _m_padding;        // pad the structure to a WORD
-   WCHAR m_szFullName[_MAX_PATH]; // absolute path name
 
-#ifdef _DEBUG
-   void dump(dump_context & dumpcontext) const;
-#endif
-};*/
+
+bool CLASS_DECL_ANDROID vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath);
+
+
+

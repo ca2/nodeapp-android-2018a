@@ -10,7 +10,7 @@
 extern int CLASS_DECL_ANDROID AfxWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
    __in LPTSTR lpCmdLine, int nCmdShow);
 
-extern "C" int WINAPI
+extern "C" int ANDROIDAPI
 _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
    __in LPTSTR lpCmdLine, int nCmdShow)
 {

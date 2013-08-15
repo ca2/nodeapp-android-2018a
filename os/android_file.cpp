@@ -461,7 +461,7 @@ BOOL CLASS_DECL_ANDROID vfxResolveShortcut(::ca2::window * pWnd, const wchar_t *
          if (SUCCEEDED(ppf->Load(lpszFileIn, STGM_READ)))
          {
             /* Resolve the link, this may post UI to find the link */
-/*            if (SUCCEEDED(psl->Resolve(WIN_WINDOW(pWnd)->GetSafeHwnd(),
+/*            if (SUCCEEDED(psl->Resolve(ANDROID_ANDROIDDOW(pWnd)->GetSafeHwnd(),
                SLR_ANY_MATCH)))
             {
                psl->GetPath(lpszFileOut, cchPath, NULL, 0);
@@ -505,7 +505,7 @@ BOOL CLASS_DECL_ANDROID vfxResolveShortcut(::ca2::window * pWnd, const wchar_t *
          if (SUCCEEDED(ppf->Load(lpszFileIn, STGM_READ)))
          {
             /* Resolve the link, this may post UI to find the link */
-/*            if (SUCCEEDED(psl->Resolve(WIN_WINDOW(pWnd)->GetSafeHwnd(),
+/*            if (SUCCEEDED(psl->Resolve(ANDROID_ANDROIDDOW(pWnd)->GetSafeHwnd(),
                SLR_ANY_MATCH)))
             {
                psl->GetPath(strFileOut.GetBuffer(cchPath), cchPath, NULL, 0);
@@ -565,7 +565,7 @@ BOOL CLASS_DECL_ANDROID vfxFullPath(wchar_t * lpszPathOut, const wchar_t * lpszF
    // assume non-UNICODE file systems, use OEM character set
    if (!(dwFlags & FS_UNICODE_STORED_ON_DISK))
    {
-      WIN32_FIND_DATAW data;
+      ANDROID32_FIND_DATAW data;
       HANDLE h = FindFirstFileW(lpszFileIn, &data);
       if (h != INVALID_HANDLE_VALUE)
       {
@@ -824,7 +824,7 @@ void CLASS_DECL_ANDROID vfxGetRoot(const wchar_t * lpszPath, string& strRoot)
    // assume non-UNICODE file systems, use OEM character set
    if (!(dwFlags & FS_UNICODE_STORED_ON_DISK))
    {
-      WIN32_FIND_DATAW data;
+      ANDROID32_FIND_DATAW data;
       HANDLE h = WindowsShell::FindFirstFile(lpszFileIn, &data);
       if (h != INVALID_HANDLE_VALUE)
       {
@@ -1338,7 +1338,7 @@ BOOL PASCAL WinFile::GetStatus(const char * lpszFileName, ::ex1::file_status& rS
    }
    ::ca2::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);
 
-   WIN32_FIND_DATA findFileData;
+   ANDROID32_FIND_DATA findFileData;
    HANDLE hFind = FindFirstFile((LPTSTR)lpszFileName, &findFileData);
    if (hFind == INVALID_HANDLE_VALUE)
       return FALSE;

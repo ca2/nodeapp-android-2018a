@@ -272,4 +272,3 @@ MY_EXTERN_C DWORD SetLastError(DWORD dw);
 
 
 
-#define INVALID_HANDLE_VALUE ((HANDLE) (INT_PTR) -1)

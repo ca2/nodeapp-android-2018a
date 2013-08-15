@@ -128,15 +128,6 @@
     <ClInclude Include="android_application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="android_bitmap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="android_brush.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="android_dib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="android_dir.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -146,31 +137,13 @@
     <ClInclude Include="android_file.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="android_file_find.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="android_file_set.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="android_file_system.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="android_folder_watch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="android_font.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="android_gen_1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="android_graphics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="android_graphics_object.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="android_handle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="android_implementation.h">
@@ -185,19 +158,7 @@
     <ClInclude Include="android_os.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="android_palette.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="android_pen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="android_port_forward.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="android_region.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="android_resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="android_shell.h">
@@ -263,6 +224,12 @@
     <ClInclude Include="..\operational_system\cross\win\win_mmeapi.h">
       <Filter>Header Files\operational_system\cross\win</Filter>
     </ClInclude>
+    <ClInclude Include="android_crypt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="android_copydesk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="android.cpp">
@@ -280,9 +247,6 @@
     <ClCompile Include="android_appcore.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="android_appinit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="android_application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -290,15 +254,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="android_appterm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="android_bitmap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="android_brush.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="android_dib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="android_dir.cpp">
@@ -325,15 +280,6 @@
     <ClCompile Include="android_file_system.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="android_folder_watch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="android_font.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="android_graphics.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="android1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -341,12 +287,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="framework.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="android_graphics_object.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="android_handle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="android_ip_enum.cpp">
@@ -358,22 +298,7 @@
     <ClCompile Include="android_os.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="android_palette.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="android_pen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="android_port_forward.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="android_preview_dc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="android_region.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="android_resource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="android_shell.cpp">
@@ -394,13 +319,16 @@
     <ClCompile Include="android_util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="android_wfile_find.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="android_window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="android_window_draw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_crypt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_copydesk.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,118 +1,129 @@
 #pragma once
 
+
 namespace android
 {
 
-   CLASS_DECL_ANDROID LRESULT CALLBACK _AfxSendMsgHook(int, WPARAM, LPARAM);
-   //CLASS_DECL_ANDROID void _AfxStandardSubclass(oswindow);
-   CLASS_DECL_ANDROID LRESULT CALLBACK _AfxCbtFilterHook(int, WPARAM, LPARAM);
-   CLASS_DECL_ANDROID LRESULT AfxCallWndProc(::user::interaction * pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+
+   CLASS_DECL_ANDROID LRESULT CALLBACK __send_message_hook(int32_t, WPARAM, LPARAM);
+   //CLASS_DECL_ANDROID void _::ca2::StandardSubclass(oswindow);
+   CLASS_DECL_ANDROID LRESULT CALLBACK __cbt_filter_hook(int32_t, WPARAM, LPARAM);
+   CLASS_DECL_ANDROID LRESULT __call_window_procedure(sp(::user::interaction) pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+
 
    class CLASS_DECL_ANDROID window :
-      virtual public ::ca2::window,
-      virtual public hwnd_handle
+      virtual public ::ca2::window
    {
    public:
 
 
-      pha(::user::interaction)      m_guieptraMouseHover;
+      spa(::user::interaction)      m_guieptraMouseHover;
       ::ca2::window_callback *       m_pcallback;
       string                        m_strWindowText;
-      comparable_array < int >      m_iaModalThread;
+      oswindow                      m_oswindow;
+      ::user::window_interface *    m_pbasewnd;
+      sp(::user::interaction)         m_pguiecapture;
+      bool                          m_bExposing;
+      //XWindowAttributes             m_attr;
+      int32_t                       m_iDepth;
+      //XVisualInfo                   m_visualinfo;
+
+
+      //visual::dib_sp                m_spdib;
+      //visual::dib_sp                m_spdibMultAlphaWork;
 
 
       window();
-      window(::ca2::application * papp);
+      window(sp(::ca2::application) papp);
       virtual void construct(oswindow hwnd);
 
       virtual void on_delete(::ca2::ca2 * poc);
 
-      virtual void mouse_hover_add(::user::interaction* pinterface);
-      virtual void mouse_hover_remove(::user::interaction* pinterface);
+      virtual void mouse_hover_add(sp(::user::interaction) pinterface);
+      virtual void mouse_hover_remove(sp(::user::interaction) pinterface);
 
       bool create_message_window(const char * pszName, ::ca2::window_callback * pcallback = NULL);
 
-      static const MSG* PASCAL GetCurrentMessage();
+      static const MESSAGE* PASCAL GetCurrentMessage();
 
-      virtual void _001InstallMessageHandling(::user::android::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca2::message::dispatch * pinterface);
 
-      BOOL operator==(const ::ca2::window& wnd) const;
-      BOOL operator!=(const ::ca2::window& wnd) const;
+      bool operator==(const ::ca2::window& wnd) const;
+      bool operator!=(const ::ca2::window& wnd) const;
 
       DWORD GetStyle();
       DWORD GetExStyle();
-      BOOL ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0);
-      BOOL ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0);
+      bool ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0);
+      bool ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0);
 
-      //virtual ::user::interaction * GetOwner();
-      virtual void SetOwner(::user::interaction * pOwnerWnd);
+      //virtual sp(::user::interaction) GetOwner();
+      virtual void set_owner(sp(::user::interaction) pOwnerWnd);
 
-      virtual oswindow _get_handle();
+      virtual oswindow get_handle() const;
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
-      DECL_GEN_SIGNAL(_002OnDraw)
+      void _002OnDraw(::draw2d::graphics * pdc);
+
       DECL_GEN_SIGNAL(_001OnEraseBkgnd)
       DECL_GEN_SIGNAL(_001OnMove)
       DECL_GEN_SIGNAL(_001OnSize)
       DECL_GEN_SIGNAL(_001OnShowWindow)
       DECL_GEN_SIGNAL(_001OnProdevianSynch)
 
-      ::user::window_interface *      m_pbasewnd;
-      ::user::interaction *        m_pguieCapture;
 
    #if(WINVER >= 0x0500)
 
-      BOOL GetWindowInfo(PWINDOWINFO pwi) const;
-      BOOL GetTitleBarInfo(PTITLEBARINFO pti) const;
+      bool GetWindowInfo(PWINDOWINFO pwi) const;
+      bool GetTitleBarInfo(PTITLEBARINFO pti) const;
 
    #endif   // WINVER >= 0x0500
 
-      virtual ::ca2::window * from_os_data(void * pdata);
+      virtual sp(::ca2::window) from_os_data(void * pdata);
       virtual void * get_os_data() const;
 
-      static window * PASCAL from_handle(oswindow hWnd);
-      static window * PASCAL FromHandlePermanent(oswindow hWnd);
-      static void PASCAL DeleteTempMap();
-      BOOL Attach(oswindow hWndNew);
+      static window * from_handle(oswindow hWnd);
+      static window * FromHandlePermanent(oswindow hWnd);
+      //static void DeleteTempMap();
+      bool Attach(oswindow hWndNew);
       oswindow Detach();
 
       // subclassing/unsubclassing functions
       virtual void pre_subclass_window();
-      BOOL SubclassWindow(oswindow hWnd);
-      BOOL SubclassDlgItem(UINT nID, ::ca2::window * pParent);
+      bool SubclassWindow(oswindow hWnd);
+      //bool SubclassDlgItem(UINT nID, sp(::ca2::window) pParent);
       oswindow UnsubclassWindow();
 
       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
-      BOOL ExecuteDlgInit(const char * lpszResourceName);
-      BOOL ExecuteDlgInit(LPVOID lpResource);
+      bool ExecuteDlgInit(const char * lpszResourceName);
+      bool ExecuteDlgInit(LPVOID lpResource);
 
       using ::user::interaction::create;
       // for child windows, views, panes etc
-      virtual BOOL create(const char * lpszClassName,
+      virtual bool create(const char * lpszClassName,
          const char * lpszWindowName, DWORD dwStyle,
          const RECT& rect,
-         ::user::interaction * pParentWnd, id id,
-         create_context* pContext = NULL);
+         sp(::user::interaction) pParentWnd, id id,
+         ::ca2::create_context* pContext = NULL);
 
       // advanced creation (allows access to extended styles)
-      virtual BOOL CreateEx(DWORD dwExStyle, const char * lpszClassName,
+      virtual bool CreateEx(DWORD dwExStyle, const char * lpszClassName,
          const char * lpszWindowName, DWORD dwStyle,
-         int x, int y, int nWidth, int nHeight,
+         int32_t x, int32_t y, int32_t nWidth, int32_t nHeight,
          oswindow hWndParent, id id, LPVOID lpParam = NULL);
 
-      virtual BOOL CreateEx(DWORD dwExStyle, const char * lpszClassName,
+      virtual bool CreateEx(DWORD dwExStyle, const char * lpszClassName,
          const char * lpszWindowName, DWORD dwStyle,
          const RECT& rect,
-         ::user::interaction* pParentWnd, id id,
+         sp(::user::interaction) pParentWnd, id id,
          LPVOID lpParam = NULL);
 
-      virtual BOOL DestroyWindow();
+      virtual bool DestroyWindow();
 
       // special pre-creation and ::ca2::window rect adjustment hooks
-      virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+      virtual bool pre_create_window(CREATESTRUCT& cs);
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
@@ -120,72 +131,68 @@ namespace android
 
 
          // get immediate child with given ID
-      using ::user::interaction::GetDlgItem;
-      void GetDlgItem(id id, oswindow* phWnd) const;
+      using ::user::interaction::get_child_by_id;
+      void get_child_by_id(id id, oswindow* phWnd) const;
          // as above, but returns oswindow
       using ::user::interaction::GetDescendantWindow;
-      ::user::interaction * GetDescendantWindow(id id);
-         // like GetDlgItem but recursive
-      void SendMessageToDescendants(UINT message, WPARAM wParam = 0,
-         LPARAM lParam = 0, BOOL bDeep = TRUE, BOOL bOnlyPerm = FALSE);
-      frame_window* GetParentFrame();
-      frame_window* EnsureParentFrame();
-      ::user::interaction* GetTopLevelParent();
-      ::user::interaction* EnsureTopLevelParent();
-      ::user::interaction* GetTopLevelOwner();
-      ::user::interaction* GetParentOwner();
-      frame_window* GetTopLevelFrame();
-      static ::ca2::window * PASCAL GetSafeOwner(::ca2::window * pParent = NULL, oswindow* pWndTop = NULL);
+      sp(::user::interaction) GetDescendantWindow(id id);
+         // like get_child_by_id but recursive
+      void SendMessageToDescendants(UINT message, WPARAM wParam = 0, lparam lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
+      sp(::user::frame_window) GetParentFrame();
+      sp(::user::frame_window) EnsureParentFrame();
+      sp(::user::interaction) GetTopLevelParent();
+      sp(::user::interaction) EnsureTopLevelParent();
+      sp(::user::interaction) GetTopLevelOwner();
+      sp(::user::interaction) GetParentOwner();
+      sp(::user::frame_window) GetTopLevelFrame();
+      static sp(::ca2::window) PASCAL GetSafeOwner(::ca2::window * pParent = NULL, oswindow* pWndTop = NULL);
 
-      virtual BOOL IsWindow();
+      virtual bool IsWindow();
 
    #if(WINVER >= 0x0500)
 
-      ::ca2::window * GetAncestor(UINT gaFlags) const;
+      sp(::ca2::window) GetAncestor(UINT gaFlags) const;
 
    #endif   // WINVER >= 0x0500
 
-   // Message Functions
-   #pragma push_macro("SendMessage")
-   #undef SendMessage
-      LRESULT _AFX_FUNCNAME(SendMessage)(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
-      LRESULT SendMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
-   #pragma pop_macro("SendMessage")
-      BOOL PostMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
+      LRESULT send_message(UINT message, WPARAM wParam = 0, lparam lParam = NULL);
+      bool post_message(UINT message, WPARAM wParam = 0, lparam lParam = NULL);
 
-      BOOL SendNotifyMessage(UINT message, WPARAM wParam, LPARAM lParam);
-      BOOL SendChildNotifyLastMsg(LRESULT* pResult = NULL);
+      bool SendNotifyMessage(UINT message, WPARAM wParam, lparam lParam);
+      bool SendChildNotifyLastMsg(LRESULT* pResult = NULL);
 
-      BOOL DragDetect(POINT pt) const;
+      bool DragDetect(POINT pt) const;
 
 
 
-   // Window Text Functions
+
+
+   // oswindow Text Functions
       void SetWindowText(const char * lpszString);
-      int GetWindowText(__out_ecount_part_z(nMaxCount, return + 1) LPTSTR lpszStringBuf, __in int nMaxCount);
+      strsize GetWindowText(LPTSTR lpszStringBuf, strsize nMaxCount);
       void GetWindowText(string & rString);
-      int GetWindowTextLength();
-      void SetFont(::ca2::font* pFont, BOOL bRedraw = TRUE);
-      ::ca2::font* GetFont();
+      strsize GetWindowTextLength();
+      void SetFont(::draw2d::font* pFont, bool bRedraw = TRUE);
+      ::draw2d::font* GetFont();
 
 
-   // Window size and position Functions
+   // oswindow size and position Functions
       virtual bool IsIconic();
       virtual bool IsZoomed();
-      void MoveWindow(int x, int y, int nWidth, int nHeight,
-               BOOL bRepaint = TRUE);
-      void MoveWindow(LPCRECT lpRect, BOOL bRepaint = TRUE);
-      int SetWindowRgn(HRGN hRgn, BOOL bRedraw);
-      int GetWindowRgn(HRGN hRgn);
+      void MoveWindow(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight,
+               bool bRepaint = TRUE);
+      void MoveWindow(LPCRECT lpRect, bool bRepaint = TRUE);
+      int32_t SetWindowRgn(HRGN hRgn, bool bRedraw);
+      int32_t GetWindowRgn(HRGN hRgn);
 
       //static const ::ca2::window wndTop; // SetWindowPos's pWndInsertAfter
       //static const ::ca2::window wndBottom; // SetWindowPos's pWndInsertAfter
       //static const ::ca2::window wndTopMost; // SetWindowPos pWndInsertAfter
       //static const ::ca2::window wndNoTopMost; // SetWindowPos pWndInsertAfter
 
-      virtual bool SetWindowPos(int z, int x, int y, int cx, int cy, UINT nFlags);
+      virtual bool SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
       virtual UINT ArrangeIconicWindows();
-      virtual void BringWindowToTop();
+      virtual bool BringWindowToTop();
       using interaction::GetWindowRect;
       virtual void GetWindowRect(__rect64 * lpRect);
       using interaction::GetClientRect;
@@ -200,71 +207,74 @@ namespace android
       void ScreenToClient(__rect64 * lprect);
       void ScreenToClient(__point64 * lppoint);
 
-      virtual BOOL GetWindowPlacement(WINDOWPLACEMENT* lpwndpl);
-      virtual BOOL SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl);
+      virtual bool GetWindowPlacement(WINDOWPLACEMENT* lpwndpl);
+      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl);
 
    // Coordinate Mapping Functions
       virtual void MapWindowPoints(::ca2::window * pwndTo, LPPOINT lpPoint, UINT nCount);
       virtual void MapWindowPoints(::ca2::window * pwndTo, LPRECT lpRect);
 
    // Update/Painting Functions
-      virtual ::ca2::graphics * GetDC();
-      virtual ::ca2::graphics * GetWindowDC();
-      virtual int ReleaseDC(::ca2::graphics * pgraphics);
-      virtual void Print(::ca2::graphics * pgraphics, DWORD dwFlags) const;
-      virtual void PrintClient(::ca2::graphics * pgraphics, DWORD dwFlags) const;
+      virtual ::draw2d::graphics * GetDC();
+      virtual ::draw2d::graphics * GetWindowDC();
+      virtual bool ReleaseDC(::draw2d::graphics * pgraphics);
+      virtual void Print(::draw2d::graphics * pgraphics, DWORD dwFlags) const;
+      virtual void PrintClient(::draw2d::graphics * pgraphics, DWORD dwFlags) const;
 
       virtual void UpdateWindow();
-      virtual void SetRedraw(BOOL bRedraw = TRUE);
-      virtual BOOL GetUpdateRect(LPRECT lpRect, BOOL bErase = FALSE);
-      virtual int GetUpdateRgn(::ca2::rgn* pRgn, BOOL bErase = FALSE);
-      virtual void Invalidate(BOOL bErase = TRUE);
-      virtual void InvalidateRect(LPCRECT lpRect, BOOL bErase = TRUE);
-      virtual void InvalidateRgn(::ca2::rgn* pRgn, BOOL bErase = TRUE);
+      virtual void SetRedraw(bool bRedraw = TRUE);
+      virtual bool GetUpdateRect(LPRECT lpRect, bool bErase = FALSE);
+      virtual int32_t GetUpdateRgn(::draw2d::region* pRgn, bool bErase = FALSE);
+      virtual void Invalidate(bool bErase = TRUE);
+      virtual void InvalidateRect(LPCRECT lpRect, bool bErase = TRUE);
+      virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = TRUE);
       virtual void ValidateRect(LPCRECT lpRect);
-      virtual void ValidateRgn(::ca2::rgn* pRgn);
-      virtual BOOL ShowWindow(int nCmdShow);
+      virtual void ValidateRgn(::draw2d::region* pRgn);
+      virtual bool ShowWindow(int32_t nCmdShow);
       virtual void _001WindowMaximize();
       virtual void _001WindowRestore();
-      virtual BOOL IsWindowVisible();
-      virtual void ShowOwnedPopups(BOOL bShow = TRUE);
+      virtual bool IsWindowVisible();
+      virtual void ShowOwnedPopups(bool bShow = TRUE);
 
-      virtual ::ca2::graphics * GetDCEx(::ca2::rgn* prgnClip, DWORD flags);
-      virtual BOOL LockWindowUpdate();
+      virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, DWORD flags);
+      virtual bool LockWindowUpdate();
       virtual void UnlockWindowUpdate();
-      virtual BOOL RedrawWindow(LPCRECT lpRectUpdate = NULL,
-         ::ca2::rgn* prgnUpdate = NULL,
+      virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
+         ::draw2d::region* prgnUpdate = NULL,
          UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
-      virtual BOOL EnableScrollBar(int nSBFlags, UINT nArrowFlags = ESB_ENABLE_BOTH);
+// xxx      virtual bool EnableScrollBar(int32_t nSBFlags, UINT nArrowFlags = ESB_ENABLE_BOTH);
 
-      virtual BOOL DrawAnimatedRects(int idAni, CONST RECT *lprcFrom, CONST RECT *lprcTo);
-      virtual BOOL DrawCaption(::ca2::graphics * pgraphics, LPCRECT lprc, UINT uFlags);
+virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
+
+
+      virtual bool DrawAnimatedRects(int32_t idAni, CONST RECT *lprcFrom, CONST RECT *lprcTo);
+      virtual bool DrawCaption(::draw2d::graphics * pgraphics, LPCRECT lprc, UINT uFlags);
 
    #if(WINVER >= 0x0500)
 
-      virtual BOOL AnimateWindow(DWORD dwTime, DWORD dwFlags);
+      virtual bool AnimateWindow(DWORD dwTime, DWORD dwFlags);
 
    #endif   // WINVER >= 0x0500
 
    #if(_WIN32_WINNT >= 0x0501)
 
-      virtual BOOL PrintWindow(::ca2::graphics * pgraphics, UINT nFlags) const;
+      virtual bool PrintWindow(::draw2d::graphics * pgraphics, UINT nFlags) const;
 
    #endif   // _WIN32_WINNT >= 0x0501
 
-   // Layered Window
+   // Layered oswindow
 
    #if(_WIN32_WINNT >= 0x0500)
 
-      virtual BOOL SetLayeredWindowAttributes(COLORREF crKey, BYTE bAlpha, DWORD dwFlags);
-      virtual BOOL UpdateLayeredWindow(::ca2::graphics * pDCDst, POINT *pptDst, SIZE *psize,
-         ::ca2::graphics * pDCSrc, POINT *pptSrc, COLORREF crKey, BLENDFUNCTION *pblend, DWORD dwFlags);
+      virtual bool SetLayeredWindowAttributes(COLORREF crKey, BYTE bAlpha, DWORD dwFlags);
+      virtual bool UpdateLayeredWindow(::draw2d::graphics * pDCDst, POINT *pptDst, SIZE *psize,
+         ::draw2d::graphics * pDCSrc, POINT *pptSrc, COLORREF crKey, BLENDFUNCTION *pblend, DWORD dwFlags);
 
    #endif   // _WIN32_WINNT >= 0x0500
 
    #if(_WIN32_WINNT >= 0x0501)
 
-      virtual BOOL GetLayeredWindowAttributes(COLORREF *pcrKey, BYTE *pbAlpha, DWORD *pdwFlags) const;
+      virtual bool GetLayeredWindowAttributes(COLORREF *pcrKey, BYTE *pbAlpha, DWORD *pdwFlags) const;
 
    #endif   // _WIN32_WINNT >= 0x0501
 
@@ -272,19 +282,19 @@ namespace android
    // Timer Functions
       virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse,
          void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, DWORD));
-      virtual BOOL KillTimer(uint_ptr nIDEvent);
+      virtual bool KillTimer(uint_ptr nIDEvent);
 
-   // Window State Functions
-      virtual BOOL IsWindowEnabled();
-      virtual BOOL EnableWindow(BOOL bEnable = TRUE);
+   // oswindow State Functions
+      virtual bool IsWindowEnabled();
+      virtual bool EnableWindow(bool bEnable = TRUE);
 
       // the active ::ca2::window applies only to top-level (frame windows)
-      virtual ::user::interaction * GetActiveWindow();
-      virtual ::user::interaction * SetActiveWindow();
+      virtual sp(::user::interaction) GetActiveWindow();
+      virtual sp(::user::interaction) SetActiveWindow();
 
       // the foreground ::ca2::window applies only to top-level windows (frame windows)
-      virtual BOOL SetForegroundWindow();
-      static ::ca2::window * PASCAL GetForegroundWindow();
+      virtual bool SetForegroundWindow();
+      static sp(::ca2::window) PASCAL GetForegroundWindow();
 
       virtual id SetDlgCtrlId(id id);
       virtual id GetDlgCtrlId();
@@ -292,328 +302,324 @@ namespace android
 
 
       // capture and focus apply to all windows
-      static ::ca2::window * PASCAL GetCapture();
-      virtual ::user::interaction * set_capture(::user::interaction * pinterface = NULL);
-      virtual ::user::interaction * release_capture();
-      virtual ::user::interaction * get_capture();
-      static ::ca2::window * PASCAL GetFocus();
-      ::ca2::window * SetFocus();
+      static sp(::ca2::window) PASCAL GetCapture();
+      virtual sp(::user::interaction) set_capture(sp(::user::interaction) pinterface = NULL);
+      virtual sp(::user::interaction) release_capture();
+      virtual sp(::user::interaction) get_capture();
+      static sp(::ca2::window) PASCAL GetFocus();
+      sp(::user::interaction) SetFocus();
 
-      static ::ca2::window * PASCAL GetDesktopWindow();
+      static sp(::ca2::window) PASCAL GetDesktopWindow();
 
    // Obsolete and non-portable APIs - not recommended for new code
       virtual void CloseWindow();
-      virtual BOOL OpenIcon();
+      virtual bool OpenIcon();
 
    // Dialog-Box Item Functions
    // (NOTE: Dialog-Box Items/Controls are not necessarily in dialog boxes!)
-      virtual void CheckDlgButton(int nIDButton, UINT nCheck);
-      virtual void CheckRadioButton(int nIDFirstButton, int nIDLastButton,
-                  int nIDCheckButton);
-      virtual int GetCheckedRadioButton(int nIDFirstButton, int nIDLastButton);
-      virtual int DlgDirList(__inout_z LPTSTR lpPathSpec, __in int nIDListBox,
-                  __in int nIDStaticPath, __in UINT nFileType);
-      virtual int DlgDirListComboBox(__inout_z LPTSTR lpPathSpec, __in int nIDComboBox,
-                  __in int nIDStaticPath, __in UINT nFileType);
-      virtual BOOL DlgDirSelect(__out_ecount_z(nSize) LPTSTR lpString, __in int nSize, __in int nIDListBox);
-      virtual BOOL DlgDirSelectComboBox(__out_ecount_z(nSize) LPTSTR lpString, __in int nSize, __in int nIDComboBox);
+      virtual void CheckDlgButton(int32_t nIDButton, UINT nCheck);
+      virtual void CheckRadioButton(int32_t nIDFirstButton, int32_t nIDLastButton,
+                  int32_t nIDCheckButton);
+      virtual int32_t GetCheckedRadioButton(int32_t nIDFirstButton, int32_t nIDLastButton);
+      virtual int32_t DlgDirList(LPTSTR lpPathSpec, int32_t nIDListBox,
+                  int32_t nIDStaticPath, UINT nFileType);
+      virtual int32_t DlgDirListComboBox(LPTSTR lpPathSpec, int32_t nIDComboBox,
+                  int32_t nIDStaticPath, UINT nFileType);
+      virtual bool DlgDirSelect(LPTSTR lpString, int32_t nSize, int32_t nIDListBox);
+      virtual bool DlgDirSelectComboBox(LPTSTR lpString, int32_t nSize, int32_t nIDComboBox);
 
-      virtual UINT GetDlgItemInt(int nID, BOOL* lpTrans = NULL, BOOL bSigned = TRUE) const;
-      virtual int GetDlgItemText(__in int nID, __out_ecount_part_z(nMaxCount, return + 1) LPTSTR lpStr, __in int nMaxCount) const;
-      virtual int GetDlgItemText(int nID, string & rString) const;
-      virtual ::ca2::window * GetNextDlgGroupItem(::ca2::window * pWndCtl, BOOL bPrevious = FALSE) const;
-      virtual ::ca2::window * GetNextDlgTabItem(::ca2::window * pWndCtl, BOOL bPrevious = FALSE) const;
-      virtual UINT IsDlgButtonChecked(int nIDButton) const;
-      virtual LRESULT SendDlgItemMessage(int nID, UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
-      virtual void SetDlgItemInt(int nID, UINT nValue, BOOL bSigned = TRUE);
-      virtual void SetDlgItemText(int nID, const char * lpszString);
+      //virtual UINT GetChildByIdInt(int32_t nID, bool * lpTrans = NULL, bool bSigned = TRUE) const;
+      //virtual int32_t GetChildByIdText(int32_t nID, LPTSTR lpStr, int32_t nMaxCount) const;
+      //virtual int32_t GetChildByIdText(int32_t nID, string & rString) const;
+      virtual sp(::ca2::window) GetNextDlgGroupItem(::ca2::window * pWndCtl, bool bPrevious = FALSE) const;
+      virtual sp(::ca2::window) GetNextDlgTabItem(::ca2::window * pWndCtl, bool bPrevious = FALSE) const;
+      virtual UINT IsDlgButtonChecked(int32_t nIDButton) const;
+      virtual LRESULT SendDlgItemMessage(int32_t nID, UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
+      virtual void SetDlgItemInt(int32_t nID, UINT nValue, bool bSigned = TRUE);
+      virtual void SetDlgItemText(int32_t nID, const char * lpszString);
 
    // Scrolling Functions
-      virtual int GetScrollPos(int nBar) const;
-      virtual void GetScrollRange(int nBar, LPINT lpMinPos, LPINT lpMaxPos) const;
-      virtual void ScrollWindow(int xAmount, int yAmount,
+      virtual int32_t GetScrollPos(int32_t nBar) const;
+      virtual void GetScrollRange(int32_t nBar, LPINT lpMinPos, LPINT lpMaxPos) const;
+      virtual void ScrollWindow(int32_t xAmount, int32_t yAmount,
                   LPCRECT lpRect = NULL,
                   LPCRECT lpClipRect = NULL);
-      virtual int SetScrollPos(int nBar, int nPos, BOOL bRedraw = TRUE);
-      virtual void SetScrollRange(int nBar, int nMinPos, int nMaxPos,
-            BOOL bRedraw = TRUE);
-      virtual void ShowScrollBar(UINT nBar, BOOL bShow = TRUE);
-      virtual void EnableScrollBarCtrl(int nBar, BOOL bEnable = TRUE);
-      virtual CScrollBar* GetScrollBarCtrl(int nBar) const;
+      virtual int32_t SetScrollPos(int32_t nBar, int32_t nPos, bool bRedraw = TRUE);
+      virtual void SetScrollRange(int32_t nBar, int32_t nMinPos, int32_t nMaxPos,
+            bool bRedraw = TRUE);
+      virtual void ShowScrollBar(UINT nBar, bool bShow = TRUE);
+      virtual void EnableScrollBarCtrl(int32_t nBar, bool bEnable = TRUE);
+      virtual CScrollBar* GetScrollBarCtrl(int32_t nBar) const;
             // return sibling scrollbar control (or NULL if none)
 
-      virtual int ScrollWindowEx(int dx, int dy,
+      virtual int32_t ScrollWindowEx(int32_t dx, int32_t dy,
                LPCRECT lpRectScroll, LPCRECT lpRectClip,
-               ::ca2::rgn* prgnUpdate, LPRECT lpRectUpdate, UINT flags);
-      virtual BOOL SetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo,
-         BOOL bRedraw = TRUE);
-      virtual BOOL GetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo, UINT nMask = SIF_ALL);
-      virtual int GetScrollLimit(int nBar);
+               ::draw2d::region* prgnUpdate, LPRECT lpRectUpdate, UINT flags);
+//xxx      virtual bool SetScrollInfo(int32_t nBar, LPSCROLLINFO lpScrollInfo,
+//xxx         bool bRedraw = TRUE);
+//xxx      virtual bool GetScrollInfo(int32_t nBar, LPSCROLLINFO lpScrollInfo, UINT nMask = SIF_ALL);
+      virtual int32_t GetScrollLimit(int32_t nBar);
 
    #if(WINVER >= 0x0500)
 
-      virtual BOOL GetScrollBarInfo(LONG idObject, PSCROLLBARINFO psbi) const;
+      virtual bool GetScrollBarInfo(LONG idObject, PSCROLLBARINFO psbi) const;
 
    #endif   // WINVER >= 0x0500
 
-   // Window Access Functions
-      virtual ::ca2::window * ChildWindowFromPoint(POINT point);
-      virtual ::ca2::window * ChildWindowFromPoint(POINT point, UINT nFlags);
-      static ::ca2::window * PASCAL FindWindow(const char * lpszClassName, const char * lpszWindowName);
-      static ::ca2::window * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+   // oswindow Access Functions
+      virtual sp(::user::interaction) ChildWindowFromPoint(POINT point);
+      virtual sp(::user::interaction) ChildWindowFromPoint(POINT point, UINT nFlags);
+      static sp(::ca2::window) PASCAL FindWindow(const char * lpszClassName, const char * lpszWindowName);
+      static sp(::ca2::window) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 
-      virtual ::user::interaction * GetNextWindow(UINT nFlag = GW_HWNDNEXT);
-      virtual ::user::interaction * GetTopWindow();
+      virtual sp(::user::interaction) GetNextWindow(UINT nFlag = GW_HWNDNEXT);
+      virtual sp(::user::interaction) GetTopWindow();
 
-      virtual ::user::interaction * GetWindow(UINT nCmd);
-      virtual ::user::interaction * GetLastActivePopup();
+      virtual sp(::user::interaction) GetWindow(UINT nCmd);
+      virtual sp(::user::interaction) GetLastActivePopup();
 
-      virtual BOOL IsChild(::user::interaction *  pWnd);
-      virtual ::user::interaction * GetParent();
-      using ::user::interaction::SetParent;
-      ::ca2::window * SetParent(::ca2::window * pWndNewParent);
-      static ::ca2::window * PASCAL WindowFromPoint(POINT point);
+      virtual bool IsChild(sp(::user::interaction)  pWnd);
+      virtual sp(::user::interaction) get_parent() const;
+      using ::user::interaction::set_parent;
+      sp(::ca2::window) set_parent(::ca2::window * pWndNewParent);
+      static sp(::ca2::window) PASCAL oswindowFromPoint(POINT point);
 
    // Alert Functions
-      BOOL FlashWindow(BOOL bInvert);
-   #pragma push_macro("MessageBox")
-   #undef MessageBox
-      virtual int _AFX_FUNCNAME(MessageBox)(const char * lpszText, const char * lpszCaption = NULL,
-            UINT nType = MB_OK);
-      virtual int MessageBox(const char * lpszText, const char * lpszCaption = NULL,
-            UINT nType = MB_OK);
-   #pragma pop_macro("MessageBox")
+
+      bool FlashWindow(bool bInvert);
+
+      virtual int32_t message_box(const char * lpszText, const char * lpszcaption = NULL, UINT nType = MB_OK);
+
 
    #if(WINVER >= 0x0500)
 
-      virtual BOOL FlashWindowEx(DWORD dwFlags, UINT  uCount, DWORD dwTimeout);
+      virtual bool FlashWindowEx(DWORD dwFlags, UINT  uCount, DWORD dwTimeout);
 
    #endif   // WINVER >= 0x0500
 
    // Clipboard Functions
-      virtual BOOL ChangeClipboardChain(oswindow hWndNext);
-      virtual oswindow SetClipboardViewer();
-      virtual BOOL OpenClipboard();
-      static ::ca2::window * PASCAL GetClipboardOwner();
-      static ::ca2::window * PASCAL GetClipboardViewer();
-      static ::ca2::window * PASCAL GetOpenClipboardWindow();
+      virtual bool ChangeClipboardChain(oswindow hWndNext);
+      virtual oswindow  SetClipboardViewer();
+      virtual bool OpenClipboard();
+      static sp(::ca2::window) PASCAL GetClipboardOwner();
+      static sp(::ca2::window) PASCAL GetClipboardViewer();
+      static sp(::ca2::window) PASCAL GetOpenClipboardWindow();
 
-   // Caret Functions
-      virtual void CreateCaret(::ca2::bitmap* pBitmap);
-      virtual void CreateSolidCaret(int nWidth, int nHeight);
-      virtual void CreateGrayCaret(int nWidth, int nHeight);
-      static point PASCAL GetCaretPos();
-      static void PASCAL SetCaretPos(POINT point);
-      virtual void HideCaret();
-      virtual void ShowCaret();
+   // caret Functions
+      virtual void Createcaret(::draw2d::bitmap* pBitmap);
+      virtual void CreateSolidcaret(int32_t nWidth, int32_t nHeight);
+      virtual void CreateGraycaret(int32_t nWidth, int32_t nHeight);
+      static point PASCAL GetcaretPos();
+      static void PASCAL SetcaretPos(POINT point);
+      virtual void Hidecaret();
+      virtual void Showcaret();
 
    // Shell Interaction Functions
-      virtual void DragAcceptFiles(BOOL bAccept = TRUE);
+      virtual void DragAcceptFiles(bool bAccept = TRUE);
 
    // icon Functions
-      virtual HICON SetIcon(HICON hIcon, BOOL bBigIcon);
-      virtual HICON GetIcon(BOOL bBigIcon) const;
+      virtual HICON SetIcon(HICON hIcon, bool bBigIcon);
+      virtual HICON GetIcon(bool bBigIcon) const;
 
    // Context Help Functions
-      virtual BOOL SetWindowContextHelpId(DWORD dwContextHelpId);
+      virtual bool SetWindowContextHelpId(DWORD dwContextHelpId);
       virtual DWORD GetWindowContextHelpId() const;
 
    // Dialog Data support
-      //virtual BOOL UpdateData(BOOL bSaveAndValidate = TRUE);
+      //virtual bool update_data(bool bSaveAndValidate = TRUE);
             // data wnd must be same type as this
 
    // Help Command Handlers
-      afx_msg void OnHelp();          // F1 (uses current context)
-      afx_msg void OnHelpIndex();     // ID_HELP_INDEX
-      afx_msg void OnHelpFinder();    // ID_HELP_FINDER, ID_DEFAULT_HELP
-      afx_msg void OnHelpUsing();     // ID_HELP_USING
-      virtual void WinHelp(dword_ptr dwData, UINT nCmd = HELP_CONTEXT);
+      void OnHelp();          // F1 (uses current context)
+      void OnHelpIndex();     // ID_HELP_INDEX
+      void OnHelpFinder();    // ID_HELP_FINDER, ID_DEFAULT_HELP
+      void OnHelpUsing();     // ID_HELP_USING
+      // xxx virtual void WinHelp(dword_ptr dwData, UINT nCmd = HELP_CONTEXT);
       //virtual void HtmlHelp(dword_ptr dwData, UINT nCmd = 0x000F);
-      virtual void WinHelpInternal(dword_ptr dwData, UINT nCmd = HELP_CONTEXT);
+      // xxx virtual void WinHelpInternal(dword_ptr dwData, UINT nCmd = HELP_CONTEXT);
 
    // layout and other functions
    /*   void RepositionBars(const char * pszPrefix, const char * pszIdLeftOver,
          UINT nFlag = reposDefault, LPRECT lpRectParam = NULL,
-         LPCRECT lpRectClient = NULL, BOOL bStretch = TRUE);*/
+         LPCRECT lpRectClient = NULL, bool bStretch = TRUE);*/
 
-      void RepositionBars(UINT nIDFirst, UINT nIDLast, UINT nIDLeftOver,
+      void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver,
          UINT nFlags = reposDefault, LPRECT lpRectParam = NULL,
-         LPCRECT lpRectClient = NULL, BOOL bStretch = TRUE);
+         LPCRECT lpRectClient = NULL, bool bStretch = TRUE);
 
 
       // dialog support
-      void UpdateDialogControls(command_target* pTarget, BOOL bDisableIfNoHndler);
-      void CenterWindow(::user::interaction * pAlternateOwner = NULL);
-      int RunModalLoop(DWORD dwFlags = 0);
-      virtual BOOL ContinueModal(int iLevel);
-      virtual void EndModalLoop(int nResult);
-      virtual void EndAllModalLoops(int nResult);
+      void UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHndler);
+      void CenterWindow(sp(::user::interaction) pAlternateOwner = NULL);
+      virtual id   RunModalLoop(DWORD dwFlags = 0, ::ca2::live_object * pliveobject = NULL);
+      virtual bool ContinueModal(int32_t iLevel);
+      virtual void EndModalLoop(id nResult);
+      virtual void EndAllModalLoops(id nResult);
 
-   // Window-Management message handler member functions
-      virtual BOOL OnCommand(WPARAM wParam, LPARAM lParam);
-      virtual BOOL OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+   // oswindow-Management message handler member functions
+      virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
+      virtual bool OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 
-      afx_msg void OnActivate(UINT nState, ::ca2::window * pWndOther, BOOL bMinimized);
-      afx_msg void OnActivateApp(BOOL bActive, DWORD dwThreadID);
-      afx_msg LRESULT OnActivateTopLevel(WPARAM, LPARAM);
-      afx_msg void OnCancelMode();
-      afx_msg void OnChildActivate();
-      afx_msg void OnClose();
-      afx_msg void OnContextMenu(::ca2::window * pWnd, point pos);
-      afx_msg BOOL OnCopyData(::ca2::window * pWnd, COPYDATASTRUCT* pCopyDataStruct);
+      void OnActivate(UINT nState, sp(::ca2::window) pWndOther, bool bMinimized);
+      void OnActivateApp(bool bActive, DWORD dwThreadID);
+      LRESULT OnActivateTopLevel(WPARAM, LPARAM);
+      void OncancelMode();
+      void OnChildActivate();
+      void OnClose();
+      void OnContextMenu(::ca2::window * pWnd, point pos);
+      bool OnCopyData(::ca2::window * pWnd, COPYDATASTRUCT* pCopyDataStruct);
       DECL_GEN_SIGNAL(_001OnCreate);
 
 
-      afx_msg HBRUSH OnCtlColor(::ca2::graphics * pgraphics, ::ca2::window * pWnd, UINT nCtlColor);
+      HBRUSH OnCtlColor(::draw2d::graphics * pgraphics, sp(::ca2::window) pWnd, UINT nCtlColor);
 
       DECL_GEN_SIGNAL(_001OnDestroy);
-      afx_msg void OnEnable(BOOL bEnable);
-      afx_msg void OnEndSession(BOOL bEnding);
-      afx_msg void OnEnterIdle(UINT nWhy, ::ca2::window * pWho);
-      afx_msg BOOL OnEraseBkgnd(::ca2::graphics * pgraphics);
-      afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
-      afx_msg BOOL OnHelpInfo(HELPINFO* lpHelpInfo);
-      afx_msg void OnIconEraseBkgnd(::ca2::graphics * pgraphics);
-      afx_msg void OnKillFocus(::ca2::window * pNewWnd);
-      afx_msg LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::userbase::menu* pMenu);
-      afx_msg void OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu);
-      afx_msg void OnMove(int x, int y);
+      void OnEnable(bool bEnable);
+      void OnEndSession(bool bEnding);
+      void OnEnterIdle(UINT nWhy, sp(::ca2::window) pWho);
+      bool OnEraseBkgnd(::draw2d::graphics * pgraphics);
+      void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
+      //xxx bool OnHelpInfo(HELPINFO* lpHelpInfo);
+      void OnIconEraseBkgnd(::draw2d::graphics * pgraphics);
+      void OnKillFocus(::ca2::window * pNewWnd);
+      LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::user::menu* pMenu);
+      void OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu);
+      void OnMove(int32_t x, int32_t y);
       DECL_GEN_SIGNAL(_001OnPaint)
       DECL_GEN_SIGNAL(_001OnPrint)
-      virtual void _001Print(::ca2::graphics * pgraphics);
-      DECL_GEN_SIGNAL(_001OnCaptureChanged)
-      afx_msg void OnParentNotify(UINT message, LPARAM lParam);
-      afx_msg HCURSOR OnQueryDragIcon();
-      afx_msg BOOL OnQueryEndSession();
-      afx_msg BOOL OnQueryNewPalette();
-      afx_msg BOOL OnQueryOpen();
-      afx_msg void OnSetFocus(::ca2::window * pOldWnd);
-      afx_msg void OnShowWindow(BOOL bShow, UINT nStatus);
-      afx_msg void OnSize(UINT nType, int cx, int cy);
-      afx_msg void OnTCard(UINT idAction, DWORD dwActionData);
-      afx_msg void OnWindowPosChanging(WINDOWPOS* lpwndpos);
-      afx_msg void OnWindowPosChanged(WINDOWPOS* lpwndpos);
+      DECL_GEN_SIGNAL(_001OncaptureChanged)
+      void OnParentNotify(UINT message, LPARAM lParam);
+      HCURSOR OnQueryDragIcon();
+      bool OnQueryEndSession();
+      bool OnQueryNewPalette();
+      bool OnQueryOpen();
+      void OnSetFocus(::ca2::window * pOldWnd);
+      void OnShowWindow(bool bShow, UINT nStatus);
+      void OnSize(UINT nType, int32_t cx, int32_t cy);
+      void OnTcard(UINT idAction, DWORD dwActionData);
+      void OnWindowPosChanging(WINDOWPOS* lpwndpos);
+      void OnWindowPosChanged(WINDOWPOS* lpwndpos);
 
-      afx_msg void OnChangeUIState(UINT nAction, UINT nUIElement);
-      afx_msg void OnUpdateUIState(UINT nAction, UINT nUIElement);
-      afx_msg UINT OnQueryUIState();
+      void OnChangeUIState(UINT nAction, UINT nUIElement);
+      void OnUpdateUIState(UINT nAction, UINT nUIElement);
+      UINT OnQueryUIState();
 
    // Nonclient-Area message handler member functions
-      afx_msg BOOL OnNcActivate(BOOL bActive);
-      afx_msg void OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS* lpncsp);
-      afx_msg BOOL OnNcCreate(LPCREATESTRUCT lpCreateStruct);
+      bool OnNcActivate(bool bActive);
+      void OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS* lpncsp);
+      bool OnNcCreate(LPCREATESTRUCT lpCreateStruct);
       DECL_GEN_SIGNAL(_001OnNcDestroy)
-      afx_msg LRESULT OnNcHitTest(point point);
-      afx_msg void OnNcLButtonDblClk(UINT nHitTest, point point);
-      afx_msg void OnNcLButtonDown(UINT nHitTest, point point);
-      afx_msg void OnNcLButtonUp(UINT nHitTest, point point);
-      afx_msg void OnNcMButtonDblClk(UINT nHitTest, point point);
-      afx_msg void OnNcMButtonDown(UINT nHitTest, point point);
-      afx_msg void OnNcMButtonUp(UINT nHitTest, point point);
-      afx_msg void OnNcMouseMove(UINT nHitTest, point point);
-      afx_msg void OnNcPaint();
-      afx_msg void OnNcRButtonDblClk(UINT nHitTest, point point);
-      afx_msg void OnNcRButtonDown(UINT nHitTest, point point);
-      afx_msg void OnNcRButtonUp(UINT nHitTest, point point);
+      LRESULT OnNcHitTest(point point);
+      void OnNcLButtonDblClk(UINT nHitTest, point point);
+      void OnNcLButtonDown(UINT nHitTest, point point);
+      void OnNcLButtonUp(UINT nHitTest, point point);
+      void OnNcMButtonDblClk(UINT nHitTest, point point);
+      void OnNcMButtonDown(UINT nHitTest, point point);
+      void OnNcMButtonUp(UINT nHitTest, point point);
+      void OnNcMouseMove(UINT nHitTest, point point);
+      void OnNcPaint();
+      void OnNcRButtonDblClk(UINT nHitTest, point point);
+      void OnNcRButtonDown(UINT nHitTest, point point);
+      void OnNcRButtonUp(UINT nHitTest, point point);
 
    // System message handler member functions
-      afx_msg void OnDropFiles(HDROP hDropInfo);
-      afx_msg void OnPaletteIsChanging(::ca2::window * pRealizeWnd);
-      afx_msg void OnSysChar(UINT nChar, UINT nRepCnt, UINT nFlags);
-      afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
-      afx_msg void OnSysDeadChar(UINT nChar, UINT nRepCnt, UINT nFlags);
-      afx_msg void OnSysKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
-      afx_msg void OnSysKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
-      afx_msg void OnCompacting(UINT nCpuTime);
-      afx_msg void OnDevModeChange(__in_z LPTSTR lpDeviceName);
-      afx_msg void OnFontChange();
-      afx_msg void OnPaletteChanged(::ca2::window * pFocusWnd);
-      afx_msg void OnSpoolerStatus(UINT nStatus, UINT nJobs);
-      afx_msg void OnSysColorChange();
-      afx_msg void OnTimeChange();
-      afx_msg void OnSettingChange(UINT uFlags, const char * lpszSection);
-      afx_msg void OnWinIniChange(const char * lpszSection);
+      void OnDropFiles(HDROP hDropInfo);
+      void OnPaletteIsChanging(::ca2::window * pRealizeWnd);
+      void OnSysChar(UINT nChar, UINT nRepCnt, UINT nFlags);
+      void OnSysCommand(UINT nID, LPARAM lParam);
+      void OnSysDeadChar(UINT nChar, UINT nRepCnt, UINT nFlags);
+      void OnSysKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
+      void OnSysKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
+      void OnCompacting(UINT nCpuTime);
+      void OnDevModeChange(LPTSTR lpDeviceName);
+      void OnFontChange();
+      void OnPaletteChanged(::ca2::window * pFocusWnd);
+      void OnSpoolerStatus(UINT nStatus, UINT nJobs);
+      void OnSysColorChange();
+      void OnTimeChange();
+      void OnSettingChange(UINT uFlags, const char * lpszSection);
+      void OnWinIniChange(const char * lpszSection);
 
    // Input message handler member functions
-      afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
-      afx_msg void OnDeadChar(UINT nChar, UINT nRepCnt, UINT nFlags);
-      afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
-      afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
-      afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
-      afx_msg void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
-      afx_msg void OnLButtonDblClk(UINT nFlags, point point);
-      afx_msg void OnLButtonDown(UINT nFlags, point point);
-      afx_msg void OnLButtonUp(UINT nFlags, point point);
-      afx_msg void OnMButtonDblClk(UINT nFlags, point point);
-      afx_msg void OnMButtonDown(UINT nFlags, point point);
-      afx_msg void OnMButtonUp(UINT nFlags, point point);
-      afx_msg int OnMouseActivate(::ca2::window * pDesktopWnd, UINT nHitTest, UINT message);
-      afx_msg void OnMouseMove(UINT nFlags, point point);
-      afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, point pt);
-      afx_msg LRESULT OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam);
-      afx_msg void OnRButtonDblClk(UINT nFlags, point point);
-      afx_msg void OnRButtonDown(UINT nFlags, point point);
-      afx_msg void OnRButtonUp(UINT nFlags, point point);
+      void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
+      void OnDeadChar(UINT nChar, UINT nRepCnt, UINT nFlags);
+      void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+      void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+      void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
+      void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
+      void OnLButtonDblClk(UINT nFlags, point point);
+      void OnLButtonDown(UINT nFlags, point point);
+      void OnLButtonUp(UINT nFlags, point point);
+      void OnMButtonDblClk(UINT nFlags, point point);
+      void OnMButtonDown(UINT nFlags, point point);
+      void OnMButtonUp(UINT nFlags, point point);
+      int32_t OnMouseActivate(::ca2::window * pDesktopWnd, UINT nHitTest, UINT message);
+      void OnMouseMove(UINT nFlags, point point);
+      bool OnMouseWheel(UINT nFlags, short zDelta, point pt);
+      LRESULT OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam);
+      void OnRButtonDblClk(UINT nFlags, point point);
+      void OnRButtonDown(UINT nFlags, point point);
+      void OnRButtonUp(UINT nFlags, point point);
       DECL_GEN_SIGNAL(_001OnSetCursor)
-      afx_msg void OnTimer(uint_ptr nIDEvent);
+      void OnTimer(uint_ptr nIDEvent);
 
    // Initialization message handler member functions
-      afx_msg void OnInitMenu(::userbase::menu* pMenu);
-      afx_msg void OnInitMenuPopup(::userbase::menu* pPopupMenu, UINT nIndex, BOOL bSysMenu);
+      void OnInitMenu(::user::menu* pMenu);
+      void OnInitMenuPopup(::user::menu* pPopupMenu, UINT nIndex, bool bSysMenu);
 
    // Clipboard message handler member functions
-      afx_msg void OnAskCbFormatName(__in UINT nMaxCount, __out_ecount_z(nMaxCount) LPTSTR lpszString);
-      afx_msg void OnChangeCbChain(oswindow hWndRemove, oswindow hWndAfter);
-      afx_msg void OnDestroyClipboard();
-      afx_msg void OnDrawClipboard();
-      afx_msg void OnHScrollClipboard(::ca2::window * pClipAppWnd, UINT nSBCode, UINT nPos);
-      afx_msg void OnPaintClipboard(::ca2::window * pClipAppWnd, HGLOBAL hPaintStruct);
-      afx_msg void OnRenderAllFormats();
-      afx_msg void OnRenderFormat(UINT nFormat);
-      afx_msg void OnSizeClipboard(::ca2::window * pClipAppWnd, HGLOBAL hRect);
-      afx_msg void OnVScrollClipboard(::ca2::window * pClipAppWnd, UINT nSBCode, UINT nPos);
+      void OnAskCbFormatName(UINT nMaxCount, LPTSTR lpszString);
+      void OnChangeCbChain(oswindow hWndRemove, oswindow hWndAfter);
+      void OnDestroyClipboard();
+      void OnDrawClipboard();
+      void OnHScrollClipboard(::ca2::window * pClipAppWnd, UINT nSBCode, UINT nPos);
+      void OnPaintClipboard(::ca2::window * pClipAppWnd, HGLOBAL hPaintStruct);
+      void OnRenderAllFormats();
+      void OnRenderFormat(UINT nFormat);
+      void OnSizeClipboard(::ca2::window * pClipAppWnd, HGLOBAL hRect);
+      void OnVScrollClipboard(::ca2::window * pClipAppWnd, UINT nSBCode, UINT nPos);
 
    // control message handler member functions
-      afx_msg int OnCompareItem(int nIDCtl, LPCOMPAREITEMSTRUCT lpCompareItemStruct);
-      afx_msg void OnDeleteItem(int nIDCtl, LPDELETEITEMSTRUCT lpDeleteItemStruct);
-      afx_msg void OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct);
-      afx_msg UINT OnGetDlgCode();
-      afx_msg void OnMeasureItem(int nIDCtl, LPMEASUREITEMSTRUCT lpMeasureItemStruct);
+//xxx      int32_t OnCompareItem(int32_t nIDCtl, LPCOMPAREITEMSTRUCT lpCompareItemStruct);
+//xxx      void OnDeleteItem(int32_t nIDCtl, LPDELETEITEMSTRUCT lpDeleteItemStruct);
+//xxx      void OnDrawItem(int32_t nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct);
+      UINT OnGetDlgCode();
+//xxx      void OnMeasureItem(int32_t nIDCtl, LPMEASUREITEMSTRUCT lpMeasureItemStruct);
 
    // MDI message handler member functions
-      afx_msg void OnMDIActivate(BOOL bActivate,
-         ::ca2::window * pActivateWnd, ::ca2::window * pDeactivateWnd);
+      void OnMDIActivate(bool bActivate,
+         sp(::ca2::window) pActivateWnd, sp(::ca2::window) pDeactivateWnd);
 
    // menu loop notification messages
-      afx_msg void OnEnterMenuLoop(BOOL bIsTrackPopupMenu);
-      afx_msg void OnExitMenuLoop(BOOL bIsTrackPopupMenu);
+      void OnEnterMenuLoop(bool bIsTrackPopupMenu);
+      void OnExitMenuLoop(bool bIsTrackPopupMenu);
 
    // Win4 messages
-      afx_msg void OnStyleChanged(int nStyleType, LPSTYLESTRUCT lpStyleStruct);
-      afx_msg void OnStyleChanging(int nStyleType, LPSTYLESTRUCT lpStyleStruct);
-      afx_msg void OnSizing(UINT nSide, LPRECT lpRect);
-      afx_msg void OnMoving(UINT nSide, LPRECT lpRect);
-      afx_msg void OnCaptureChanged(::ca2::window * pWnd);
-      afx_msg BOOL OnDeviceChange(UINT nEventType, dword_ptr dwData);
+//xxx      void OnStyleChanged(int32_t nStyleType, LPSTYLESTRUCT lpStyleStruct);
+//xxx      void OnStyleChanging(int32_t nStyleType, LPSTYLESTRUCT lpStyleStruct);
+      void OnSizing(UINT nSide, LPRECT lpRect);
+      void OnMoving(UINT nSide, LPRECT lpRect);
+      void OncaptureChanged(::ca2::window * pWnd);
+      bool OnDeviceChange(UINT nEventType, dword_ptr dwData);
 
    // Overridables and other helpers (for implementation of derived classes)
       // for deriving from a standard control
-      virtual WNDPROC* GetSuperWndProcAddr();
+// xxx      virtual WNDPROC* GetSuperWndProcaddr();
 
       // for dialog data exchange and validation
-//      virtual void DoDataExchange(CDataExchange* pDX);
+//      virtual void do_data_exchange(CDataExchange* pDX);
 
       // for modality
       virtual void BeginModalState();
       virtual void EndModalState();
 
-      // for translating Windows messages in main message pump
+      // for translating oswindows messages in main message pump
       virtual void pre_translate_message(::ca2::signal_object * pobj);
 
 
-      // for processing Windows messages
+      // for processing oswindows messages
       virtual void message_handler(::ca2::signal_object * pobj);
-      //virtual BOOL OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+      //virtual bool OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 
       // for handling default processing
       LRESULT Default();
@@ -623,83 +629,90 @@ namespace android
       virtual void PostNcDestroy();
 
       // for notifications from parent
-      virtual BOOL OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+      virtual bool OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
          // return TRUE if parent should not process this message
-      BOOL ReflectChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
-      static BOOL PASCAL ReflectLastMsg(oswindow hWndChild, LRESULT* pResult = NULL);
+      bool ReflectChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+      static bool PASCAL ReflectLastMsg(oswindow hWndChild, LRESULT* pResult = NULL);
 
    // Implementation
       virtual ~window();
-      virtual BOOL CheckAutoCenter();
-   #ifdef DEBUG
+      virtual bool CheckAutoCenter();
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
-   #endif
-      static BOOL PASCAL GrayCtlColor(HDC hDC, oswindow hWnd, UINT nCtlColor,
+      static bool PASCAL GrayCtlColor(HDC hDC, oswindow hWnd, UINT nCtlColor,
          HBRUSH hbrGray, COLORREF clrText);
 
 
       // helper routines for implementation
-      BOOL HandleFloatingSysCommand(UINT nID, LPARAM lParam);
-      BOOL IsTopParentActive();
+      bool HandleFloatingSysCommand(UINT nID, LPARAM lParam);
+      bool IsTopParentActive();
       void ActivateTopParent();
-      virtual void WalkPreTranslateTree(oswindow hWndStop, ::ca2::signal_object * pobj);
-      static ::user::interaction * PASCAL GetDescendantWindow(::user::interaction * hWnd, id id);
-      static void PASCAL SendMessageToDescendants(oswindow hWnd, UINT message,
-         WPARAM wParam, LPARAM lParam, BOOL bDeep, BOOL bOnlyPerm);
-      virtual BOOL IsFrameWnd(); // is_kind_of(&typeid(frame_window)))
+      virtual void WalkPreTranslateTree(sp(::user::interaction) puiStop, ::ca2::signal_object * pobj);
+      static sp(::user::interaction) PASCAL GetDescendantWindow(sp(::user::interaction) hWnd, id id);
+      static void PASCAL SendMessageToDescendants(void*  hWnd, UINT message, WPARAM wParam, lparam lParam, bool bDeep, bool bOnlyPerm);
+      virtual bool is_frame_window(); // is_kind_of(System.type_info < frame_window > ()))
       virtual void on_final_release();
-      static BOOL PASCAL ModifyStyle(oswindow hWnd, DWORD dwRemove, DWORD dwAdd,
-         UINT nFlags);
-      static BOOL PASCAL ModifyStyleEx(oswindow hWnd, DWORD dwRemove, DWORD dwAdd,
-         UINT nFlags);
-      static void PASCAL _FilterToolTipMessage(MSG* pMsg, ::ca2::window * pWnd);
-      BOOL _EnableToolTips(BOOL bEnable, UINT nFlag);
+      static bool PASCAL ModifyStyle(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags);
+      static bool PASCAL ModifyStyleEx(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags);
+      static void PASCAL _FilterToolTipMessage(MESSAGE* pMsg, sp(::ca2::window) pWnd);
+      bool _EnableToolTips(bool bEnable, UINT nFlag);
       static oswindow PASCAL GetSafeOwner_(oswindow hWnd, oswindow* pWndTop);
       void PrepareForHelp();
 
       //UINT m_nFlags;      // see WF_ flags above
 
-      WNDPROC m_pfnSuper; // for subclassing of controls
+// xxx      WNDPROC m_pfnSuper; // for subclassing of controls
       static const UINT m_nMsgDragList;
-      int m_nModalResult; // for return values from ::ca2::window::RunModalLoop
+      int32_t m_nModalResult; // for return values from ::ca2::window::RunModalLoop
 
-      ::ca2::font * m_pfont;
+      ::draw2d::font * m_pfont;
 
       friend class frame_window;
 
       // for creating dialogs and dialog-like windows
-      BOOL CreateDlg(const char * lpszTemplateName, ::ca2::window * pParentWnd);
-      //BOOL CreateDlgIndirect(LPCDLGTEMPLATE lpDialogTemplate, ::ca2::window * pParentWnd,
+      bool CreateDlg(const char * lpszTemplateName, sp(::ca2::window) pParentWnd);
+      //bool CreateDlgIndirect(LPCDLGTEMPLATE lpDialogTemplate, sp(::ca2::window) pParentWnd,
         // HINSTANCE hInst);
 
 
       // implementation of message dispatch/hooking
-      CLASS_DECL_ANDROID friend LRESULT CALLBACK _AfxSendMsgHook(int, WPARAM, LPARAM);
-      //CLASS_DECL_ANDROID friend void _AfxStandardSubclass(oswindow);
-      CLASS_DECL_ANDROID friend LRESULT CALLBACK _AfxCbtFilterHook(int, WPARAM, LPARAM);
-      CLASS_DECL_ANDROID friend LRESULT AfxCallWndProc(::user::interaction * pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+      CLASS_DECL_ANDROID friend LRESULT CALLBACK __send_message_hook(int32_t, WPARAM, LPARAM);
+      //CLASS_DECL_ANDROID friend void _::ca2::StandardSubclass(oswindow);
+      CLASS_DECL_ANDROID friend LRESULT CALLBACK __cbt_filter_hook(int32_t, WPARAM, LPARAM);
+      CLASS_DECL_ANDROID friend LRESULT __call_window_procedure(sp(::user::interaction) pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
 
       // standard message implementation
-      afx_msg LRESULT OnNTCtlColor(WPARAM wParam, LPARAM lParam);
-      afx_msg LRESULT OnDisplayChange(WPARAM, LPARAM);
-      afx_msg LRESULT OnDragList(WPARAM, LPARAM);
+      LRESULT OnNTCtlColor(WPARAM wParam, LPARAM lParam);
+      LRESULT OnDisplayChange(WPARAM, LPARAM);
+      LRESULT OnDragList(WPARAM, LPARAM);
 
-      static BOOL CALLBACK GetAppsEnumWindowsProc(
-            oswindow hwnd,
-            LPARAM lParam);
+      static bool CALLBACK GetAppsEnumWindowsProc(oswindow hwnd, LPARAM lParam);
 
-      static void get_app_wnda(user::HWNDArray & wnda);
 
-      virtual void _001DeferPaintLayeredWindowBackground(::ca2::graphics * pdc);
+      static void get_app_wnda(user::oswindow_array & wnda);
 
-      virtual void _001OnDeferPaintLayeredWindowBackground(::ca2::graphics * pdc);
+      virtual void _001DeferPaintLayeredWindowBackground(HDC hdc);
 
-      virtual LONG GetWindowLong(int nIndex);
-      virtual LONG SetWindowLong(int nIndex, LONG lValue);
+      virtual LONG GetWindowLong(int32_t nIndex);
+      virtual LONG SetWindowLong(int32_t nIndex, LONG lValue);
 
       virtual void _001BaseWndInterfaceMap();
 
+
+      void _001UpdateWindow();
+      void _001Expose();
+
+
+      void _001OnTriggerMouseInside();
+
+
    };
 
+
 } // namespace android
+
+
+
+
+
+

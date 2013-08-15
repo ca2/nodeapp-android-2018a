@@ -59,49 +59,62 @@ CLASS_DECL_ANDROID void AfxResetMsgCache();
 #include "android1.h"
 #include "android_implementation.h"
 #include "android_state.h"
-#include "android_handle.h"
 #include "android_dir.h"
-#include "android_folder_watch.h"
 #include "android_factory_exchange.h"
 #include "android_window_draw.h"
-#include "android_graphics.h"
-#include "android_graphics_object.h"
-#include "android_bitmap.h"
-#include "android_dib.h"
-#include "android_palette.h"
-#include "android_pen.h"
-#include "android_font.h"
-#include "android_brush.h"
-#include "android_region.h"
-//#include "android_draw_dib.h"
 #include "android_thread.h"
 #include "android_window.h"
 #include "android_os.h"
 #include "android_port_forward.h"
+#include "android_copydesk.h"
+#include "android_crypt.h"
+#include "android_ip_enum.h"
 
 #define NULL_REF(class) (*((class *) NULL))
-CLASS_DECL_ANDROID WNDPROC AfxGetAfxWndProc();
+// xxx CLASS_DECL_ANDROID WNDPROC AfxGetAfxWndProc();
 #define AfxWndProc (*AfxGetAfxWndProc())
 
-#define WIN_THREAD(pthread) (dynamic_cast < ::android::thread * > (dynamic_cast < ::ca2::thread * >(pthread)))
-#define WIN_WINDOW(pwnd) (dynamic_cast < ::android::window * > (dynamic_cast < ::ca2::window * >(pwnd)))
-#define WIN_DC(pgraphics) (dynamic_cast < ::android::graphics * > (dynamic_cast < ::ca2::graphics * > (pgraphics)))
-#define SP_DC(pgraphics) (dynamic_cast < ::android::graphics * > (( ::ca2::graphics * )(pgraphics)))
-#define WIN_HDC(pgraphics) ((HDC)*(dynamic_cast < ::android::graphics * > (dynamic_cast < ::ca2::graphics * > (pgraphics))))
-#define SP_HDC(pgraphics) ((HDC)*(dynamic_cast < ::android::graphics * > ((::ca2::graphics *)(pgraphics))))
-#define WIN_DIB(pdib) (dynamic_cast < ::android::dib * > (dynamic_cast < ::ca2::dib * >(pdib)))
+#define LNX_THREAD(pthread) (dynamic_cast < ::android::thread * > (dynamic_cast < ::ca2::thread * >(pthread)))
+#define LNX_WINDOW(pwnd) (dynamic_cast < ::android::window * > (((sp(::ca2::window))(pwnd)).m_p))
+#define LNX_DC(pgraphics) (dynamic_cast < ::android::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics)))
+#define SP_DC(pgraphics) (dynamic_cast < ::android::graphics * > (( ::draw2d::graphics * )(pgraphics)))
+#define LNX_HDC(pgraphics) ((HDC)*(dynamic_cast < ::android::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics))))
+#define SP_HDC(pgraphics) ((HDC)*(dynamic_cast < ::android::graphics * > ((::draw2d::graphics *)(pgraphics))))
+#define LNX_DIB(pdib) (dynamic_cast < ::android::dib * > (dynamic_cast < ::draw2d::dib * >(pdib)))
 
+#include "android_shell.h"
 
+CLASS_DECL_ANDROID void __trace_message(const char * lpszPrefix, ::ca2::signal_object * pobj);
+CLASS_DECL_ANDROID void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
-CLASS_DECL_ANDROID void _AfxTraceMsg(const char * lpszPrefix, ::ca2::signal_object * pobj);
-CLASS_DECL_ANDROID void _AfxTraceMsg(const char * lpszPrefix, LPMSG lpmsg);
-
-CLASS_DECL_ANDROID BOOL __cdecl AfxIsIdleMessage(::ca2::signal_object * pobj);
-CLASS_DECL_ANDROID BOOL __cdecl AfxIsIdleMessage(MSG* pMsg);
+CLASS_DECL_ANDROID WINBOOL __cdecl __is_idle_message(::ca2::signal_object * pobj);
+CLASS_DECL_ANDROID WINBOOL __cdecl __is_idle_message(MESSAGE* pMsg);
 
 
 CLASS_DECL_ANDROID void AfxProcessWndProcException(base_exception*, ::ca2::signal_object * pobj);
-CLASS_DECL_ANDROID void __cdecl AfxPreTranslateMessage(::ca2::signal_object * pobj);
+CLASS_DECL_ANDROID void __cdecl __pre_translate_message(::ca2::signal_object * pobj);
 
 
 #include "android_application.h"
+
+
+
+WINBOOL PeekMessage(
+    LPMESSAGE lpMsg,
+    oswindow hWnd,
+    UINT wMsgFilterMin,
+    UINT wMsgFilterMax,
+    UINT wRemoveMsg);
+
+WINBOOL GetMessage(
+    LPMESSAGE lpMsg,
+    oswindow hWnd,
+    UINT wMsgFilterMin,
+    UINT wMsgFilterMax);
+
+
+
+int32_t CLASS_DECL_ANDROID __android_main(int32_t argc, char * argv[]);
+
+
+CLASS_DECL_ANDROID void vfxThrowFileException(sp(::ca2::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);

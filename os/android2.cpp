@@ -1,54 +1,91 @@
 #include "framework.h"
 
 // Global helper functions
- CLASS_DECL_ANDROID ::ca2::application * AfxGetApp()
-{ return dynamic_cast < ::ca2::application * > (afxCurrentWinApp); }
+ CLASS_DECL_ANDROID sp(::ca2::application) __get_app()
+{ return afxCurrentWinApp; }
 
- CLASS_DECL_ANDROID HINSTANCE AfxGetInstanceHandle()
+ CLASS_DECL_ANDROID HINSTANCE __get_instance_handle()
    { ASSERT(afxCurrentInstanceHandle != NULL);
       return afxCurrentInstanceHandle; }
- CLASS_DECL_ANDROID HINSTANCE AfxGetResourceHandle()
+ CLASS_DECL_ANDROID HINSTANCE __get_resource_handle()
    { ASSERT(afxCurrentResourceHandle != NULL);
       return afxCurrentResourceHandle; }
- CLASS_DECL_ANDROID void AfxSetResourceHandle(HINSTANCE hInstResource)
+ CLASS_DECL_ANDROID void __set_resource_handle(HINSTANCE hInstResource)
    { ASSERT(hInstResource != NULL); afxCurrentResourceHandle = hInstResource; }
- CLASS_DECL_ANDROID const char * AfxGetAppName()
+ CLASS_DECL_ANDROID const char * __get_app_name()
    { ASSERT(afxCurrentAppName != NULL); return afxCurrentAppName; }
- CLASS_DECL_ANDROID ::user::interaction * AfxGetMainWnd()
+ CLASS_DECL_ANDROID sp(::user::interaction) __get_main_window()
 {
       ::ca2::thread* pThread = dynamic_cast < ::ca2::thread * > (::android::get_thread());
-      return pThread != NULL ? pThread->GetMainWnd() : NULL;
+      return pThread != NULL ? pThread->GetMainWnd().m_p : NULL;
  }
 
- CLASS_DECL_ANDROID BOOL AfxGetAmbientActCtx()
+ CLASS_DECL_ANDROID bool __gen_get_ambient_act_ctx()
    {    return afxAmbientActCtx; }
- CLASS_DECL_ANDROID void AfxSetAmbientActCtx(BOOL bSet)
+ CLASS_DECL_ANDROID void __set_ambient_act_ctx(bool bSet)
    {  afxAmbientActCtx = bSet; }
 
 
 
-#ifdef _ApplicationFrameworkDLL
 // __MAINTAIN_STATE functions
- __MAINTAIN_STATE::__MAINTAIN_STATE(__MODULE_STATE* pNewState)
-   {  m_pPrevModuleState = AfxSetModuleState(pNewState); }
-#endif
+ __MAINTAIN_STATE::__MAINTAIN_STATE(__MODULE_STATE* pNewState) throw()
+   {  m_pPrevModuleState = __set_module_state(pNewState); }
 
 // __MAINTAIN_STATE2 functions
  __MAINTAIN_STATE2::~__MAINTAIN_STATE2()
 {
-#ifdef _ApplicationFrameworkDLL
    // Not a good place to report errors here, so just be safe
    if(m_pThreadState)
    {
       m_pThreadState->m_pModuleState = m_pPrevModuleState;
    }
-#endif
 
 /*   if (m_bValidActCtxCookie)
    {
-      BOOL bRet;
-      bRet = AfxDeactivateActCtx(0, m_ulActCtxCookie);
+      bool bRet;
+      bRet = __deactivate_act_ctx(0, m_ulActCtxCookie);
       ASSERT(bRet == TRUE);
    }*/
 }
 
+
+
+
+
+ // __is_valid_atom() returns TRUE if the passed parameter is
+// a valid local or global atom.
+
+/*bool __is_valid_atom(ATOM nAtom)
+{
+   return true;
+
+   char sBuffer[256];
+   if (GetAtomName(nAtom, sBuffer, _countof(sBuffer)))
+   {
+      return TRUE;
+   }
+   DWORD dwError = GetLastError();
+   if (dwError == ERROR_INSUFFICIENT_BUFFER || dwError == ERROR_MORE_DATA)
+   {
+      return TRUE;
+   }
+   if (GlobalGetAtomName(nAtom, sBuffer, _countof(sBuffer)))
+   {
+      return TRUE;
+   }
+   dwError = GetLastError();
+   if (dwError == ERROR_INSUFFICIENT_BUFFER || dwError == ERROR_MORE_DATA)
+   {
+      return TRUE;
+   }
+   return FALSE;
+}
+
+// __is_valid_address() returns TRUE if the passed parameter is
+// a valid representation of a local or a global atom within a const char *.
+
+bool __is_valid_atom(const char * psz)
+{
+   return HIWORD(psz) == 0L && __is_valid_atom(ATOM(LOWORD(psz)));
+}
+*/

@@ -1,55 +1,55 @@
 #pragma once
 
 
+/////////////////////////////////////////////////////////////////////////////
+// STDIO file implementation
+
+
 namespace android
 {
 
-   class WinStdioFile : 
-      virtual public WinFile,
-      virtual public ex1::text_file
+
+   class CLASS_DECL_ANDROID stdio_file :
+      virtual public ::android::file,
+      virtual public ::ca2::text_file
    {
    public:
-      WinStdioFile(::ca2::application * papp);
 
-      // Attributes
+
       FILE* m_pStream;    // stdio FILE
       // m_hFile from base class is _fileno(m_pStream)
 
-      // Operations
-      // reading and writing strings
+
+
+      stdio_file(sp(::ca2::application) papp);
+      virtual ~stdio_file();
+
       virtual void write_string(const char * lpsz);
       virtual char * read_string(char * lpsz, UINT nMax);
-      //   virtual void write_string(const char * lpsz);
-      //   virtual wchar_t * read_string(wchar_t * lpsz, UINT nMax);
       virtual UINT read_string(string & rString);
 
-      // ementation
-   public:
-      virtual ~WinStdioFile();
-#ifdef _DEBUG
+
       void dump(dump_context & dumpcontext) const;
-#endif
-      virtual DWORD_PTR GetPosition() const;
-      virtual BOOL open(const char * lpszFileName, UINT nOpenFlags,
-         ex1::file_exception_sp * pError = NULL);
-      virtual DWORD_PTR read(void * lpBuf, DWORD_PTR nCount);
-      virtual void write(const void * lpBuf, DWORD_PTR nCount);
-      virtual INT_PTR seek(INT_PTR lOff, UINT nFrom);
+      virtual file_position get_position() const;
+      virtual bool open(const char * lpszFileName, UINT nOpenFlags);
+      virtual ::primitive::memory_size read(void * lpBuf, ::primitive::memory_size nCount);
+      virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
+      virtual file_position seek(file_offset lOff, ::ca2::e_seek nFrom);
       virtual void Abort();
       virtual void Flush();
       virtual void close();
-      virtual DWORD_PTR get_length() const;
+      virtual file_size get_length() const;
 
       // Unsupported APIs
-      virtual ex1::file * Duplicate() const;
-      virtual void LockRange(DWORD_PTR dwPos, DWORD_PTR dwCount);
-      virtual void UnlockRange(DWORD_PTR dwPos, DWORD_PTR dwCount);
+      virtual sp(::ca2::file) Duplicate() const;
+      virtual void LockRange(file_position dwPos, file_size dwCount);
+      virtual void UnlockRange(file_position dwPos, file_size dwCount);
+
+
    };
 
 
 
 } // namespace android
-
-
 
 

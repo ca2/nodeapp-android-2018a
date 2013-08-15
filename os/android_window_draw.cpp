@@ -322,7 +322,7 @@ namespace android
          TRACE("Could not initialize ca2::twf - ca2 Transparent Window Framework!");
          return 0;
       }
-      ::AttachThreadInput(::GetCurrentThreadId(), WIN_THREAD(System.::ca2::thread_sp::m_p)->m_nThreadID, TRUE);
+      ::AttachThreadInput(::GetCurrentThreadId(), ANDROID_THREAD(System.::ca2::thread_sp::m_p)->m_nThreadID, TRUE);
       MSG msg;
       s_bRunning = true;
       while(m_bRun)
@@ -1262,7 +1262,7 @@ namespace android
       HDC hdcScreen = ::GetDCEx(
          hwndParam,
          NULL,
-         DCX_CLIPSIBLINGS | DCX_WINDOW);
+         DCX_CLIPSIBLINGS | DCX_ANDROIDDOW);
       /*HDC hdcScreen = ::GetDCEx(
          NULL,
          NULL,
@@ -1271,7 +1271,7 @@ namespace android
    /*   HDC hdcScreen = ::GetDCEx(
          hwndParam,
          NULL,
-         DCX_WINDOW);*/
+         DCX_ANDROIDDOW);*/
       if(hdcScreen == NULL)
       {
          // If it has failed to get ::ca2::window
@@ -1281,7 +1281,7 @@ namespace android
             hwndParam,
             NULL,
             DCX_CACHE
-            | DCX_CLIPSIBLINGS | DCX_WINDOW);
+            | DCX_CLIPSIBLINGS | DCX_ANDROIDDOW);
 
          // If no device context could be retrieved,
          // nothing can be drawn at the screen.

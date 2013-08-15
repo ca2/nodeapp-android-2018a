@@ -173,7 +173,7 @@ __MODULE_STATE::__MODULE_STATE(BOOL bDLL)
 /////////////////////////////////////////////////////////////////////////////
 // Global function pointers for Context (WinSxS/Manifest) API, to be init during ca2 API global init.
 #define __ACTCTX_API_PTR_DEFINE(name, type, params) \
-   typedef type (WINAPI* PFN_##name)params; \
+   typedef type (ANDROIDAPI* PFN_##name)params; \
    PFN_##name pfn##name = NULL;
 
 __ACTCTX_API_PTR_DEFINE(CreateActCtxW, HANDLE, (PCACTCTXW));
@@ -195,7 +195,7 @@ __STATIC void CLASS_DECL_ANDROID _AfxInitContextAPI()
    }
 }
 
-#if (_WIN32_WINNT >= 0x0500) || (_WIN32_FUSION >= 0x0100)
+#if (_ANDROID32_ANDROIDNT >= 0x0500) || (_ANDROID32_FUSION >= 0x0100)
 HANDLE CLASS_DECL_ANDROID AfxCreateActCtxW(PCACTCTXW pActCtx)
 {
    HANDLE hCtx = pfnCreateActCtxW != 0 ? pfnCreateActCtxW(pActCtx) : INVALID_HANDLE_VALUE;

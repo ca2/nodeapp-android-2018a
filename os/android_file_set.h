@@ -1,26 +1,40 @@
 #pragma once
 
-class CLASS_DECL_ANDROID WinFileSet : 
-   public ex2::file_set
+
+namespace android
 {
-public:
 
-   stringa      m_straSearch;
-   bool_array  m_baRecursive;
-   stringa      m_straFilter;
-   stringa      m_straFile;
 
-   WinFileSet(::ca2::application * papp);
-   virtual ~WinFileSet();
+   class CLASS_DECL_ANDROID file_set :
+      public ::ca2::file_set
+   {
+   public:
 
-   virtual void add_search(stringa & stra, bool_array & baRecursive);
-   virtual void add_filter(stringa & stra);
-   virtual int get_file_count();
-   virtual void file_at(int i, string & str);
-   virtual int find_first_file(const char * lpcszFilePath);
-   virtual void clear_search();
-   virtual void clear_filter();
-   virtual void clear_file();
-   virtual void refresh();
-};
+
+      stringa        m_straSearch;
+      bool_array     m_baRecursive;
+      stringa        m_straFilter;
+      stringa        m_straFile;
+
+
+      file_set(sp(::ca2::application) papp);
+      virtual ~file_set();
+
+
+      virtual void add_search(stringa & stra, bool_array & baRecursive);
+      virtual void add_filter(stringa & stra);
+      virtual ::count get_file_count();
+      virtual void file_at(::index i, string & str);
+      virtual ::index find_first_file(const char * lpcszFilePath, ::index iStart = 0);
+      virtual void clear_search();
+      virtual void clear_filter();
+      virtual void clear_file();
+      virtual void refresh();
+
+
+   };
+
+
+} // namespace win
+
 

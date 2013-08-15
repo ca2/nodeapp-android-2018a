@@ -1,31 +1,30 @@
 #pragma once
 
-namespace gen
-{
-   class commandroid_line;
-}
 
 namespace android
 {
 
-   class CLASS_DECL_ANDROID main_init_data
+
+   class CLASS_DECL_ANDROID main_init_data :
+      public ::ca2::main_init_data
    {
    public:
+
+
       HINSTANCE   m_hInstance;
       HINSTANCE   m_hPrevInstance;
-      string      m_strCmdLine;
-      int         m_nCmdShow;
+      int32_t         m_nCmdShow;
+
+
    };
 
+
    class CLASS_DECL_ANDROID application :
-      virtual public ::ex2::application
+      virtual public ::ca2::application
    {
    public:
 
-      WCHAR *              m_pszCmdLine;
-      int                  m_argc;
-      WCHAR **             m_argv;
-      WCHAR *              m_pwszExeName;
+
 
       USHORT               m_atomApp;
       USHORT               m_atomSystemTopic;
@@ -33,17 +32,14 @@ namespace android
       main_init_data *     m_pmaininitdata;
 
 
-      application(::ca2::application * papp);
+      application(sp(::ca2::application) papp);
       virtual ~application();
 
       virtual HINSTANCE GetHinstance();
-      BOOL _001OnDDECommand(const char * lpcsz);
+      bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
-      virtual ::document * _001OpenDocumentFile(var varFile);
+      virtual sp(::user::document_interface) _001OpenDocumentFile(var varFile);
       virtual void _001OnFileNew();
-
-      virtual void _001ParseCommandLine(::ca2::commandroid_line& rCmdInfo);
-      virtual bool _001ProcessShellCommand(::ca2::commandroid_line& rCmdInfo);
 
       // Loads a cursor resource.
       HCURSOR LoadCursor(const char * lpszResourceName) const;
@@ -70,27 +66,29 @@ namespace android
       virtual bool Ex2OnAppInstall();
       virtual bool Ex2OnAppUninstall();
 
-      virtual BOOL DeferRegisterClass(LONG fToRegister, const char ** ppszClass);
+      virtual bool DeferRegisterClass(LONG fToRegister, const char ** ppszClass);
       virtual void LockTempMaps();
-      virtual BOOL UnlockTempMaps(BOOL bDeleteTemps = TRUE);
+      virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE);
       virtual void TermThread(HINSTANCE hInstTerm);
       virtual const char * RegisterWndClass(UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
 
 
       virtual void SetCurrentHandles();
 
-      virtual bool set_main_init_data(void * pdata);
+      virtual bool set_main_init_data(::ca2::main_init_data * pdata);
 
       virtual bool process_initialize();
       virtual bool initialize1();
       virtual bool initialize2();
       virtual bool initialize3();
-      virtual int  exit_instance();
+      virtual int32_t  exit_instance();
 
 
 
 
       virtual bool win_init(main_init_data * pdata);
+
+	  virtual bool update_module_paths();
 
 
 
@@ -124,28 +122,28 @@ namespace android
 
       /*virtual void construct(__THREADPROC pfnThreadProc, LPVOID pParam);
 
-      virtual bool Begin(int nPriority = THREAD_PRIORITY_NORMAL, UINT nStackSize = 0,
+      virtual bool Begin(int32_t nPriority = THREAD_PRIORITY_NORMAL, UINT nStackSize = 0,
          DWORD dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
-      BOOL CreateThread(DWORD dwCreateFlags = 0, UINT nStackSize = 0,
+      bool create_thread(DWORD dwCreateFlags = 0, UINT nStackSize = 0,
          LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
-      virtual void * get_os_data();
+      virtual int_ptr get_os_data();
       virtual int_ptr get_os_int();
 
 
-      int GetThreadPriority();
-      BOOL SetThreadPriority(int nPriority);
+      int32_t GetThreadPriority();
+      bool SetThreadPriority(int32_t nPriority);
 
    // Operations
       DWORD SuspendThread();
       DWORD ResumeThread();
-      BOOL PostThreadMessage(UINT message, WPARAM wParam, LPARAM lParam);
-      bool post_message(::user::interaction * pguie, UINT message, WPARAM wParam, LPARAM lParam);
+      bool post_thread_message(UINT message, WPARAM wParam, LPARAM lParam);
+      bool post_message(sp(::user::interaction) pguie, UINT message, WPARAM wParam, LPARAM lParam);
 
       virtual bool PreInitInstance();
 
-      // called when occurs an se_exception exception in run
+      // called when occurs an standard_exception exception in run
       // return true to call run again
       virtual bool on_run_exception(::ca2::exception & e);
 
@@ -153,53 +151,64 @@ namespace android
       // thread initialization
       virtual bool initialize_instance();
 
-      virtual ::user::android::message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
+      virtual ::ca2::message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
 
       // running and idle processing
-      virtual int run();
+      virtual int32_t run();
       virtual void pre_translate_message(::ca2::signal_object * pobj);
-      virtual BOOL pump_message();     // low level message pump
-      virtual BOOL on_idle(LONG lCount); // return TRUE if more idle processing
-      virtual BOOL is_idle_message(MSG* pMsg);  // checks for special messages
+      virtual bool pump_message();     // low level message pump
+      virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
+      virtual bool is_idle_message(MESSAGE* pMsg);  // checks for special messages
 
       // thread termination
-      virtual int exit_instance(); // default will 'delete this'
+      virtual int32_t exit_instance(); // default will 'delete this'
 
       // Advanced: exception handling
-      virtual LRESULT ProcessWndProcException(base_exception* e, const MSG* pMsg);
+      virtual LRESULT ProcessWndProcException(base_exception* e, const MESSAGE* pMsg);
 
       // Advanced: handling messages sent to message filter hook
-      virtual BOOL ProcessMessageFilter(int code, LPMSG lpMsg);
+      virtual bool ProcessMessageFilter(int32_t code, LPMESSAGE lpMsg);
 
       // Advanced: virtual access to GetMainWnd()
-      virtual ::user::interaction* GetMainWnd();
+      virtual sp(::user::interaction) GetMainWnd();
 
-   #ifdef DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
-   #endif
       virtual void CommonConstruct();
       virtual void Delete();
          // 'delete this' only if m_bAutoDelete == TRUE
 
 
 
-      BOOL DispatchThreadMessageEx(MSG* msg);  // helper*/
+      bool DispatchThreadMessageEx(MESSAGE* msg);  // helper*/
 
-      ::ca2::graphics * graphics_from_os_data(void * pdata);
+      //::draw2d::graphics * graphics_from_os_data(void * pdata);
 
-      ::ca2::window * window_from_os_data(void * pdata);
-      ::ca2::window * window_from_os_data_permanent(void * pdata);
+      virtual void ShowWaitCursor(bool bShow = true);
+
+      sp(::ca2::window) window_from_os_data(void * pdata);
+      sp(::ca2::window) window_from_os_data_permanent(void * pdata);
 
       virtual ::ca2::thread * GetThread();
       virtual void set_thread(::ca2::thread * pthread);
 
-      virtual ::ca2::window * FindWindow(const char * lpszClassName, const char * lpszWindowName);
-      virtual ::ca2::window * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+      virtual sp(::ca2::window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
+      virtual sp(::ca2::window) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 
       virtual void get_time(struct timeval *p);
       virtual void set_env_var(const string & var,const string & value);
-      virtual unsigned long application::get_thread_id();
+      virtual uint32_t get_thread_id();
+   string draw2d_get_default_library_name();
+
+
    };
 
+
+
 } // namespace android
+
+
+
+
+
+

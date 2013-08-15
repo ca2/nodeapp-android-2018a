@@ -35,7 +35,7 @@ static const __MAP_MESSAGE allMessages[] =
    DEFINE_MESSAGE(WM_ERASEBKGND),
    DEFINE_MESSAGE(WM_SYSCOLORCHANGE),
    DEFINE_MESSAGE(WM_ENDSESSION),
-   DEFINE_MESSAGE(WM_SHOWWINDOW),
+   DEFINE_MESSAGE(WM_SHOWANDROIDDOW),
    DEFINE_MESSAGE(WM_CTLCOLORMSGBOX),
    DEFINE_MESSAGE(WM_CTLCOLOREDIT),
    DEFINE_MESSAGE(WM_CTLCOLORLISTBOX),
@@ -43,7 +43,7 @@ static const __MAP_MESSAGE allMessages[] =
    DEFINE_MESSAGE(WM_CTLCOLORDLG),
    DEFINE_MESSAGE(WM_CTLCOLORSCROLLBAR),
    DEFINE_MESSAGE(WM_CTLCOLORSTATIC),
-   DEFINE_MESSAGE(WM_WININICHANGE),
+   DEFINE_MESSAGE(WM_ANDROIDINICHANGE),
    DEFINE_MESSAGE(WM_SETTINGCHANGE),
    DEFINE_MESSAGE(WM_DEVMODECHANGE),
    DEFINE_MESSAGE(WM_ACTIVATEAPP),
@@ -158,8 +158,8 @@ static const __MAP_MESSAGE allMessages[] =
    DEFINE_MESSAGE(WM_DDE_EXECUTE),
    DEFINE_MESSAGE(WM_DROPFILES),
    DEFINE_MESSAGE(WM_POWER),
-   DEFINE_MESSAGE(WM_WINDOWPOSCHANGED),
-   DEFINE_MESSAGE(WM_WINDOWPOSCHANGING),
+   DEFINE_MESSAGE(WM_ANDROIDDOWPOSCHANGED),
+   DEFINE_MESSAGE(WM_ANDROIDDOWPOSCHANGING),
 // ca2 API specific messages
    DEFINE_MESSAGE(WM_SIZEPARENT),
    DEFINE_MESSAGE(WM_SETMESSAGESTRING),
@@ -325,7 +325,7 @@ void _AfxTraceMsg(const char * lpszPrefix, ::ca2::signal_object * pobj)
 
    if (lpszMsgName != NULL)
    {
-#ifdef _WIN64
+#ifdef _ANDROID64
       //TRACE(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = %s (%p, %p)\n",
         // lpszPrefix, pbase->m_hwnd, lpszMsgName,
          //pbase->m_wparam, pbase->m_lparam);
@@ -337,7 +337,7 @@ void _AfxTraceMsg(const char * lpszPrefix, ::ca2::signal_object * pobj)
    }
    else
    {
-#ifdef _WIN64
+#ifdef _ANDROID64
 //      ::OutputDebugString(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = 0x%04X (%p, %p)\n",
   //       lpszPrefix, pbase->m_hwnd, lpszMsgName,
     //     pbase->m_wparam, pbase->m_lparam);
@@ -407,7 +407,7 @@ void _AfxTraceMsg(const char * lpszPrefix, LPMSG lpmsg)
 
    if (lpszMsgName != NULL)
    {
-#ifdef WIN64
+#ifdef ANDROID64
 //      TRACE(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = %hs (%p, %p)\n",
   //       lpszPrefix, pMsg->hwnd, lpszMsgName,
     //     pMsg->wParam, pMsg->lParam);
@@ -419,7 +419,7 @@ void _AfxTraceMsg(const char * lpszPrefix, LPMSG lpmsg)
    }
    else
    {
-#ifdef WIN64
+#ifdef ANDROID64
       //::OutputDebugString(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = 0x%04X (%p, %p)\n",
         // lpszPrefix, pMsg->hwnd, lpszMsgName,
          //pMsg->wParam, pMsg->lParam);

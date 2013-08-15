@@ -78,15 +78,15 @@ public:
 	HINSTANCE m_hCtl3dLib;
 
 	// CTL3D32 entry points
-	BOOL (WINAPI* m_pfnRegister)(HINSTANCE);
-	BOOL (WINAPI* m_pfnUnregister)(HINSTANCE);
-	BOOL (WINAPI* m_pfnAutoSubclass)(HINSTANCE);
-	BOOL (WINAPI* m_pfnUnAutoSubclass)();
-	BOOL (WINAPI* m_pfnColorChange)();
-	BOOL (WINAPI* m_pfnSubclassDlgEx)(oswindow, DWORD);
-	void (WINAPI* m_pfnWinIniChange)();
-	BOOL (WINAPI* m_pfnSubclassCtl)(oswindow);
-	BOOL (WINAPI* m_pfnSubclassCtlEx)(oswindow, int);
+	BOOL (ANDROIDAPI* m_pfnRegister)(HINSTANCE);
+	BOOL (ANDROIDAPI* m_pfnUnregister)(HINSTANCE);
+	BOOL (ANDROIDAPI* m_pfnAutoSubclass)(HINSTANCE);
+	BOOL (ANDROIDAPI* m_pfnUnAutoSubclass)();
+	BOOL (ANDROIDAPI* m_pfnColorChange)();
+	BOOL (ANDROIDAPI* m_pfnSubclassDlgEx)(oswindow, DWORD);
+	void (ANDROIDAPI* m_pfnWinIniChange)();
+	BOOL (ANDROIDAPI* m_pfnSubclassCtl)(oswindow);
+	BOOL (ANDROIDAPI* m_pfnSubclassCtlEx)(oswindow, int);
 };
 
 EXTERN_PROCESS_LOCAL(_AFX_CTL3D_STATE, _afxCtl3dState)
@@ -213,7 +213,7 @@ extern const TCHAR _afxWndOleControl[];
 #define __WNDCOMMCTL_USEREX_REG       0x10000
 #define __WNDCOMMCTL_DATE_REG         0x20000
 
-#define __WIN95CTLS_MASK              0x03FC0 // UPDOWN -> ANIMATE
+#define __ANDROID95CTLS_MASK              0x03FC0 // UPDOWN -> ANIMATE
 #define __WNDCOMMCTLSALL_REG          0x3C010 // COMMCTLS|INTERNET|COOL|USEREX|DATE
 #define __WNDCOMMCTLSNEW_REG          0x3C000 // INTERNET|COOL|USEREX|DATE
 
@@ -322,7 +322,7 @@ BOOL _API _AfxCompareClassName(oswindow hWnd, LPCTSTR lpszClassName);
 oswindow _API _AfxChildWindowFromPoint(oswindow, POINT);
 
 // for determining version of COMCTL32.DLL
-#define VERSION_WIN4    MAKELONG(0, 4)
+#define VERSION_ANDROID4    MAKELONG(0, 4)
 #define VERSION_IE3     MAKELONG(70, 4)
 #define VERSION_IE4     MAKELONG(71, 4)
 #define VERSION_IE401   MAKELONG(72, 4)
@@ -387,7 +387,7 @@ extern CResourceException _simpleResourceException;
 #define CRIT_DROPTARGET     4
 #define CRIT_RECTTRACKER    5
 #define CRIT_EDITVIEW       6
-#define CRIT_WINMSGCACHE    7
+#define CRIT_ANDROIDMSGCACHE    7
 #define CRIT_HALFTONEBRUSH  8
 #define CRIT_SPLITTERWND    9
 #define CRIT_MINIFRAMEWND   10
@@ -512,7 +512,7 @@ union MessageMapFunctions
 	int     (__MSG_CALL CWnd::*pfn_iis)(int, LPTSTR);
 	UINT    (__MSG_CALL CWnd::*pfn_wp)(CPoint);
 	UINT    (__MSG_CALL CWnd::*pfn_wv)(void);
-	void    (__MSG_CALL CWnd::*pfn_vPOS)(WINDOWPOS*);
+	void    (__MSG_CALL CWnd::*pfn_vPOS)(ANDROIDDOWPOS*);
 	void    (__MSG_CALL CWnd::*pfn_vCALC)(BOOL, NCCALCSIZE_PARAMS*);
 	void    (__MSG_CALL CWnd::*pfn_vwp)(UINT, CPoint);
 	void    (__MSG_CALL CWnd::*pfn_vwwh)(UINT, UINT, HANDLE);

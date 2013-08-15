@@ -344,11 +344,11 @@ BOOL WindowsShell::_MoveFile(const wchar_t * lpExistingFileName, const wchar_t *
    return ::MoveFileA(str1, str2);
 }
 
-HANDLE WindowsShell::_FindFirstFile(const wchar_t * lpcsz, WIN32_FIND_DATAW * lpdata)
+HANDLE WindowsShell::_FindFirstFile(const wchar_t * lpcsz, ANDROID32_FIND_DATAW * lpdata)
 {
    CHAR pszPathA[MAX_PATH * 2];
    ::ca2::international::UnicodeToACP(pszPathA, MAX_PATH * 2, lpcsz);
-   WIN32_FIND_DATAA data;
+   ANDROID32_FIND_DATAA data;
    HANDLE handle = ::FindFirstFileA(pszPathA, &data);
    if(handle == INVALID_HANDLE_VALUE)
       return INVALID_HANDLE_VALUE;
@@ -367,9 +367,9 @@ HANDLE WindowsShell::_FindFirstFile(const wchar_t * lpcsz, WIN32_FIND_DATAW * lp
    return handle;
 }
 
-BOOL WindowsShell::_FindNextFile(HANDLE handle, WIN32_FIND_DATAW * lpdata)
+BOOL WindowsShell::_FindNextFile(HANDLE handle, ANDROID32_FIND_DATAW * lpdata)
 {
-   WIN32_FIND_DATAA data;
+   ANDROID32_FIND_DATAA data;
    BOOL b = ::FindNextFileA(handle, &data);
    if(b == FALSE)
       return FALSE;
@@ -438,7 +438,7 @@ WCHAR * __cdecl WindowsShell::__fullpath (
 }
 
 
-DWORD WINAPI WindowsShell::_GetFullPathName(
+DWORD ANDROIDAPI WindowsShell::_GetFullPathName(
    const wchar_t * lpFileName, 
    DWORD nBufferLength, 
    wchar_t * lpBuffer, 
@@ -456,7 +456,7 @@ DWORD WINAPI WindowsShell::_GetFullPathName(
    return dw;
 }
 
-BOOL WINAPI WindowsShell::_GetVolumeInformation(
+BOOL ANDROIDAPI WindowsShell::_GetVolumeInformation(
       const wchar_t * lpRootPathName,           // root directory
       wchar_t * lpVolumeNameBuffer,        // volume name buffer
       DWORD nVolumeNameSize,            // length of name buffer
