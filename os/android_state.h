@@ -32,17 +32,17 @@ EXTERN_PROCESS_LOcaL(___DEBUG_STATE, afxDebugState)
 #endif //DEBUG
 
 /////////////////////////////////////////////////////////////////////////////
-// ___LNX_STATE
+// ___ANDROID_STATE
 
 
-class ___LNX_STATE : public no_track_object
+class ___ANDROID_STATE : public no_track_object
 {
 public:
    // printing abort
    bool m_bUserAbort;
 };
 
-EXTERN_PROCESS_LOcaL(___LNX_STATE, gen_WinState)
+EXTERN_PROCESS_LOcaL(___ANDROID_STATE, gen_WinState)
 
 
 /////////////////////////////////////////////////////////////////////////////

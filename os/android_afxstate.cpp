@@ -1,17 +1,14 @@
 #include "framework.h"
-#include <stddef.h>
+#include "android_thread_slots.h"
 
 
 #pragma warning(disable: 4074)
 #pragma init_seg(compiler)
 
-/////////////////////////////////////////////////////////////////////////////
-// __MODULE_STATE push/pop implementation
 
-#ifdef _ApplicationFrameworkDLL
-CLASS_DECL_ANDROID __MODULE_STATE * AfxSetModuleState(__MODULE_STATE* pNewState)
+CLASS_DECL_ANDROID __MODULE_STATE * __set_module_state(__MODULE_STATE* pNewState)
 {
-   _AFX_THREAD_STATE* pState = _afxThreadState;
+   ___THREAD_STATE* pState = gen_ThreadState;
    ASSERT(pState);
    if(pState)
    {
@@ -27,19 +24,17 @@ CLASS_DECL_ANDROID __MODULE_STATE * AfxSetModuleState(__MODULE_STATE* pNewState)
 
 __MAINTAIN_STATE::~__MAINTAIN_STATE()
 {
-   _AFX_THREAD_STATE* pState = _afxThreadState;
+   ___THREAD_STATE* pState = gen_ThreadState;
    ASSERT(pState);
    if(pState)
    {
    pState->m_pModuleState = m_pPrevModuleState;
 }
 }
-#endif //_ApplicationFrameworkDLL
 
 __MAINTAIN_STATE2::__MAINTAIN_STATE2(__MODULE_STATE* pNewState)
 {
-#ifdef _ApplicationFrameworkDLL
-   m_pThreadState = _afxThreadState;
+   m_pThreadState = gen_ThreadState;
    ASSERT(m_pThreadState);
    if(m_pThreadState)
    {
@@ -53,12 +48,11 @@ __MAINTAIN_STATE2::__MAINTAIN_STATE2(__MODULE_STATE* pNewState)
       m_pPrevModuleState=NULL;
       m_pThreadState=NULL;
    }
-#endif
 
-/*   if (AfxGetAmbientActCtx() &&
+/*   if (__gen_get_ambient_act_ctx() &&
       pNewState->m_hActCtx != INVALID_HANDLE_VALUE)
    {
-      m_bValidActCtxCookie = AfxActivateActCtx(pNewState->m_hActCtx, &m_ulActCtxCookie);
+      m_bValidActCtxCookie = __activate_act_ctx(pNewState->m_hActCtx, &m_ulActCtxCookie);
    }
    else
    {
@@ -67,9 +61,9 @@ __MAINTAIN_STATE2::__MAINTAIN_STATE2(__MODULE_STATE* pNewState)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// _AFX_THREAD_STATE implementation
+// ___THREAD_STATE implementation
 
-_AFX_THREAD_STATE::_AFX_THREAD_STATE()
+___THREAD_STATE::___THREAD_STATE()
 {
 #ifdef DEBUG
    m_nDisablePumpCount = 0;
@@ -78,15 +72,17 @@ _AFX_THREAD_STATE::_AFX_THREAD_STATE()
    m_nMsgLast = WM_NULL;
    //System.get_cursor_pos(&(m_ptCursorLast));
    m_ptCursorLast = point(0,0);
+   m_pSafetyPoolBuffer = NULL;
+   m_pWndPark = NULL;
 }
 
-_AFX_THREAD_STATE::~_AFX_THREAD_STATE()
+___THREAD_STATE::~___THREAD_STATE()
 {
    // unhook windows hooks
-   if (m_hHookOldMsgFilter != NULL)
-      ::UnhookWindowsHookEx(m_hHookOldMsgFilter);
-   if (m_hHookOldCbtFilter != NULL)
-      ::UnhookWindowsHookEx(m_hHookOldCbtFilter);
+// xxx   if (m_hHookOldMsgFilter != NULL)
+// xxx       ::UnhookWindowsHookEx(m_hHookOldMsgFilter);
+// xxx    if (m_hHookOldCbtFilter != NULL)
+// xxx       ::UnhookWindowsHookEx(m_hHookOldCbtFilter);
 
    // free safety pool buffer
    if (m_pSafetyPoolBuffer != NULL)
@@ -98,67 +94,104 @@ _AFX_THREAD_STATE::~_AFX_THREAD_STATE()
 
 }
 
-CLASS_DECL_ANDROID _AFX_THREAD_STATE * AfxGetThreadState()
+CLASS_DECL_ANDROID ___THREAD_STATE * __get_thread_state()
 {
-   _AFX_THREAD_STATE *pState =_afxThreadState.get_data();
+   ___THREAD_STATE *pState =gen_ThreadState.get_data();
    ENSURE(pState != NULL);
    return pState;
 }
 
-THREAD_LOCAL(_AFX_THREAD_STATE, _afxThreadState)
+THREAD_LOcaL ( ___THREAD_STATE, gen_ThreadState, slot___THREAD_STATE )
 
 /////////////////////////////////////////////////////////////////////////////
 // __MODULE_STATE implementation
 
-#ifdef _ApplicationFrameworkDLL
-__MODULE_STATE::__MODULE_STATE(BOOL bDLL, WNDPROC pfnAfxWndProc,
-   DWORD dwVersion, BOOL bSystem)
-#else
-__MODULE_STATE::__MODULE_STATE(BOOL bDLL)
-#endif
+/*
+__MODULE_STATE::__MODULE_STATE(bool bDLL, WNDPROC pfn_window_procedure,
+   DWORD dwVersion, bool bSystem)
 {
-   m_pmapHWND = NULL;
-   m_pstrUnregisterList = NULL;
+   m_pmapHWND              = NULL;
+//   m_pmapHDC               = NULL;
+//   m_pmapHGDIOBJ           = NULL;
+   m_pmapHMENU             = NULL;
+   m_pstrUnregisterList    = NULL;
    /* xxx xxx xxx
    m_classList.Construct(offsetof(::ca2::type_info, m_pNextClass)); */
 
-   m_fRegisteredClasses = 0;
+  /* m_fRegisteredClasses = 0;
    m_bDLL = (BYTE)bDLL;
-#ifdef _ApplicationFrameworkDLL
-   m_pfnAfxWndProc = pfnAfxWndProc;
+   m_pfn_window_procedure = pfn_window_procedure;
    m_dwVersion = dwVersion;
    m_bSystem = (BYTE)bSystem;
-#endif
-   BOOL bEnable = TRUE;
+//   bool bEnable = TRUE;
    try
    {
       //Preallocate the registered classes string, but CRT primitive::memory leak report is
       //called before the string frees primitive::memory, so need to disable tracking.
-      //bEnable = AfxEnableMemoryTracking(FALSE);
+      //bEnable = __enable_memory_tracking(FALSE);
       //m_pstrUnregisterList->Preallocate(4096);
-      //AfxEnableMemoryTracking(bEnable);
+      //__enable_memory_tracking(bEnable);
    }
    catch(memory_exception * pe)
    {
-      AfxEnableMemoryTracking(bEnable);
+      //__enable_memory_tracking(bEnable);
       pe->Delete();
    }
 
    // cast starts out in "::fontopus::user control"
    m_bUserCtrl = TRUE;
 
-#ifndef _AFX_NO_OCC_SUPPORT
-   m_lockList.Construct(offsetof(COleControlLock, m_pNextLock));
-#endif
-#ifdef _ApplicationFrameworkDLL
-   m_libraryList.Construct(offsetof(CDynLinkLibrary, m_pNextDLL));
-#endif
 
 
-   bEnable = AfxEnableMemoryTracking(FALSE);
-   //Fusion: allocate dll wrappers base_array.
+   //bEnable = __enable_memory_tracking(FALSE);
+   //Fusion: allocate dll wrappers array.
    m_pDllIsolationWrappers = NULL;
-   AfxEnableMemoryTracking(bEnable);
+   //__enable_memory_tracking(bEnable);
+   m_bSetAmbientActCtx = TRUE;
+   m_hActCtx = NULL;
+}*/
+
+
+__MODULE_STATE::__MODULE_STATE(bool bDLL, DWORD dwVersion, bool bSystem) :
+   m_mutexRegClassList(NULL)
+{
+   m_pmapHWND              = NULL;
+//   m_pmapHDC               = NULL;
+//   m_pmapHGDIOBJ           = NULL;
+   m_pmapHMENU             = NULL;
+   m_pstrUnregisterList    = NULL;
+   /* xxx xxx xxx
+   m_classList.Construct(offsetof(::ca2::type_info, m_pNextClass)); */
+
+ m_fRegisteredClasses = 0;
+   m_bDLL = (BYTE)bDLL;
+//   m_pfn_window_procedure = pfn_window_procedure;
+   m_dwVersion = dwVersion;
+   m_bSystem = (BYTE)bSystem;
+//   bool bEnable = TRUE;
+   try
+   {
+      //Preallocate the registered classes string, but CRT primitive::memory leak report is
+      //called before the string frees primitive::memory, so need to disable tracking.
+      //bEnable = __enable_memory_tracking(FALSE);
+      //m_pstrUnregisterList->Preallocate(4096);
+      //__enable_memory_tracking(bEnable);
+   }
+   catch(memory_exception * pe)
+   {
+      //__enable_memory_tracking(bEnable);
+      pe->Delete();
+   }
+
+   // cast starts out in "::fontopus::user control"
+   m_bUserCtrl = TRUE;
+
+
+
+   //bEnable = __enable_memory_tracking(FALSE);
+   //Fusion: allocate dll wrappers array.
+   m_pDllIsolationWrappers = NULL;
+   //__enable_memory_tracking(bEnable);
    m_bSetAmbientActCtx = TRUE;
    m_hActCtx = NULL;
 }
@@ -167,21 +200,22 @@ __MODULE_STATE::__MODULE_STATE(BOOL bDLL)
 // Activation Context API wrappers
 
 #define __ACTCTX_API_INIT_PROCPTR(hKernel,name) \
-   pfn##name = (PFN_##name) GetProcAddress(hKernel, #name)\
+   pfn##name = (PFN_##name) GetProcaddress(hKernel, #name)\
 
 
 /////////////////////////////////////////////////////////////////////////////
 // Global function pointers for Context (WinSxS/Manifest) API, to be init during ca2 API global init.
 #define __ACTCTX_API_PTR_DEFINE(name, type, params) \
-   typedef type (ANDROIDAPI* PFN_##name)params; \
+   typedef type (WINAPI* PFN_##name)params; \
    PFN_##name pfn##name = NULL;
 
-__ACTCTX_API_PTR_DEFINE(CreateActCtxW, HANDLE, (PCACTCTXW));
+/*
+__ACTCTX_API_PTR_DEFINE(CreateActCtxW, HANDLE, (PcaCTCTXW));
 __ACTCTX_API_PTR_DEFINE(ReleaseActCtx, void, (HANDLE));
-__ACTCTX_API_PTR_DEFINE(ActivateActCtx, BOOL, (HANDLE, ulong_ptr*));
-__ACTCTX_API_PTR_DEFINE(DeactivateActCtx, BOOL, (DWORD, ulong_ptr));
+__ACTCTX_API_PTR_DEFINE(ActivateActCtx, bool, (HANDLE, ulong_ptr*));
+__ACTCTX_API_PTR_DEFINE(DeactivateActCtx, bool, (DWORD, ulong_ptr));
 
-__STATIC void CLASS_DECL_ANDROID _AfxInitContextAPI()
+__STATIC void CLASS_DECL_ANDROID __init_context_api()
 {
    static HMODULE hKernel = NULL;
    if (hKernel == NULL)
@@ -195,21 +229,21 @@ __STATIC void CLASS_DECL_ANDROID _AfxInitContextAPI()
    }
 }
 
-#if (_ANDROID32_ANDROIDNT >= 0x0500) || (_ANDROID32_FUSION >= 0x0100)
-HANDLE CLASS_DECL_ANDROID AfxCreateActCtxW(PCACTCTXW pActCtx)
+#if (_WIN32_WINNT >= 0x0500) || (_WIN32_FUSION >= 0x0100)
+HANDLE CLASS_DECL_ANDROID __create_act_ctx_w(PcaCTCTXW pActCtx)
 {
    HANDLE hCtx = pfnCreateActCtxW != 0 ? pfnCreateActCtxW(pActCtx) : INVALID_HANDLE_VALUE;
    return hCtx;
 }
 #else
-HANDLE CLASS_DECL_ANDROID AfxCreateActCtxW(void *pActCtx)
+HANDLE CLASS_DECL_ANDROID __create_act_ctx_w(void *pActCtx)
 {
    HANDLE hCtx = pfnCreateActCtxW != 0 ? pfnCreateActCtxW(pActCtx) : INVALID_HANDLE_VALUE;
    return hCtx;
 }
 #endif
 
-void CLASS_DECL_ANDROID AfxReleaseActCtx(HANDLE hActCtx)
+void CLASS_DECL_ANDROID __release_act_ctx(HANDLE hActCtx)
 {
    if (pfnReleaseActCtx != 0)
    {
@@ -217,22 +251,22 @@ void CLASS_DECL_ANDROID AfxReleaseActCtx(HANDLE hActCtx)
    }
 }
 
-CLASS_DECL_ANDROID BOOL AfxActivateActCtx(HANDLE hActCtx, ulong_ptr *lpCookie)
+CLASS_DECL_ANDROID bool __activate_act_ctx(HANDLE hActCtx, ulong_ptr *lpCookie)
 {
-   BOOL rc = pfnActivateActCtx != 0 ? pfnActivateActCtx(hActCtx, lpCookie) : FALSE;
+   bool rc = pfnActivateActCtx != 0 ? pfnActivateActCtx(hActCtx, lpCookie) : FALSE;
    return rc;
 }
 
-CLASS_DECL_ANDROID BOOL AfxDeactivateActCtx(DWORD dwFlags, ulong_ptr ulCookie)
+CLASS_DECL_ANDROID bool __deactivate_act_ctx(DWORD dwFlags, ulong_ptr ulCookie)
 {
-   BOOL rc = pfnDeactivateActCtx != 0 ? pfnDeactivateActCtx(dwFlags, ulCookie) : FALSE;
+   bool rc = pfnDeactivateActCtx != 0 ? pfnDeactivateActCtx(dwFlags, ulCookie) : FALSE;
    return rc;
 }
 
-
+*/
 void __MODULE_STATE::CreateActivationContext()
 {
-   _AfxInitContextAPI();
+   /*__init_context_api();
    HMODULE hModule = m_hCurrentInstanceHandle;
 
    WCHAR rgchFullModulePath[MAX_PATH + 2];
@@ -256,130 +290,87 @@ void __MODULE_STATE::CreateActivationContext()
    actCtx.lpSource = rgchFullModulePath;
    actCtx.lpResourceName =  MAKEINTRESOURCEW(ISOLATIONAWARE_MANIFEST_RESOURCE_ID);
    actCtx.hModule = hModule;
-   m_hActCtx = AfxCreateActCtxW(&actCtx);
+   m_hActCtx = __create_act_ctx_w(&actCtx);
    if (m_hActCtx == INVALID_HANDLE_VALUE)
    {
       actCtx.lpResourceName =  MAKEINTRESOURCEW(ISOLATIONAWARE_NOSTATICIMPORT_MANIFEST_RESOURCE_ID);
-      m_hActCtx = AfxCreateActCtxW(&actCtx);
+      m_hActCtx = __create_act_ctx_w(&actCtx);
    }
    if (m_hActCtx == INVALID_HANDLE_VALUE)
    {
       actCtx.lpResourceName =  MAKEINTRESOURCEW(CREATEPROCESS_MANIFEST_RESOURCE_ID);
-      m_hActCtx = AfxCreateActCtxW(&actCtx);
+      m_hActCtx = __create_act_ctx_w(&actCtx);
    }
    if (m_hActCtx == INVALID_HANDLE_VALUE)
    {
       m_hActCtx = NULL;
-   }
+   }*/
 }
 
 __MODULE_STATE::~__MODULE_STATE()
 {
-#ifndef _AFX_NO_DAO_SUPPORT
-//   delete m_pDaoState;
-#endif
 
-
-
-   // clean up type lib cache ::collection::map, if any
-   if (m_pTypeLibCacheMap != NULL)
+/*   if (m_hActCtx != NULL && m_hActCtx != INVALID_HANDLE_VALUE)
    {
-      m_pTypeLibCacheMap->remove_all(&m_typeLibCache);
-      delete m_pTypeLibCacheMap;
-   }
-   if (m_hActCtx != NULL && m_hActCtx != INVALID_HANDLE_VALUE)
-   {
-      AfxReleaseActCtx(m_hActCtx);
+      __release_act_ctx(m_hActCtx);
       m_hActCtx = INVALID_HANDLE_VALUE;
-   }
+   }*/
+
 }
 
-void CTypeLibCacheMap::remove_all(void * pExcept)
-{
-   POSITION pos = get_start_position();
-   void * pTypeLibID;
-   CTypeLibCache* pCache;
-   while (pos != NULL)
-   {
-      get_next_assoc(pos, pTypeLibID, (void *&)pCache);
-      if (pCache != pExcept)
-         delete pCache;
-   }
-}
 
 __MODULE_THREAD_STATE::__MODULE_THREAD_STATE()
 {
    m_nLastHit = static_cast<int_ptr>(-1);
    m_nLastStatus = static_cast<int_ptr>(-1);
-   m_pLastInfo = NULL;
+   m_pCurrentWinThread = NULL;
+// xxx   m_pLastInfo = NULL;
 
    // Note: it is only necessary to initialize non-zero data
-   m_pfnNewHandler = &AfxNewHandler;
+   //m_pfnNewHandler = &__new_handler;
 }
 
 __MODULE_THREAD_STATE::~__MODULE_THREAD_STATE()
 {
-   // cleanup thread local tooltip ::ca2::window
-/*   if (m_pToolTip != NULL)
-      m_pToolTip->DestroyToolTipCtrl();*/
 
-   delete m_pLastInfo;
+// xxx   delete m_pLastInfo;
 
 
-#ifndef _AFX_NO_SOCKET_SUPPORT
-   // cleanup socket notification list
-   if (m_plistSocketNotifications != NULL)
-      while (!m_plistSocketNotifications->is_empty())
-         delete m_plistSocketNotifications->remove_head();
-#ifndef _ApplicationFrameworkDLL
-   // cleanup dynamically allocated socket maps
-   delete m_pmapSocketHandle;
-   delete m_pmapDeadSockets;
-   delete m_plistSocketNotifications;
-#endif
-#endif //!_AFX_NO_SOCKET_SUPPORT
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // __MODULE_STATE for base application
 
-LRESULT CALLBACK AfxWndProcBase(oswindow, UINT, WPARAM, LPARAM);
+LRESULT CALLBACK __window_procedure_base(oswindow, UINT, WPARAM, LPARAM);
 
-class _AFX_BASE_MODULE_STATE : public __MODULE_STATE
+class ___BASE_MODULE_STATE : public __MODULE_STATE
 {
 public:
-#ifdef _ApplicationFrameworkDLL
-   _AFX_BASE_MODULE_STATE() : __MODULE_STATE(TRUE, AfxWndProcBase, _MFC_VER)
-#else
-   _AFX_BASE_MODULE_STATE() : __MODULE_STATE(TRUE)
-#endif
+//   ___BASE_MODULE_STATE() : __MODULE_STATE(TRUE, __window_procedure_base, _MFC_VER)
+   ___BASE_MODULE_STATE() : __MODULE_STATE(TRUE, 1)
       { }
 };
 
-PROCESS_LOCAL(_AFX_BASE_MODULE_STATE, _afxBaseModuleState)
+PROCESS_LOcaL(___BASE_MODULE_STATE, gen_BaseModuleState)
 
-#ifdef _ApplicationFrameworkDLL
-
-#undef AfxWndProc
+#undef __window_procedure
 LRESULT CALLBACK
-AfxWndProcBase(oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
+__window_procedure_base(oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
 {
-   return AfxWndProc(hWnd, nMsg, wParam, lParam);
+   return __window_procedure(hWnd, nMsg, wParam, lParam);
 }
-
-#endif
 
 /////////////////////////////////////////////////////////////////////////////
 // helper functions for module state
 
-CLASS_DECL_ANDROID __MODULE_STATE * AfxGetAppModuleState()
+CLASS_DECL_ANDROID __MODULE_STATE * __get_app_module_state()
 {
-   return _afxBaseModuleState.get_data();
+   return gen_BaseModuleState.get_data();
 }
 
-CLASS_DECL_ANDROID __MODULE_STATE * AfxGetModuleState()
+CLASS_DECL_ANDROID __MODULE_STATE * __get_module_state()
 {
-   _AFX_THREAD_STATE* pState = _afxThreadState;
+   ___THREAD_STATE* pState = gen_ThreadState;
    ENSURE(pState);
    __MODULE_STATE* pResult;
    if (pState->m_pModuleState != NULL)
@@ -390,25 +381,25 @@ CLASS_DECL_ANDROID __MODULE_STATE * AfxGetModuleState()
    else
    {
       // otherwise, use global cast state
-      pResult = _afxBaseModuleState.get_data();
+      pResult = gen_BaseModuleState.get_data();
    }
    ENSURE(pResult != NULL);
    return pResult;
 }
 
-HINSTANCE CLASS_DECL_ANDROID AfxGetInstanceHandleHelper()
+HINSTANCE CLASS_DECL_ANDROID __get_instance_handle_helper()
 {
-   return AfxGetModuleState()->m_hCurrentInstanceHandle;
+   return __get_module_state()->m_hCurrentInstanceHandle;
 }
 
-BOOL CLASS_DECL_ANDROID AfxIsModuleDll()
+bool CLASS_DECL_ANDROID __is_module_dll()
 {
-   return AfxGetModuleState()->m_bDLL;
+   return __get_module_state()->m_bDLL;
 }
 
-BOOL CLASS_DECL_ANDROID AfxInitCurrentStateApp()
+bool CLASS_DECL_ANDROID __init_current_state_app()
 {
-   ::ca2::application* pApp = AfxGetModuleState()->m_pCurrentWinApp;
+   sp(::ca2::application) pApp = __get_module_state()->m_pCurrentWinApp;
    if (pApp != NULL && !pApp->initialize_instance())
    {
       // Init Failed
@@ -419,38 +410,15 @@ BOOL CLASS_DECL_ANDROID AfxInitCurrentStateApp()
       catch(...)
       {
       }
-      AfxWinTerm();
+      __android_term();
       return FALSE;
    }
    return TRUE;
 }
 
-CLASS_DECL_ANDROID __MODULE_THREAD_STATE * AfxGetModuleThreadState()
+CLASS_DECL_ANDROID __MODULE_THREAD_STATE * __get_module_thread_state()
 {
-   __MODULE_THREAD_STATE* pResult=AfxGetModuleState()->m_thread.get_data();
+   __MODULE_THREAD_STATE* pResult=__get_module_state()->m_thread.get_data();
    ENSURE(pResult != NULL);
    return pResult;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-// CTypeLibCache::Unlock
-// (Note: the rest of CTypeLibCache is implemented in oletyplb.cpp)
-
-void CTypeLibCache::Unlock()
-{
-   ASSERT(m_cRef > 0);
-
-   if (InterlockedDecrement(&m_cRef) == 0)
-   {
-      if (m_ptinfo != NULL)
-      {
-         m_ptinfo->Release();
-         m_ptinfo = NULL;
-      }
-      if (m_ptlib != NULL)
-      {
-         m_ptlib->Release();
-         m_ptlib = NULL;
-      }
-   }
 }

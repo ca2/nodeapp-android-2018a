@@ -249,7 +249,7 @@ void AfxInternalPreTranslateMessage(::ca2::signal_object * pobj)
       sp(::ca2::window) pWnd = pbase->m_pwnd->get_wnd();
       if (pMainWnd != NULL)
       {
-         if (pWnd != NULL && LNX_WINDOW(pWnd)->GetTopLevelParent() != pMainWnd)
+         if (pWnd != NULL && ANDROID_WINDOW(pWnd)->GetTopLevelParent() != pMainWnd)
          {
             pMainWnd->pre_translate_message(pobj);
             if(pobj->m_bRet)
@@ -588,9 +588,9 @@ namespace android
                try
                {
 #endif
-                  if(LNX_THREAD(pui->m_pthread->m_pthread) == this
-                  || LNX_THREAD(pui->m_pthread->m_pthread->m_p.m_p) == LNX_THREAD(m_p.m_p)
-                  || LNX_THREAD(pui->m_pthread->m_pthread) == LNX_THREAD(m_p.m_p))
+                  if(ANDROID_THREAD(pui->m_pthread->m_pthread) == this
+                  || ANDROID_THREAD(pui->m_pthread->m_pthread->m_p.m_p) == ANDROID_THREAD(m_p.m_p)
+                  || ANDROID_THREAD(pui->m_pthread->m_pthread) == ANDROID_THREAD(m_p.m_p))
                   {
                      pui->m_pthread = NULL;
                   }
@@ -702,7 +702,7 @@ namespace android
       try
       {
 #endif
-         if(LNX_THREAD(pui->m_pthread) == this)
+         if(ANDROID_THREAD(pui->m_pthread) == this)
          {
             pui->m_pthread = NULL;
          }
@@ -719,7 +719,7 @@ namespace android
 #endif
          if(pui->m_pimpl != NULL && pui->m_pimpl != pui)
          {
-            if(LNX_THREAD(pui->m_pimpl->m_pthread) == this)
+            if(ANDROID_THREAD(pui->m_pimpl->m_pthread) == this)
             {
                pui->m_pimpl->m_pthread = NULL;
             }
@@ -734,7 +734,7 @@ namespace android
       {
          if(pui->m_pguie != NULL && pui->m_pguie != pui)
          {
-            if(LNX_THREAD(pui->m_pguie->m_pthread) == this)
+            if(ANDROID_THREAD(pui->m_pguie->m_pthread) == this)
             {
                pui->m_pguie->m_pthread = NULL;
             }
@@ -1142,9 +1142,9 @@ stop_run:
                sp(::user::interaction) pui = puiptra->element_at(i);
                if(pui->m_pthread != NULL)
                {
-                  if(LNX_THREAD(pui->m_pthread->m_pthread) == this
-                  || LNX_THREAD(pui->m_pthread->m_pthread->m_p.m_p) == LNX_THREAD(m_p.m_p)
-                  || LNX_THREAD(pui->m_pthread->m_pthread) == LNX_THREAD(m_p.m_p))
+                  if(ANDROID_THREAD(pui->m_pthread->m_pthread) == this
+                  || ANDROID_THREAD(pui->m_pthread->m_pthread->m_p.m_p) == ANDROID_THREAD(m_p.m_p)
+                  || ANDROID_THREAD(pui->m_pthread->m_pthread) == ANDROID_THREAD(m_p.m_p))
                   {
                      pui->m_pthread = NULL;
                   }
@@ -1634,9 +1634,9 @@ stop_run:
       // all other messages route through message ::collection::map
       sp(::ca2::window) pwindow = pbase->m_pwnd->get_wnd();
 
-/*      ASSERT(pwindow == NULL || LNX_WINDOW(pwindow)->get_handle() == pbase->m_hwnd);
+/*      ASSERT(pwindow == NULL || ANDROID_WINDOW(pwindow)->get_handle() == pbase->m_hwnd);
 
-      if(pwindow == NULL || LNX_WINDOW(pwindow)->get_handle() != pbase->m_hwnd)
+      if(pwindow == NULL || ANDROID_WINDOW(pwindow)->get_handle() != pbase->m_hwnd)
       {
          pbase->set_lresult(::DefWindowProc(pbase->m_hwnd, pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
          return;
@@ -2569,7 +2569,7 @@ return TRUE; */
 /*   if (pMainWnd != NULL)
 {
 sp(::ca2::window) pWnd = ::android::window::from_handle(pMsg->hwnd);
-if (pWnd != NULL && LNX_WINDOW(pWnd)->GetTopLevelParent() != pMainWnd)
+if (pWnd != NULL && ANDROID_WINDOW(pWnd)->GetTopLevelParent() != pMainWnd)
 return pMainWnd->pre_translate_message(pMsg);
 }
 
@@ -3072,7 +3072,7 @@ return AfxInternalProcessWndProcException( e, pMsg );
             if(e.type == Expose)
             {
 
-               ::android::window * pw = LNX_WINDOW(w.get_user_interaction()->m_pimpl);
+               ::android::window * pw = ANDROID_WINDOW(w.get_user_interaction()->m_pimpl);
 
                rect rectWindow32;
 

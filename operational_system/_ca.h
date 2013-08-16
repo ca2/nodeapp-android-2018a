@@ -1,6 +1,9 @@
 #pragma once
 
 
+#define MOVE_SEMANTICS
+
+
 #include "get_platform.h"
 
 

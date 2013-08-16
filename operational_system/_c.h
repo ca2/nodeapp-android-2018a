@@ -32,7 +32,8 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <netdb.h>
-
+#include <math.h>
+#include <signal.h>
 
 
 #define _gmtime64 gmtime
@@ -130,7 +131,7 @@ typedef union _XEvent XEvent;
 #endif
 
 
-#include "version_linux.h"
+#include "version_android.h"
 
 
 #include "version_cpu.h"
@@ -139,7 +140,7 @@ typedef union _XEvent XEvent;
 #ifdef __cplusplus
 
 
-inline void __debug_break() { asm("int $3"); }
+inline void __debug_break() { raise(SIGTRAP); }
 
 
 #endif

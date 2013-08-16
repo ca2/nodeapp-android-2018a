@@ -646,7 +646,7 @@ d.unlock();
 
          send_message(WM_SIZE);
 
-         LNX_THREAD(m_pthread->m_pthread->m_p.m_p)->m_oswindowa.add(m_oswindow);
+         ANDROID_THREAD(m_pthread->m_pthread->m_p.m_p)->m_oswindowa.add(m_oswindow);
 
       }
 
@@ -812,7 +812,7 @@ d.unlock();
          pdraw->m_wndpaOut.remove(this);
          pdraw->m_wndpaOut.remove(m_pguie);
       }
-      LNX_THREAD(m_pthread)->m_oswindowa.remove(m_oswindow);
+      ANDROID_THREAD(m_pthread)->m_oswindowa.remove(m_oswindow);
       oswindow_remove(m_oswindow->display(), m_oswindow->window());
    }
 
@@ -1352,7 +1352,7 @@ d.unlock();
       TRACE(::ca2::trace::category_AppMsg, 0, "WinHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
 
       // finally, run the oswindows Help engine
-      /* trans   if (!::WinHelp(LNX_WINDOW(pWnd)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
+      /* trans   if (!::WinHelp(ANDROID_WINDOW(pWnd)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
       {
       // linux System.simple_message_box(__IDP_FAILED_TO_LAUNCH_HELP);
       System.simple_message_box("Failed to launch help");
@@ -1380,7 +1380,7 @@ d.unlock();
    TRACE(::ca2::trace::category_AppMsg, 0, "HtmlHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
 
    // run the HTML Help engine
-   /* trans   if (!::ca2::HtmlHelp(LNX_WINDOW(pWnd)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
+   /* trans   if (!::ca2::HtmlHelp(ANDROID_WINDOW(pWnd)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
    {
    // linux System.simple_message_box(__IDP_FAILED_TO_LAUNCH_HELP);
    System.simple_message_box("Failed to launch help");
@@ -1402,8 +1402,8 @@ d.unlock();
 
       // need to use top level parent (for the case where get_handle() is in DLL)
       sp(::user::interaction) pWnd = EnsureTopLevelParent();
-      LNX_WINDOW(pWnd)->send_message(WM_CANCELMODE);
-      LNX_WINDOW(pWnd)->SendMessageToDescendants(WM_CANCELMODE, 0, 0, TRUE, TRUE);
+      ANDROID_WINDOW(pWnd)->send_message(WM_CANCELMODE);
+      ANDROID_WINDOW(pWnd)->SendMessageToDescendants(WM_CANCELMODE, 0, 0, TRUE, TRUE);
 
       // attempt to cancel capture
       oswindow hWndcapture = ::GetCapture();
@@ -2333,7 +2333,7 @@ restart_mouse_hover_check:
    // check for permanent-owned window first
    sp(::ca2::window) pWnd = ::android::window::FromHandlePermanent(hWnd);
    if (pWnd != NULL)
-   return LNX_WINDOW(pWnd)->GetOwner();
+   return ANDROID_WINDOW(pWnd)->GetOwner();
 
    // otherwise, return parent in the oswindows sense
    return (::GetWindowLong(hWnd, GWL_STYLE) & WS_CHILD) ?
@@ -2406,7 +2406,7 @@ restart_mouse_hover_check:
    {
       // special activate logic for floating toolbars and palettes
       sp(::ca2::window) pActiveWnd = GetForegroundWindow();
-//      if (pActiveWnd == NULL || !(LNX_WINDOW(pActiveWnd)->get_handle() == get_handle() || ::IsChild(LNX_WINDOW(pActiveWnd)->get_handle(), get_handle())))
+//      if (pActiveWnd == NULL || !(ANDROID_WINDOW(pActiveWnd)->get_handle() == get_handle() || ::IsChild(ANDROID_WINDOW(pActiveWnd)->get_handle(), get_handle())))
       {
          // clicking on floating frame when it does not have
          // focus itself -- activate the toplevel frame instead.
@@ -2486,7 +2486,7 @@ restart_mouse_hover_check:
             if (pWnd != NULL)
             {
                // call window proc directly since it is a C++ window
-               __call_window_procedure( (pWnd), LNX_WINDOW(pWnd)->get_handle(), message, wparam, lparam);
+               __call_window_procedure( (pWnd), ANDROID_WINDOW(pWnd)->get_handle(), message, wparam, lparam);
             }
          }
          else
@@ -2972,7 +2972,7 @@ return 0;
       // check if in permanent ::collection::map, if it is reflect it (could be OLE control)
       sp(::ca2::window) pWnd =  (pMap->lookup_permanent(hWndChild)); */
       sp(::ca2::window) pWnd =  (FromHandlePermanent(hWndChild));
-      ASSERT(pWnd == NULL || LNX_WINDOW(pWnd)->get_handle() == hWndChild);
+      ASSERT(pWnd == NULL || ANDROID_WINDOW(pWnd)->get_handle() == hWndChild);
       if (pWnd == NULL)
       {
          return FALSE;
@@ -2980,7 +2980,7 @@ return 0;
 
       // only OLE controls and permanent windows will get reflected msgs
       ASSERT(pWnd != NULL);
-      return LNX_WINDOW(pWnd)->SendChildNotifyLastMsg(pResult);
+      return ANDROID_WINDOW(pWnd)->SendChildNotifyLastMsg(pResult);
    }
 
    bool window::OnChildNotify(UINT uMsg, WPARAM wparam, LPARAM lparam, LRESULT* pResult)
@@ -3638,9 +3638,9 @@ throw not_implemented(get_app());
 
    HBRUSH window::OnCtlColor(::draw2d::graphics *, sp(::ca2::window) pWnd, UINT)
    {
-      ASSERT(pWnd != NULL && LNX_WINDOW(pWnd)->get_handle() != NULL);
+      ASSERT(pWnd != NULL && ANDROID_WINDOW(pWnd)->get_handle() != NULL);
       LRESULT lResult;
-      if (LNX_WINDOW(pWnd)->SendChildNotifyLastMsg(&lResult))
+      if (ANDROID_WINDOW(pWnd)->SendChildNotifyLastMsg(&lResult))
          return (HBRUSH)lResult;     // eat it
       return (HBRUSH)Default();
    }
@@ -3958,7 +3958,7 @@ throw not_implemented(get_app());
       if (pWnd != NULL)
       {
       // call it directly to disable any routing
-      if (LNX_WINDOW(pWnd)->window::_001OnCommand(0, MAKELONG(0xffff,
+      if (ANDROID_WINDOW(pWnd)->window::_001OnCommand(0, MAKELONG(0xffff,
       WM_COMMAND+WM_REFLECT_BASE), &state, NULL))
       continue;
       }
@@ -4028,7 +4028,7 @@ throw not_implemented(get_app());
          // phase1: check to see if we can do idle work
          while (bIdle && !::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE))
          {
-            LNX_THREAD(m_pthread->m_pthread->m_p.m_p)->defer_process_windows_messages();
+            ANDROID_THREAD(m_pthread->m_pthread->m_p.m_p)->defer_process_windows_messages();
 //            if(XCheckTypedEvent(d, -1, &e))
             {
 
@@ -4077,7 +4077,7 @@ throw not_implemented(get_app());
          // phase2: pump messages while available
          do
          {
-            LNX_THREAD(m_pthread->m_pthread->m_p.m_p)->defer_process_windows_messages();
+            ANDROID_THREAD(m_pthread->m_pthread->m_p.m_p)->defer_process_windows_messages();
 //            if(XCheckTypedEvent(d, -1, &e))
             {
 
@@ -4255,10 +4255,10 @@ throw not_implemented(get_app());
 //   bool window::SubclassDlgItem(UINT nID, sp(::ca2::window) pParent)
 //   {
 //      ASSERT(pParent != NULL);
-//      ASSERT(::IsWindow(LNX_WINDOW(pParent)->get_handle()));
+//      ASSERT(::IsWindow(ANDROID_WINDOW(pParent)->get_handle()));
 //
 //      // check for normal dialog control first
-//      oswindow hWndControl = ::GetDlgItem(LNX_WINDOW(pParent)->get_handle(), nID);
+//      oswindow hWndControl = ::GetDlgItem(ANDROID_WINDOW(pParent)->get_handle(), nID);
 //      if (hWndControl != NULL)
 //         return SubclassWindow(hWndControl);
 //
@@ -4292,13 +4292,13 @@ throw not_implemented(get_app());
    bool window::IsChild(sp(::user::interaction) pWnd)
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
-      if(LNX_WINDOW(pWnd)->get_handle() == NULL)
+      if(ANDROID_WINDOW(pWnd)->get_handle() == NULL)
       {
          return ::user::interaction::IsChild(pWnd);
       }
       else
       {
-         return ::IsChild((oswindow) get_handle(), LNX_WINDOW(pWnd)->get_handle()) != FALSE;
+         return ::IsChild((oswindow) get_handle(), ANDROID_WINDOW(pWnd)->get_handle()) != FALSE;
       }
    }
 
@@ -4784,9 +4784,9 @@ throw not_implemented(get_app());
          {
             if(m_pguie != NULL)
             {
-               if(m_pguie->get_wnd() != NULL && LNX_WINDOW(m_pguie->get_wnd())->m_pguiecapture != NULL)
+               if(m_pguie->get_wnd() != NULL && ANDROID_WINDOW(m_pguie->get_wnd())->m_pguiecapture != NULL)
                {
-                  return LNX_WINDOW(m_pguie->get_wnd())->m_pguiecapture;
+                  return ANDROID_WINDOW(m_pguie->get_wnd())->m_pguiecapture;
                }
                else
                {
@@ -4812,12 +4812,12 @@ throw not_implemented(get_app());
    { return this == NULL ? NULL : get_handle(); }*/
    bool window::operator==(const ::ca2::window& wnd) const
    {
-      return LNX_WINDOW(const_cast < ::ca2::window * >  (&wnd))->get_handle() == get_handle();
+      return ANDROID_WINDOW(const_cast < ::ca2::window * >  (&wnd))->get_handle() == get_handle();
    }
 
    bool window::operator!=(const ::ca2::window& wnd) const
    {
-      return LNX_WINDOW(const_cast < ::ca2::window * >  (&wnd))->get_handle() != get_handle();
+      return ANDROID_WINDOW(const_cast < ::ca2::window * >  (&wnd))->get_handle() != get_handle();
    }
 
    DWORD window::GetStyle()
@@ -6700,8 +6700,8 @@ LRESULT CALLBACK __window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPA
 //   // all other messages route through message ::collection::map
 //   sp(::ca2::window) pWnd = ::android::window::FromHandlePermanent(hWnd);
 //   //ASSERT(pWnd != NULL);
-//   //ASSERT(pWnd==NULL || LNX_WINDOW(pWnd)->get_handle() == hWnd);
-//   if (pWnd == NULL || LNX_WINDOW(pWnd)->get_handle() != hWnd)
+//   //ASSERT(pWnd==NULL || ANDROID_WINDOW(pWnd)->get_handle() == hWnd);
+//   if (pWnd == NULL || ANDROID_WINDOW(pWnd)->get_handle() != hWnd)
 //      return ::DefWindowProc(hWnd, nMsg, wparam, lparam);
 //   return android::__call_window_procedure(pWnd, hWnd, nMsg, wparam, lparam);
 }
@@ -6720,8 +6720,8 @@ __STATIC void CLASS_DECL_ANDROID __pre_init_dialog(
    ASSERT(lpRectOld != NULL);
    ASSERT(pdwStyleOld != NULL);
 
-   LNX_WINDOW(pWnd)->GetWindowRect(lpRectOld);
-   *pdwStyleOld = LNX_WINDOW(pWnd)->GetStyle();
+   ANDROID_WINDOW(pWnd)->GetWindowRect(lpRectOld);
+   *pdwStyleOld = ANDROID_WINDOW(pWnd)->GetStyle();
 }
 
 __STATIC void CLASS_DECL_ANDROID __post_init_dialog(
@@ -6732,25 +6732,25 @@ __STATIC void CLASS_DECL_ANDROID __post_init_dialog(
       return;
 
    // must not be visible after WM_INITDIALOG
-   if (LNX_WINDOW(pWnd)->GetStyle() & (WS_VISIBLE|WS_CHILD))
+   if (ANDROID_WINDOW(pWnd)->GetStyle() & (WS_VISIBLE|WS_CHILD))
       return;
 
    // must not move during WM_INITDIALOG
    rect rect;
-   LNX_WINDOW(pWnd)->GetWindowRect(rect);
+   ANDROID_WINDOW(pWnd)->GetWindowRect(rect);
    if (rectOld.left != rect.left || rectOld.top != rect.top)
       return;
 
    // must be unowned or owner disabled
-   sp(::user::interaction) pParent = LNX_WINDOW(pWnd)->GetWindow(GW_OWNER);
+   sp(::user::interaction) pParent = ANDROID_WINDOW(pWnd)->GetWindow(GW_OWNER);
    if (pParent != NULL && pParent->IsWindowEnabled())
       return;
 
-   if (!LNX_WINDOW(pWnd)->CheckAutoCenter())
+   if (!ANDROID_WINDOW(pWnd)->CheckAutoCenter())
       return;
 
    // center modal dialog boxes/message boxes
-   //LNX_WINDOW(pWnd)->CenterWindow();
+   //ANDROID_WINDOW(pWnd)->CenterWindow();
 }
 
 
@@ -6772,7 +6772,7 @@ CLASS_DECL_ANDROID void hook_window_create(sp(::user::interaction) pWnd)
 //   }
 //   ASSERT(pThreadState->m_hHookOldCbtFilter != NULL);
 //   ASSERT(pWnd != NULL);
-//   // trans   ASSERT(LNX_WINDOW(pWnd)->get_handle() == NULL);   // only do once
+//   // trans   ASSERT(ANDROID_WINDOW(pWnd)->get_handle() == NULL);   // only do once
 //
    ASSERT(pThreadState->m_pWndInit == NULL);   // hook not already in progress
    //pThreadState->m_pWndInit = pWnd;
@@ -6858,22 +6858,22 @@ __STATIC void CLASS_DECL_ANDROID
 //   ASSERT(pWnd != NULL);
 //
 //   // send WM_ACTIVATETOPLEVEL when top-level parents change
-//   if (!(LNX_WINDOW(pWnd)->GetStyle() & WS_CHILD))
+//   if (!(ANDROID_WINDOW(pWnd)->GetStyle() & WS_CHILD))
 //   {
-//      sp(::user::interaction) pTopLevel= LNX_WINDOW(pWnd)->GetTopLevelParent();
-//      if (pTopLevel && (pWndOther == NULL || !::IsWindow(LNX_WINDOW(pWndOther)->get_handle()) || pTopLevel != LNX_WINDOW(pWndOther)->GetTopLevelParent()))
+//      sp(::user::interaction) pTopLevel= ANDROID_WINDOW(pWnd)->GetTopLevelParent();
+//      if (pTopLevel && (pWndOther == NULL || !::IsWindow(ANDROID_WINDOW(pWndOther)->get_handle()) || pTopLevel != ANDROID_WINDOW(pWndOther)->GetTopLevelParent()))
 //      {
 //         // lparam points to window getting the WM_ACTIVATE message and
 //         //  hWndOther from the WM_ACTIVATE.
 //         oswindow hWnd2[2];
-//         hWnd2[0] = LNX_WINDOW(pWnd)->get_handle();
-//         if(pWndOther == NULL || LNX_WINDOW(pWndOther) == NULL)
+//         hWnd2[0] = ANDROID_WINDOW(pWnd)->get_handle();
+//         if(pWndOther == NULL || ANDROID_WINDOW(pWndOther) == NULL)
 //         {
 //            hWnd2[1] = NULL;
 //         }
 //         else
 //         {
-//            hWnd2[1] = LNX_WINDOW(pWndOther)->get_handle();
+//            hWnd2[1] = ANDROID_WINDOW(pWndOther)->get_handle();
 //         }
 //         // send it...
 //         pTopLevel->send_message(WM_ACTIVATETOPLEVEL, nState, (LPARAM)&hWnd2[0]);
@@ -6891,7 +6891,7 @@ __STATIC bool CLASS_DECL_ANDROID
 //      nMsg == WM_RBUTTONDOWN))
 //   {
 //      // activate the last active window if not active
-//      sp(::user::interaction) pLastActive = LNX_WINDOW(pWnd)->GetTopLevelParent();
+//      sp(::user::interaction) pLastActive = ANDROID_WINDOW(pWnd)->GetTopLevelParent();
 //      if (pLastActive != NULL)
 //         pLastActive = pLastActive->GetLastActivePopup();
 //      if (pLastActive != NULL &&

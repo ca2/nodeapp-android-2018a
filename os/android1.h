@@ -101,7 +101,7 @@ CLASS_DECL_ANDROID void __term_thread(sp(::ca2::application) papp, HINSTANCE hIn
 // Advanced initialization: for overriding default WinMain
 //CLASS_DECL_ANDROID bool ::ca2::WinInit(__in HINSTANCE hInstance, __in HINSTANCE hPrevInstance,
   // __in_z LPTSTR lpCmdLine, __in int32_t nCmdShow);
-CLASS_DECL_ANDROID void __lnx_term();
+CLASS_DECL_ANDROID void __android_term();
 
 CLASS_DECL_ANDROID sp(::ca2::application)  __get_app();
 CLASS_DECL_ANDROID sp(::user::interaction) __get_main_window();

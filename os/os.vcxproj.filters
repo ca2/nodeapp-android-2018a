@@ -27,9 +27,6 @@
     <Filter Include="Header Files\operational_system\cross\linux">
       <UniqueIdentifier>{474232c1-9519-4032-b9c4-25c8d63fddbc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\operational_system\NewFilter1">
-      <UniqueIdentifier>{9c2068ca-7f74-4591-908d-e19f834f4ee3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\operational_system\cross\win">
       <UniqueIdentifier>{d1a0a613-62e6-4e86-ab7d-94c2b440eeb1}</UniqueIdentifier>
     </Filter>
@@ -66,9 +63,6 @@
       <Filter>Header Files\operational_system</Filter>
     </ClInclude>
     <ClInclude Include="..\operational_system\_ca.h">
-      <Filter>Header Files\operational_system</Filter>
-    </ClInclude>
-    <ClInclude Include="..\operational_system\version_linux.h">
       <Filter>Header Files\operational_system</Filter>
     </ClInclude>
     <ClInclude Include="..\operational_system\cross\win\win.h">
@@ -230,6 +224,21 @@
     <ClInclude Include="android_copydesk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\operational_system\version_linux.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cairo_config.h">
+      <Filter>Header Files\operational_system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\cairo_features.h">
+      <Filter>Header Files\operational_system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\pixman_config.h">
+      <Filter>Header Files\operational_system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\operational_system\version_android.h">
+      <Filter>Header Files\operational_system</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="android.cpp">
@@ -263,9 +272,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="android_error.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="android_except.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="android_factory_exchange.cpp">
@@ -329,6 +335,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="android_copydesk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="android_exception.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

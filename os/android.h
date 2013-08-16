@@ -74,13 +74,13 @@ CLASS_DECL_ANDROID void AfxResetMsgCache();
 // xxx CLASS_DECL_ANDROID WNDPROC AfxGetAfxWndProc();
 #define AfxWndProc (*AfxGetAfxWndProc())
 
-#define LNX_THREAD(pthread) (dynamic_cast < ::android::thread * > (dynamic_cast < ::ca2::thread * >(pthread)))
-#define LNX_WINDOW(pwnd) (dynamic_cast < ::android::window * > (((sp(::ca2::window))(pwnd)).m_p))
-#define LNX_DC(pgraphics) (dynamic_cast < ::android::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics)))
+#define ANDROID_THREAD(pthread) (dynamic_cast < ::android::thread * > (dynamic_cast < ::ca2::thread * >(pthread)))
+#define ANDROID_WINDOW(pwnd) (dynamic_cast < ::android::window * > (((sp(::ca2::window))(pwnd)).m_p))
+#define ANDROID_DC(pgraphics) (dynamic_cast < ::android::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics)))
 #define SP_DC(pgraphics) (dynamic_cast < ::android::graphics * > (( ::draw2d::graphics * )(pgraphics)))
-#define LNX_HDC(pgraphics) ((HDC)*(dynamic_cast < ::android::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics))))
+#define ANDROID_HDC(pgraphics) ((HDC)*(dynamic_cast < ::android::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics))))
 #define SP_HDC(pgraphics) ((HDC)*(dynamic_cast < ::android::graphics * > ((::draw2d::graphics *)(pgraphics))))
-#define LNX_DIB(pdib) (dynamic_cast < ::android::dib * > (dynamic_cast < ::draw2d::dib * >(pdib)))
+#define ANDROID_DIB(pdib) (dynamic_cast < ::android::dib * > (dynamic_cast < ::draw2d::dib * >(pdib)))
 
 #include "android_shell.h"
 

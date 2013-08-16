@@ -1,5 +1,4 @@
 #include "framework.h"
-#include <X11/cursorfont.h>
 #include <dlfcn.h>
 #include <link.h>
 
@@ -14,7 +13,7 @@ namespace android
       ::ca2::thread::m_p.create(allocer());
       ::ca2::thread::m_p->m_p = this;
 
-      LNX_THREAD(::ca2::thread::m_p.m_p)->m_pAppThread = this;
+      ANDROID_THREAD(::ca2::thread::m_p.m_p)->m_pAppThread = this;
 
       m_pfilemanager = NULL;
 
@@ -202,12 +201,12 @@ namespace android
 
    void application::LockTempMaps()
    {
-      LNX_THREAD(::ca2::thread::m_p.m_p)->LockTempMaps();
+      ANDROID_THREAD(::ca2::thread::m_p.m_p)->LockTempMaps();
    }
 
    bool application::UnlockTempMaps(bool bDeleteTemp)
    {
-      return LNX_THREAD(::ca2::thread::m_p.m_p)->UnlockTempMaps(bDeleteTemp);
+      return ANDROID_THREAD(::ca2::thread::m_p.m_p)->UnlockTempMaps(bDeleteTemp);
    }
 
 
@@ -476,8 +475,8 @@ if(__get_module_state()->m_pmapHWND == NULL)
       // during the thread destructor
       ::ca2::thread::m_p->set_os_data(NULL);
 
-      LNX_THREAD(::ca2::thread::m_p.m_p)->m_bRun = false;
-      //LNX_THREAD(::ca2::application_base::m_p->::ca2::thread_sp::m_p)->m_bRun = false;
+      ANDROID_THREAD(::ca2::thread::m_p.m_p)->m_bRun = false;
+      //ANDROID_THREAD(::ca2::application_base::m_p->::ca2::thread_sp::m_p)->m_bRun = false;
 
       int32_t iRet = ::ca2::application::exit_instance();
 
@@ -548,7 +547,11 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
       mutex_lock mlOsWindow(*::oswindow_data::s_pmutex, true);
 
-      unsigned int uiShape;
+      unsigned int uiShape = 0;
+
+      TRACE("not_implemented android::application::ShowWaitCursor(bool)");
+
+      /*
 
       if(bShow)
       {
@@ -563,6 +566,8 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
       }
 
+      */
+
       for(int i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
       {
 
@@ -571,12 +576,15 @@ if(__get_module_state()->m_pmapHWND == NULL)
          if(window->m_bMessageOnlyWindow)
             continue;
 
+/*
          if(window->display() == NULL)
             continue;
 
          Cursor cursor = XCreateFontCursor(window->display(), uiShape);
 
          XDefineCursor(window->display(), window->window(), cursor);
+
+*/
 
       }
 
@@ -820,15 +828,15 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
          {
 
-            void * handle = dlopen("libca.so", RTLD_NOW);
+            //void * handle = dlopen("libca.so", RTLD_NOW);
 
-            if(handle == NULL)
+            //if(handle == NULL)
             {
 
                m_strCa2ModuleFolder = m_strModuleFolder;
 
             }
-            else
+            /*else
             {
 
                 link_map * plm;
@@ -846,7 +854,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
                 dlclose(handle);
 
-            }
+            }*/
 
          }
 
