@@ -1,5 +1,5 @@
 #include "framework.h"
-#include <X11/Xatom.h>
+//#include <X11/Xatom.h>
 
 #define TEST 0
 
@@ -34,8 +34,6 @@ struct __CTLCOLOR
    UINT nCtlType;
 };
 
-extern cairo_surface_t *  g_cairosurface;
-extern cairo_t *  g_cairo;
 
 WINBOOL PeekMessage(
     LPMESSAGE lpMsg,
@@ -328,6 +326,7 @@ namespace android
 
 
  /* MWM decorations values */
+   /*
  #define MWM_DECOR_NONE          0
  #define MWM_DECOR_ALL           (1L << 0)
  #define MWM_DECOR_BORDER        (1L << 1)
@@ -336,8 +335,9 @@ namespace android
  #define MWM_DECOR_MENU          (1L << 4)
  #define MWM_DECOR_MINIMIZE      (1L << 5)
  #define MWM_DECOR_MAXIMIZE      (1L << 6)
-
+ */
  /* KDE decoration values */
+ /*
  enum {
   KDE_noDecoration = 0,
   KDE_normalDecoration = 1,
@@ -410,6 +410,7 @@ xdisplay d(w->display());
 
     }
  }
+ */
 
    bool window::CreateEx(DWORD dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
@@ -478,10 +479,10 @@ xdisplay d(w->display());
 
          mutex_lock ml(user_mutex());
 
-         Display *display;
+         //Display *display;
          Window rootwin;
 
-         XEvent e;
+         //XEvent e;
          int32_t scr;
    //      cairo_surface_t *cs;
 
@@ -492,7 +493,7 @@ xdisplay d(w->display());
          //mutex_lock sl(user_mutex(), true);
 
 
-         if(!(display=XOpenDisplay(NULL)))
+         /*if(!(display=XOpenDisplay(NULL)))
          {
             fprintf(stderr, "ERROR: Could not open display\n");
 //            exit(1);
@@ -570,7 +571,7 @@ xdisplay d(w->display());
          /*oswindow hWnd = ::CreateWindowEx(cs.dwExStyle, cs.lpszClass,
             cs.lpszName, cs.style, cs.x, cs.y, cs.cx, cs.cy,
             cs.hwndParent, cs.hMenu, cs.hInstance, cs.lpCreateParams);*/
-
+         /*
    #ifdef DEBUG
          if (window == 0)
          {
@@ -647,11 +648,11 @@ d.unlock();
          send_message(WM_SIZE);
 
          ANDROID_THREAD(m_pthread->m_pthread->m_p.m_p)->m_oswindowa.add(m_oswindow);
-
+         */
       }
 
 
-
+      
 
 //      on_set_parent(pparent);
 
@@ -813,7 +814,7 @@ d.unlock();
          pdraw->m_wndpaOut.remove(m_pguie);
       }
       ANDROID_THREAD(m_pthread)->m_oswindowa.remove(m_oswindow);
-      oswindow_remove(m_oswindow->display(), m_oswindow->window());
+      //oswindow_remove(m_oswindow->display(), m_oswindow->window());
    }
 
    void window::_001OncaptureChanged(::ca2::signal_object * pobj)
@@ -4321,8 +4322,9 @@ throw not_implemented(get_app());
 
       mutex_lock sl(user_mutex(), true);
 
+      /*
       xdisplay d(m_oswindow->display());
-
+      */
       rect rectScreen;
 
       System.get_screen_rect(rectScreen);
@@ -4364,7 +4366,7 @@ throw not_implemented(get_app());
 
       //throw not_implemented(get_app());
 
-      XSizeHints hints;
+      /*XSizeHints hints;
 
 
       if(nFlags & SWP_NOMOVE)
@@ -4422,7 +4424,7 @@ throw not_implemented(get_app());
          }
 
       }
-
+      */
 
 /*
       if(GetExStyle() & WS_EX_LAYERED)
@@ -5085,6 +5087,7 @@ throw not_implemented(get_app());
 
       ::draw2d::graphics_sp g(allocer());
 
+      /*
       xdisplay d(m_oswindow->display());
 
       oswindow oswindow;
@@ -5112,6 +5115,8 @@ throw not_implemented(get_app());
       rectClient.bottom = 500;
 //      (dynamic_cast < ::android::graphics * >(g.m_p))->attach(cairo_create(cairo_xlib_surface_create(oswindow->display(), oswindow->window(), oswindow->visual(),rectClient.width(), rectClient.height())));
       return g.detach();
+      */
+      return NULL;
    }
 
    ::draw2d::graphics * window::GetWindowDC()

@@ -982,7 +982,7 @@ void thread::Delete()
       sp(::ca2::application) pappThis2 =  (m_p);
 
 
-      XEvent e;
+      //XEvent e;
 
       m_bRun = true;
 
@@ -1178,11 +1178,11 @@ stop_run:
    {
       ASSERT_VALID(this);
 
-   #if defined(DEBUG) && !defined(_AFX_NO_DEBUG_CRT)
+/*   #if defined(DEBUG) && !defined(_AFX_NO_DEBUG_CRT)
       // check ca2 API's allocator (before idle)
       if (_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) & _CRTDBG_CHECK_ALWAYS_DF)
          ASSERT(__check_memory());
-   #endif
+   #endif*/
 
       if(lCount <= 0 && m_puiptra != NULL)
       {
@@ -1253,12 +1253,13 @@ stop_run:
          }*/
       }
 
+   /*
    #if defined(DEBUG) && !defined(_AFX_NO_DEBUG_CRT)
       // check ca2 API's allocator (after idle)
       if (_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) & _CRTDBG_CHECK_ALWAYS_DF)
          ASSERT(__check_memory());
    #endif
-
+   */
       return lCount < 0;  // nothing more to do if lCount >= 0
    }
 
@@ -3045,7 +3046,7 @@ return AfxInternalProcessWndProcException( e, pMsg );
    void thread::defer_process_windows_messages()
    {
 
-      XEvent e;
+      //XEvent e;
 
       bool b;
 

@@ -32,8 +32,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <netdb.h>
-#include <math.h>
-#include <signal.h>
+
 
 
 #define _gmtime64 gmtime
@@ -86,6 +85,9 @@ typedef uint32_t UINT;
 #define _NORMAL_BLOCK  1
 
 
+// Ubuntu apt-get install libx11-dev
+//#include <X11/Xlib.h>
+//#include <X11/Xutil.h>
 
 
 /* Types use for passing & returning polymorphic values */
@@ -140,7 +142,7 @@ typedef union _XEvent XEvent;
 #ifdef __cplusplus
 
 
-inline void __debug_break() { raise(SIGTRAP); }
+inline void __debug_break() { asm("int $3"); }
 
 
 #endif
@@ -379,7 +381,7 @@ typedef uint64_t dword_ptr;
 typedef uint32_t dword_ptr;
 
 
-//#define __int3264   int32_t
+#define __int3264   int32_t
 
 
 #endif

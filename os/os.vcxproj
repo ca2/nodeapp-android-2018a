@@ -430,7 +430,7 @@
       <AdditionalOptions>-std=c++11 -Wno-conversion-null</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_VMSANDROID_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_ANDROID_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -476,7 +476,9 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <AdditionalDependencies>Crypt32.lib;Version.lib;Gdiplus.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <AndroidSystemLibs>c;m;log;gcc;_c;_ca2zlib;_ca2freeimage;_ca2freetype;_ca2cairo;_ca2openssl;_ca2ca;ca2</AndroidSystemLibs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>
@@ -1373,11 +1375,32 @@
     <ClInclude Include="android_copydesk.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\app\appseed\ca2\ca2.vcxproj">
+      <Project>{afc48570-75e4-46bd-b8ab-4590b257e1c8}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\app\appseed\ca\ca.vcxproj">
       <Project>{acb3ff4b-0b61-45a7-881d-e102e0f85808}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\app\appseed\c\c.vcxproj">
       <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\thirdparty\appseed\cairo\_ca2cairo.vcxproj">
+      <Project>{e6c58c82-71e5-48e6-98ed-1b505d6f10c2}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\thirdparty\appseed\FreeImage\FreeImage.vcxproj">
+      <Project>{b39ed2b3-d53a-4077-b957-930979a3577d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\thirdparty\appseed\freetype\freetype.vcxproj">
+      <Project>{771f4b49-cad1-438f-b272-20f3eb8e88f1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\thirdparty\appseed\openssl\openssl.vcxproj">
+      <Project>{ac98b756-e84c-4a70-9cdb-e9812fef9b98}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\thirdparty\appseed\pixman\_ca2pixman.vcxproj">
+      <Project>{63108f1c-eaa8-4c49-a591-13f813a76b05}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\thirdparty\appseed\zlib\_ca2zlib.vcxproj">
+      <Project>{9ffc2cf6-737c-43db-a1ee-383f7bfdb05b}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

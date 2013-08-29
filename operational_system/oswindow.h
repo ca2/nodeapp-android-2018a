@@ -74,6 +74,8 @@ public:
    bool                          m_bMessageOnlyWindow;
    ::user::interaction_base *    m_pui;
    HTHREAD                       m_hthread;
+   COLORREF *                    m_pcolorref;
+   RECT                          m_rect;
    simple_map < int, LONG > *    m_plongmap;
    bool                          m_bDestroying;
 

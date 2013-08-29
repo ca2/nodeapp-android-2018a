@@ -1,5 +1,6 @@
 #pragma once
 
+
 // STRICT is the only supported option (NOSTRICT is no longer supported)
 #ifndef STRICT
 #define STRICT 1
@@ -9,4 +10,8 @@
 #ifndef EXPORT
 #define EXPORT
 #endif
+
+
+
+
 

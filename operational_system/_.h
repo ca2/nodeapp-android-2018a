@@ -1,12 +1,14 @@
 #pragma once
 
 
+#ifdef _DEBUG
 #define DEBUG
+#endif
 
 
 #ifndef ANDROID
 #define ANDROID
-#endif 
+#endif
 
 #undef _GNU_SOURCE
 #define __STRICT_ANSI__ 1
@@ -26,9 +28,8 @@
 #endif
 
 #include <features.h>
-#ifndef _GNU_SOURCE
-#define _GNU_SOURCE
-#endif
+#undef _GNU_SOURCE
+#define _GNU_SOURCE 1
 #define __USE_GNU 1
 
 
@@ -43,8 +44,6 @@
 #define OS64BIT
 #endif
 
-
-#define BSD_STYLE_SOCKETS
 
 
 

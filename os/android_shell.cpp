@@ -1,12 +1,7 @@
-// WindowsShell.cpp: implementation of the WindowsShell class.
-//
-//////////////////////////////////////////////////////////////////////
-
 #include "framework.h"
-#include "WindowsShell.h"
 
 /***
-*int _validdrive( unsigned drive ) -
+*int32_t _validdrive( unsigned drive ) -
 *
 *Purpose: returns non zero if drive is a valid drive number.
 *
@@ -17,8 +12,8 @@
 *Exceptions:
 *
 *******************************************************************************/
-
-int __cdecl _validdrive (
+/*
+int32_t __cdecl _validdrive (
     unsigned drive
     )
 {
@@ -38,12 +33,12 @@ int __cdecl _validdrive (
             return 0;
 
         return 1;
-}
+}*/
 
 /*WCHAR * __cdecl _wgetdcwd (
-        int drive,
+        int32_t drive,
         WCHAR *pnbuf,
-        int maxlen
+        int32_t maxlen
         );
 
         */
@@ -68,7 +63,7 @@ int __cdecl _validdrive (
 *
 *Entry:
 *       _TSCHAR *pnbuf = pointer to a buffer maintained by the ::fontopus::user;
-*       int maxlen = length of the buffer pointed to by pnbuf;
+*       int32_t maxlen = length of the buffer pointed to by pnbuf;
 *
 *Exit:
 *       Returns pointer to the buffer containing the c.w.d. name
@@ -81,7 +76,7 @@ int __cdecl _validdrive (
 
 /*WCHAR * __cdecl _wgetcwd (
         WCHAR *pnbuf,
-        int maxlen
+        int32_t maxlen
         )
 {
         WCHAR *retval;
@@ -108,10 +103,10 @@ int __cdecl _validdrive (
 *       side effects: no global data is used or affected
 *
 *Entry:
-*       int drive   - number of the drive being inquired about
+*       int32_t drive   - number of the drive being inquired about
 *                     0 = default, 1 = 'a:', 2 = 'b:', etc.
 *       _TSCHAR *pnbuf - pointer to a buffer maintained by the ::fontopus::user;
-*       int maxlen  - length of the buffer pointed to by pnbuf;
+*       int32_t maxlen  - length of the buffer pointed to by pnbuf;
 *
 *Exit:
 *       Returns pointer to the buffer containing the c.w.d. name
@@ -124,15 +119,15 @@ int __cdecl _validdrive (
 
 
 /*WCHAR * __cdecl _wgetdcwd (
-        int drive,
+        int32_t drive,
         WCHAR *pnbuf,
-        int maxlen
+        int32_t maxlen
         )
 {
         WCHAR *p;
         WCHAR dirbuf[_MAX_PATH];
         WCHAR drvstr[4];
-        int len;
+        int32_t len;
         WCHAR *pname; /* only used as argument to GetFullPathName */
 
         /*
@@ -155,7 +150,7 @@ int __cdecl _validdrive (
             drvstr[1] = ':';
             drvstr[2] = '.';
             drvstr[3] = '\0';
-            len = WindowsShell::GetFullPathName( drvstr,
+            len = shell::GetFullPathName( drvstr,
                                    sizeof(dirbuf) / sizeof(_TSCHAR),
                                    dirbuf,
                                    &pname );
@@ -205,7 +200,7 @@ int __cdecl _validdrive (
 /*#ifndef WPRFLAG
 
 /***
-*int _validdrive( unsigned drive ) -
+*int32_t _validdrive( unsigned drive ) -
 *
 *Purpose: returns non zero if drive is a valid drive number.
 *
@@ -217,7 +212,7 @@ int __cdecl _validdrive (
 *
 *******************************************************************************/
 
-/*int __cdecl _validdrive (
+/*int32_t __cdecl _validdrive (
     unsigned drive
     )
 {
@@ -239,28 +234,32 @@ int __cdecl _validdrive (
         return 1;
 }*/
 
+namespace android
+{
 
 
-WindowsShell WindowsShell::theWindowsShell;
+shell shell::theLinuxShell;
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-WindowsShell::WindowsShell()
+shell::shell()
 {
 
 }
 
-WindowsShell::~WindowsShell()
+shell::~shell()
 {
 
 }
 
-bool WindowsShell::Initialize()
+bool shell::Initialize()
 {
+
+   /*
    DWORD dwVersion = GetVersion();
- 
+
    // get the Windows version.
 
    DWORD dwWindowsMajorVersion =  (DWORD)(LOBYTE(LOWORD(dwVersion)));
@@ -277,7 +276,7 @@ bool WindowsShell::Initialize()
    else                                     // Windows Me/98/95
        dwBuild =  0;
 
-   BOOL bNativeUnicode;
+   WINBOOL bNativeUnicode;
    if (dwVersion < 0x80000000)              // Windows NT
        bNativeUnicode = TRUE;
    else if (dwWindowsMajorVersion < 4)      // Win32s
@@ -288,47 +287,48 @@ bool WindowsShell::Initialize()
 
    if(bNativeUnicode)
    {
-      theWindowsShell.m_pfnSHGetPathFromIDList = ::SHGetPathFromIDListW;
-      theWindowsShell.m_pfnFindFirstFile = ::FindFirstFileW;
-      theWindowsShell.m_pfnFindNextFile = ::FindNextFileW;
-      theWindowsShell.m_pfnMoveFile = ::MoveFileW;
-      theWindowsShell.m_pfn_fullpath = ::_wfullpath;
-      theWindowsShell.m_pfnGetFullPathName = ::GetFullPathNameW;
-      theWindowsShell.m_pfnGetVolumeInformation = ::GetVolumeInformationW;
-      theWindowsShell.m_pfnSHGetFileInfo = ::SHGetFileInfoW;
-      theWindowsShell.m_pfnGetStringTypeEx = ::GetStringTypeExW;
-      theWindowsShell.m_pfnGetTempPath = ::GetTempPathW;
-      theWindowsShell.m_pfnGetTempFileName = ::GetTempFileNameW;
-      theWindowsShell.m_pfnCreateFile = ::CreateFileW;
-      theWindowsShell.m_pfnGetModuleFileName = ::GetModuleFileNameW;
-      theWindowsShell.m_pfnGetClassInfo = ::GetClassInfoW;
-      theWindowsShell.m_pfnRegisterClass = ::RegisterClassW;
-      theWindowsShell.m_pfnCreateWindowEx = ::CreateWindowExW;
+      theLinuxShell.m_pfnSHGetPathFromIDList = ::SHGetPathFromIDListW;
+      theLinuxShell.m_pfnFindFirstFile = ::FindFirstFileW;
+      theLinuxShell.m_pfnFindNextFile = ::FindNextFileW;
+      theLinuxShell.m_pfnMoveFile = ::MoveFileW;
+      theLinuxShell.m_pfn_fullpath = ::_wfullpath;
+      theLinuxShell.m_pfnGetFullPathName = ::GetFullPathNameW;
+      theLinuxShell.m_pfnGetVolumeInformation = ::GetVolumeInformationW;
+      theLinuxShell.m_pfnSHGetFileInfo = ::SHGetFileInfoW;
+      theLinuxShell.m_pfnGetStringTypeEx = ::GetStringTypeExW;
+      theLinuxShell.m_pfnGetTempPath = ::GetTempPathW;
+      theLinuxShell.m_pfnGetTempFileName = ::GetTempFileNameW;
+      theLinuxShell.m_pfnCreateFile = ::CreateFileW;
+      theLinuxShell.m_pfnGetModuleFileName = ::GetModuleFileNameW;
+      theLinuxShell.m_pfnGetClassInfo = ::GetClassInfoW;
+      theLinuxShell.m_pfnRegisterClass = ::RegisterClassW;
+      theLinuxShell.m_pfnCreateWindowEx = ::CreateWindowExW;
    }
    else
    {
-      theWindowsShell.m_pfnSHGetPathFromIDList = _SHGetPathFromIDList;
-      theWindowsShell.m_pfnFindFirstFile = _FindFirstFile;
-      theWindowsShell.m_pfnFindNextFile = _FindNextFile;
-      theWindowsShell.m_pfnMoveFile = _MoveFile;
-      theWindowsShell.m_pfn_fullpath = __fullpath;
-      theWindowsShell.m_pfnGetFullPathName = _GetFullPathName;
-      theWindowsShell.m_pfnGetVolumeInformation = _GetVolumeInformation;
-      theWindowsShell.m_pfnSHGetFileInfo = _SHGetFileInfo;
-      theWindowsShell.m_pfnGetStringTypeEx = _GetStringTypeEx;
-      theWindowsShell.m_pfnGetTempPath = _GetTempPath;
-      theWindowsShell.m_pfnGetTempFileName = _GetTempFileName;
-      theWindowsShell.m_pfnCreateFile = _CreateFile;
-      theWindowsShell.m_pfnGetModuleFileName = _GetModuleFileName;
-      theWindowsShell.m_pfnGetClassInfo = _GetClassInfo;
-      theWindowsShell.m_pfnRegisterClass = _RegisterClass;
-      theWindowsShell.m_pfnCreateWindowEx = _CreateWindowEx;
+      theLinuxShell.m_pfnSHGetPathFromIDList = _SHGetPathFromIDList;
+      theLinuxShell.m_pfnFindFirstFile = _FindFirstFile;
+      theLinuxShell.m_pfnFindNextFile = _FindNextFile;
+      theLinuxShell.m_pfnMoveFile = _MoveFile;
+      theLinuxShell.m_pfn_fullpath = __fullpath;
+      theLinuxShell.m_pfnGetFullPathName = _GetFullPathName;
+      theLinuxShell.m_pfnGetVolumeInformation = _GetVolumeInformation;
+      theLinuxShell.m_pfnSHGetFileInfo = _SHGetFileInfo;
+      theLinuxShell.m_pfnGetStringTypeEx = _GetStringTypeEx;
+      theLinuxShell.m_pfnGetTempPath = _GetTempPath;
+      theLinuxShell.m_pfnGetTempFileName = _GetTempFileName;
+      theLinuxShell.m_pfnCreateFile = _CreateFile;
+      theLinuxShell.m_pfnGetModuleFileName = _GetModuleFileName;
+      theLinuxShell.m_pfnGetClassInfo = _GetClassInfo;
+      theLinuxShell.m_pfnRegisterClass = _RegisterClass;
+      theLinuxShell.m_pfnCreateWindowEx = _CreateWindowEx;
    }
-
+*/
    return true;
 }
 
-BOOL WindowsShell::_SHGetPathFromIDList(LPCITEMIDLIST pidl, wchar_t * pszPath)
+/*
+WINBOOL shell::_SHGetPathFromIDList(LPCITEMIDLIST pidl, wchar_t * pszPath)
 {
    CHAR pszPathA[MAX_PATH * 2];
    if(!::SHGetPathFromIDListA(pidl, pszPathA))
@@ -336,7 +336,7 @@ BOOL WindowsShell::_SHGetPathFromIDList(LPCITEMIDLIST pidl, wchar_t * pszPath)
    return ::ca2::international::ACPToUnicode(pszPath, MAX_PATH * 2, pszPathA) ? TRUE : FALSE;
 }
 
-BOOL WindowsShell::_MoveFile(const wchar_t * lpExistingFileName, const wchar_t * lpNewFileName)
+WINBOOL shell::_MoveFile(const wchar_t * lpExistingFileName, const wchar_t * lpNewFileName)
 {
    string str1, str2;
    ::ca2::international::UnicodeToACP(str1, lpExistingFileName);
@@ -344,11 +344,11 @@ BOOL WindowsShell::_MoveFile(const wchar_t * lpExistingFileName, const wchar_t *
    return ::MoveFileA(str1, str2);
 }
 
-HANDLE WindowsShell::_FindFirstFile(const wchar_t * lpcsz, ANDROID32_FIND_DATAW * lpdata)
+HANDLE shell::_FindFirstFile(const wchar_t * lpcsz, WIN32_FIND_DATAW * lpdata)
 {
    CHAR pszPathA[MAX_PATH * 2];
    ::ca2::international::UnicodeToACP(pszPathA, MAX_PATH * 2, lpcsz);
-   ANDROID32_FIND_DATAA data;
+   WIN32_FIND_DATAA data;
    HANDLE handle = ::FindFirstFileA(pszPathA, &data);
    if(handle == INVALID_HANDLE_VALUE)
       return INVALID_HANDLE_VALUE;
@@ -362,15 +362,15 @@ HANDLE WindowsShell::_FindFirstFile(const wchar_t * lpcsz, ANDROID32_FIND_DATAW 
    lpdata->dwReserved0 = data.dwReserved0;
    lpdata->dwReserved1 = data.dwReserved1;
    ::ca2::international::ACPToUnicode(lpdata->cFileName, MAX_PATH, data.cFileName);
-   ::ca2::international::ACPToUnicode(lpdata->cAlternateFileName, MAX_PATH, data.cAlternateFileName);
+   ::ca2::international::ACPToUnicode(lpdata->calternateFileName, MAX_PATH, data.calternateFileName);
 
    return handle;
 }
 
-BOOL WindowsShell::_FindNextFile(HANDLE handle, ANDROID32_FIND_DATAW * lpdata)
+WINBOOL shell::_FindNextFile(HANDLE handle, WIN32_FIND_DATAW * lpdata)
 {
-   ANDROID32_FIND_DATAA data;
-   BOOL b = ::FindNextFileA(handle, &data);
+   WIN32_FIND_DATAA data;
+   WINBOOL b = ::FindNextFileA(handle, &data);
    if(b == FALSE)
       return FALSE;
 
@@ -383,13 +383,13 @@ BOOL WindowsShell::_FindNextFile(HANDLE handle, ANDROID32_FIND_DATAW * lpdata)
    lpdata->dwReserved0 = data.dwReserved0;
    lpdata->dwReserved1 = data.dwReserved1;
    ::ca2::international::ACPToUnicode(lpdata->cFileName, MAX_PATH, data.cFileName);
-   ::ca2::international::ACPToUnicode(lpdata->cAlternateFileName, MAX_PATH, data.cAlternateFileName);
+   ::ca2::international::ACPToUnicode(lpdata->calternateFileName, MAX_PATH, data.calternateFileName);
 
    return b;
 }
 
 
-WCHAR * __cdecl WindowsShell::__fullpath (
+WCHAR * __cdecl shell::__fullpath (
         WCHAR *UserBuf,
         const WCHAR *path,
         size_t maxlen
@@ -401,11 +401,11 @@ WCHAR * __cdecl WindowsShell::__fullpath (
 
 
         if ( !path || !*path )  /* no work to do */
-            return( _wgetcwd( UserBuf, maxlen ) );
+  /*          return( _wgetcwd( UserBuf, maxlen ) );
 
         /* allocate buffer if necessary */
 
-        if ( !UserBuf )
+    /*    if ( !UserBuf )
             if ( !(buf = (WCHAR *) malloc(_MAX_PATH * sizeof(WCHAR))) ) {
 //                errno = ENOMEM;
                 return( NULL );
@@ -438,10 +438,10 @@ WCHAR * __cdecl WindowsShell::__fullpath (
 }
 
 
-DWORD ANDROIDAPI WindowsShell::_GetFullPathName(
-   const wchar_t * lpFileName, 
-   DWORD nBufferLength, 
-   wchar_t * lpBuffer, 
+DWORD WINAPI shell::_GetFullPathName(
+   const wchar_t * lpFileName,
+   DWORD nBufferLength,
+   wchar_t * lpBuffer,
    wchar_t ** lpFilePart)
 {
    CHAR pszPathA[MAX_PATH * 2];
@@ -452,11 +452,11 @@ DWORD ANDROIDAPI WindowsShell::_GetFullPathName(
    DWORD dw = ::GetFullPathName(pszPathA, nBufferLength, lpsz, &lpszFilePart);
    str.ReleaseBuffer();
    ::ca2::international::ACPToUnicode(lpBuffer, nBufferLength, str);
-   *lpFilePart = lpBuffer + ((int) (lpszFilePart - lpsz));
+   *lpFilePart = lpBuffer + ((int32_t) (lpszFilePart - lpsz));
    return dw;
 }
 
-BOOL ANDROIDAPI WindowsShell::_GetVolumeInformation(
+WINBOOL WINAPI shell::_GetVolumeInformation(
       const wchar_t * lpRootPathName,           // root directory
       wchar_t * lpVolumeNameBuffer,        // volume name buffer
       DWORD nVolumeNameSize,            // length of name buffer
@@ -470,7 +470,7 @@ BOOL ANDROIDAPI WindowsShell::_GetVolumeInformation(
    string strVolumeNameBuffer;
    string strFileSystemNameBuffer;
    ::ca2::international::UnicodeToACP(strRootPathName, lpRootPathName);
-   BOOL b = ::GetVolumeInformation(
+   WINBOOL b = ::GetVolumeInformation(
       strRootPathName,
       strVolumeNameBuffer.GetBuffer(nVolumeNameSize),
       nVolumeNameSize,
@@ -483,17 +483,17 @@ BOOL ANDROIDAPI WindowsShell::_GetVolumeInformation(
    strVolumeNameBuffer.ReleaseBuffer();
    strFileSystemNameBuffer.ReleaseBuffer();
    ::ca2::international::ACPToUnicode(
-      lpVolumeNameBuffer, 
-      nVolumeNameSize, 
+      lpVolumeNameBuffer,
+      nVolumeNameSize,
       strVolumeNameBuffer);
    ::ca2::international::ACPToUnicode(
-      lpFileSystemNameBuffer, 
-      nFileSystemNameSize, 
+      lpFileSystemNameBuffer,
+      nFileSystemNameSize,
       strFileSystemNameBuffer);
    return b;
 }
 
-DWORD_PTR WindowsShell::_SHGetFileInfo(      
+DWORD_PTR shell::_SHGetFileInfo(
    const wchar_t * pszPath,
    DWORD dwFileAttributes,
    SHFILEINFOW *psfi,
@@ -504,31 +504,31 @@ DWORD_PTR WindowsShell::_SHGetFileInfo(
    string strPath;
    ::ca2::international::UnicodeToACP(strPath, pszPath);
    SHFILEINFOA shia;
-   if(!::SHGetFileInfoA(strPath, dwFileAttributes, 
+   if(!::SHGetFileInfoA(strPath, dwFileAttributes,
       &shia,
       sizeof(shia),
       uFlags))
       return FALSE;
    ::ca2::international::ACPToUnicode(
-      psfi->szDisplayName, 
+      psfi->szDisplayName,
       sizeof(psfi->szDisplayName) / sizeof(WCHAR),
       shia.szDisplayName);
    ::ca2::international::ACPToUnicode(
-      psfi->szTypeName, 
+      psfi->szTypeName,
       sizeof(psfi->szTypeName) / sizeof(WCHAR),
       shia.szTypeName);
    return TRUE;
 }
 
 
-BOOL WindowsShell::_GetStringTypeEx(      
+WINBOOL shell::_GetStringTypeEx(
    LCID uiCodePage,
    DWORD dwInfoType,
    const wchar_t * lpSrcStr,
-   int cchSrc,
+   int32_t cchSrc,
    LPWORD lpCharType)
 {
-   int iCount = cchSrc;
+   int32_t iCount = cchSrc;
    if(iCount < 0)
       iCount = ::ca2::international::UnicodeToMultiByteCount(uiCodePage, lpSrcStr);
    string str;
@@ -550,7 +550,7 @@ BOOL WindowsShell::_GetStringTypeEx(
 }
 
 
-DWORD WindowsShell::_GetTempPath(
+DWORD shell::_GetTempPath(
       DWORD nBufferLength,
       wchar_t * lpBuffer)
 {
@@ -561,7 +561,7 @@ DWORD WindowsShell::_GetTempPath(
    return dw;
 }
 
-UINT WindowsShell::_GetTempFileName(
+UINT shell::_GetTempFileName(
    const wchar_t * lpPathName,
    const wchar_t * lpPrefixString,
    UINT uUnique,
@@ -590,7 +590,7 @@ UINT WindowsShell::_GetTempFileName(
 }
 
 
-HANDLE WindowsShell::_CreateFile(
+HANDLE shell::_CreateFile(
    const wchar_t * lpFileName,
    DWORD dwDesiredAccess,
    DWORD dwShareMode,
@@ -614,7 +614,7 @@ HANDLE WindowsShell::_CreateFile(
 }
 
 
-DWORD WindowsShell::_GetModuleFileName(
+DWORD shell::_GetModuleFileName(
    HMODULE hModule,
    wchar_t * lpFilename,
    DWORD nSize
@@ -627,7 +627,7 @@ DWORD WindowsShell::_GetModuleFileName(
    return dw;
 }
 
-BOOL WindowsShell::_GetClassInfo(
+WINBOOL shell::_GetClassInfo(
     HINSTANCE hInstance ,
     const wchar_t * lpClassName,
     LPWNDCLASSW lpWndClass)
@@ -669,14 +669,14 @@ BOOL WindowsShell::_GetClassInfo(
    }
  string strMenuName;*/
    //strMenuName = wndclass->lpszMenuName;
-   lpWndClass->lpszMenuName = (const wchar_t *) wndclass.lpszMenuName;
+/*   lpWndClass->lpszMenuName = (const wchar_t *) wndclass.lpszMenuName;
 
    lpWndClass->lpszClassName = (const wchar_t *) wndclass.lpszClassName;
 
    return TRUE;
 
 }
-ATOM WindowsShell::_RegisterClass(
+ATOM shell::_RegisterClass(
    CONST WNDCLASSW *lpWndClass)
 {
    WNDCLASS wndclass;
@@ -703,15 +703,15 @@ ATOM WindowsShell::_RegisterClass(
 }
 
 
-oswindow WindowsShell::_CreateWindowEx(
+oswindow shell::_CreateWindowEx(
    DWORD dwExStyle,
    const wchar_t * lpClassName,
    const wchar_t * lpWindowName,
    DWORD dwStyle,
-   int x,
-   int y,
-   int nWidth,
-   int nHeight,
+   int32_t x,
+   int32_t y,
+   int32_t nWidth,
+   int32_t nHeight,
    oswindow hWndParent,
    HMENU hMenu,
    HINSTANCE hInstance,
@@ -747,3 +747,11 @@ oswindow WindowsShell::_CreateWindowEx(
       lpParam);
 
 }
+*/
+
+
+} // namespace android
+
+
+
+

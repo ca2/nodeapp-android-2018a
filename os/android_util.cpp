@@ -1,9 +1,8 @@
 #include "framework.h"
-#include <malloc.h>
 
 
 // interesting function
-/*BOOL CLASS_DECL_ANDROID AfxCustomLogFont(UINT nIDS, LOGFONT* pLogFont)
+/*WINBOOL CLASS_DECL_lnx AfxCustomLogFont(UINT nIDS, LOGFONT* pLogFont)
 {
    ENSURE_ARG(pLogFont != NULL);
    ASSERT(nIDS != 0);
@@ -21,11 +20,12 @@
          MulDiv(pLogFont->lfHeight, afxData.cyPixelsPerInch, 72);
       *lpszSize = '\0';
    }
-   _template::checked::tcsncpy_s(pLogFont->lfFaceName, _countof(pLogFont->lfFaceName), szFontInfo, _TRUNCATE);
+   _template::checked::tcsncpy_s(pLogFont->lfFaceName, _countof(pLogFont->lfFaceName), szFontInfo, _TRUNcaTE);
    return TRUE;
 }*/
 
-BOOL CLASS_DECL_ANDROID _AfxIsComboBoxControl(oswindow hWnd, UINT nStyle)
+/*
+WINBOOL CLASS_DECL_lnx _AfxIsComboBoxControl(oswindow hWnd, UINT nStyle)
 {
    if (hWnd == NULL)
       return FALSE;
@@ -39,7 +39,7 @@ BOOL CLASS_DECL_ANDROID _AfxIsComboBoxControl(oswindow hWnd, UINT nStyle)
    return ::AfxInvariantStrICmp(szCompare, "combobox") == 0;
 }
 
-BOOL CLASS_DECL_ANDROID _AfxCompareClassName(oswindow hWnd, const char * lpszClassName)
+WINBOOL CLASS_DECL_lnx _AfxCompareClassName(oswindow hWnd, const char * lpszClassName)
 {
    ASSERT(::IsWindow(hWnd));
    char szTemp[32];
@@ -47,7 +47,7 @@ BOOL CLASS_DECL_ANDROID _AfxCompareClassName(oswindow hWnd, const char * lpszCla
    return ::AfxInvariantStrICmp(szTemp, lpszClassName) == 0;
 }
 
-oswindow CLASS_DECL_ANDROID _AfxChildWindowFromPoint(oswindow hWnd, POINT pt)
+oswindow CLASS_DECL_lnx _AfxChildWindowFromPoint(oswindow hWnd, POINT pt)
 {
    ASSERT(hWnd != NULL);
 
@@ -70,13 +70,13 @@ oswindow CLASS_DECL_ANDROID _AfxChildWindowFromPoint(oswindow hWnd, POINT pt)
    return NULL;    // not found
 }
 
-void CLASS_DECL_ANDROID AfxSetWindowText(::user::interaction * hWndCtrl, const char * lpszNew)
+void CLASS_DECL_lnx AfxSetWindowText(sp(::user::interaction) hWndCtrl, const char * lpszNew)
 {
    hWndCtrl->SetWindowText(lpszNew);
    /*ENSURE(hWndCtrl);
    ENSURE(lpszNew);
 
-   int nNewLen = lstrlen(lpszNew);
+   int32_t nNewLen = lstrlen(lpszNew);
    char szOld[256]="";
    // fast check to see if text really changes (reduces flash in controls)
    if (nNewLen > _countof(szOld) ||
@@ -86,9 +86,10 @@ void CLASS_DECL_ANDROID AfxSetWindowText(::user::interaction * hWndCtrl, const c
       // change it
       ::SetWindowText(hWndCtrl, lpszNew);
    }*/
-}
+//}
 
-void CLASS_DECL_ANDROID AfxDeleteObject(HGDIOBJ* pObject)
+/*
+void CLASS_DECL_lnx AfxDeleteObject(HGDIOBJ* pObject)
 {
    ENSURE_ARG(pObject != NULL);
    if (*pObject != NULL)
@@ -96,28 +97,29 @@ void CLASS_DECL_ANDROID AfxDeleteObject(HGDIOBJ* pObject)
       ::DeleteObject(*pObject);
       *pObject = NULL;
    }
-}
+}*/
+
 /*
-void CLASS_DECL_ANDROID AfxCancelModes(oswindow hWndRcvr)
+void CLASS_DECL_lnx AfxcancelModes(oswindow hWndRcvr)
 {
    // if we receive a message destined for a ::ca2::window, cancel any combobox
    //  popups that could be in toolbars or dialog bars
-   oswindow hWndCancel = ::GetFocus();
-   if (hWndCancel == NULL)
+   oswindow hWndcancel = ::GetFocus();
+   if (hWndcancel == NULL)
       return;     // nothing to cancel
 
-   if (hWndCancel == hWndRcvr)
+   if (hWndcancel == hWndRcvr)
       return;     // let input go to ::ca2::window with focus
 
    // focus is in part of a combo-box
-   if (!_AfxIsComboBoxControl(hWndCancel, (UINT)CBS_DROPDOWNLIST))
+   if (!_AfxIsComboBoxControl(hWndcancel, (UINT)CBS_DROPDOWNLIST))
    {
       // check as a dropdown
-      hWndCancel = ::GetParent(hWndCancel);   // parent of edit is combo
-      if (hWndCancel == hWndRcvr)
+      hWndcancel = ::GetParent(hWndcancel);   // parent of edit is combo
+      if (hWndcancel == hWndRcvr)
          return;     // let input go to part of combo
 
-      if (!_AfxIsComboBoxControl(hWndCancel, (UINT)CBS_DROPDOWN))
+      if (!_AfxIsComboBoxControl(hWndcancel, (UINT)CBS_DROPDOWN))
          return;     // not a combo-box that is active
    }
 
@@ -128,10 +130,11 @@ void CLASS_DECL_ANDROID AfxCancelModes(oswindow hWndRcvr)
       return;
 
    // finally, we should cancel the mode!
-   ::SendMessage(hWndCancel, CB_SHOWDROPDOWN, FALSE, 0L);
+   ::SendMessage(hWndcancel, CB_SHOWDROPDOWN, FALSE, 0L);
 }*/
 
-void CLASS_DECL_ANDROID AfxGlobalFree(HGLOBAL hGlobal)
+/*
+void CLASS_DECL_lnx AfxGlobalFree(HGLOBAL hGlobal)
 {
    if (hGlobal == NULL)
       return;
@@ -145,7 +148,7 @@ void CLASS_DECL_ANDROID AfxGlobalFree(HGLOBAL hGlobal)
    // finally, really free the handle
    GlobalFree(hGlobal);
 }
-
+*/
 /////////////////////////////////////////////////////////////////////////////
 // Special new handler for safety pool on temp maps
 
@@ -153,13 +156,13 @@ void CLASS_DECL_ANDROID AfxGlobalFree(HGLOBAL hGlobal)
 
 #define MIN_MALLOC_OVERHEAD 4   // LocalAlloc or other overhead
 
-int __CDECL AfxCriticalNewHandler(size_t nSize)
+int32_t __CDECL AfxCriticalNewHandler(size_t nSize)
    // nSize is already rounded
 {
    // called during critical primitive::memory allocation
    //  free up part of the cast's safety cache
 //   TRACE(::ca2::trace::category_Memory, 0, "Warning: Critical primitive::memory allocation failed!\n");
-   _AFX_THREAD_STATE* pThreadState = AfxGetThreadState();
+/*   ___THREAD_STATE* pThreadState = __get_thread_state();
    if (pThreadState != NULL && pThreadState->m_pSafetyPoolBuffer != NULL)
    {
       size_t nOldBufferSize = _msize(pThreadState->m_pSafetyPoolBuffer);
@@ -172,7 +175,7 @@ int __CDECL AfxCriticalNewHandler(size_t nSize)
       }
       else
       {
-         BOOL bEnable = AfxEnableMemoryTracking(FALSE);
+         WINBOOL bEnable = AfxEnableMemoryTracking(FALSE);
          _expand(pThreadState->m_pSafetyPoolBuffer,
             nOldBufferSize - (nSize + MIN_MALLOC_OVERHEAD));
          AfxEnableMemoryTracking(bEnable);
@@ -181,9 +184,9 @@ int __CDECL AfxCriticalNewHandler(size_t nSize)
       }
       return 1;       // retry it
    }
-
+*/
 //   TRACE(::ca2::trace::category_Memory, 0, "ERROR: Critical primitive::memory allocation from safety pool failed!\n");
-   AfxThrowMemoryException();      // oops
+//   AfxThrowMemoryException();      // oops
 }
 #endif // !_AFX_PORTABLE
 

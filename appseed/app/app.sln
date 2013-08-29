@@ -1,15 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C++ Express 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cubeapp", "cubeapp.vcxproj", "{F17EBADE-1C22-4958-B68E-5317A0228F23}"
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bitmap-plasma", "bitmap-plasma.vcxproj", "{8D284FFF-6B35-4F6A-ADCE-CFCF759D6BC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		basis|Win32 = basis|Win32
+		Debug|Android = Debug|Android
+		Release|Android = Release|Android
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F17EBADE-1C22-4958-B68E-5317A0228F23}.basis|Win32.ActiveCfg = basis|Win32
-		{F17EBADE-1C22-4958-B68E-5317A0228F23}.basis|Win32.Build.0 = basis|Win32
+		{8D284FFF-6B35-4F6A-ADCE-CFCF759D6BC3}.Debug|Android.ActiveCfg = Debug|Android
+		{8D284FFF-6B35-4F6A-ADCE-CFCF759D6BC3}.Debug|Android.Build.0 = Debug|Android
+		{8D284FFF-6B35-4F6A-ADCE-CFCF759D6BC3}.Release|Android.ActiveCfg = Release|Android
+		{8D284FFF-6B35-4F6A-ADCE-CFCF759D6BC3}.Release|Android.Build.0 = Release|Android
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

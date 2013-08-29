@@ -1,7 +1,7 @@
 #include "framework.h"
 
-//const UINT UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION = ::RegisterWindowMessageA("UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION-{7C29C80A_5712_40e8_A124_A82E4B2795A7}");
-#define UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION (WM_APP + 123)
+//const UINT UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION = ::RegisterWindowMessageA("UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION-{7C29C80A_5712_40e8_A124_A82E4B2795A7}");
+#define UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION (WM_APP + 123)
 
 namespace android
 {
@@ -15,28 +15,29 @@ namespace android
    // Construction/Destruction
    //////////////////////////////////////////////////////////////////////
 
-   port_forward::port_forward(::ca2::application * papp) :
+   port_forward::port_forward(sp(::ca2::application) papp) :
       ca2(papp)
    {
-	   InitializeMembersToNull();
-	   ::InitializeCriticalSection( &m_cs );
+//	   InitializeMembersToNull();
+	//   ::InitializeCriticalSection( &m_cs );
    }
 
    port_forward::~port_forward()
    {
-	   StopListeningForUpnpChanges( );
+	  // StopListeningForUpnpChanges( );
 
-	   ::DeleteCriticalSection( &m_cs );
+	   //::DeleteCriticalSection( &m_cs );
    }
 
+/*
    void port_forward::InitializeMembersToNull()
    {
 	   m_piNAT			= NULL;
 	   m_piEventManager	= NULL;
-	   m_piExternalIPAddressCallback= NULL;
-	   m_piNumberOfEntriesCallback	= NULL;
+	   m_piExternalIPAddresscallback= NULL;
+	   m_piNumberOfEntriescallback	= NULL;
 
-	   m_pChangeCallbackFunctions	= NULL;
+	   m_pChangecallbackFunctions	= NULL;
 
 	   m_pPortMappingThread = NULL;
 	   m_pDeviceInfoThread = NULL;
@@ -57,17 +58,17 @@ namespace android
    void port_forward::DeinitializeCom()
    {
 
-	   if ( m_piExternalIPAddressCallback != NULL )
+	   if ( m_piExternalIPAddresscallback != NULL )
 	   {
-		   m_piExternalIPAddressCallback->Release();
-		   m_piExternalIPAddressCallback = NULL;
+		   m_piExternalIPAddresscallback->Release();
+		   m_piExternalIPAddresscallback = NULL;
 	   }
 
 
-	   if ( m_piNumberOfEntriesCallback != NULL )
+	   if ( m_piNumberOfEntriescallback != NULL )
 	   {
-		   m_piNumberOfEntriesCallback->Release();
-		   m_piNumberOfEntriesCallback = NULL;
+		   m_piNumberOfEntriescallback->Release();
+		   m_piNumberOfEntriescallback = NULL;
 	   }
 
 	   if ( m_piEventManager != NULL )
@@ -85,7 +86,7 @@ namespace android
 	   CoUninitialize();  // balancing call for CoInitialize
    }
 
-   HRESULT port_forward::ListenForUpnpChanges(::ca4::port_forward_change_callbacks *pCallbacks /* =NULL */ )
+   HRESULT port_forward::ListenForUpnpChanges(::ca2::port_forward_change_callbacks *pcallbacks /* =NULL */ /*)
    {
 	   // check if we are already listening
 
@@ -95,13 +96,13 @@ namespace android
 	   m_bListeningForUpnpChanges = TRUE;
 
 
-	   if ( pCallbacks==NULL )
+	   if ( pcallbacks==NULL )
 	   {
-		   SetChangeEventCallbackPointer(	new ::ca4::port_forward_change_callbacks );
+		   SetChangeEventcallbackPointer(	new ::ca2::port_forward_change_callbacks );
 	   }
 	   else
 	   {
-		   SetChangeEventCallbackPointer( pCallbacks );
+		   SetChangeEventcallbackPointer( pcallbacks );
 	   }
 
 	   // initialize COM for this thread
@@ -133,8 +134,8 @@ namespace android
 		   return E_FAIL;
 	   }
 
-	   result = m_piEventManager->put_ExternalIPAddressCallback(
-		   m_piExternalIPAddressCallback = new IDerivedNATExternalIPAddressCallback( m_pChangeCallbackFunctions ) );
+	   result = m_piEventManager->put_ExternalIPAddresscallback(
+		   m_piExternalIPAddresscallback = new IDerivedNATExternalIPAddresscallback( m_pChangecallbackFunctions ) );
 
 	   if ( !SUCCEEDED(result) )
 	   {
@@ -146,8 +147,8 @@ namespace android
 		   return E_FAIL;
 	   }
 
-	   result = m_piEventManager->put_NumberOfEntriesCallback(
-		   m_piNumberOfEntriesCallback = new IDerivedNATNumberOfEntriesCallback( m_pChangeCallbackFunctions ) );
+	   result = m_piEventManager->put_NumberOfEntriescallback(
+		   m_piNumberOfEntriescallback = new IDerivedNATNumberOfEntriescallback( m_pChangecallbackFunctions ) );
 
 	   if ( !SUCCEEDED(result) )
 	   {
@@ -179,10 +180,10 @@ namespace android
 
 	   DeinitializeCom( );
 
-	   if ( m_pChangeCallbackFunctions != NULL )
+	   if ( m_pChangecallbackFunctions != NULL )
 	   {
-		   delete m_pChangeCallbackFunctions;
-		   m_pChangeCallbackFunctions = NULL;
+		   delete m_pChangecallbackFunctions;
+		   m_pChangecallbackFunctions = NULL;
 	   }
 
 	   return S_OK;
@@ -190,26 +191,26 @@ namespace android
 
 
 
-   HRESULT port_forward::SetChangeEventCallbackPointer(::ca4::port_forward_change_callbacks *pCallbacks)
+   HRESULT port_forward::SetChangeEventcallbackPointer(::ca2::port_forward_change_callbacks *pcallbacks)
    {
-	   ASSERT( pCallbacks!=NULL );
+	   ASSERT( pcallbacks!=NULL );
 
-	   if ( m_pChangeCallbackFunctions != NULL )
+	   if ( m_pChangecallbackFunctions != NULL )
 	   {
-		   delete m_pChangeCallbackFunctions;
-		   m_pChangeCallbackFunctions = NULL;
+		   delete m_pChangecallbackFunctions;
+		   m_pChangecallbackFunctions = NULL;
 	   }
 
-	   m_pChangeCallbackFunctions = pCallbacks;
+	   m_pChangecallbackFunctions = pcallbacks;
 
 	   return S_OK;
    }
 
 
 
-   BOOL port_forward::IsAnyThreadRunning() const
+   WINBOOL port_forward::IsAnyThreadRunning() const
    {
-	   BOOL bRet = FALSE;
+	   WINBOOL bRet = FALSE;
 	   bRet |= ( m_pPortMappingThread != NULL );
 	   bRet |= ( m_pDeviceInfoThread != NULL );
 	   bRet |= ( m_pAddMappingThread != NULL );
@@ -270,7 +271,7 @@ namespace android
    // There are five functions that create threads, and each function takes a oswindow as a
    // parameter.  During execution of the thread, each thread will post messages to this oswindow,
    // so as to notify the HWMND of the thread's progress through the needed COM tasks.  The
-   // message is always the same: a UINT named UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION.
+   // message is always the same: a UINT named UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION.
    // Encodings of the WPARAM and LPARAM within the message will enable the oswindow to determine
    // what's going on inside the thread.  The five functions are:
    //
@@ -313,7 +314,7 @@ namespace android
    // choose a different window, such as your CView-derived window for SDI applications
    //
    // The window that you choose must be able to process the message, which is a UINT named
-   // UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION.  For an MFC application, here are the changes
+   // UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION.  For an MFC application, here are the changes
    // you must make to your CWnd class:
    //
    // 1. Declare a handler in your .h file using the following signature, in which
@@ -325,22 +326,22 @@ namespace android
    // 2. In your *.cpp file include the following "extern" statement somewhere at the beginning of
    //    the file.  This statement tells the linker that the value of the message is defined elsewhere:
    //
-   //		extern const UINT UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION;  // defined in PortForwadEngine.cpp
+   //		extern const UINT UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION;  // defined in PortForwadEngine.cpp
    //
    // 3. In your .cpp implementation file, add an entry to the message map as follows:
    //
-   //		ON_REGISTERED_MESSAGE( UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, OnMappingThreadNotificationMeesage )
+   //		ON_REGISTERED_MESSAGE( UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, OnMappingThreadNotificationMeesage )
    //
    // 4. Again in your .cpp file, write the body of the OnMappingThreadNotificationMeesage() function.
    //    Typically, you would check the WPARAM parameter to determine the nature of the notification.
    //      WPARAM == port_forward::EnumPortRetrieveInterval is sent at intervals, where
    //        LPARAM goes from 0 to 10.  You can use this to update a progress control (if you want)
    //      WPARAM == port_forward::EnumPortRetrieveDone is sent when the thread is done, where
-   //        LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL).  Call the
+   //        LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL).  call the
    //        GetPortMappingVector() function to get a copy of the current contents of
    //        std::vector< port_forward::port_map > m_MappingContainer
 
-   BOOL port_forward::GetMappingsUsingThread( oswindow hWnd )
+   WINBOOL port_forward::GetMappingsUsingThread( oswindow hWnd )
    {
 	   // returns TRUE if thread was started successfully
 
@@ -371,7 +372,7 @@ namespace android
    //////////////////////////////////////////////
    //
    // The thread created by the EditMappingUsingThread() function uses the same architecture for
-   // message notification as above (ie, it posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION
+   // message notification as above (ie, it posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION
    // message), but with the following WPARAM and LPARAM encodings:
    //  WPARAM == port_forward::EnumEditMappingInterval at intervals, where
    //      LPARAM varies from 0 to 10.  You can use this to update of a progress control (if you want).
@@ -379,7 +380,7 @@ namespace android
    //      LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL).
 
 
-   BOOL port_forward::EditMappingUsingThread( port_forward::port_map& oldMapping, port_forward::port_map& newMapping, oswindow hWnd )
+   WINBOOL port_forward::EditMappingUsingThread( port_forward::port_map& oldMapping, port_forward::port_map& newMapping, oswindow hWnd )
    {
 	   // returns TRUE if thread was started successfully
 
@@ -414,14 +415,14 @@ namespace android
    //////////////////////////////////////////////
    //
    // The thread created by the AddMappingUsingThread() function uses the same architecture for
-   // message notification as above (ie, it posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION
+   // message notification as above (ie, it posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION
    // message), but with the following WPARAM and LPARAM encodings:
    //  WPARAM == port_forward::EnumAddMappingInterval at intervals, where
    //      LPARAM varies from 0 to 10.  You can use this to update of a progress control (if you want).
    //  WPARAM == port_forward::EnumAddMappingDone when the thread is finished, where
    //      LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL).
 
-   BOOL port_forward::AddMappingUsingThread( port_forward::port_map& newMapping, oswindow hWnd )
+   WINBOOL port_forward::AddMappingUsingThread( port_forward::port_map& newMapping, oswindow hWnd )
    {
 	   // returns TRUE if thread was started successfully
 
@@ -455,14 +456,14 @@ namespace android
    //////////////////////////////////////////////
    //
    // The thread created by the DeleteMappingUsingThread() function uses the same architecture for
-   // message notification as above (ie, it posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION
+   // message notification as above (ie, it posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION
    // message), but with the following WPARAM and LPARAM encodings:
    //  WPARAM == port_forward::EnumDeleteMappingInterval at intervals, where
    //      LPARAM varies from 0 to 10.  You can use this to update of a progress control (if you want).
    //  WPARAM == port_forward::EnumDeleteMappingDone when the thread is finished, where
    //      LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL).
 
-   BOOL port_forward::DeleteMappingUsingThread( port_forward::port_map& oldMapping, oswindow hWnd )
+   WINBOOL port_forward::DeleteMappingUsingThread( port_forward::port_map& oldMapping, oswindow hWnd )
    {
 	   // returns TRUE if thread was started successfully
 
@@ -495,16 +496,16 @@ namespace android
    //////////////////////////////////////////////
    //
    // The thread created by the GetDeviceInformationUsingThread() function uses the same architecture for
-   // message notification as above (ie, it posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION
+   // message notification as above (ie, it posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION
    // message), but with the following WPARAM and LPARAM encodings:
    //  WPARAM == port_forward::EnumDeviceInfoInterval at intervals, where
    //      LPARAM varies from 0 to 10.  You can use this to update of a progress control (if you want).
    //  WPARAM == port_forward::EnumDeviceInfoDone when thread is finished, where
-   //      LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL).  Call the
+   //      LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL).  call the
    //      GetDeviceInformationContainer() function to retrieve a copy of the current contents of
    //      port_forward::DeviceInformationContainer m_DeviceInfo
 
-   BOOL port_forward::GetDeviceInformationUsingThread( oswindow hWnd )
+   WINBOOL port_forward::GetDeviceInformationUsingThread( oswindow hWnd )
    {
 	   // returns TRUE if thread was started successfully
 
@@ -530,12 +531,12 @@ namespace android
 
 
 
-   /*   static   */
+   /*   static   */ /*
    UINT port_forward::ThreadForPortRetrieval(LPVOID pVoid)
    {
 	   SetThreadName( -1, "PortRtrv" );  // helps in debugging to see a thread's name
 
-	   BOOL bContinue = TRUE;
+	   WINBOOL bContinue = TRUE;
 
 	   port_forward* pThis = (port_forward*)pVoid;
 
@@ -546,7 +547,7 @@ namespace android
 	   WPARAM wp = EnumPortRetrieveInterval;
 	   LPARAM lp = 0;
 
-	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 	   // initialize COM
 
@@ -572,7 +573,7 @@ namespace android
 
 
 	   lp = 1;
-	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 	   // Get mapping enumerator and reset the list of mappings
 
@@ -589,7 +590,7 @@ namespace android
 		   bContinue = FALSE;
 
 	   lp = 2;
-	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 
 	   // get count of static mappings
@@ -602,11 +603,11 @@ namespace android
 	   if ( cMappings <= 0 ) cMappings = 4;  // arbitrary non-zero value, so we can divide by non-zero value
 
 	   lp = 3;
-	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 
 	   HRESULT result = S_OK;
-	   int iii = 0;
+	   int32_t iii = 0;
 
 	   // clear all current mappings (note: thread-awareness is needed)
 
@@ -627,7 +628,7 @@ namespace android
 		   }
 
 		   lp = 3 + (10-3)*(++iii)/cMappings;
-		   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+		   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 	   }
 
 	   // release COM objects and de-initialize COM
@@ -657,7 +658,7 @@ namespace android
 
 	   lp = (bContinue ? S_OK : E_FAIL);
 	   wp = EnumPortRetrieveDone;
-	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 	   pThis->m_pPortMappingThread = NULL;
 	   pThis->m_hWndForPortMappingThread = NULL;
@@ -667,12 +668,12 @@ namespace android
    }
 
 
-   /*   static   */
+   /*   static   */ /*
    UINT port_forward::ThreadForDeviceInformationRetrieval( LPVOID pVoid )
    {
 	   SetThreadName( -1, "DevInfo" );  // helps in debugging to see a thread's name
 
-	   BOOL bContinue = TRUE;
+	   WINBOOL bContinue = TRUE;
 
 	   port_forward* pThis = (port_forward*)pVoid;
 
@@ -683,7 +684,7 @@ namespace android
 	   WPARAM wp = EnumDeviceInfoInterval;
 	   LPARAM lp = 0;
 
-	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 
 	   // initialize COM
@@ -700,7 +701,7 @@ namespace android
 		   bContinue = FALSE;
 
 	   lp = 1;
-	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 
 	   // get devices of the desired type, using the PnP schema
@@ -717,7 +718,7 @@ namespace android
 
 
 	   lp = 5;
-	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 
 	   // now traverse the collection of piFoundDevices
@@ -756,7 +757,7 @@ namespace android
 					   // finally, post interval notification message and get all the needed information
 
 					   lp = 6;
-					   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+					   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 	               // allocate and fill local devInfo into class member
                   ::EnterCriticalSection( &(pThis->m_cs) );
@@ -792,7 +793,7 @@ namespace android
 	   lp = (bContinue ? S_OK : E_FAIL);
 	   wp = EnumDeviceInfoDone;
 
-	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 	   pThis->m_pDeviceInfoThread = NULL;
 	   pThis->m_hWndForDeviceInfoThread = NULL;
@@ -801,12 +802,12 @@ namespace android
    }
 
 
-   /*   static   */
+   /*   static   */ /*
    UINT port_forward::ThreadToEditMapping( LPVOID pVoid )
    {
 	   SetThreadName( -1, "EditMap" );  // helps in debugging to see a thread's name
 
-	   BOOL bContinue = TRUE;
+	   WINBOOL bContinue = TRUE;
 
 	   port_forward* pThis = (port_forward*)pVoid;
 
@@ -819,7 +820,7 @@ namespace android
 	   WPARAM wp = EnumEditMappingInterval;
 	   LPARAM lp = 0;
 
-	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 	   // initialize COM
 
@@ -842,7 +843,7 @@ namespace android
 
 
 	   lp = 1;
-	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 
 	   // get the target old mapping from the collection of mappings
@@ -856,7 +857,7 @@ namespace android
 
 
 	   lp = 2;
-	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 
 	   // update the mapping
@@ -868,19 +869,19 @@ namespace android
 
 		   hr |= piStaticPortMapping->Enable( vb );
 		   lp = 4;
-		   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+		   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
          hr |= piStaticPortMapping->EditDescription( newMapping.Description.AllocSysString() );
 		   lp = 6;
-		   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+		   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 		   hr |= piStaticPortMapping->EditInternalPort( _ttol(newMapping.InternalPort) );
 		   lp = 8;
-		   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+		   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
          hr |= piStaticPortMapping->EditInternalClient( newMapping.InternalClient.AllocSysString() );
 		   lp = 10;
-		   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+		   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 		   if ( !SUCCEEDED(hr) )
 			   bContinue = FALSE;
@@ -915,7 +916,7 @@ namespace android
 
 	   lp = (bContinue ? S_OK : E_FAIL);
 	   wp = EnumEditMappingDone;
-	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 	   pThis->m_pEditMappingThread = NULL;
 	   pThis->m_hWndForEditMappingThread = NULL;
@@ -923,12 +924,12 @@ namespace android
 	   return 0;
    }
 
-   /*   static   */
+   /*   static   */ /*
    UINT port_forward::ThreadToDeleteMapping( LPVOID pVoid )
    {
 	   SetThreadName( -1, "DelMap" );  // helps in debugging to see a thread's name
 
-	   BOOL bContinue = TRUE;
+	   WINBOOL bContinue = TRUE;
 
 	   port_forward* pThis = (port_forward*)pVoid;
 
@@ -940,7 +941,7 @@ namespace android
 	   WPARAM wp = EnumDeleteMappingInterval;
 	   LPARAM lp = 0;
 
-	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 	   // initialize COM
 
@@ -963,7 +964,7 @@ namespace android
 
 
 	   lp = 1;
-	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 
 	   // get the target old mapping from the collection of mappings
@@ -974,7 +975,7 @@ namespace android
 
 	   oldMapping.Protocol.ReleaseBuffer();
 	   lp = 2;
-	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 
 
@@ -1000,7 +1001,7 @@ namespace android
 
 	   lp = (bContinue ? S_OK : E_FAIL);
 	   wp = EnumDeleteMappingDone;
-	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+	   ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 	   pThis->m_pDeleteMappingThread = NULL;
 	   pThis->m_hWndForDeleteMappingThread = NULL;
@@ -1009,7 +1010,7 @@ namespace android
    }
 
 
-   /*   static   */
+   /*   static   */ /*
    UINT port_forward::ThreadToAddMapping( LPVOID pVoid )
    {
 	   SetThreadName( -1, "AddMap" );  // helps in debugging to see a thread's name
@@ -1019,11 +1020,11 @@ namespace android
 	   port_map& newMapping = pThis->m_scratchpadAddedMapping;
 
 
-	   BOOL bContinue = TRUE;
+	   WINBOOL bContinue = TRUE;
 	   WPARAM wp = EnumAddMappingInterval;
 	   LPARAM lp = 0;
 
-	   ::PostMessage( pThis->m_hWndForAddMappingThread, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+	   ::PostMessage( pThis->m_hWndForAddMappingThread, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 	   // initialize COM
 
@@ -1046,7 +1047,7 @@ namespace android
 
 
 	   lp = 1;
-	   ::PostMessage( pThis->m_hWndForAddMappingThread, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+	   ::PostMessage( pThis->m_hWndForAddMappingThread, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 
 	   // add the new mapping
@@ -1073,7 +1074,7 @@ namespace android
 	   newMapping.Description.ReleaseBuffer();
 
 	   lp = 2;
-	   ::PostMessage( pThis->m_hWndForAddMappingThread, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+	   ::PostMessage( pThis->m_hWndForAddMappingThread, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 
 
@@ -1105,7 +1106,7 @@ namespace android
 
 	   lp = (bContinue ? S_OK : E_FAIL);
 	   wp = EnumAddMappingDone;
-	   ::PostMessage( pThis->m_hWndForAddMappingThread, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
+	   ::PostMessage( pThis->m_hWndForAddMappingThread, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, lp );
 
 	   pThis->m_pAddMappingThread = NULL;
 	   pThis->m_hWndForAddMappingThread = NULL;
@@ -1274,7 +1275,7 @@ namespace android
 
 
    HRESULT port_forward::PopulateDeviceInfoContainer( IUPnPDevice* piDevice,
-				   port_forward::device & deviceInfo, oswindow hWnd /* =NULL */ )
+				   port_forward::device & deviceInfo, oswindow hWnd /* =NULL */ /* )
    {
 
 	   HRESULT result=S_OK, hrReturn=S_OK;
@@ -1317,7 +1318,7 @@ namespace android
 	   }
 
 	   if ( hWnd!=NULL )
-		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, (LPARAM)(lp += addend) );
+		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, (LPARAM)(lp += addend) );
 
 
 	   // Get Description
@@ -1333,11 +1334,11 @@ namespace android
 
 	   if ( hWnd!=NULL )
       {
-		   BOOL b = ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, (LPARAM)(lp += addend) );
+		   WINBOOL b = ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, (LPARAM)(lp += addend) );
          if(!b)
          {
             DWORD dw = ::GetLastError();
-            ::MessageBoxA(NULL, ::ca2::str::itoa(dw), ::ca2::str::itoa(dw), 0);
+            ::MessageBoxA(NULL, ::ca2::str::from(dw), ::ca2::str::from(dw), 0);
          }
       }
 
@@ -1354,7 +1355,7 @@ namespace android
 	   }
 
 	   if ( hWnd!=NULL )
-		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, (LPARAM)(lp += addend) );
+		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, (LPARAM)(lp += addend) );
 
 
 	   // Get HasChildren
@@ -1368,7 +1369,7 @@ namespace android
 	   }
 
 	   if ( hWnd!=NULL )
-		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, (LPARAM)(lp += addend) );
+		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, (LPARAM)(lp += addend) );
 
 
 	   // Get IconURL
@@ -1389,7 +1390,7 @@ namespace android
 	   bStrMime = NULL;
 
 	   if ( hWnd!=NULL )
-		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, (LPARAM)(lp += addend) );
+		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, (LPARAM)(lp += addend) );
 
 
 	   // Get IsRootDevice
@@ -1403,7 +1404,7 @@ namespace android
 	   }
 
 	   if ( hWnd!=NULL )
-		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, (LPARAM)(lp += addend) );
+		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, (LPARAM)(lp += addend) );
 
 
 	   // Get ManufacturerName
@@ -1418,7 +1419,7 @@ namespace android
 	   }
 
 	   if ( hWnd!=NULL )
-		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, (LPARAM)(lp += addend) );
+		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, (LPARAM)(lp += addend) );
 
 
 	   // Get ManufacturerURL
@@ -1433,7 +1434,7 @@ namespace android
 	   }
 
 	   if ( hWnd!=NULL )
-		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, (LPARAM)(lp += addend) );
+		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, (LPARAM)(lp += addend) );
 
 
 	   // Get ModelName
@@ -1448,7 +1449,7 @@ namespace android
 	   }
 
 	   if ( hWnd!=NULL )
-		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, (LPARAM)(lp += addend) );
+		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, (LPARAM)(lp += addend) );
 
 
 	   // Get ModelNumber
@@ -1463,7 +1464,7 @@ namespace android
 	   }
 
 	   if ( hWnd!=NULL )
-		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, (LPARAM)(lp += addend) );
+		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, (LPARAM)(lp += addend) );
 
 
 	   // Get ModelURL
@@ -1478,7 +1479,7 @@ namespace android
 	   }
 
 	   if ( hWnd!=NULL )
-		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, (LPARAM)(lp += addend) );
+		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, (LPARAM)(lp += addend) );
 
 
 	   // Get ParentDevice.  Actually, we will only get the FriendlyName of the parent device,
@@ -1508,7 +1509,7 @@ namespace android
 	   }
 
 	   if ( hWnd!=NULL )
-		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, (LPARAM)(lp += addend) );
+		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, (LPARAM)(lp += addend) );
 
 
 	   // Get PresentationURL
@@ -1523,7 +1524,7 @@ namespace android
 	   }
 
 	   if ( hWnd!=NULL )
-		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, (LPARAM)(lp += addend) );
+		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, (LPARAM)(lp += addend) );
 
 
 	   // Get RootDevice.  Actually, we will only get the FriendlyName of the root device,
@@ -1551,7 +1552,7 @@ namespace android
 	   }
 
 	   if ( hWnd!=NULL )
-		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, (LPARAM)(lp += addend) );
+		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, (LPARAM)(lp += addend) );
 
 
 
@@ -1567,7 +1568,7 @@ namespace android
 	   }
 
 	   if ( hWnd!=NULL )
-		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, (LPARAM)(lp += addend) );
+		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, (LPARAM)(lp += addend) );
 
 
 	   // Get Services.  Actually, we will NOT enumerate through all the services that are contained
@@ -1598,7 +1599,7 @@ namespace android
 	   }
 
 	   if ( hWnd!=NULL )
-		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, (LPARAM)(lp += addend) );
+		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, (LPARAM)(lp += addend) );
 
 
 	   // Get Type
@@ -1613,7 +1614,7 @@ namespace android
 	   }
 
 	   if ( hWnd!=NULL )
-		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, (LPARAM)(lp += addend) );
+		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, (LPARAM)(lp += addend) );
 
 
 	   // Get UniqueDeviceName
@@ -1628,7 +1629,7 @@ namespace android
 	   }
 
 	   if ( hWnd!=NULL )
-		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, (LPARAM)(lp += addend) );
+		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, (LPARAM)(lp += addend) );
 
 
 	   // Get UPC
@@ -1643,7 +1644,7 @@ namespace android
 	   }
 
 	   if ( hWnd!=NULL )
-		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, (LPARAM)(lp += addend) );
+		   ::PostMessage( hWnd, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION, wp, (LPARAM)(lp += addend) );
 
 	   return hrReturn;
    }
@@ -1658,12 +1659,12 @@ namespace android
 
 
 
-   HRESULT STDMETHODCALLTYPE port_forward::IDerivedNATNumberOfEntriesCallback::QueryInterface(REFIID iid, void ** ppvObject)
+   HRESULT STDMETHODcaLLTYPE port_forward::IDerivedNATNumberOfEntriescallback::QueryInterface(REFIID iid, void ** ppvObject)
    {
 	   HRESULT hr = S_OK;
 	   *ppvObject = NULL;
 
-	   if ( iid == IID_IUnknown ||	iid == IID_INATNumberOfEntriesCallback )
+	   if ( iid == IID_IUnknown ||	iid == IID_INATNumberOfEntriescallback )
 	   {
 		   *ppvObject = this;
 		   AddRef();
@@ -1678,12 +1679,12 @@ namespace android
    }
 
 
-   HRESULT STDMETHODCALLTYPE port_forward::IDerivedNATExternalIPAddressCallback::QueryInterface(REFIID iid, void ** ppvObject)
+   HRESULT STDMETHODcaLLTYPE port_forward::IDerivedNATExternalIPAddresscallback::QueryInterface(REFIID iid, void ** ppvObject)
    {
 	   HRESULT hr = S_OK;
 	   *ppvObject = NULL;
 
-	   if ( iid == IID_IUnknown ||	iid == IID_INATExternalIPAddressCallback )
+	   if ( iid == IID_IUnknown ||	iid == IID_INATExternalIPAddresscallback )
 	   {
 		   *ppvObject = this;
 		   AddRef();
@@ -1737,7 +1738,7 @@ namespace android
 	   {
 	   }
    }
-
+*/
 
 } // namespace android
 

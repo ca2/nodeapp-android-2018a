@@ -1,379 +1,1324 @@
 #include "framework.h"
 
-#include "WinFile.h"
-#include "WindowsShell.h"
+#include <fcntl.h>
+#include <unistd.h>
+#include <dlfcn.h>
+#include <link.h>
+#include <ctype.h>
 
+//#elif defined(MACOS)
+//#include <dlfcn.h>
+//#endif
 
-__STATIC inline BOOL IsDirSep(WCHAR ch)
+__STATIC inline bool IsDirSep(WCHAR ch)
 {
+
    return (ch == '\\' || ch == '/');
+
 }
 
 
-WinFile::WinFile(::ca2::application * papp) :
-   ca2(papp)
+namespace android
 {
-   m_hFile = (UINT) hFileNull;
-   m_bCloseOnDelete = FALSE;
-}
 
-WinFile::WinFile(::ca2::application * papp, int hFile) :
-   ca2(papp)
-{
-   m_hFile = hFile;
-   m_bCloseOnDelete = FALSE;
-}
 
-WinFile::WinFile(::ca2::application * papp, const char * lpszFileName, UINT nOpenFlags) :
-   ca2(papp)
-{
-   ASSERT(AfxIsValidString(lpszFileName));
-
-   ex1::file_exception_sp e(get_app());
-   if(!open(lpszFileName, nOpenFlags, &e))
-      //xxx vfxThrowFileException(e);
-      throw &e;
-}
-
-WinFile::~WinFile()
-{
-   if (m_hFile != (UINT)hFileNull && m_bCloseOnDelete)
-      close();
-}
-
-ex1::file * WinFile::Duplicate() const
-{
-   ASSERT_VALID(this);
-   ASSERT(m_hFile != (UINT)hFileNull);
-
-   WinFile* pFile = new WinFile(get_app(), hFileNull);
-   HANDLE hFile;
-   if (!::DuplicateHandle(::GetCurrentProcess(), (HANDLE)m_hFile,
-      ::GetCurrentProcess(), &hFile, 0, FALSE, DUPLICATE_SAME_ACCESS))
+   file::file(sp(::ca2::application) papp) :
+      ca2(papp)
    {
-      delete pFile;
-//xxx      Ex1WinFileException::ThrowOsError(get_app(), (LONG)::GetLastError());
-      throw 0;
-   }
-   pFile->m_hFile = (UINT)hFile;
-   ASSERT(pFile->m_hFile != (UINT)hFileNull);
-   pFile->m_bCloseOnDelete = m_bCloseOnDelete;
-   return pFile;
-}
 
-BOOL WinFile::open(const char * lpszFileName, UINT nOpenFlags, ex1::file_exception_sp* pException)
-{
-   if (m_hFile != (UINT)hFileNull)
-      close();
-   ASSERT_VALID(this);
-   ASSERT(AfxIsValidString(lpszFileName));
-   ASSERT(pException == NULL ||
-      fx_is_valid_address(pException, sizeof(ex1::file_exception_sp)));
-   ASSERT((nOpenFlags & type_text) == 0);   // text mode not supported
+      m_iFile = (UINT) hFileNull;
 
-   // WinFile objects are always binary and CreateFile does not need flag
-   nOpenFlags &= ~(UINT)type_binary;
+      m_bCloseOnDelete = TRUE;
 
-
-   if(nOpenFlags & ex1::file::defer_create_directory)
-   {
-      System.dir_mk(System.dir_name(lpszFileName));
    }
 
-   m_bCloseOnDelete = FALSE;
-   m_hFile = (UINT)hFileNull;
-   m_strFileName.Empty();
+   file::file(sp(::ca2::application) papp, int32_t hFile) :
+      ca2(papp)
+   {
 
-   try
-   {
-      System.file_system().FullPath(m_strFileName, lpszFileName);
-   }
-   catch(...)
-   {
-      return FALSE;
+      m_iFile = hFile;
+
+      m_bCloseOnDelete = TRUE;
+
    }
 
-   ASSERT(sizeof(HANDLE) == sizeof(UINT_PTR));
-   ASSERT(shareCompat == 0);
-
-   // ::collection::map read/write mode
-   ASSERT((mode_read|mode_write|mode_read_write) == 3);
-   DWORD dwAccess = 0;
-   switch (nOpenFlags & 3)
+   file::file(sp(::ca2::application) papp, const char * lpszFileName, UINT nOpenFlags) :
+      ca2(papp)
    {
-   case mode_read:
-      dwAccess = GENERIC_READ;
-      break;
-   case mode_write:
-      dwAccess = GENERIC_WRITE;
-      break;
-   case mode_read_write:
-      dwAccess = GENERIC_READ|GENERIC_WRITE;
-      break;
-   default:
-      dwAccess = GENERIC_READ;
-      break;
+
+      ASSERT(__is_valid_string(lpszFileName));
+
+      if(!open(lpszFileName, nOpenFlags))
+         throw ::ca2::file_exception(papp, ::ca2::file_exception::none, -1, lpszFileName);
+
    }
 
-   // ::collection::map share mode
-   DWORD dwShareMode = 0;
-   switch (nOpenFlags & 0x70)    // ::collection::map compatibility mode to exclusive
+   file::~file()
    {
-   default:
-      ASSERT(FALSE);  // invalid share mode?
-   case shareCompat:
-   case shareExclusive:
-      dwShareMode = 0;
-      break;
-   case shareDenyWrite:
-      dwShareMode = FILE_SHARE_READ;
-      break;
-   case shareDenyRead:
-      dwShareMode = FILE_SHARE_WRITE;
-      break;
-   case shareDenyNone:
-      dwShareMode = FILE_SHARE_WRITE|FILE_SHARE_READ;
-      break;
+
+      if (m_iFile != (UINT)hFileNull && m_bCloseOnDelete)
+         close();
+
    }
 
-   // Note: type_text and type_binary are used in derived classes only.
-
-   // ::collection::map modeNoInherit flag
-   SECURITY_ATTRIBUTES sa;
-   sa.nLength = sizeof(sa);
-   sa.lpSecurityDescriptor = NULL;
-   sa.bInheritHandle = (nOpenFlags & modeNoInherit) == 0;
-
-   // ::collection::map creation flags
-   DWORD dwCreateFlag;
-   if (nOpenFlags & mode_create)
+   sp(::ca2::file) file::Duplicate() const
    {
-      if (nOpenFlags & modeNoTruncate)
-         dwCreateFlag = OPEN_ALWAYS;
-      else
-         dwCreateFlag = CREATE_ALWAYS;
+      ASSERT_VALID(this);
+      ASSERT(m_iFile != (UINT)hFileNull);
+
+      int32_t iNew = dup(m_iFile);
+
+      if(iNew == -1)
+         return NULL;
+
+      file* pFile = new file(get_app(), iNew);
+      pFile->m_iFile = (UINT)iNew;
+      ASSERT(pFile->m_iFile != (UINT)hFileNull);
+      pFile->m_bCloseOnDelete = m_bCloseOnDelete;
+      return pFile;
    }
-   else
-      dwCreateFlag = OPEN_EXISTING;
 
-   // attempt file creation
-   HANDLE hFile = WindowsShell::CreateFile(::ca2::international::utf8_to_unicode(m_strFileName), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
-   if (hFile == INVALID_HANDLE_VALUE)
+   bool file::open(const char * lpszFileName, UINT nOpenFlags)
    {
-      if (pException != NULL)
+
+      if (m_iFile != (UINT)hFileNull)
+         close();
+
+      ASSERT_VALID(this);
+      ASSERT(__is_valid_string(lpszFileName));
+      ASSERT((nOpenFlags & type_text) == 0);   // text mode not supported
+
+      // file objects are always binary and CreateFile does not need flag
+      nOpenFlags &= ~(UINT)type_binary;
+
+
+      if(nOpenFlags & ::ca2::file::defer_create_directory)
       {
-         WinFileException * pfe = dynamic_cast < WinFileException * > (pException->m_p);
-         if(pfe != NULL)
+         System.dir_mk(System.dir_name(lpszFileName));
+      }
+
+      m_bCloseOnDelete = FALSE;
+      m_iFile = (UINT)hFileNull;
+      m_strFileName.Empty();
+
+      m_strFileName     = lpszFileName;
+      m_wstrFileName    = ::ca2::international::utf8_to_unicode(m_strFileName);
+
+      ASSERT(sizeof(HANDLE) == sizeof(uint_ptr));
+      ASSERT(shareCompat == 0);
+
+      // ::collection::map read/write mode
+      ASSERT((mode_read|mode_write|mode_read_write) == 3);
+      DWORD dwFlags =  0;
+      switch (nOpenFlags & 3)
+      {
+      case mode_read:
+         dwFlags |=  O_RDONLY;
+         break;
+      case mode_write:
+         dwFlags |=  O_WRONLY ;
+         break;
+      case mode_read_write:
+         dwFlags |=  O_RDWR;
+         break;
+      default:
+         dwFlags |=  O_RDONLY;
+         break;
+      }
+
+      // ::collection::map share mode
+      DWORD dwShareMode = 0;
+      switch (nOpenFlags & 0x70)    // ::collection::map compatibility mode to exclusive
+      {
+      default:
+         ASSERT(FALSE);  // invalid share mode?
+      case shareCompat:
+      case shareExclusive:
+         //dwShareMode = 0;
+         break;
+      case shareDenyWrite:
+         //dwFlags |= O_SHLOCK;
+         break;
+      case shareDenyRead:
+//         dwFlags |= O_EXLOCK;
+         break;
+      case shareDenyNone:
+         //dwFlags = FILE_SHARE_WRITE|FILE_SHARE_READ;
+         break;
+      }
+
+      if (nOpenFlags & mode_create)
+      {
+         dwFlags |= O_CREAT;
+         if(!(nOpenFlags & modeNoTruncate))
+            dwFlags |= O_TRUNC;
+      }
+
+      DWORD dwPermission = 0;
+
+      dwPermission |= S_IRUSR | S_IWUSR | S_IXUSR;
+      dwPermission |= S_IRGRP | S_IWGRP | S_IXGRP;
+
+      // attempt file creation
+      //HANDLE hFile = shell::CreateFile(::ca2::international::utf8_to_unicode(m_strFileName), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
+      int32_t hFile = ::open(m_strFileName, dwFlags, dwPermission); //::open(m_strFileName, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
+      if(hFile == -1)
+      {
+         int iError = errno;
+         DWORD dwLastError = ::GetLastError();
+
+         if(dwLastError != ERROR_FILE_NOT_FOUND && dwLastError != ERROR_PATH_NOT_FOUND)
          {
-            pfe->m_lOsError = ::GetLastError();
-            pfe->m_cause = WinFileException::OsErrorToException(pfe->m_lOsError);
+            /*         if (pException != NULL)
+            {
+            pException->create(get_app());
+            ::ca2::file_exception * pfe = dynamic_cast < ::ca2::file_exception * > (pException->m_p);
+            if(pfe != NULL)
+            {
+            pfe->m_lOsError = dwLastError;
+            pfe->m_cause = ::win::file_exception::OsErrorToException(pfe->m_lOsError);
             pfe->m_strFileName = lpszFileName;
+            }
+            return FALSE;
+            }
+            else
+            {*/
+
+
+            vfxThrowFileException(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
+
+            //}
+
          }
+
+         /*try
+         {
+            m_papp->m_psystem->m_spfilesystem.m_p->FullPath(m_wstrFileName, m_wstrFileName);
+         }
+         catch(...)
+         {
+            return FALSE;
+         }
+
+         m_strFileName = ::ca2::international::unicode_to_utf8(m_wstrFileName);
+
+         hFile = ::open(m_strFileName, nOpenFlags);*/
+
+         if (hFile == -1)
+         {
+            /*if (pException != NULL)
+            {
+            pException->create(get_app());
+            ::ca2::file_exception * pfe = dynamic_cast < ::ca2::file_exception * > (pException->m_p);
+            if(pfe != NULL)
+            {
+            pfe->m_lOsError = ::GetLastError();
+            pfe->m_cause = ::win::file_exception::OsErrorToException(pfe->m_lOsError);
+            pfe->m_strFileName = lpszFileName;
+            }
+            return FALSE;
+            }
+            else
+            {*/
+
+
+            DWORD dwLastError = ::GetLastError();
+            vfxThrowFileException(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
+
+
+            //}
+
+         }
+
+      }
+
+      m_iFile = (int32_t)hFile;
+
+      m_bCloseOnDelete = TRUE;
+
+      return TRUE;
+   }
+
+   ::primitive::memory_size file::read(void * lpBuf, ::primitive::memory_size nCount)
+   {
+      ASSERT_VALID(this);
+      ASSERT(m_iFile != (UINT)hFileNull);
+
+      if (nCount == 0)
+         return 0;   // avoid Win32 "null-read"
+
+      ASSERT(lpBuf != NULL);
+      ASSERT(__is_valid_address(lpBuf, nCount));
+
+      ::primitive::memory_position pos = 0;
+      ::primitive::memory_size sizeRead = 0;
+      ::primitive::memory_size readNow;
+      while(nCount > 0)
+      {
+         readNow = (size_t) min(0x7fffffff, nCount);
+         int32_t iRead = ::read(m_iFile, &((byte *)lpBuf)[pos], readNow);
+         if(iRead < 0)
+         {
+            int32_t iError = errno;
+            if(iError == EAGAIN)
+            {
+
+            }
+            file_exception::ThrowOsError(get_app(), errno);
+         }
+         else if(iRead == 0)
+         {
+            break;
+         }
+
+         nCount -= iRead;
+         pos += iRead;
+         sizeRead += iRead;
+      }
+
+      return sizeRead;
+   }
+
+   void file::write(const void * lpBuf, ::primitive::memory_size nCount)
+   {
+      ASSERT_VALID(this);
+      ASSERT(m_iFile != (UINT)hFileNull);
+
+      if (nCount == 0)
+         return;     // avoid Win32 "null-write" option
+
+      ASSERT(lpBuf != NULL);
+      ASSERT(__is_valid_address(lpBuf, nCount, FALSE));
+
+      ::primitive::memory_position pos = 0;
+      while(nCount > 0)
+      {
+         int32_t iWrite = ::write(m_iFile, &((const byte *)lpBuf)[pos], (size_t) min(0x7fffffff, nCount));
+         if(iWrite < 0)
+            file_exception::ThrowOsError(get_app(), (LONG)::GetLastError(), m_strFileName);
+         nCount -= iWrite;
+         pos += iWrite;
+      }
+
+      // Win32s will not return an error all the time (usually DISK_FULL)
+      //if (iWrite != nCount)
+         //vfxThrowFileException(get_app(), ::ca2::file_exception::diskFull, -1, m_strFileName);
+   }
+
+   file_position file::seek(file_offset lOff, ::ca2::e_seek nFrom)
+   {
+
+      if(m_iFile == (UINT)hFileNull)
+         file_exception::ThrowOsError(get_app(), (LONG)0);
+
+      ASSERT_VALID(this);
+      ASSERT(m_iFile != (UINT)hFileNull);
+      ASSERT(nFrom == ::ca2::seek_begin || nFrom == ::ca2::seek_end || nFrom == ::ca2::seek_current);
+      ASSERT(::ca2::seek_begin == SEEK_SET && ::ca2::seek_end == SEEK_END && ::ca2::seek_current == SEEK_CUR);
+
+      LONG lLoOffset = lOff & 0xffffffff;
+      //LONG lHiOffset = (lOff >> 32) & 0xffffffff;
+
+      file_position posNew = ::lseek64(m_iFile, lLoOffset, (DWORD)nFrom);
+//      posNew |= ((file_position) lHiOffset) << 32;
+      if(posNew  == (file_position)-1)
+         file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
+
+      return posNew;
+   }
+
+   file_position file::get_position() const
+   {
+      ASSERT_VALID(this);
+      ASSERT(m_iFile != (UINT)hFileNull);
+
+      LONG lLoOffset = 0;
+//      LONG lHiOffset = 0;
+
+      file_position pos = ::lseek64(m_iFile, lLoOffset, SEEK_CUR);
+  //    pos |= ((file_position)lHiOffset) << 32;
+      if(pos  == (file_position)-1)
+         file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
+
+      return pos;
+   }
+
+   void file::Flush()
+   {
+
+/*      ::open
+      ::read
+      ::write
+
+      access the system directly no buffering : direct I/O - efficient for large writes - innefficient for lots of single byte writes
+
+      */
+
+      /*ASSERT_VALID(this);
+
+    /*  if (m_iFile == (UINT)hFileNull)
+         return;
+
+      if (!::FlushFileBuffers((HANDLE)m_iFile))
+         file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());*/
+   }
+
+   void file::close()
+   {
+      ASSERT_VALID(this);
+      ASSERT(m_iFile != (UINT)hFileNull);
+
+      bool bError = FALSE;
+      if (m_iFile != (UINT)hFileNull)
+         bError = ::close(m_iFile) == -1;
+
+      m_iFile = (UINT) hFileNull;
+      m_bCloseOnDelete = FALSE;
+      m_strFileName.Empty();
+
+      if (bError)
+         file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
+   }
+
+   void file::Abort()
+   {
+      ASSERT_VALID(this);
+      if (m_iFile != (UINT)hFileNull)
+      {
+         // close but ignore errors
+         ::close(m_iFile);
+         m_iFile = (UINT)hFileNull;
+      }
+      m_strFileName.Empty();
+   }
+
+   void file::LockRange(file_position dwPos, file_size dwCount)
+   {
+      ASSERT_VALID(this);
+      ASSERT(m_iFile != (UINT)hFileNull);
+
+      /*if (!::LockFile((HANDLE)m_iFile, LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
+         file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());*/
+   }
+
+   void file::UnlockRange(file_position dwPos, file_size dwCount)
+   {
+      ASSERT_VALID(this);
+      ASSERT(m_iFile != (UINT)hFileNull);
+
+/*      if (!::UnlockFile((HANDLE)m_iFile,  LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
+         file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());*/
+   }
+
+   void file::set_length(file_size dwNewLen)
+   {
+      ASSERT_VALID(this);
+      ASSERT(m_iFile != (UINT)hFileNull);
+
+      seek((LONG)dwNewLen, (::ca2::e_seek)::ca2::seek_begin);
+
+#ifdef __LP64
+      if (!::ftruncate64(m_iFile, dwNewLen))
+         file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
+#else
+      if (!::ftruncate(m_iFile, dwNewLen))
+         file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
+#endif
+   }
+
+   file_size file::get_length() const
+   {
+      ASSERT_VALID(this);
+
+      file_position dwLen, dwCur;
+
+      // seek is a non const operation
+      file* pFile = (file*)this;
+      dwCur = pFile->seek(0L, ::ca2::seek_current);
+      dwLen = pFile->seek_to_end();
+      VERIFY(dwCur == (uint64_t)pFile->seek((file_offset) dwCur, ::ca2::seek_begin));
+
+      return (file_size) dwLen;
+   }
+
+   // file does not support direct buffering (CMemFile does)
+   uint64_t file::GetBufferPtr(UINT nCommand, uint64_t /*nCount*/,
+      void ** /*ppBufStart*/, void ** /*ppBufMax*/)
+   {
+      ASSERT(nCommand == bufferCheck);
+      UNUSED(nCommand);    // not used in retail build
+
+      return 0;   // no support
+   }
+
+   /*
+   void PASCAL file::Rename(const char * lpszOldName, const char * lpszNewName)
+   {
+   if (!::MoveFile((LPTSTR)lpszOldName, (LPTSTR)lpszNewName))
+   ::win::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
+   }
+
+   void PASCAL file::remove(const char * lpszFileName)
+   {
+   if (!::DeleteFile((LPTSTR)lpszFileName))
+   ::win::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
+   }
+   */
+
+
+
+
+
+   /////////////////////////////////////////////////////////////////////////////
+   // file diagnostics
+
+
+   void file::assert_valid() const
+   {
+      ::ca2::object::assert_valid();
+      // we permit the descriptor m_iFile to be any value for derived classes
+   }
+
+   void file::dump(dump_context & dumpcontext) const
+   {
+      ::ca2::object::dump(dumpcontext);
+
+      dumpcontext << "with handle " << (UINT)m_iFile;
+      dumpcontext << " and name \"" << m_strFileName << "\"";
+      dumpcontext << "\n";
+   }
+
+
+
+
+   /////////////////////////////////////////////////////////////////////////////
+   // FileException helpers
+
+#ifdef DEBUG
+   static const char * rgszFileExceptioncause[] =
+   {
+      "none",
+      "generic",
+      "fileNotFound",
+      "badPath",
+      "tooManyOpenFiles",
+      "accessDenied",
+      "invalidFile",
+      "removeCurrentDir",
+      "directoryFull",
+      "badSeek",
+      "hardIO",
+      "sharingViolation",
+      "lockViolation",
+      "diskFull",
+      "endOfFile",
+   };
+   static const char szUnknown[] = "unknown";
+#endif
+
+
+   /*void CLASS_DECL_ANDROID vfxThrowFileException(int32_t cause, LONG lOsError,
+   //   const char * lpszFileName /* == NULL */
+   /*{
+   #ifdef DEBUG
+   const char * lpsz;
+   if (cause >= 0 && cause < _countof(rgszFileExceptioncause))
+   lpsz = rgszFileExceptioncause[cause];
+   else
+   lpsz = szUnknown;
+   TRACE3("file exception: %hs, file %W, App error information = %ld.\n",
+   lpsz, (lpszFileName == NULL) ? L"Unknown" : lpszFileName, lOsError);
+   #endif
+   THROW(new FileException(cause, lOsError, lpszFileName));
+   }*/
+
+   /* Error Codes */
+
+
+   /////////////////////////////////////////////////////////////////////////////
+   // file name handlers
+
+   string file::GetFileName() const
+   {
+      ASSERT_VALID(this);
+
+      ::ca2::file_status status;
+      GetStatus(status);
+      return System.file().name_(status.m_strFullName);
+   }
+
+   string file::GetFileTitle() const
+   {
+      ASSERT_VALID(this);
+
+      ::ca2::file_status status;
+      GetStatus(status);
+      return System.file().title_(status.m_strFullName);
+   }
+
+   string file::GetFilePath() const
+   {
+      ASSERT_VALID(this);
+
+      ::ca2::file_status status;
+      GetStatus(status);
+      return status.m_strFullName;
+   }
+
+
+
+
+   /////////////////////////////////////////////////////////////////////////////
+   // FileException
+
+
+
+
+   void PASCAL file_exception::ThrowOsError(sp(::ca2::application) papp, LONG lOsError, const char * lpszFileName /* = NULL */)
+   {
+      if (lOsError != 0)
+         vfxThrowFileException(papp, file_exception::OsErrorToException(lOsError), lOsError, lpszFileName);
+   }
+
+   void PASCAL file_exception::ThrowErrno(sp(::ca2::application) papp, int32_t nErrno, const char * lpszFileName /* = NULL */)
+   {
+      if (nErrno != 0)
+         vfxThrowFileException(papp, file_exception::ErrnoToException(nErrno), errno, lpszFileName);
+   }
+
+
+
+   int32_t PASCAL file_exception::OsErrorToException(LONG lOsErr)
+   {
+      // NT Error codes
+      switch ((UINT)lOsErr)
+      {
+      case NO_ERROR:
+         return ::ca2::file_exception::none;
+      case ERROR_FILE_NOT_FOUND:
+         return ::ca2::file_exception::fileNotFound;
+      case ERROR_PATH_NOT_FOUND:
+         return ::ca2::file_exception::badPath;
+      case ERROR_TOO_MANY_OPEN_FILES:
+         return ::ca2::file_exception::tooManyOpenFiles;
+      case ERROR_ACCESS_DENIED:
+         return ::ca2::file_exception::accessDenied;
+      case ERROR_INVALID_HANDLE:
+         return ::ca2::file_exception::fileNotFound;
+      case ERROR_BAD_FORMAT:
+         return ::ca2::file_exception::invalidFile;
+      case ERROR_INVALID_ACCESS:
+         return ::ca2::file_exception::accessDenied;
+      case ERROR_INVALID_DRIVE:
+         return ::ca2::file_exception::badPath;
+      case ERROR_CURRENT_DIRECTORY:
+         return ::ca2::file_exception::removeCurrentDir;
+      case ERROR_NOT_SAME_DEVICE:
+         return ::ca2::file_exception::badPath;
+      case ERROR_NO_MORE_FILES:
+         return ::ca2::file_exception::fileNotFound;
+      case ERROR_WRITE_PROTECT:
+         return ::ca2::file_exception::accessDenied;
+      case ERROR_BAD_UNIT:
+         return ::ca2::file_exception::hardIO;
+      case ERROR_NOT_READY:
+         return ::ca2::file_exception::hardIO;
+      case ERROR_BAD_COMMAND:
+         return ::ca2::file_exception::hardIO;
+      case ERROR_CRC:
+         return ::ca2::file_exception::hardIO;
+      case ERROR_BAD_LENGTH:
+         return ::ca2::file_exception::badSeek;
+      case ERROR_SEEK:
+         return ::ca2::file_exception::badSeek;
+      case ERROR_NOT_DOS_DISK:
+         return ::ca2::file_exception::invalidFile;
+      case ERROR_SECTOR_NOT_FOUND:
+         return ::ca2::file_exception::badSeek;
+      case ERROR_WRITE_FAULT:
+         return ::ca2::file_exception::accessDenied;
+      case ERROR_READ_FAULT:
+         return ::ca2::file_exception::badSeek;
+      case ERROR_SHARING_VIOLATION:
+         return ::ca2::file_exception::sharingViolation;
+      case ERROR_LOCK_VIOLATION:
+         return ::ca2::file_exception::lockViolation;
+      case ERROR_WRONG_DISK:
+         return ::ca2::file_exception::badPath;
+      case ERROR_SHARING_BUFFER_EXCEEDED:
+         return ::ca2::file_exception::tooManyOpenFiles;
+      case ERROR_HANDLE_EOF:
+         return ::ca2::file_exception::endOfFile;
+      case ERROR_HANDLE_DISK_FULL:
+         return ::ca2::file_exception::diskFull;
+      case ERROR_DUP_NAME:
+         return ::ca2::file_exception::badPath;
+      case ERROR_BAD_NETPATH:
+         return ::ca2::file_exception::badPath;
+      case ERROR_NETWORK_BUSY:
+         return ::ca2::file_exception::accessDenied;
+      case ERROR_DEV_NOT_EXIST:
+         return ::ca2::file_exception::badPath;
+      case ERROR_ADAP_HDW_ERR:
+         return ::ca2::file_exception::hardIO;
+      case ERROR_BAD_NET_RESP:
+         return ::ca2::file_exception::accessDenied;
+      case ERROR_UNEXP_NET_ERR:
+         return ::ca2::file_exception::hardIO;
+      case ERROR_BAD_REM_ADAP:
+         return ::ca2::file_exception::invalidFile;
+      case ERROR_NO_SPOOL_SPACE:
+         return ::ca2::file_exception::directoryFull;
+      case ERROR_NETNAME_DELETED:
+         return ::ca2::file_exception::accessDenied;
+      case ERROR_NETWORK_ACCESS_DENIED:
+         return ::ca2::file_exception::accessDenied;
+      case ERROR_BAD_DEV_TYPE:
+         return ::ca2::file_exception::invalidFile;
+      case ERROR_BAD_NET_NAME:
+         return ::ca2::file_exception::badPath;
+      case ERROR_TOO_MANY_NAMES:
+         return ::ca2::file_exception::tooManyOpenFiles;
+      case ERROR_SHARING_PAUSED:
+         return ::ca2::file_exception::badPath;
+      case ERROR_REQ_NOT_ACCEP:
+         return ::ca2::file_exception::accessDenied;
+      case ERROR_FILE_EXISTS:
+         return ::ca2::file_exception::accessDenied;
+      case ERROR_caNNOT_MAKE:
+         return ::ca2::file_exception::accessDenied;
+      case ERROR_ALREADY_ASSIGNED:
+         return ::ca2::file_exception::badPath;
+      case ERROR_INVALID_PASSWORD:
+         return ::ca2::file_exception::accessDenied;
+      case ERROR_NET_WRITE_FAULT:
+         return ::ca2::file_exception::hardIO;
+      case ERROR_DISK_CHANGE:
+         return ::ca2::file_exception::fileNotFound;
+      case ERROR_DRIVE_LOCKED:
+         return ::ca2::file_exception::lockViolation;
+      case ERROR_BUFFER_OVERFLOW:
+         return ::ca2::file_exception::badPath;
+      case ERROR_DISK_FULL:
+         return ::ca2::file_exception::diskFull;
+      case ERROR_NO_MORE_SEARCH_HANDLES:
+         return ::ca2::file_exception::tooManyOpenFiles;
+      case ERROR_INVALID_TARGET_HANDLE:
+         return ::ca2::file_exception::invalidFile;
+      case ERROR_INVALID_caTEGORY:
+         return ::ca2::file_exception::hardIO;
+      case ERROR_INVALID_NAME:
+         return ::ca2::file_exception::badPath;
+      case ERROR_INVALID_LEVEL:
+         return ::ca2::file_exception::badPath;
+      case ERROR_NO_VOLUME_LABEL:
+         return ::ca2::file_exception::badPath;
+      case ERROR_NEGATIVE_SEEK:
+         return ::ca2::file_exception::badSeek;
+      case ERROR_SEEK_ON_DEVICE:
+         return ::ca2::file_exception::badSeek;
+      case ERROR_DIR_NOT_ROOT:
+         return ::ca2::file_exception::badPath;
+      case ERROR_DIR_NOT_EMPTY:
+         return ::ca2::file_exception::removeCurrentDir;
+      case ERROR_LABEL_TOO_LONG:
+         return ::ca2::file_exception::badPath;
+      case ERROR_BAD_PATHNAME:
+         return ::ca2::file_exception::badPath;
+      case ERROR_LOCK_FAILED:
+         return ::ca2::file_exception::lockViolation;
+      case ERROR_BUSY:
+         return ::ca2::file_exception::accessDenied;
+      case ERROR_INVALID_ORDINAL:
+         return ::ca2::file_exception::invalidFile;
+      case ERROR_ALREADY_EXISTS:
+         return ::ca2::file_exception::accessDenied;
+      case ERROR_INVALID_EXE_SIGNATURE:
+         return ::ca2::file_exception::invalidFile;
+      case ERROR_BAD_EXE_FORMAT:
+         return ::ca2::file_exception::invalidFile;
+      case ERROR_FILENAME_EXCED_RANGE:
+         return ::ca2::file_exception::badPath;
+      case ERROR_META_EXPANSION_TOO_LONG:
+         return ::ca2::file_exception::badPath;
+      case ERROR_DIRECTORY:
+         return ::ca2::file_exception::badPath;
+      case ERROR_OPERATION_ABORTED:
+         return ::ca2::file_exception::hardIO;
+      case ERROR_IO_INCOMPLETE:
+         return ::ca2::file_exception::hardIO;
+      case ERROR_IO_PENDING:
+         return ::ca2::file_exception::hardIO;
+      case ERROR_SWAPERROR:
+         return ::ca2::file_exception::accessDenied;
+      default:
+         return ::ca2::file_exception::type_generic;
+      }
+   }
+
+
+   // IMPLEMENT_DYNAMIC(WinFileException, base_exception)
+
+   /////////////////////////////////////////////////////////////////////////////
+
+
+
+
+   /////////////////////////////////////////////////////////////////////////////
+   // file Status implementation
+
+   bool file::GetStatus(::ca2::file_status& rStatus) const
+   {
+      ASSERT_VALID(this);
+
+      //memset(&rStatus, 0, sizeof(::ca2::file_status));
+
+      // copy file name from cached m_strFileName
+      rStatus.m_strFullName = m_strFileName;
+
+      if (m_iFile != hFileNull)
+      {
+         struct stat st;
+         if(fstat(m_iFile, &st) == -1)
+            return FALSE;
+         // get time ::ca2::seek_current file size
+         /*FILETIME ftCreate, ftAccess, ftModify;
+         if (!::GetFileTime((HANDLE)m_iFile, &ftCreate, &ftAccess, &ftModify))
+            return FALSE;*/
+
+         rStatus.m_size = st.st_size;
+
+         //if ((rStatus.m_size = ::GetFileSize((HANDLE)m_iFile, NULL)) == (DWORD)-1L)
+           // return FALSE;
+
+
+         //if (m_strFileName.is_empty())
+         // throw todo(get_app());
+            rStatus.m_attribute = 0;
+/*         else
+         {
+            DWORD dwAttribute = ::GetFileAttributesW(::ca2::international::utf8_to_unicode(m_strFileName));
+
+            // don't return an error for this because previous versions of ca2 API didn't
+            if (dwAttribute == 0xFFFFFFFF)
+               rStatus.m_attribute = 0;
+            else
+            {
+               rStatus.m_attribute = (BYTE) dwAttribute;
+#ifdef DEBUG
+               // ca2 API BUG: m_attribute is only a BYTE wide
+               if (dwAttribute & ~0xFF)
+                  TRACE0("Warning: file::GetStatus() returns m_attribute without high-order flags.\n");
+#endif
+            }
+         }*/
+
+         // convert times as appropriate
+         //rStatus.m_ctime = ::datetime::time(ftCreate);
+         //rStatus.m_atime = ::datetime::time(ftAccess);
+         //rStatus.m_mtime = ::datetime::time(ftModify);
+         rStatus.m_ctime = ::datetime::time(st.st_mtime);
+         rStatus.m_atime = ::datetime::time(st.st_atime);
+         rStatus.m_mtime = ::datetime::time(st.st_ctime);
+
+         if (rStatus.m_ctime.get_time() == 0)
+            rStatus.m_ctime = rStatus.m_mtime;
+
+         if (rStatus.m_atime.get_time() == 0)
+            rStatus.m_atime = rStatus.m_mtime;
+      }
+      return TRUE;
+   }
+
+
+   bool PASCAL file::GetStatus(const char * lpszFileName, ::ca2::file_status& rStatus)
+   {
+      // attempt to fully qualify path first
+      wstring wstrFullName;
+      wstring wstrFileName;
+      wstrFileName = ::ca2::international::utf8_to_unicode(lpszFileName);
+      if (!vfxFullPath(wstrFullName, wstrFileName))
+      {
+         rStatus.m_strFullName.Empty();
          return FALSE;
       }
-      else
+      ::ca2::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);
+
+      struct stat st;
+      if(stat(lpszFileName, &st) == -1)
+         return false;
+      //if (hFind == INVALID_HANDLE_VALUE)
+        // return FALSE;
+      //VERIFY(FindClose(hFind));
+
+      // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
+      //rStatus.m_attribute = (BYTE) (findFileData.dwFileAttributes & ~FILE_ATTRIBUTE_NORMAL);
+
+      rStatus.m_attribute = 0;
+
+      // get just the low DWORD of the file size
+      //ASSERT(findFileData.nFileSizeHigh == 0);
+      //rStatus.m_size = (LONG)findFileData.nFileSizeLow;
+
+      rStatus.m_size = st.st_size;
+
+      // convert times as appropriate
+      /*rStatus.m_ctime = ::datetime::time(findFileData.ftCreationTime);
+      rStatus.m_atime = ::datetime::time(findFileData.ftLastAccessTime);
+      rStatus.m_mtime = ::datetime::time(findFileData.ftLastWriteTime);*/
+      rStatus.m_ctime = ::datetime::time(st.st_mtime);
+      rStatus.m_atime = ::datetime::time(st.st_atime);
+      rStatus.m_mtime = ::datetime::time(st.st_ctime);
+
+      if (rStatus.m_ctime.get_time() == 0)
+         rStatus.m_ctime = rStatus.m_mtime;
+
+      if (rStatus.m_atime.get_time() == 0)
+         rStatus.m_atime = rStatus.m_mtime;
+
+      return TRUE;
+   }
+
+
+   /*
+   UINT CLASS_DECL_ANDROID vfxGetFileTitle(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax)
+   {
+   ASSERT(lpszTitle == NULL ||
+   __is_valid_address(lpszTitle, _MAX_FNAME));
+   ASSERT(__is_valid_string(lpszPathName));
+
+   // use a temporary to avoid bugs in ::GetFileTitle when lpszTitle is NULL
+   WCHAR szTemp[_MAX_PATH];
+   wchar_t * lpszTemp = lpszTitle;
+   if (lpszTemp == NULL)
+   {
+   lpszTemp = szTemp;
+   nMax = _countof(szTemp);
+   }
+   if (::GetFileTitleW(lpszPathName, lpszTemp, (WORD)nMax) != 0)
+   {
+   // when ::GetFileTitle fails, use cheap imitation
+   return vfxGetFileName(lpszPathName, lpszTitle, nMax);
+   }
+   return lpszTitle == NULL ? lstrlenW(lpszTemp)+1 : 0;
+   }
+
+
+   bool vfxComparePath(const wchar_t * lpszPath1, const wchar_t * lpszPath2)
+   {
+   // use case insensitive compare as a starter
+   if (lstrcmpiW(lpszPath1, lpszPath2) != 0)
+   return FALSE;
+
+   // on non-DBCS systems, we are done
+   if (!GetSystemMetrics(SM_DBCSENABLED))
+   return TRUE;
+
+   // on DBCS systems, the file name may not actually be the same
+   // in particular, the file system is case sensitive with respect to
+   // "full width" roman characters.
+   // (ie. fullwidth-R is different from fullwidth-r).
+   int32_t nLen = lstrlenW(lpszPath1);
+   if (nLen != lstrlenW(lpszPath2))
+   return FALSE;
+   ASSERT(nLen < _MAX_PATH);
+
+   // need to get both CT_CTYPE1 and CT_CTYPE3 for each filename
+   LCID lcid = GetThreadLocale();
+   WORD aCharType11[_MAX_PATH];
+   VERIFY(GetStringTypeExW(lcid, CT_CTYPE1, lpszPath1, -1, aCharType11));
+   WORD aCharType13[_MAX_PATH];
+   VERIFY(GetStringTypeExW(lcid, CT_CTYPE3, lpszPath1, -1, aCharType13));
+   WORD aCharType21[_MAX_PATH];
+   VERIFY(GetStringTypeExW(lcid, CT_CTYPE1, lpszPath2, -1, aCharType21));
+   #ifdef DEBUG
+   WORD aCharType23[_MAX_PATH];
+   VERIFY(GetStringTypeExW(lcid, CT_CTYPE3, lpszPath2, -1, aCharType23));
+   #endif
+
+   // for every C3_FULLWIDTH character, make sure it has same C1 value
+   int32_t i = 0;
+   for (const wchar_t * lpsz = lpszPath1; *lpsz != 0; lpsz = _wcsinc(lpsz))
+   {
+   // check for C3_FULLWIDTH characters only
+   if (aCharType13[i] & C3_FULLWIDTH)
+   {
+   #ifdef DEBUG
+   ASSERT(aCharType23[i] & C3_FULLWIDTH); // should always match!
+   #endif
+
+   // if CT_CTYPE1 is different then file system considers these
+   // file names different.
+   if (aCharType11[i] != aCharType21[i])
+   return FALSE;
+   }
+   ++i; // look at next character type
+   }
+   return TRUE; // otherwise file name is truly the same
+   }
+   */
+
+   /*
+   void PASCAL file::SetStatus(const char * lpszFileName, const ::ca2::file_status& status)
+   {
+   DWORD wAttr;
+   FILETIME creationTime;
+   FILETIME lastAccessTime;
+   FILETIME lastWriteTime;
+   LPFILETIME lpCreationTime = NULL;
+   LPFILETIME lpLastAccessTime = NULL;
+   LPFILETIME lpLastWriteTime = NULL;
+
+   if ((wAttr = GetFileAttributes((LPTSTR)lpszFileName)) == (DWORD)-1L)
+   ::win::file_exception::ThrowOsError(get_app(), (LONG)GetLastError());
+
+   if ((DWORD)status.m_attribute != wAttr && (wAttr & readOnly))
+   {
+   // Set file attribute, only if currently readonly.
+   // This way we will be able to modify the time assuming the
+   // caller changed the file from readonly.
+
+   if (!SetFileAttributes((LPTSTR)lpszFileName, (DWORD)status.m_attribute))
+   ::win::file_exception::ThrowOsError(get_app(), (LONG)GetLastError());
+   }
+
+   // last modification time
+   if (status.m_mtime.get_time() != 0)
+   {
+   ::ca2::TimeToFileTime(status.m_mtime, &lastWriteTime);
+   lpLastWriteTime = &lastWriteTime;
+
+   // last access time
+   if (status.m_atime.get_time() != 0)
+   {
+   ::ca2::TimeToFileTime(status.m_atime, &lastAccessTime);
+   lpLastAccessTime = &lastAccessTime;
+   }
+
+   // create time
+   if (status.m_ctime.get_time() != 0)
+   {
+   ::ca2::TimeToFileTime(status.m_ctime, &creationTime);
+   lpCreationTime = &creationTime;
+   }
+
+   HANDLE hFile = ::CreateFile(lpszFileName, GENERIC_READ|GENERIC_WRITE,
+   FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL,
+   NULL);
+
+   if (hFile == INVALID_HANDLE_VALUE)
+   ::win::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
+
+   if (!SetFileTime((HANDLE)hFile, lpCreationTime, lpLastAccessTime, lpLastWriteTime))
+   ::win::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
+
+   if (!::CloseHandle(hFile))
+   ::win::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
+   }
+
+   if ((DWORD)status.m_attribute != wAttr && !(wAttr & readOnly))
+   {
+   if (!SetFileAttributes((LPTSTR)lpszFileName, (DWORD)status.m_attribute))
+   ::win::file_exception::ThrowOsError(get_app(), (LONG)GetLastError());
+   }
+   }
+   */
+
+   bool file::IsOpened()
+   {
+      return m_iFile != hFileNull;
+   }
+
+
+   void file::SetFilePath(const char * lpszNewName)
+   {
+      ASSERT_VALID(this);
+      ASSERT(__is_valid_string(lpszNewName));
+      m_strFileName = lpszNewName;
+   }
+
+   uint64_t file::ReadHuge(void * lpBuffer, uint64_t dwCount)
+   {
+
+      return  read(lpBuffer, dwCount);
+
+   }
+
+   void file::WriteHuge(const void * lpBuffer, uint64_t dwCount)
+   {
+
+      write(lpBuffer, dwCount);
+
+   }
+
+
+
+} // namespace win
+
+
+
+
+#define _wcsdec(_cpc1, _cpc2) ((_cpc1)>=(_cpc2) ? NULL : (_cpc2)-1)
+
+#define _wcsinc(_pc)    ((_pc)+1)
+
+
+
+
+// turn a file, relative path or other into an absolute path
+bool CLASS_DECL_ANDROID vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
+   // lpszPathOut = buffer of _MAX_PATH
+   // lpszFileIn = file, relative path or absolute path
+   // (both in ANSI character set)
+{
+
+
+   wstrFullPath = wstrPath;
+
+
+   return true;
+
+   /*
+
+   strsize dwAllocLen = wstrPath.get_length() + _MAX_PATH;
+
+   wstrFullPath.alloc(dwAllocLen);
+
+   // first, fully qualify the path name
+   wchar_t * lpszFilePart;
+
+   strsize dwLen = GetFullPathNameW(wstrPath, (DWORD) dwAllocLen, wstrFullPath, &lpszFilePart);
+
+   if(dwLen == 0)
+   {
+#ifdef DEBUG
+      //      if (lpszFileIn[0] != '\0')
+      //       TRACE1("Warning: could not parse the path '%s'.\n", lpszFileIn);
+#endif
+      wstrFullPath = wstrPath; // take it literally
+      return FALSE;
+   }
+   else if(dwLen > dwAllocLen)
+   {
+
+      dwAllocLen = dwLen + _MAX_PATH;
+
+      dwLen = GetFullPathNameW(wstrPath, (DWORD) dwAllocLen, wstrFullPath, &lpszFilePart);
+
+      if(dwLen == 0 || dwLen > dwAllocLen)
       {
-         DWORD dwLastError = ::GetLastError();
-         vfxThrowFileException(get_app(), WinFileException::OsErrorToException(dwLastError), dwLastError, m_strFileName);
+#ifdef DEBUG
+         //      if (lpszFileIn[0] != '\0')
+         //       TRACE1("Warning: could not parse the path '%s'.\n", lpszFileIn);
+#endif
+         wstrFullPath = wstrPath; // take it literally
+         return FALSE;
+      }
+
+   }
+
+   wstring wstrRoot;
+   // determine the root name of the volume
+   vfxGetRoot(wstrRoot, wstrFullPath);
+
+   // get file system information for the volume
+   DWORD dwFlags, dwDummy;
+   if (!GetVolumeInformationW(wstrRoot, NULL, 0, NULL, &dwDummy, &dwFlags, NULL, 0))
+   {
+      //      TRACE1("Warning: could not get volume information '%s'.\n", strRoot);
+      return FALSE;   // preserving case may not be correct
+   }
+
+   // not all characters have complete uppercase/lowercase
+   if (!(dwFlags & FS_caSE_IS_PRESERVED))
+      CharUpperW(wstrFullPath);
+
+   // assume non-UNICODE file systems, use OEM character set
+   if (!(dwFlags & FS_UNICODE_STORED_ON_DISK))
+   {
+      WIN32_FIND_DATAW data;
+      HANDLE h = FindFirstFileW(wstrPath, &data);
+      if (h != INVALID_HANDLE_VALUE)
+      {
+         FindClose(h);
+         int32_t iLenFileName = lstrlenW(data.cFileName);
+         if(iLenFileName >=  MAX_PATH)
+         {
+            wstring wstrBackup = wstrFullPath;
+            strsize iFilePart = lpszFilePart - wstrFullPath;
+            wstrFullPath.alloc(iFilePart + iLenFileName + 32); // arrange more space with more 32 extra wchars
+            lstrcpynW(wstrFullPath, wstrBackup, (int32_t) iFilePart);
+            lpszFilePart = (wchar_t *) wstrFullPath + iFilePart;
+         }
+         lstrcpyW(lpszFilePart, data.cFileName);
+         wstrFullPath.release_buffer();
       }
    }
-   m_hFile = (HFILE)hFile;
-   m_bCloseOnDelete = TRUE;
-
-   return TRUE;
+   return TRUE;*/
 }
 
-DWORD_PTR WinFile::read(void * lpBuf, DWORD_PTR nCount)
+/*void CLASS_DECL_ANDROID __get_root_path(const char * lpszPath, string & strRoot)
 {
-   ASSERT_VALID(this);
-   ASSERT(m_hFile != (UINT)hFileNull);
-
-   if (nCount == 0)
-      return 0;   // avoid Win32 "null-read"
-
-   ASSERT(lpBuf != NULL);
-   ASSERT(fx_is_valid_address(lpBuf, nCount));
-
-   DWORD dwRead;
-   if (!::ReadFile((HANDLE)m_hFile, lpBuf, nCount, &dwRead, NULL))
-      WinFileException::ThrowOsError(get_app(), (LONG)::GetLastError());
-
-   return (UINT)dwRead;
-}
-
-void WinFile::write(const void * lpBuf, DWORD_PTR nCount)
+ASSERT(lpszPath != NULL);
+// determine the root name of the volume
+LPTSTR lpszRoot = strRoot.GetBuffer(_MAX_PATH);
+memset(lpszRoot, 0, _MAX_PATH);
+lstrcpyn(lpszRoot, lpszPath, _MAX_PATH);
+LPTSTR lpsz;
+for (lpsz = lpszRoot; *lpsz != '\0'; lpsz = _tcsinc(lpsz))
 {
-   ASSERT_VALID(this);
-   ASSERT(m_hFile != (UINT)hFileNull);
-
-   if (nCount == 0)
-      return;     // avoid Win32 "null-write" option
-
-   ASSERT(lpBuf != NULL);
-   ASSERT(fx_is_valid_address(lpBuf, nCount, FALSE));
-
-   DWORD nWritten;
-   if (!::WriteFile((HANDLE)m_hFile, lpBuf, nCount, &nWritten, NULL))
-      WinFileException::ThrowOsError(get_app(), (LONG)::GetLastError(), m_strFileName);
-
-   // Win32s will not return an error all the time (usually DISK_FULL)
-   if (nWritten != nCount)
-      vfxThrowFileException(get_app(), ::ex1::file_exception::diskFull, -1, m_strFileName);
+// find first double slash and stop
+if (IsDirSep(lpsz[0]) && IsDirSep(lpsz[1]))
+break;
 }
-
-INT_PTR WinFile::seek(INT_PTR lOff, UINT nFrom)
+if (*lpsz != '\0')
 {
-
-   if(m_hFile == (UINT)hFileNull)
-      WinFileException::ThrowOsError(get_app(), (LONG)0);
-
-   ASSERT_VALID(this);
-   ASSERT(m_hFile != (UINT)hFileNull);
-   ASSERT(nFrom == begin || nFrom == end || nFrom == current);
-   ASSERT(begin == FILE_BEGIN && end == FILE_END && current == FILE_CURRENT);
-
-   DWORD dwNew = ::SetFilePointer((HANDLE)m_hFile, lOff, NULL, (DWORD)nFrom);
-   if (dwNew  == (DWORD)-1)
-      WinFileException::ThrowOsError(get_app(), (LONG)::GetLastError());
-
-   return dwNew;
+// it is a UNC name, find second slash past '\\'
+ASSERT(IsDirSep(lpsz[0]));
+ASSERT(IsDirSep(lpsz[1]));
+lpsz += 2;
+while (*lpsz != '\0' && (!IsDirSep(*lpsz)))
+lpsz = _tcsinc(lpsz);
+if (*lpsz != '\0')
+lpsz = _tcsinc(lpsz);
+while (*lpsz != '\0' && (!IsDirSep(*lpsz)))
+lpsz = _tcsinc(lpsz);
+// terminate it just after the UNC root (ie. '\\server\share\')
+if (*lpsz != '\0')
+lpsz[1] = '\0';
 }
-
-DWORD_PTR WinFile::GetPosition() const
+else
 {
-   ASSERT_VALID(this);
-   ASSERT(m_hFile != (UINT)hFileNull);
-
-   DWORD dwPos = ::SetFilePointer((HANDLE)m_hFile, 0, NULL, FILE_CURRENT);
-   if (dwPos  == (DWORD)-1)
-      WinFileException::ThrowOsError(get_app(), (LONG)::GetLastError());
-
-   return dwPos;
+// not a UNC, look for just the first slash
+lpsz = lpszRoot;
+while (*lpsz != '\0' && (!IsDirSep(*lpsz)))
+lpsz = _tcsinc(lpsz);
+// terminate it just after root (ie. 'x:\')
+if (*lpsz != '\0')
+lpsz[1] = '\0';
 }
+strRoot.ReleaseBuffer();
+}*/
 
-void WinFile::Flush()
+/*bool CLASS_DECL_ANDROID ::ca2::ComparePath(const char * lpszPath1, const char * lpszPath2)
 {
-   ASSERT_VALID(this);
+// use case insensitive compare as a starter
+if (lstrcmpi(lpszPath1, lpszPath2) != 0)
+return FALSE;
 
-   if (m_hFile == (UINT)hFileNull)
-      return;
+// on non-DBCS systems, we are done
+if (!GetSystemMetrics(SM_DBCSENABLED))
+return TRUE;
 
-   if (!::FlushFileBuffers((HANDLE)m_hFile))
-      WinFileException::ThrowOsError(get_app(), (LONG)::GetLastError());
-}
+// on DBCS systems, the file name may not actually be the same
+// in particular, the file system is case sensitive with respect to
+// "full width" roman characters.
+// (ie. fullwidth-R is different from fullwidth-r).
+int32_t nLen = lstrlen(lpszPath1);
+if (nLen != lstrlen(lpszPath2))
+return FALSE;
+ASSERT(nLen < _MAX_PATH);
 
-void WinFile::close()
+// need to get both CT_CTYPE1 and CT_CTYPE3 for each filename
+LCID lcid = GetThreadLocale();
+WORD aCharType11[_MAX_PATH];
+VERIFY(GetStringTypeEx(lcid, CT_CTYPE1, lpszPath1, -1, aCharType11));
+WORD aCharType13[_MAX_PATH];
+VERIFY(GetStringTypeEx(lcid, CT_CTYPE3, lpszPath1, -1, aCharType13));
+WORD aCharType21[_MAX_PATH];
+VERIFY(GetStringTypeEx(lcid, CT_CTYPE1, lpszPath2, -1, aCharType21));
+#ifdef DEBUG
+WORD aCharType23[_MAX_PATH];
+VERIFY(GetStringTypeEx(lcid, CT_CTYPE3, lpszPath2, -1, aCharType23));
+#endif
+
+// for every C3_FULLWIDTH character, make sure it has same C1 value
+int32_t i = 0;
+for (const char * lpsz = lpszPath1; *lpsz != 0; lpsz = _tcsinc(lpsz))
 {
-   ASSERT_VALID(this);
-   ASSERT(m_hFile != (UINT)hFileNull);
-
-   BOOL bError = FALSE;
-   if (m_hFile != (UINT)hFileNull)
-      bError = !::CloseHandle((HANDLE)m_hFile);
-
-   m_hFile = (UINT) hFileNull;
-   m_bCloseOnDelete = FALSE;
-   m_strFileName.Empty();
-
-   if (bError)
-      WinFileException::ThrowOsError(get_app(), (LONG)::GetLastError());
-}
-
-void WinFile::Abort()
+// check for C3_FULLWIDTH characters only
+if (aCharType13[i] & C3_FULLWIDTH)
 {
-   ASSERT_VALID(this);
-   if (m_hFile != (UINT)hFileNull)
-   {
-      // close but ignore errors
-      ::CloseHandle((HANDLE)m_hFile);
-      m_hFile = (UINT)hFileNull;
-   }
-   m_strFileName.Empty();
-}
+#ifdef DEBUG
+ASSERT(aCharType23[i] & C3_FULLWIDTH); // should always match!
+#endif
 
-void WinFile::LockRange(DWORD_PTR dwPos, DWORD_PTR dwCount)
+// if CT_CTYPE1 is different then file system considers these
+// file names different.
+if (aCharType11[i] != aCharType21[i])
+return FALSE;
+}
+++i; // look at next character type
+}
+return TRUE; // otherwise file name is truly the same
+}*/
+
+/*UINT CLASS_DECL_ANDROID __get_file_title(const char * lpszPathName, LPTSTR lpszTitle, UINT nMax)
 {
-   ASSERT_VALID(this);
-   ASSERT(m_hFile != (UINT)hFileNull);
+ASSERT(lpszTitle == NULL ||
+__is_valid_address(lpszTitle, _MAX_FNAME));
+ASSERT(__is_valid_string(lpszPathName));
 
-   if (!::LockFile((HANDLE)m_hFile, dwPos, 0, dwCount, 0))
-      WinFileException::ThrowOsError(get_app(), (LONG)::GetLastError());
-}
-
-void WinFile::UnlockRange(DWORD_PTR dwPos, DWORD_PTR dwCount)
+// use a temporary to avoid bugs in ::GetFileTitle when lpszTitle is NULL
+char szTemp[_MAX_PATH];
+LPTSTR lpszTemp = lpszTitle;
+if (lpszTemp == NULL)
 {
-   ASSERT_VALID(this);
-   ASSERT(m_hFile != (UINT)hFileNull);
-
-   if (!::UnlockFile((HANDLE)m_hFile, dwPos, 0, dwCount, 0))
-      WinFileException::ThrowOsError(get_app(), (LONG)::GetLastError());
+lpszTemp = szTemp;
+nMax = _countof(szTemp);
 }
-
-void WinFile::SetLength(DWORD_PTR dwNewLen)
+if (::GetFileTitle(lpszPathName, lpszTemp, (WORD)nMax) != 0)
 {
-   ASSERT_VALID(this);
-   ASSERT(m_hFile != (UINT)hFileNull);
-
-   seek((LONG)dwNewLen, (UINT)begin);
-
-   if (!::SetEndOfFile((HANDLE)m_hFile))
-      WinFileException::ThrowOsError(get_app(), (LONG)::GetLastError());
+// when ::GetFileTitle fails, use cheap imitation
+return ::ca2::GetFileName(lpszPathName, lpszTitle, nMax);
 }
-
-DWORD_PTR WinFile::get_length() const
-{
-   ASSERT_VALID(this);
-
-   DWORD_PTR dwLen, dwCur;
-
-   // seek is a non const operation
-   WinFile* pFile = (WinFile*)this;
-   dwCur = pFile->seek(0L, current);
-   dwLen = pFile->seek_to_end();
-   VERIFY(dwCur == (DWORD_PTR)pFile->seek(dwCur, begin));
-
-   return dwLen;
-}
-
-// WinFile does not support direct buffering (CMemFile does)
-DWORD_PTR WinFile::GetBufferPtr(UINT nCommand, DWORD_PTR /*nCount*/,
-   void ** /*ppBufStart*/, void ** /*ppBufMax*/)
-{
-   ASSERT(nCommand == bufferCheck);
-   UNUSED(nCommand);    // not used in retail build
-
-   return 0;   // no support
-}
+return lpszTitle == NULL ? lstrlen(lpszTemp)+1 : 0;
+}*/
 
 /*
-void PASCAL WinFile::Rename(const char * lpszOldName, const char * lpszNewName)
+CLASS_DECL_ANDROID void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
 {
-   if (!::MoveFile((LPTSTR)lpszOldName, (LPTSTR)lpszNewName))
-      WinFileException::ThrowOsError(get_app(), (LONG)::GetLastError());
-}
 
-void PASCAL WinFile::remove(const char * lpszFileName)
-{
-   if (!::DeleteFile((LPTSTR)lpszFileName))
-      WinFileException::ThrowOsError(get_app(), (LONG)::GetLastError());
-}
-*/
+   link_map * plm;
+
+   dlinfo(hInst, RTLD_DI_LINKMAP, &plm);
+
+   strShortName = plm->l_name;
 
 
-string CLASS_DECL_ANDROID vfxStringFromCLSID(REFCLSID rclsid)
+/*   WCHAR szLongPathName[_MAX_PATH];
+   wstring wstrShortName;
+   ::GetModuleFileNameW(hInst, szLongPathName, _MAX_PATH);
+   if(::GetShortPathNameW(szLongPathName, wstrShortName.alloc(_MAX_PATH * 4), _MAX_PATH * 4) == 0)
+   {
+      // rare failure case (especially on not-so-modern file systems)
+      ::ca2::international::unicode_to_utf8(strShortName, szLongPathName);
+   }
+   else
+   {
+      wstrShortName.release_buffer();
+      ::ca2::international::unicode_to_utf8(strShortName, wstrShortName);
+   }*/
+//}
+
+
+
+
+CLASS_DECL_ANDROID string vfxStringFromCLSID(REFCLSID rclsid)
 {
-   WCHAR szCLSID[256];
-   wsprintfW(szCLSID, L"{%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X}",
+   CHAR szCLSID[256];
+   sprintf(szCLSID, "{%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X}",
       rclsid.Data1, rclsid.Data2, rclsid.Data3,
       rclsid.Data4[0], rclsid.Data4[1], rclsid.Data4[2], rclsid.Data4[3],
       rclsid.Data4[4], rclsid.Data4[5], rclsid.Data4[6], rclsid.Data4[7]);
    return szCLSID;
 }
 
-BOOL CLASS_DECL_ANDROID vfxGetInProcServer(const char * lpszCLSID, string & str)
+/*
+bool CLASS_DECL_ANDROID vfxGetInProcServer(const char * lpszCLSID, string & str)
 {
    HKEY hKey = NULL;
-   BOOL b = FALSE;
+   bool b = FALSE;
    if (RegOpenKey(HKEY_CLASSES_ROOT, "CLSID", &hKey) == ERROR_SUCCESS)
    {
       HKEY hKeyCLSID = NULL;
@@ -398,17 +1343,31 @@ BOOL CLASS_DECL_ANDROID vfxGetInProcServer(const char * lpszCLSID, string & str)
    }
    return b;
 }
+//#endif  //!___NO_OLE_SUPPORT
+*/
 
-
-BOOL CLASS_DECL_ANDROID vfxResolveShortcut(::ca2::window * pWnd, const wchar_t * lpszFileIn,
-   wchar_t * lpszFileOut, int cchPath)
+CLASS_DECL_ANDROID bool vfxResolveShortcut(string & strTarget, const char * pszSource, sp(::user::interaction) puiMessageParentOptional)
 {
-   UNREFERENCED_PARAMETER(pWnd);
-   UNREFERENCED_PARAMETER(lpszFileIn);
-   UNREFERENCED_PARAMETER(lpszFileOut);
-   UNREFERENCED_PARAMETER(cchPath);
-   throw not_implemented_exception();
+
+
+
+   char realname[_POSIX_PATH_MAX * 4];
+   int32_t rc = 0;
+
+   if(realpath(pszSource, realname) == 0)
+      return false;
+
+   strTarget = realname;
+
+   return true;
+
 /*
+
+   sp(::user::interaction) pui = puiMessageParentOptional;
+
+   wstring wstrFileOut;
+   wstring wstrFileIn = ::ca2::international::utf8_to_unicode(pszSource);
+
    DWORD dwVersion = GetVersion();
 
    // get the Windows version.
@@ -421,126 +1380,87 @@ BOOL CLASS_DECL_ANDROID vfxResolveShortcut(::ca2::window * pWnd, const wchar_t *
    DWORD dwBuild;
 
    if (dwVersion < 0x80000000)              // Windows NT
-       dwBuild = (DWORD)(HIWORD(dwVersion));
+      dwBuild = (DWORD)(HIWORD(dwVersion));
    else if (dwWindowsMajorVersion < 4)      // Win32s
-       dwBuild = (DWORD)(HIWORD(dwVersion) & ~0x8000);
+      dwBuild = (DWORD)(HIWORD(dwVersion) & ~0x8000);
    else                                     // Windows Me/98/95
-       dwBuild =  0;
+      dwBuild =  0;
 
-   BOOL bNativeUnicode;
+   bool bNativeUnicode;
    if (dwVersion < 0x80000000)              // Windows NT
-       bNativeUnicode = TRUE;
+      bNativeUnicode = TRUE;
    else if (dwWindowsMajorVersion < 4)      // Win32s
-       bNativeUnicode = FALSE;
+      bNativeUnicode = FALSE;
    else                                     // Windows Me/98/95
-       bNativeUnicode = FALSE;
+      bNativeUnicode = FALSE;
 
 
-   if(bNativeUnicode)
+   //   __COM com;
+   IShellLinkW* psl;
+   wstrFileOut = L"";
+
+   SHFILEINFOW info;
+   if ((::win::shell::SHGetFileInfo(wstrFileIn, 0, &info, sizeof(info),
+      SHGFI_ATTRIBUTES) == 0) || !(info.dwAttributes & SFGAO_LINK))
    {
-      __COM com;
-      IShellLinkW* psl;
-      *lpszFileOut = 0;   // assume failure
-
-      SHFILEINFOW info;
-      if ((WindowsShell::SHGetFileInfo(lpszFileIn, 0, &info, sizeof(info),
-         SHGFI_ATTRIBUTES) == 0) || !(info.dwAttributes & SFGAO_LINK))
-      {
-         return FALSE;
-      }
-
-      if (FAILED(com.CreateInstance(CLSID_ShellLink, NULL, IID_IShellLink,
-         (LPVOID*)&psl)))
-      {
-         return FALSE;
-      }
-
-      IPersistFile *ppf;
-      if (SUCCEEDED(psl->QueryInterface(IID_IPersistFile, (LPVOID*)&ppf)))
-      {
-         if (SUCCEEDED(ppf->Load(lpszFileIn, STGM_READ)))
-         {
-            /* Resolve the link, this may post UI to find the link */
-/*            if (SUCCEEDED(psl->Resolve(ANDROID_ANDROIDDOW(pWnd)->GetSafeHwnd(),
-               SLR_ANY_MATCH)))
-            {
-               psl->GetPath(lpszFileOut, cchPath, NULL, 0);
-               ppf->Release();
-               psl->Release();
-               return TRUE;
-            }
-         }
-         ppf->Release();
-      }
-      psl->Release();
       return FALSE;
    }
-   else
+
+   HRESULT hr ;
+   if (FAILED(hr = CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_IShellLinkW,
+      (LPVOID*)&psl)))
    {
-      string strFileIn;
-      string strFileOut;
-
-      ::ca2::international::UnicodeToMultiByte(::ca2::international::CodePageAnsi, strFileIn, lpszFileIn);
-
-      __COM com;
-      IShellLink* psl;
-      *lpszFileOut = 0;   // assume failure
-
-      SHFILEINFO info;
-      if ((SHGetFileInfo(strFileIn, 0, &info, sizeof(info),
-         SHGFI_ATTRIBUTES) == 0) || !(info.dwAttributes & SFGAO_LINK))
-      {
-         return FALSE;
-      }
-
-      if (FAILED(com.CreateInstance(CLSID_ShellLink, NULL, IID_IShellLink,
-         (LPVOID*)&psl)))
-      {
-         return FALSE;
-      }
-
-      IPersistFile *ppf;
-      if (SUCCEEDED(psl->QueryInterface(IID_IPersistFile, (LPVOID*)&ppf)))
-      {
-         if (SUCCEEDED(ppf->Load(lpszFileIn, STGM_READ)))
-         {
-            /* Resolve the link, this may post UI to find the link */
-/*            if (SUCCEEDED(psl->Resolve(ANDROID_ANDROIDDOW(pWnd)->GetSafeHwnd(),
-               SLR_ANY_MATCH)))
-            {
-               psl->GetPath(strFileOut.GetBuffer(cchPath), cchPath, NULL, 0);
-               ::ca2::international::MultiByteToUnicode(
-                  ::ca2::international::CodePageAnsi,
-                  lpszFileOut,
-                  cchPath,
-                  strFileOut);
-               ppf->Release();
-               psl->Release();
-               return TRUE;
-            }
-         }
-         ppf->Release();
-      }
-      psl->Release();
       return FALSE;
-   }*/
+   }
+
+   IPersistFile *ppf;
+   if (SUCCEEDED(psl->QueryInterface(IID_IPersistFile, (LPVOID*)&ppf)))
+   {
+      if (SUCCEEDED(ppf->Load(wstrFileIn, STGM_READ)))
+      {
+         /* Resolve the link, this may post UI to find the link */
+  /*       if (SUCCEEDED(psl->Resolve(pui == NULL ? NULL : (oswindow) pui->get_os_data(),
+            SLR_ANY_MATCH | (pui == NULL ? (SLR_NO_UI | (8400 << 16)) : 0))))
+         {
+            wstrFileOut.alloc(MAX_PATH);
+            bool bOk;
+            if(SUCCEEDED(psl->GetPath(wstrFileOut, MAX_PATH, NULL, 0)))
+            {
+               bOk = true;
+               wstrFileOut.release_buffer();
+               strTarget = ::ca2::international::unicode_to_utf8((LPCWSTR) wstrFileOut);
+            }
+            else
+            {
+               bOk = false;
+            }
+            ppf->Release();
+            psl->Release();
+            return bOk;
+         }
+      }
+      ppf->Release();
+   }
+   psl->Release();
+   return FALSE;*/
 }
 
 // turn a file, relative path or other into an absolute path
-BOOL CLASS_DECL_ANDROID vfxFullPath(wchar_t * lpszPathOut, const wchar_t * lpszFileIn)
+//bool CLASS_DECL_ANDROID vfxFullPath(wchar_t * lpszPathOut, const wchar_t * lpszFileIn)
    // lpszPathOut = buffer of _MAX_PATH
    // lpszFileIn = file, relative path or absolute path
    // (both in ANSI character set)
-{
-   ASSERT(fx_is_valid_address(lpszPathOut, _MAX_PATH));
+//{
+   /*
+   ASSERT(__is_valid_address(lpszPathOut, _MAX_PATH));
 
    // first, fully qualify the path name
    wchar_t * lpszFilePart;
    if (!GetFullPathNameW(lpszFileIn, _MAX_PATH, lpszPathOut, &lpszFilePart))
    {
-#ifdef _DEBUG
-//      if (lpszFileIn[0] != '\0')
-  //       TRACE1("Warning: could not parse the path '%s'.\n", lpszFileIn);
+#ifdef DEBUG
+      //      if (lpszFileIn[0] != '\0')
+      //       TRACE1("Warning: could not parse the path '%s'.\n", lpszFileIn);
 #endif
       lstrcpynW(lpszPathOut, lpszFileIn, _MAX_PATH); // take it literally
       return FALSE;
@@ -554,18 +1474,18 @@ BOOL CLASS_DECL_ANDROID vfxFullPath(wchar_t * lpszPathOut, const wchar_t * lpszF
    DWORD dwFlags, dwDummy;
    if (!GetVolumeInformationW(::ca2::international::utf8_to_unicode(strRoot), NULL, 0, NULL, &dwDummy, &dwFlags, NULL, 0))
    {
-//      TRACE1("Warning: could not get volume information '%s'.\n", strRoot);
+      //      TRACE1("Warning: could not get volume information '%s'.\n", strRoot);
       return FALSE;   // preserving case may not be correct
    }
 
    // not all characters have complete uppercase/lowercase
-   if (!(dwFlags & FS_CASE_IS_PRESERVED))
+   if (!(dwFlags & FS_caSE_IS_PRESERVED))
       CharUpperW(lpszPathOut);
 
    // assume non-UNICODE file systems, use OEM character set
    if (!(dwFlags & FS_UNICODE_STORED_ON_DISK))
    {
-      ANDROID32_FIND_DATAW data;
+      WIN32_FIND_DATAW data;
       HANDLE h = FindFirstFileW(lpszFileIn, &data);
       if (h != INVALID_HANDLE_VALUE)
       {
@@ -573,18 +1493,20 @@ BOOL CLASS_DECL_ANDROID vfxFullPath(wchar_t * lpszPathOut, const wchar_t * lpszF
          lstrcpyW(lpszFilePart, data.cFileName);
       }
    }
-   return TRUE;
-}
+   return TRUE;*/
+//}
 
-/*void CLASS_DECL_ANDROID AfxGetRoot(const char * lpszPath, string & strRoot)
+
+
+/*
+void CLASS_DECL_ANDROID vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath)
 {
-   ASSERT(lpszPath != NULL);
+   //   ASSERT(lpszPath != NULL);
    // determine the root name of the volume
-   LPTSTR lpszRoot = strRoot.GetBuffer(_MAX_PATH);
-   memset(lpszRoot, 0, _MAX_PATH);
-   lstrcpyn(lpszRoot, lpszPath, _MAX_PATH);
-   LPTSTR lpsz;
-   for (lpsz = lpszRoot; *lpsz != '\0'; lpsz = _tcsinc(lpsz))
+   wstrRoot = wstrPath;
+   wchar_t * lpszRoot = wstrRoot;
+   wchar_t * lpsz;
+   for (lpsz = lpszRoot; *lpsz != L'\0'; lpsz = _wcsinc(lpsz))
    {
       // find first double slash and stop
       if (IsDirSep(lpsz[0]) && IsDirSep(lpsz[1]))
@@ -597,11 +1519,11 @@ BOOL CLASS_DECL_ANDROID vfxFullPath(wchar_t * lpszPathOut, const wchar_t * lpszF
       ASSERT(IsDirSep(lpsz[1]));
       lpsz += 2;
       while (*lpsz != '\0' && (!IsDirSep(*lpsz)))
-         lpsz = _tcsinc(lpsz);
+         lpsz = _wcsinc(lpsz);
       if (*lpsz != '\0')
-         lpsz = _tcsinc(lpsz);
+         lpsz = _wcsinc(lpsz);
       while (*lpsz != '\0' && (!IsDirSep(*lpsz)))
-         lpsz = _tcsinc(lpsz);
+         lpsz = _wcsinc(lpsz);
       // terminate it just after the UNC root (ie. '\\server\share\')
       if (*lpsz != '\0')
          lpsz[1] = '\0';
@@ -611,134 +1533,15 @@ BOOL CLASS_DECL_ANDROID vfxFullPath(wchar_t * lpszPathOut, const wchar_t * lpszF
       // not a UNC, look for just the first slash
       lpsz = lpszRoot;
       while (*lpsz != '\0' && (!IsDirSep(*lpsz)))
-         lpsz = _tcsinc(lpsz);
+         lpsz = _wcsinc(lpsz);
       // terminate it just after root (ie. 'x:\')
       if (*lpsz != '\0')
          lpsz[1] = '\0';
    }
-   strRoot.ReleaseBuffer();
+   wstrRoot.release_buffer();
 }*/
 
-/*BOOL CLASS_DECL_ANDROID AfxComparePath(const char * lpszPath1, const char * lpszPath2)
-{
-   // use case insensitive compare as a starter
-   if (lstrcmpi(lpszPath1, lpszPath2) != 0)
-      return FALSE;
-
-   // on non-DBCS systems, we are done
-   if (!GetSystemMetrics(SM_DBCSENABLED))
-      return TRUE;
-
-   // on DBCS systems, the file name may not actually be the same
-   // in particular, the file system is case sensitive with respect to
-   // "full width" roman characters.
-   // (ie. fullwidth-R is different from fullwidth-r).
-   int nLen = lstrlen(lpszPath1);
-   if (nLen != lstrlen(lpszPath2))
-      return FALSE;
-   ASSERT(nLen < _MAX_PATH);
-
-   // need to get both CT_CTYPE1 and CT_CTYPE3 for each filename
-   LCID lcid = GetThreadLocale();
-   WORD aCharType11[_MAX_PATH];
-   VERIFY(GetStringTypeEx(lcid, CT_CTYPE1, lpszPath1, -1, aCharType11));
-   WORD aCharType13[_MAX_PATH];
-   VERIFY(GetStringTypeEx(lcid, CT_CTYPE3, lpszPath1, -1, aCharType13));
-   WORD aCharType21[_MAX_PATH];
-   VERIFY(GetStringTypeEx(lcid, CT_CTYPE1, lpszPath2, -1, aCharType21));
-#ifdef _DEBUG
-   WORD aCharType23[_MAX_PATH];
-   VERIFY(GetStringTypeEx(lcid, CT_CTYPE3, lpszPath2, -1, aCharType23));
-#endif
-
-   // for every C3_FULLWIDTH character, make sure it has same C1 value
-   int i = 0;
-   for (const char * lpsz = lpszPath1; *lpsz != 0; lpsz = _tcsinc(lpsz))
-   {
-      // check for C3_FULLWIDTH characters only
-      if (aCharType13[i] & C3_FULLWIDTH)
-      {
-#ifdef _DEBUG
-         ASSERT(aCharType23[i] & C3_FULLWIDTH); // should always match!
-#endif
-
-         // if CT_CTYPE1 is different then file system considers these
-         // file names different.
-         if (aCharType11[i] != aCharType21[i])
-            return FALSE;
-      }
-      ++i; // look at next character type
-   }
-   return TRUE; // otherwise file name is truly the same
-}*/
-
-/*UINT CLASS_DECL_ANDROID AfxGetFileTitle(const char * lpszPathName, LPTSTR lpszTitle, UINT nMax)
-{
-   ASSERT(lpszTitle == NULL ||
-      fx_is_valid_address(lpszTitle, _MAX_FNAME));
-   ASSERT(AfxIsValidString(lpszPathName));
-
-   // use a temporary to avoid bugs in ::GetFileTitle when lpszTitle is NULL
-   char szTemp[_MAX_PATH];
-   LPTSTR lpszTemp = lpszTitle;
-   if (lpszTemp == NULL)
-   {
-      lpszTemp = szTemp;
-      nMax = _countof(szTemp);
-   }
-   if (::GetFileTitle(lpszPathName, lpszTemp, (WORD)nMax) != 0)
-   {
-      // when ::GetFileTitle fails, use cheap imitation
-      return AfxGetFileName(lpszPathName, lpszTitle, nMax);
-   }
-   return lpszTitle == NULL ? lstrlen(lpszTemp)+1 : 0;
-}*/
-
-void CLASS_DECL_ANDROID vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
-{
-   WCHAR szLongPathName[_MAX_PATH];
-   wstring wstrShortName;
-   ::GetModuleFileNameW(hInst, szLongPathName, _MAX_PATH);
-   if(::GetShortPathNameW(szLongPathName, wstrShortName.alloc(_MAX_PATH * 4), _MAX_PATH * 4) == 0)
-   {
-      // rare failure case (especially on not-so-modern file systems)
-      ::ca2::international::unicode_to_utf8(strShortName, szLongPathName);
-   }
-   else
-   {
-      ::ca2::international::unicode_to_utf8(strShortName, wstrShortName);
-   }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-// WinFile diagnostics
-
-#ifdef _DEBUG
-void WinFile::assert_valid() const
-{
-   ::ca2::object::assert_valid();
-   // we permit the descriptor m_hFile to be any value for derived classes
-}
-
-void WinFile::dump(dump_context & dumpcontext) const
-{
-   ::ca2::object::dump(dumpcontext);
-
-   dumpcontext << "with handle " << (UINT)m_hFile;
-   dumpcontext << " and name \"" << m_strFileName << "\"";
-   dumpcontext << "\n";
-}
-#endif
-
-
-// IMPLEMENT_DYNAMIC(WinFile, ::ca2::object)
-
-/////////////////////////////////////////////////////////////////////////////
-
-#define _wcsdec(_cpc1, _cpc2) ((_cpc1)>=(_cpc2) ? NULL : (_cpc2)-1)
-
-#define _wcsinc(_pc)    ((_pc)+1)
-
+/*
 void CLASS_DECL_ANDROID vfxGetRoot(const wchar_t * lpszPath, string& strRoot)
 {
    ASSERT(lpszPath != NULL);
@@ -782,745 +1585,138 @@ void CLASS_DECL_ANDROID vfxGetRoot(const wchar_t * lpszPath, string& strRoot)
    }
    ::ca2::international::unicode_to_utf8(strRoot, wstrRoot);
 }
+*/
 
 
-/*BOOL CLASS_DECL_ANDROID vfxFullPath(char * lpszPathOut, const char * lpszFileIn)
-   // lpszPathOut = buffer of _MAX_PATH
-   // lpszFileIn = file, relative path or absolute path
-   // (both in ANSI character set)
+/*bool CLASS_DECL_ANDROID vfxFullPath(char * lpszPathOut, const char * lpszFileIn)
+// lpszPathOut = buffer of _MAX_PATH
+// lpszFileIn = file, relative path or absolute path
+// (both in ANSI character set)
 {
-   ASSERT(fx_is_valid_address(lpszPathOut, _MAX_PATH));
+ASSERT(__is_valid_address(lpszPathOut, _MAX_PATH));
 
-   // first, fully qualify the path name
-   wchar_t * lpszFilePart;
-   if (!WindowsShell::GetFullPathName(lpszFileIn, _MAX_PATH, lpszPathOut, &lpszFilePart))
-   {
-#ifdef _DEBUG
-      if (lpszFileIn[0] != '\0')
-         TRACE1("Warning: could not parse the path '%s'.\n", lpszFileIn);
+// first, fully qualify the path name
+wchar_t * lpszFilePart;
+if (!shell::GetFullPathName(lpszFileIn, _MAX_PATH, lpszPathOut, &lpszFilePart))
+{
+#ifdef DEBUG
+if (lpszFileIn[0] != '\0')
+TRACE1("Warning: could not parse the path '%s'.\n", lpszFileIn);
 #endif
-      lstrcpynW(lpszPathOut, lpszFileIn, _MAX_PATH); // take it literally
-      return FALSE;
-   }
+lstrcpynW(lpszPathOut, lpszFileIn, _MAX_PATH); // take it literally
+return FALSE;
+}
 
-   string wstrRoot;
-   // determine the root name of the volume
-   vfxGetRoot(lpszPathOut, wstrRoot);
+string wstrRoot;
+// determine the root name of the volume
+vfxGetRoot(lpszPathOut, wstrRoot);
 
-   // get file system information for the volume
-   DWORD dwFlags, dwDummy;
-   if (!WindowsShell::GetVolumeInformation(wstrRoot, NULL, 0, NULL, &dwDummy, &dwFlags,
-      NULL, 0))
-   {
-      TRACE1("Warning: could not get volume information '%S'.\n",
-         (const char *)wstrRoot);
-      return FALSE;   // preserving case may not be correct
-   }
+// get file system information for the volume
+DWORD dwFlags, dwDummy;
+if (!shell::GetVolumeInformation(wstrRoot, NULL, 0, NULL, &dwDummy, &dwFlags,
+NULL, 0))
+{
+TRACE1("Warning: could not get volume information '%S'.\n",
+(const char *)wstrRoot);
+return FALSE;   // preserving case may not be correct
+}
 
-   // not all characters have complete uppercase/lowercase
-   if (!(dwFlags & FS_CASE_IS_PRESERVED))
-      CharUpperW(lpszPathOut);
+// not all characters have complete uppercase/lowercase
+if (!(dwFlags & FS_caSE_IS_PRESERVED))
+CharUpperW(lpszPathOut);
 
-   // assume non-UNICODE file systems, use OEM character set
-   if (!(dwFlags & FS_UNICODE_STORED_ON_DISK))
-   {
-      ANDROID32_FIND_DATAW data;
-      HANDLE h = WindowsShell::FindFirstFile(lpszFileIn, &data);
-      if (h != INVALID_HANDLE_VALUE)
-      {
-         FindClose(h);
-         wcscpy(lpszFilePart, data.cFileName);
-      }
-   }
-   return TRUE;
+// assume non-UNICODE file systems, use OEM character set
+if (!(dwFlags & FS_UNICODE_STORED_ON_DISK))
+{
+WIN32_FIND_DATAW data;
+HANDLE h = shell::FindFirstFile(lpszFileIn, &data);
+if (h != INVALID_HANDLE_VALUE)
+{
+FindClose(h);
+wcscpy(lpszFilePart, data.cFileName);
+}
+}
+return TRUE;
 }*/
 
-/////////////////////////////////////////////////////////////////////////////
-// FileException helpers
-
-#ifdef _DEBUG
-static const char * rgszFileExceptionCause[] =
-{
-   "none",
-   "generic",
-   "fileNotFound",
-   "badPath",
-   "tooManyOpenFiles",
-   "accessDenied",
-   "invalidFile",
-   "removeCurrentDir",
-   "directoryFull",
-   "badSeek",
-   "hardIO",
-   "sharingViolation",
-   "lockViolation",
-   "diskFull",
-   "endOfFile",
-};
-static const char szUnknown[] = "unknown";
-#endif
 
 
-/*void CLASS_DECL_ANDROID vfxThrowFileException(int cause, LONG lOsError,
-//   const char * lpszFileName /* == NULL */
-/*{
-#ifdef _DEBUG
-   const char * lpsz;
-   if (cause >= 0 && cause < _countof(rgszFileExceptionCause))
-      lpsz = rgszFileExceptionCause[cause];
-   else
-      lpsz = szUnknown;
-   TRACE3("WinFile exception: %hs, WinFile %W, App error information = %ld.\n",
-      lpsz, (lpszFileName == NULL) ? L"Unknown" : lpszFileName, lOsError);
-#endif
-   THROW(new FileException(cause, lOsError, lpszFileName));
-}*/
 
-/* Error Codes */
-
-#define EPERM           1
-#define ENOENT          2
-#define ESRCH           3
-#define EINTR           4
-#define EIO             5
-#define ENXIO           6
-#define E2BIG           7
-#define ENOEXEC         8
-#define EBADF           9
-#define ECHILD          10
-#define EAGAIN          11
-#define ENOMEM          12
-#define EACCES          13
-#define EFAULT          14
-#define EBUSY           16
-#define EEXIST          17
-#define EXDEV           18
-#define ENODEV          19
-#define ENOTDIR         20
-#define EISDIR          21
-#define EINVAL          22
-#define ENFILE          23
-#define EMFILE          24
-#define ENOTTY          25
-#define EFBIG           27
-#define ENOSPC          28
-#define ESPIPE          29
-#define EROFS           30
-#define EMLINK          31
-#define EPIPE           32
-#define EDOM            33
-#define ERANGE          34
-#define EDEADLK         36
-#define ENAMETOOLONG    38
-#define ENOLCK          39
-#define ENOSYS          40
-#define ENOTEMPTY       41
-#define EILSEQ          42
-
-/*
- * Support EDEADLOCK for compatibiity with older MS-C versions.
- */
-#define EDEADLOCK       EDEADLK
-
-
-/////////////////////////////////////////////////////////////////////////////
-// WinFile name handlers
-
-string WinFile::GetFileName() const
-{
-   ASSERT_VALID(this);
-
-   ::ex1::file_status status;
-   GetStatus(status);
-   string wstrResult;
-   System.file_system().GetFileName(status.m_strFullName, wstrResult);
-   return wstrResult;
-}
-
-string WinFile::GetFileTitle() const
-{
-   ASSERT_VALID(this);
-
-   ::ex1::file_status status;
-   GetStatus(status);
-   string wstrResult;
-   System.file_system().GetFileTitle(status.m_strFullName, wstrResult);
-   return wstrResult;
-}
-
-string WinFile::GetFilePath() const
-{
-   ASSERT_VALID(this);
-
-   ::ex1::file_status status;
-   GetStatus(status);
-   return status.m_strFullName;
-}
-
-
-UINT CLASS_DECL_ANDROID vfxGetFileName(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax)
+/*CLASS_DECL_ANDROID UINT vfxGetFileName(const char * lpszPathName, char * lpszTitle, UINT nMax)
 {
    ASSERT(lpszTitle == NULL ||
-      fx_is_valid_address(lpszTitle, _MAX_FNAME));
-   ASSERT(AfxIsValidString(lpszPathName));
+      __is_valid_address(lpszTitle, _MAX_FNAME));
+   ASSERT(__is_valid_string(lpszPathName));
 
    // always capture the complete file name including extension (if present)
-   wchar_t * lpszTemp = (wchar_t *)lpszPathName;
-   for (const wchar_t * lpsz = lpszPathName; *lpsz != '\0'; lpsz = _wcsinc(lpsz))
+   const char * lpszTemp = (char *)lpszPathName;
+   for (const char * lpsz = lpszPathName; *lpsz != '\0'; lpsz = lpsz++)
    {
       // remember last directory/drive separator
       if (*lpsz == '\\' || *lpsz == '/' || *lpsz == ':')
-         lpszTemp = (wchar_t *)_wcsinc(lpsz);
+         lpszTemp = lpsz++;
    }
 
    // lpszTitle can be NULL which just returns the number of bytes
    if (lpszTitle == NULL)
-      return lstrlenW(lpszTemp)+1;
+      return strlen_dup(lpszTemp)+1;
 
    // otherwise copy it into the buffer provided
-   lstrcpynW(lpszTitle, lpszTemp, nMax);
+   strncpy(lpszTitle, lpszTemp, nMax);
    return 0;
-}
+}*/
 
 
-/////////////////////////////////////////////////////////////////////////////
-// FileException
 
 
-int WinFileException::get_cause()
-{
-   return m_cause;
-}
 
-LONG WinFileException::get_os_error()
-{
-   return m_lOsError;
-}
-
-string WinFileException::get_file_path()
-{
-   return m_strFileName;
-}
-
-
-void PASCAL WinFileException::ThrowOsError(::ca2::application * papp, LONG lOsError, const char * lpszFileName /* = NULL */)
-{
-   if (lOsError != 0)
-      vfxThrowFileException(papp, WinFileException::OsErrorToException(lOsError), lOsError, lpszFileName);
-}
-
-void PASCAL WinFileException::ThrowErrno(::ca2::application * papp, int nErrno, const char * lpszFileName /* = NULL */)
-{
-   if (nErrno != 0)
-      vfxThrowFileException(papp, WinFileException::ErrnoToException(nErrno), _doserrno, lpszFileName);
-}
-
-BOOL WinFileException::GetErrorMessage(string & str, PUINT pnHelpContext)
-{
-
-   if (pnHelpContext != NULL)
-      *pnHelpContext = m_cause + __IDP_FILE_NONE;
-
-   string strMessage;
-   string strFileName = m_strFileName;
-   if(strFileName.is_empty())
-      strFileName = "IDS_UNNAMED_FILE";
-   strMessage.Format("file error number: %d - %s - file: %s", m_cause, get_error_message(m_lOsError), strFileName);
-   str = strMessage;
-
-   return TRUE;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-// WinFileException diagnostics
-
-#ifdef _DEBUG
-void WinFileException::dump(dump_context & dumpcontext) const
-{
-   ::ca2::object::dump(dumpcontext);
-
-   dumpcontext << "m_cause = ";
-   if (m_cause >= 0 && m_cause < _countof(rgszFileExceptionCause))
-      dumpcontext << rgszFileExceptionCause[m_cause];
-   else
-      dumpcontext << szUnknown;
-   dumpcontext << "\nm_lOsError = " << (void *)m_lOsError;
-
-   dumpcontext << "\n";
-}
-#endif
 
 /////////////////////////////////////////////////////////////////////////////
 // WinFileException helpers
 
-void CLASS_DECL_ANDROID vfxThrowFileException(::ca2::application * papp, int cause, LONG lOsError, const char * lpszFileName /* == NULL */)
+void CLASS_DECL_ANDROID vfxThrowFileException(sp(::ca2::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
 {
-#ifdef _DEBUG
+#ifdef DEBUG
    const char * lpsz;
-   if (cause >= 0 && cause < _countof(rgszFileExceptionCause))
-      lpsz = rgszFileExceptionCause[cause];
+   if (cause >= 0 && cause < _countof(::android::rgszFileExceptioncause))
+      lpsz = ::android::rgszFileExceptioncause[cause];
    else
-      lpsz = szUnknown;
-//   TRACE3("WinFile exception: %hs, WinFile %s, App error information = %ld.\n", lpsz, (lpszFileName == NULL) ? "Unknown" : lpszFileName, lOsError);
+      lpsz = ::android::szUnknown;
+   //   TRACE3("file exception: %hs, file %s, App error information = %ld.\n", lpsz, (lpszFileName == NULL) ? "Unknown" : lpszFileName, lOsError);
 #endif
-   throw new WinFileException(papp, cause, lOsError, lpszFileName);
+   throw ::ca2::file_exception(papp, cause, lOsError, lpszFileName);
 }
 
-int PASCAL WinFileException::ErrnoToException(int nErrno)
+namespace android
 {
-   switch(nErrno)
-   {
-   case EPERM:
-   case EACCES:
-      return ::ex1::file_exception::accessDenied;
-   case EBADF:
-      return ::ex1::file_exception::invalidFile;
-   case EDEADLOCK:
-      return ::ex1::file_exception::sharingViolation;
-   case EMFILE:
-      return ::ex1::file_exception::tooManyOpenFiles;
-   case ENOENT:
-   case ENFILE:
-      return ::ex1::file_exception::fileNotFound;
-   case ENOSPC:
-      return ::ex1::file_exception::diskFull;
-   case EINVAL:
-   case EIO:
-      return ::ex1::file_exception::hardIO;
-   default:
-      return ::ex1::file_exception::generic;
-   }
-}
-
-int PASCAL WinFileException::OsErrorToException(LONG lOsErr)
-{
-   // NT Error codes
-   switch ((UINT)lOsErr)
-   {
-   case NO_ERROR:
-      return ::ex1::file_exception::none;
-   case ERROR_FILE_NOT_FOUND:
-      return ::ex1::file_exception::fileNotFound;
-   case ERROR_PATH_NOT_FOUND:
-      return ::ex1::file_exception::badPath;
-   case ERROR_TOO_MANY_OPEN_FILES:
-      return ::ex1::file_exception::tooManyOpenFiles;
-   case ERROR_ACCESS_DENIED:
-      return ::ex1::file_exception::accessDenied;
-   case ERROR_INVALID_HANDLE:
-      return ::ex1::file_exception::fileNotFound;
-   case ERROR_BAD_FORMAT:
-      return ::ex1::file_exception::invalidFile;
-   case ERROR_INVALID_ACCESS:
-      return ::ex1::file_exception::accessDenied;
-   case ERROR_INVALID_DRIVE:
-      return ::ex1::file_exception::badPath;
-   case ERROR_CURRENT_DIRECTORY:
-      return ::ex1::file_exception::removeCurrentDir;
-   case ERROR_NOT_SAME_DEVICE:
-      return ::ex1::file_exception::badPath;
-   case ERROR_NO_MORE_FILES:
-      return ::ex1::file_exception::fileNotFound;
-   case ERROR_WRITE_PROTECT:
-      return ::ex1::file_exception::accessDenied;
-   case ERROR_BAD_UNIT:
-      return ::ex1::file_exception::hardIO;
-   case ERROR_NOT_READY:
-      return ::ex1::file_exception::hardIO;
-   case ERROR_BAD_COMMAND:
-      return ::ex1::file_exception::hardIO;
-   case ERROR_CRC:
-      return ::ex1::file_exception::hardIO;
-   case ERROR_BAD_LENGTH:
-      return ::ex1::file_exception::badSeek;
-   case ERROR_SEEK:
-      return ::ex1::file_exception::badSeek;
-   case ERROR_NOT_DOS_DISK:
-      return ::ex1::file_exception::invalidFile;
-   case ERROR_SECTOR_NOT_FOUND:
-      return ::ex1::file_exception::badSeek;
-   case ERROR_WRITE_FAULT:
-      return ::ex1::file_exception::accessDenied;
-   case ERROR_READ_FAULT:
-      return ::ex1::file_exception::badSeek;
-   case ERROR_SHARING_VIOLATION:
-      return ::ex1::file_exception::sharingViolation;
-   case ERROR_LOCK_VIOLATION:
-      return ::ex1::file_exception::lockViolation;
-   case ERROR_WRONG_DISK:
-      return ::ex1::file_exception::badPath;
-   case ERROR_SHARING_BUFFER_EXCEEDED:
-      return ::ex1::file_exception::tooManyOpenFiles;
-   case ERROR_HANDLE_EOF:
-      return ::ex1::file_exception::endOfFile;
-   case ERROR_HANDLE_DISK_FULL:
-      return ::ex1::file_exception::diskFull;
-   case ERROR_DUP_NAME:
-      return ::ex1::file_exception::badPath;
-   case ERROR_BAD_NETPATH:
-      return ::ex1::file_exception::badPath;
-   case ERROR_NETWORK_BUSY:
-      return ::ex1::file_exception::accessDenied;
-   case ERROR_DEV_NOT_EXIST:
-      return ::ex1::file_exception::badPath;
-   case ERROR_ADAP_HDW_ERR:
-      return ::ex1::file_exception::hardIO;
-   case ERROR_BAD_NET_RESP:
-      return ::ex1::file_exception::accessDenied;
-   case ERROR_UNEXP_NET_ERR:
-      return ::ex1::file_exception::hardIO;
-   case ERROR_BAD_REM_ADAP:
-      return ::ex1::file_exception::invalidFile;
-   case ERROR_NO_SPOOL_SPACE:
-      return ::ex1::file_exception::directoryFull;
-   case ERROR_NETNAME_DELETED:
-      return ::ex1::file_exception::accessDenied;
-   case ERROR_NETWORK_ACCESS_DENIED:
-      return ::ex1::file_exception::accessDenied;
-   case ERROR_BAD_DEV_TYPE:
-      return ::ex1::file_exception::invalidFile;
-   case ERROR_BAD_NET_NAME:
-      return ::ex1::file_exception::badPath;
-   case ERROR_TOO_MANY_NAMES:
-      return ::ex1::file_exception::tooManyOpenFiles;
-   case ERROR_SHARING_PAUSED:
-      return ::ex1::file_exception::badPath;
-   case ERROR_REQ_NOT_ACCEP:
-      return ::ex1::file_exception::accessDenied;
-   case ERROR_FILE_EXISTS:
-      return ::ex1::file_exception::accessDenied;
-   case ERROR_CANNOT_MAKE:
-      return ::ex1::file_exception::accessDenied;
-   case ERROR_ALREADY_ASSIGNED:
-      return ::ex1::file_exception::badPath;
-   case ERROR_INVALID_PASSWORD:
-      return ::ex1::file_exception::accessDenied;
-   case ERROR_NET_WRITE_FAULT:
-      return ::ex1::file_exception::hardIO;
-   case ERROR_DISK_CHANGE:
-      return ::ex1::file_exception::fileNotFound;
-   case ERROR_DRIVE_LOCKED:
-      return ::ex1::file_exception::lockViolation;
-   case ERROR_BUFFER_OVERFLOW:
-      return ::ex1::file_exception::badPath;
-   case ERROR_DISK_FULL:
-      return ::ex1::file_exception::diskFull;
-   case ERROR_NO_MORE_SEARCH_HANDLES:
-      return ::ex1::file_exception::tooManyOpenFiles;
-   case ERROR_INVALID_TARGET_HANDLE:
-      return ::ex1::file_exception::invalidFile;
-   case ERROR_INVALID_CATEGORY:
-      return ::ex1::file_exception::hardIO;
-   case ERROR_INVALID_NAME:
-      return ::ex1::file_exception::badPath;
-   case ERROR_INVALID_LEVEL:
-      return ::ex1::file_exception::badPath;
-   case ERROR_NO_VOLUME_LABEL:
-      return ::ex1::file_exception::badPath;
-   case ERROR_NEGATIVE_SEEK:
-      return ::ex1::file_exception::badSeek;
-   case ERROR_SEEK_ON_DEVICE:
-      return ::ex1::file_exception::badSeek;
-   case ERROR_DIR_NOT_ROOT:
-      return ::ex1::file_exception::badPath;
-   case ERROR_DIR_NOT_EMPTY:
-      return ::ex1::file_exception::removeCurrentDir;
-   case ERROR_LABEL_TOO_LONG:
-      return ::ex1::file_exception::badPath;
-   case ERROR_BAD_PATHNAME:
-      return ::ex1::file_exception::badPath;
-   case ERROR_LOCK_FAILED:
-      return ::ex1::file_exception::lockViolation;
-   case ERROR_BUSY:
-      return ::ex1::file_exception::accessDenied;
-   case ERROR_INVALID_ORDINAL:
-      return ::ex1::file_exception::invalidFile;
-   case ERROR_ALREADY_EXISTS:
-      return ::ex1::file_exception::accessDenied;
-   case ERROR_INVALID_EXE_SIGNATURE:
-      return ::ex1::file_exception::invalidFile;
-   case ERROR_BAD_EXE_FORMAT:
-      return ::ex1::file_exception::invalidFile;
-   case ERROR_FILENAME_EXCED_RANGE:
-      return ::ex1::file_exception::badPath;
-   case ERROR_META_EXPANSION_TOO_LONG:
-      return ::ex1::file_exception::badPath;
-   case ERROR_DIRECTORY:
-      return ::ex1::file_exception::badPath;
-   case ERROR_OPERATION_ABORTED:
-      return ::ex1::file_exception::hardIO;
-   case ERROR_IO_INCOMPLETE:
-      return ::ex1::file_exception::hardIO;
-   case ERROR_IO_PENDING:
-      return ::ex1::file_exception::hardIO;
-   case ERROR_SWAPERROR:
-      return ::ex1::file_exception::accessDenied;
-   default:
-      return ::ex1::file_exception::generic;
-   }
-}
 
 
-// IMPLEMENT_DYNAMIC(WinFileException, base_exception)
-
-/////////////////////////////////////////////////////////////////////////////
-
-
-
-
-/////////////////////////////////////////////////////////////////////////////
-// WinFile Status implementation
-
-BOOL WinFile::GetStatus(::ex1::file_status& rStatus) const
-{
-   ASSERT_VALID(this);
-
-   //memset(&rStatus, 0, sizeof(::ex1::file_status));
-
-   // copy file name from cached m_strFileName
-   rStatus.m_strFullName = m_strFileName;
-
-   if (m_hFile != hFileNull)
-   {
-      // get time current file size
-      FILETIME ftCreate, ftAccess, ftModify;
-      if (!::GetFileTime((HANDLE)m_hFile, &ftCreate, &ftAccess, &ftModify))
-         return FALSE;
-
-      if ((rStatus.m_size = ::GetFileSize((HANDLE)m_hFile, NULL)) == (DWORD)-1L)
-         return FALSE;
-
-      if (m_strFileName.is_empty())
-         rStatus.m_attribute = 0;
-      else
-      {
-         DWORD dwAttribute = ::GetFileAttributesW(::ca2::international::utf8_to_unicode(m_strFileName));
-
-         // don't return an error for this because previous versions of ca2 API didn't
-         if (dwAttribute == 0xFFFFFFFF)
-            rStatus.m_attribute = 0;
-         else
-         {
-            rStatus.m_attribute = (BYTE) dwAttribute;
-#ifdef _DEBUG
-            // ca2 API BUG: m_attribute is only a BYTE wide
-            if (dwAttribute & ~0xFF)
-               TRACE0("Warning: WinFile::GetStatus() returns m_attribute without high-order flags.\n");
-#endif
-         }
-      }
-
-      // convert times as appropriate
-      rStatus.m_ctime = class time(ftCreate);
-      rStatus.m_atime = class time(ftAccess);
-      rStatus.m_mtime = class time(ftModify);
-
-      if (rStatus.m_ctime.get_time() == 0)
-         rStatus.m_ctime = rStatus.m_mtime;
-
-      if (rStatus.m_atime.get_time() == 0)
-         rStatus.m_atime = rStatus.m_mtime;
-   }
-   return TRUE;
-}
+    int32_t PASCAL file_exception::ErrnoToException(int32_t nErrno)
+    {
+       switch(nErrno)
+       {
+       case EPERM:
+       case EACCES:
+          return ::ca2::file_exception::accessDenied;
+       case EBADF:
+          return ::ca2::file_exception::invalidFile;
+       case EDEADLOCK:
+          return ::ca2::file_exception::sharingViolation;
+       case EMFILE:
+          return ::ca2::file_exception::tooManyOpenFiles;
+       case ENOENT:
+       case ENFILE:
+          return ::ca2::file_exception::fileNotFound;
+       case ENOSPC:
+          return ::ca2::file_exception::diskFull;
+       case EINVAL:
+       case EIO:
+          return ::ca2::file_exception::hardIO;
+       default:
+          return ::ca2::file_exception::type_generic;
+       }
+    }
 
 
-BOOL PASCAL WinFile::GetStatus(const char * lpszFileName, ::ex1::file_status& rStatus)
-{
-   // attempt to fully qualify path first
-   wstring wstrFullName;
-   wstring wstrFileName;
-   wstrFileName = ::ca2::international::utf8_to_unicode(lpszFileName);
-   if (!vfxFullPath(wstrFullName.alloc(MAX_PATH * 8), wstrFileName))
-   {
-      rStatus.m_strFullName.Empty();
-      return FALSE;
-   }
-   ::ca2::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);
-
-   ANDROID32_FIND_DATA findFileData;
-   HANDLE hFind = FindFirstFile((LPTSTR)lpszFileName, &findFileData);
-   if (hFind == INVALID_HANDLE_VALUE)
-      return FALSE;
-   VERIFY(FindClose(hFind));
-
-   // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
-   rStatus.m_attribute = (BYTE) (findFileData.dwFileAttributes & ~FILE_ATTRIBUTE_NORMAL);
-
-   // get just the low DWORD of the file size
-   ASSERT(findFileData.nFileSizeHigh == 0);
-   rStatus.m_size = (LONG)findFileData.nFileSizeLow;
-
-   // convert times as appropriate
-   rStatus.m_ctime = class time(findFileData.ftCreationTime);
-   rStatus.m_atime = class time(findFileData.ftLastAccessTime);
-   rStatus.m_mtime = class time(findFileData.ftLastWriteTime);
-
-   if (rStatus.m_ctime.get_time() == 0)
-      rStatus.m_ctime = rStatus.m_mtime;
-
-   if (rStatus.m_atime.get_time() == 0)
-      rStatus.m_atime = rStatus.m_mtime;
-
-   return TRUE;
-}
-
-
-/*
-UINT CLASS_DECL_ANDROID vfxGetFileTitle(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax)
-{
-   ASSERT(lpszTitle == NULL ||
-      fx_is_valid_address(lpszTitle, _MAX_FNAME));
-   ASSERT(AfxIsValidString(lpszPathName));
-
-   // use a temporary to avoid bugs in ::GetFileTitle when lpszTitle is NULL
-   WCHAR szTemp[_MAX_PATH];
-   wchar_t * lpszTemp = lpszTitle;
-   if (lpszTemp == NULL)
-   {
-      lpszTemp = szTemp;
-      nMax = _countof(szTemp);
-   }
-   if (::GetFileTitleW(lpszPathName, lpszTemp, (WORD)nMax) != 0)
-   {
-      // when ::GetFileTitle fails, use cheap imitation
-      return vfxGetFileName(lpszPathName, lpszTitle, nMax);
-   }
-   return lpszTitle == NULL ? lstrlenW(lpszTemp)+1 : 0;
-}
-
-
-BOOL vfxComparePath(const wchar_t * lpszPath1, const wchar_t * lpszPath2)
-{
-   // use case insensitive compare as a starter
-   if (lstrcmpiW(lpszPath1, lpszPath2) != 0)
-      return FALSE;
-
-   // on non-DBCS systems, we are done
-   if (!GetSystemMetrics(SM_DBCSENABLED))
-      return TRUE;
-
-   // on DBCS systems, the file name may not actually be the same
-   // in particular, the file system is case sensitive with respect to
-   // "full width" roman characters.
-   // (ie. fullwidth-R is different from fullwidth-r).
-   int nLen = lstrlenW(lpszPath1);
-   if (nLen != lstrlenW(lpszPath2))
-      return FALSE;
-   ASSERT(nLen < _MAX_PATH);
-
-   // need to get both CT_CTYPE1 and CT_CTYPE3 for each filename
-   LCID lcid = GetThreadLocale();
-   WORD aCharType11[_MAX_PATH];
-   VERIFY(GetStringTypeExW(lcid, CT_CTYPE1, lpszPath1, -1, aCharType11));
-   WORD aCharType13[_MAX_PATH];
-   VERIFY(GetStringTypeExW(lcid, CT_CTYPE3, lpszPath1, -1, aCharType13));
-   WORD aCharType21[_MAX_PATH];
-   VERIFY(GetStringTypeExW(lcid, CT_CTYPE1, lpszPath2, -1, aCharType21));
-#ifdef _DEBUG
-   WORD aCharType23[_MAX_PATH];
-   VERIFY(GetStringTypeExW(lcid, CT_CTYPE3, lpszPath2, -1, aCharType23));
-#endif
-
-   // for every C3_FULLWIDTH character, make sure it has same C1 value
-   int i = 0;
-   for (const wchar_t * lpsz = lpszPath1; *lpsz != 0; lpsz = _wcsinc(lpsz))
-   {
-      // check for C3_FULLWIDTH characters only
-      if (aCharType13[i] & C3_FULLWIDTH)
-      {
-#ifdef _DEBUG
-         ASSERT(aCharType23[i] & C3_FULLWIDTH); // should always match!
-#endif
-
-         // if CT_CTYPE1 is different then file system considers these
-         // file names different.
-         if (aCharType11[i] != aCharType21[i])
-            return FALSE;
-      }
-      ++i; // look at next character type
-   }
-   return TRUE; // otherwise file name is truly the same
-}
-*/
-
-/*
-void PASCAL WinFile::SetStatus(const char * lpszFileName, const ::ex1::file_status& status)
-{
-   DWORD wAttr;
-   FILETIME creationTime;
-   FILETIME lastAccessTime;
-   FILETIME lastWriteTime;
-   LPFILETIME lpCreationTime = NULL;
-   LPFILETIME lpLastAccessTime = NULL;
-   LPFILETIME lpLastWriteTime = NULL;
-
-   if ((wAttr = GetFileAttributes((LPTSTR)lpszFileName)) == (DWORD)-1L)
-      WinFileException::ThrowOsError(get_app(), (LONG)GetLastError());
-
-   if ((DWORD)status.m_attribute != wAttr && (wAttr & readOnly))
-   {
-      // Set file attribute, only if currently readonly.
-      // This way we will be able to modify the time assuming the
-      // caller changed the file from readonly.
-
-      if (!SetFileAttributes((LPTSTR)lpszFileName, (DWORD)status.m_attribute))
-         WinFileException::ThrowOsError(get_app(), (LONG)GetLastError());
-   }
-
-   // last modification time
-   if (status.m_mtime.get_time() != 0)
-   {
-      AfxTimeToFileTime(status.m_mtime, &lastWriteTime);
-      lpLastWriteTime = &lastWriteTime;
-
-      // last access time
-      if (status.m_atime.get_time() != 0)
-      {
-         AfxTimeToFileTime(status.m_atime, &lastAccessTime);
-         lpLastAccessTime = &lastAccessTime;
-      }
-
-      // create time
-      if (status.m_ctime.get_time() != 0)
-      {
-         AfxTimeToFileTime(status.m_ctime, &creationTime);
-         lpCreationTime = &creationTime;
-      }
-
-      HANDLE hFile = ::CreateFile(lpszFileName, GENERIC_READ|GENERIC_WRITE,
-         FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL,
-         NULL);
-
-      if (hFile == INVALID_HANDLE_VALUE)
-         WinFileException::ThrowOsError(get_app(), (LONG)::GetLastError());
-
-      if (!SetFileTime((HANDLE)hFile, lpCreationTime, lpLastAccessTime, lpLastWriteTime))
-         WinFileException::ThrowOsError(get_app(), (LONG)::GetLastError());
-
-      if (!::CloseHandle(hFile))
-         WinFileException::ThrowOsError(get_app(), (LONG)::GetLastError());
-   }
-
-   if ((DWORD)status.m_attribute != wAttr && !(wAttr & readOnly))
-   {
-      if (!SetFileAttributes((LPTSTR)lpszFileName, (DWORD)status.m_attribute))
-         WinFileException::ThrowOsError(get_app(), (LONG)GetLastError());
-   }
-}
-*/
-
-bool WinFile::IsOpened()
-{
-   return m_hFile != hFileNull;
-}
-
-
-void WinFile::SetFilePath(const char * lpszNewName)
-{
-   ASSERT_VALID(this);
-   ASSERT(AfxIsValidString(lpszNewName));
-   m_strFileName = lpszNewName;
-}
-
+} // namespace android
 
