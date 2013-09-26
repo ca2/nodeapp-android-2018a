@@ -19,213 +19,40 @@ typedef int32_t LONG;
 #define CONST               const
 #endif
 
-template < typename t1, typename t2 >
-class simple_map;
-
-class hthread;
-
-namespace ca
-{
-
-
-   class thread_base;
-   class window;
-
-
-} // namespace ca
+struct hthread;
 
 
 
 
-class oswindow_data;
+struct oswindow_data;
 
 
-typedef oswindow_data * oswindow;
-
-
-namespace user
-{
-
-
-   class interaction_base;
-   class interaction;
-
-
-} // namespace user
-
-
-class oswindow_dataptra;
-
-
-class simple_event;
-
-
-class simple_mutex;
-
-
-typedef hthread * HTHREAD;
-
-
-class CLASS_DECL_c oswindow_data
-{
-public:
-
-
-   bool                          m_bMessageOnlyWindow;
-   ::user::interaction_base *    m_pui;
-   HTHREAD                       m_hthread;
-   COLORREF *                    m_pcolorref;
-   RECT                          m_rect;
-   simple_map < int, LONG > *    m_plongmap;
-   bool                          m_bDestroying;
-
-
-   static oswindow_dataptra * s_pdataptra;
-   static simple_mutex * s_pmutex;
-
-
-   oswindow_data();
-   oswindow_data(::user::interaction_base * puibaseMessageOnlyWindow);
-   oswindow_data(const void * p);
-   oswindow_data(const LPARAM & lparam);
-   oswindow_data(const WPARAM & wparam);
-
-
-   ~oswindow_data();
-
-
-
-   operator void * ()
-   {
-      return this;
-   }
-
-   operator void * () const
-   {
-      return (void *) this;
-   }
-
-   oswindow_data & operator = (const oswindow_data & window);
-
-   bool operator == (const void * p) const
-   {
-      return this == p;
-   }
-
-   bool operator != (const void * p) const
-   {
-      return this != p;
-   }
-
-
-   int32_t store_name(const char * psz);
-   int32_t select_input(int32_t iInput);
-   int32_t select_all_input();
-   int32_t map_window();
-
-   void set_user_interaction(::user::interaction_base * pui);
-   ::user::interaction_base * get_user_interaction_base();
-   ::user::interaction_base * get_user_interaction_base() const;
-   ::user::interaction * get_user_interaction();
-   ::user::interaction * get_user_interaction() const;
-
-
-   void post_nc_destroy();
-
-
-   bool is_child(oswindow oswindowCandidateChildOrDescendant); // or descendant
-   oswindow get_parent();
-   oswindow set_parent(oswindow oswindowNewParent);
-   long get_state();
-   bool is_iconic();
-   bool is_window_visible();
-   bool show_window(int32_t nCmdShow);
-   LONG get_window_long(int32_t nIndex);
-   LONG set_window_long(int32_t nIndex, LONG l);
-   bool client_to_screen(LPPOINT lppoint);
-   bool screen_to_client(LPPOINT lppoint);
-
-
-
-   bool is_null() const
-   {
-      return this == NULL;
-   }
-
-
-   bool is_destroying();
-
-
-};
-
-
-CLASS_DECL_c int32_t oswindow_find_message_only_window(::user::interaction_base * puibaseMessageWindow);
-CLASS_DECL_c int32_t oswindow_find(::ca::window * pwindow);
-CLASS_DECL_c oswindow_data * oswindow_get_message_only_window(::user::interaction_base * puibaseMessageWindow);
-CLASS_DECL_c oswindow_data * oswindow_get(::ca::window * pwindow);
-CLASS_DECL_c oswindow oswindow_defer_get(::ca::window * pwindow);
-CLASS_DECL_c bool oswindow_remove(::ca::window * pwindow);
-CLASS_DECL_c bool oswindow_remove_message_only_window(::user::interaction_base * puibaseMessageOnlyWindow);
+typedef struct oswindow_data * oswindow;
 
 
 
 
 #define HWND_MESSAGE ((::oswindow_data *) (int_ptr) 1)
 
-inline bool IsChild(oswindow oswindowParent, ::oswindow oswindowCandidateChildOrDescendant)
-{
-   return oswindowParent->is_child(oswindowCandidateChildOrDescendant);
-}
-
-inline oswindow GetParent(::oswindow oswindow)
-{
-   return oswindow->get_parent();
-}
-
-inline oswindow SetParent(::oswindow oswindow, ::oswindow oswindowNewParent)
-{
-   return oswindow->set_parent(oswindowNewParent);
-}
-
-inline bool ShowWindow(::oswindow oswindow, int32_t nCmdShow)
-{
-   return oswindow->show_window(nCmdShow);
-}
-
-inline LONG GetWindowLongA(::oswindow oswindow, int32_t nIndex)
-{
-   return oswindow->get_window_long(nIndex);
-}
-
-inline LONG SetWindowLongA(::oswindow oswindow, int32_t nIndex, LONG l)
-{
-   return oswindow->set_window_long(nIndex, l);
-}
-
-inline bool ClientToScreen(::oswindow oswindow, LPPOINT lppoint)
-{
-   return oswindow->client_to_screen(lppoint);
-}
-
-inline bool ScreenToClient(::oswindow oswindow, LPPOINT lppoint)
-{
-   return oswindow->screen_to_client(lppoint);
-}
-
-inline int32_t IsIconic(::oswindow oswindow)
-{
-   return oswindow->is_iconic();
-}
-
-inline int32_t IsWindowVisible(::oswindow oswindow)
-{
-   return oswindow->is_window_visible();
-}
-
+CLASS_DECL_c int_bool IsChild(oswindow windowParent, oswindow windowCandidateChildOrDescendant);
+CLASS_DECL_c oswindow GetParent(oswindow window);
+CLASS_DECL_c oswindow SetParent(oswindow window, oswindow windowNewParent);
+CLASS_DECL_c int_bool ShowWindow(oswindow window, int32_t nCmdShow);
+CLASS_DECL_c LONG GetWindowLongA(oswindow window, int32_t nIndex);
+CLASS_DECL_c LONG SetWindowLongA(oswindow window, int32_t nIndex, LONG l);
+CLASS_DECL_c int_bool ClientToScreen(oswindow window, LPPOINT lppoint);
+CLASS_DECL_c int_bool ScreenToClient(oswindow window, LPPOINT lppoint);
+CLASS_DECL_c int32_t IsIconic(oswindow window);
+CLASS_DECL_c int32_t IsWindowVisible(oswindow window);
 
 #define GetWindowLong GetWindowLongA
 #define SetWindowLong SetWindowLongA
 
 
 
-CLASS_DECL_c bool IsWindow(oswindow oswindow);
+CLASS_DECL_c int_bool IsWindow(oswindow oswindow);
+
+
+
+
+

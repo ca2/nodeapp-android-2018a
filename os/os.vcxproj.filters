@@ -239,6 +239,9 @@
     <ClInclude Include="..\operational_system\version_android.h">
       <Filter>Header Files\operational_system</Filter>
     </ClInclude>
+    <ClInclude Include="..\operational_system\config.h">
+      <Filter>Header Files\operational_system</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="android.cpp">

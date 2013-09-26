@@ -43,9 +43,9 @@ typedef std::type_info std_type_info;
 	#define PASCAL
 #endif
 
-// FASTCALL is used for static member functions with little or no params
-#ifndef FASTCALL
-	#define FASTCALL
+// FASTcaLL is used for static member functions with little or no params
+#ifndef FASTcaLL
+	#define FASTcaLL
 #endif
 
 // CDECL and EXPORT are defined in case WINDOWS.H doesn't
@@ -57,7 +57,7 @@ typedef std::type_info std_type_info;
 	#define EXPORT
 #endif
 
-// UNALIGNED is used for unaligned data access (in CArchive mostly)
+// UNALIGNED is used for unaligned data access (in carchive mostly)
 #if !defined(UNALIGNED)
 #if defined(_M_IA64) || defined(_M_AMD64)
 #define UNALIGNED __unaligned
@@ -66,23 +66,23 @@ typedef std::type_info std_type_info;
 #endif
 #endif
 
-// __DEPRECATED is used for functions that should no longer be used
-#ifndef __DEPRECATED
-#ifdef _AFX_DISABLE_DEPRECATED
-	#define __DEPRECATED(_Message)
+// __DEPREcaTED is used for functions that should no longer be used
+#ifndef __DEPREcaTED
+#ifdef _AFX_DISABLE_DEPREcaTED
+	#define __DEPREcaTED(_Message)
 #else
-	#define __DEPRECATED(_Message) __declspec(deprecated(_Message))
+	#define __DEPREcaTED(_Message) __declspec(deprecated(_Message))
 #endif
 #endif
 
-// _AFX_INSECURE_DEPRECATE is used for deprecated, insecure functions.
-#ifndef _AFX_INSECURE_DEPRECATE
-#ifdef _AFX_SECURE_NO_DEPRECATE
-#define _AFX_INSECURE_DEPRECATE(_Message)
+// _AFX_INSECURE_DEPREcaTE is used for deprecated, insecure functions.
+#ifndef _AFX_INSECURE_DEPREcaTE
+#ifdef _AFX_SECURE_NO_DEPREcaTE
+#define _AFX_INSECURE_DEPREcaTE(_Message)
 #else
-#define _AFX_INSECURE_DEPRECATE(_Message) __declspec(deprecated(_Message))
-#endif // _AFX_SECURE_NO_DEPRECATE
-#endif // _AFX_INSECURE_DEPRECATE
+#define _AFX_INSECURE_DEPREcaTE(_Message) __declspec(deprecated(_Message))
+#endif // _AFX_SECURE_NO_DEPREcaTE
+#endif // _AFX_INSECURE_DEPREcaTE
 
 // _API is used on global public functions
 #ifndef _API
@@ -141,7 +141,8 @@ typedef std::type_info std_type_info;
 
 // for global data that should be in COMDATs (packaged data)
 #ifndef __COMDAT
-#define __COMDAT __declspec(selectany)
+//#define __COMDAT __declspec(selectany)
+#define __COMDAT
 #endif
 
 // The following macros are used on data declarations/definitions
@@ -201,10 +202,6 @@ typedef std::type_info std_type_info;
 
 
 //#define _API
-
-
-
-#include <netinet/in.h>
 
 
 

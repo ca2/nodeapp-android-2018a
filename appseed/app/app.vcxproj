@@ -27,8 +27,8 @@
     <IntDir>and\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Android'">
-    <OutDir>$(SolutionDir)..\..\..\stage\arm-linux-androideabi-4.4.3\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\intermediate\arm-linux-androideabi-4.4.3\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(PlatformName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">
     <AntBuild>
@@ -48,6 +48,7 @@
     <ClCompile>
       <AdditionalOptions>-std=c++11 -Wno-conversion-null %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>_DEBUG;</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>

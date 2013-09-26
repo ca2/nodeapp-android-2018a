@@ -177,7 +177,7 @@ typedef struct _PROC_THREAD_ATTRIBUTE_LIST *PPROC_THREAD_ATTRIBUTE_LIST, *LPPROC
 
 //class simple_event;
 
-HTHREAD
+/*HTHREAD
 WINAPI
 CreateThread(
     LPSECURITY_ATTRIBUTES lpThreadAttributes,
@@ -186,7 +186,7 @@ CreateThread(
     LPVOID lpParameter,
     DWORD dwCreationFlags,
     LPDWORD lpThreadId
-    );
+    );*/
 
 
 VOID
