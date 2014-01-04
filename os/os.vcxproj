@@ -69,7 +69,7 @@
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
     <UseOfAtl>false</UseOfAtl>
-    <PlatformToolset>arm-linux-androideabi-4.7</PlatformToolset>
+    <PlatformToolset>arm-linux-androideabi-4.8</PlatformToolset>
     <AndroidStlType>gnustl_dynamic</AndroidStlType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'" Label="Configuration">
@@ -429,7 +429,7 @@
     <ClCompile>
       <AdditionalOptions>-std=c++11 -Wno-conversion-null</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed/base/base;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../app/appseed/base/base/openssl;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto;$(SolutionDir)../../../app/appseed/base/base/openssl/ssl;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/asn1;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/evp;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/krb5;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/modes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_ANDROID_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -1394,14 +1394,8 @@
     <ProjectReference Include="..\..\app\thirdparty\appseed\freetype\freetype.vcxproj">
       <Project>{771f4b49-cad1-438f-b272-20f3eb8e88f1}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\thirdparty\appseed\openssl\openssl.vcxproj">
-      <Project>{ac98b756-e84c-4a70-9cdb-e9812fef9b98}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\app\thirdparty\appseed\pixman\_ca2pixman.vcxproj">
       <Project>{63108f1c-eaa8-4c49-a591-13f813a76b05}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\app\thirdparty\appseed\zlib\_ca2zlib.vcxproj">
-      <Project>{9ffc2cf6-737c-43db-a1ee-383f7bfdb05b}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
