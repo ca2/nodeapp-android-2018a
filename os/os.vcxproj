@@ -427,10 +427,9 @@
       </HeaderFileName>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>
-      </AdditionalOptions>
+      <AdditionalOptions>-Wnarrowing</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed/base/base;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../app/appseed/base/base/openssl;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto;$(SolutionDir)../../../app/appseed/base/base/openssl/ssl;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/asn1;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/evp;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/krb5;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/modes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_ANDROID_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -484,6 +483,7 @@
       <AdditionalDependencies>
       </AdditionalDependencies>
       <AndroidSystemLibs>c;m;log;gcc;_c;_ca2zlib;_ca2freeimage;_ca2freetype;_ca2cairo;_ca2openssl;_ca2ca;ca2</AndroidSystemLibs>
+      <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>
