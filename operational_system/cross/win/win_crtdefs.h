@@ -226,7 +226,7 @@ typedef struct threadlocaleinfostruct {
     int32_t *lconv_intl_refcount;
     int32_t *lconv_num_refcount;
     int32_t *lconv_mon_refcount;
-    struct lconv *lconv;
+    struct threadlocaleinfostruct_lconv *lconv;
     int32_t *ctype1_refcount;
     unsigned short *ctype1;
     const unsigned short *pctype;
