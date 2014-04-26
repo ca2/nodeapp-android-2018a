@@ -33,6 +33,7 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <math.h>
+#include <assert.h>
 
 
 #include <semaphore.h>
