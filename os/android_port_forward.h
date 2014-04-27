@@ -16,7 +16,7 @@ namespace android
    public:
 
 
-	   port_forward(sp(::ca2::application) papp);
+	   port_forward(sp(base_application) papp);
 	   virtual ~port_forward();
 
 

@@ -22,7 +22,7 @@ namespace android
 {
 
 
-   file::file(sp(::ca2::application) papp) :
+   file::file(sp(base_application) papp) :
       ca2(papp)
    {
 
@@ -32,7 +32,7 @@ namespace android
 
    }
 
-   file::file(sp(::ca2::application) papp, int32_t hFile) :
+   file::file(sp(base_application) papp, int32_t hFile) :
       ca2(papp)
    {
 
@@ -42,7 +42,7 @@ namespace android
 
    }
 
-   file::file(sp(::ca2::application) papp, const char * lpszFileName, UINT nOpenFlags) :
+   file::file(sp(base_application) papp, const char * lpszFileName, UINT nOpenFlags) :
       ca2(papp)
    {
 
@@ -574,13 +574,13 @@ namespace android
 
 
 
-   void PASCAL file_exception::ThrowOsError(sp(::ca2::application) papp, LONG lOsError, const char * lpszFileName /* = NULL */)
+   void PASCAL file_exception::ThrowOsError(sp(base_application) papp, LONG lOsError, const char * lpszFileName /* = NULL */)
    {
       if (lOsError != 0)
          vfxThrowFileException(papp, file_exception::OsErrorToException(lOsError), lOsError, lpszFileName);
    }
 
-   void PASCAL file_exception::ThrowErrno(sp(::ca2::application) papp, int32_t nErrno, const char * lpszFileName /* = NULL */)
+   void PASCAL file_exception::ThrowErrno(sp(base_application) papp, int32_t nErrno, const char * lpszFileName /* = NULL */)
    {
       if (nErrno != 0)
          vfxThrowFileException(papp, file_exception::ErrnoToException(nErrno), errno, lpszFileName);
@@ -1674,7 +1674,7 @@ return TRUE;
 /////////////////////////////////////////////////////////////////////////////
 // WinFileException helpers
 
-void CLASS_DECL_ANDROID vfxThrowFileException(sp(::ca2::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
+void CLASS_DECL_ANDROID vfxThrowFileException(sp(base_application) papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
 {
 #ifdef DEBUG
    const char * lpsz;

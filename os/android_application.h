@@ -20,7 +20,7 @@ namespace android
 
 
    class CLASS_DECL_ANDROID application :
-      virtual public ::ca2::application
+      virtual public base_application
    {
    public:
 
@@ -32,7 +32,7 @@ namespace android
       main_init_data *     m_pmaininitdata;
 
 
-      application(sp(::ca2::application) papp);
+      application(sp(base_application) papp);
       virtual ~application();
 
       virtual HINSTANCE GetHinstance();

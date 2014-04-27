@@ -111,7 +111,7 @@ namespace android
 
    }
 
-   window::window(sp(::ca2::application) papp) :
+   window::window(sp(base_application) papp) :
       ca2(papp),
       ::user::interaction(papp)
    {
@@ -1499,7 +1499,7 @@ d.unlock();
       {
       if(pbase->m_wparam == BERGEDGE_GETAPP)
       {
-      sp(::ca2::application)* ppapp= (sp(::ca2::application)*) pbase->m_lparam;
+      sp(base_application)* ppapp= (sp(base_application)*) pbase->m_lparam;
       *ppapp = get_app();
       pbase->m_bRet = true;
       return;
@@ -3246,7 +3246,7 @@ return 0;
       oswindow m_hwnd;
       HDC m_hdc;
 
-      print_window(sp(::ca2::application) papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
+      print_window(sp(base_application) papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
          ca2(papp),
          m_event(papp)
 
@@ -4012,8 +4012,8 @@ throw not_implemented(get_app());
       m_iModalCount++;
 
       m_iaModalThread.add(::GetCurrentThreadId());
-      sp(::ca2::application) pappThis1 =  (m_pthread->m_pthread->m_p);
-      sp(::ca2::application) pappThis2 =  (m_pthread->m_pthread);
+      sp(base_application) pappThis1 =  (m_pthread->m_pthread->m_p);
+      sp(base_application) pappThis2 =  (m_pthread->m_pthread);
 
             //Display * d = XOpenDisplay(NULL);
             //XEvent  e;
@@ -4282,7 +4282,7 @@ throw not_implemented(get_app());
    }
 
 
-   /*   view_update_hint::view_update_hint(sp(::ca2::application) papp) :
+   /*   view_update_hint::view_update_hint(sp(base_application) papp) :
    ca2(papp)
    {
    }
@@ -4620,7 +4620,7 @@ throw not_implemented(get_app());
       return m_id;
    }
 
-   /*   guie_message_wnd::guie_message_wnd(sp(::ca2::application) papp) :
+   /*   guie_message_wnd::guie_message_wnd(sp(base_application) papp) :
    ca2(papp)
    {
    m_pguieForward = NULL;
@@ -6625,7 +6625,7 @@ if(psurface == g_cairosurface)
 } // namespace android
 
 
-CTestCmdUI::CTestCmdUI(sp(::ca2::application) papp) :
+CTestCmdUI::CTestCmdUI(sp(base_application) papp) :
    ca2(papp),
    cmd_ui(papp)
 {

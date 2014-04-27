@@ -8,7 +8,7 @@ namespace android
 {
 
 
-   os::os(sp(::ca2::application) papp) :
+   os::os(sp(base_application) papp) :
       ca2(papp),
       ::ca2::os(papp)
    {

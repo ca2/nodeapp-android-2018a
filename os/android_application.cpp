@@ -7,7 +7,7 @@ extern __thread thread_local_storage * __thread_data;
 namespace android
 {
 
-   application::application(sp(::ca2::application) papp) :
+   application::application(sp(base_application) papp) :
       ca2(papp)
    {
       ::ca2::thread::m_p.create(allocer());
@@ -478,9 +478,9 @@ if(__get_module_state()->m_pmapHWND == NULL)
       ANDROID_THREAD(::ca2::thread::m_p.m_p)->m_bRun = false;
       //ANDROID_THREAD(::ca2::application_base::m_p->::ca2::thread_sp::m_p)->m_bRun = false;
 
-      int32_t iRet = ::ca2::application::exit_instance();
+      int32_t iRet = base_application::exit_instance();
 
-      //::ca2::smart_pointer<::ca2::application>::destroy();
+      //::ca2::smart_pointer<base_application>::destroy();
 
 
 
@@ -685,8 +685,8 @@ if(__get_module_state()->m_pmapHWND == NULL)
       }
 
 
-//      dynamic_cast < ::android::thread * > ((smart_pointer < ::ca2::application >::m_p->::ca2::thread_sp::m_p))->m_hThread = __get_thread()->m_hThread;
-  //    dynamic_cast < ::android::thread * > ((smart_pointer < ::ca2::application >::m_p->::ca2::thread_sp::m_p))->m_nThreadID = __get_thread()->m_nThreadID;
+//      dynamic_cast < ::android::thread * > ((smart_pointer < base_application >::m_p->::ca2::thread_sp::m_p))->m_hThread = __get_thread()->m_hThread;
+  //    dynamic_cast < ::android::thread * > ((smart_pointer < base_application >::m_p->::ca2::thread_sp::m_p))->m_nThreadID = __get_thread()->m_nThreadID;
       dynamic_cast < class ::android::thread * > (::ca2::thread::m_p.m_p)->m_hThread      =  ::GetCurrentThread();
 
 
@@ -784,7 +784,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
          // fill in the initial state for the application
          // Windows specific initialization (not done if no application)
 // xxx         m_hInstance = hInstance;
-// xxx          (dynamic_cast < sp(::ca2::application) >(m_papp))->m_hInstance = hInstance;
+// xxx          (dynamic_cast < sp(base_application) >(m_papp))->m_hInstance = hInstance;
          //hPrevInstance; // Obsolete.
          m_strCmdLine = strCmdLine;
          m_nCmdShow = nCmdShow;

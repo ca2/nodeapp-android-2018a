@@ -81,10 +81,10 @@ CLASS_DECL_ANDROID ::android::thread * __get_thread();
 CLASS_DECL_ANDROID void __set_thread(::ca2::thread * pthread);
 CLASS_DECL_ANDROID MESSAGE * __get_current_message();
 
-CLASS_DECL_ANDROID void __end_thread(sp(::ca2::application) papp, UINT nExitCode, bool bDelete = TRUE);
+CLASS_DECL_ANDROID void __end_thread(sp(base_application) papp, UINT nExitCode, bool bDelete = TRUE);
 
 CLASS_DECL_ANDROID void __init_thread();
-CLASS_DECL_ANDROID void __term_thread(sp(::ca2::application) papp, HINSTANCE hInstTerm = NULL);
+CLASS_DECL_ANDROID void __term_thread(sp(base_application) papp, HINSTANCE hInstTerm = NULL);
 
 /////////////////////////////////////////////////////////////////////////////
 // Global functions for access to the one and only application
@@ -103,7 +103,7 @@ CLASS_DECL_ANDROID void __term_thread(sp(::ca2::application) papp, HINSTANCE hIn
   // __in_z LPTSTR lpCmdLine, __in int32_t nCmdShow);
 CLASS_DECL_ANDROID void __android_term();
 
-CLASS_DECL_ANDROID sp(::ca2::application)  __get_app();
+CLASS_DECL_ANDROID sp(base_application)  __get_app();
 CLASS_DECL_ANDROID sp(::user::interaction) __get_main_window();
 //CLASS_DECL_ANDROID HINSTANCE CLASS_DECL_ANDROID System.m_hInstance;
 CLASS_DECL_ANDROID HINSTANCE __get_resource_handle();

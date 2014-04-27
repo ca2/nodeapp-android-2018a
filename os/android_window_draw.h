@@ -36,7 +36,7 @@ namespace android
       DWORD                                  m_dwLastDelay;
 
 
-      window_draw(sp(::ca2::application) papp);
+      window_draw(sp(base_application) papp);
       virtual ~window_draw();
 
 

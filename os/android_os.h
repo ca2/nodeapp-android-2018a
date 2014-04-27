@@ -11,7 +11,7 @@ namespace android
    public:
 
 
-      os(sp(::ca2::application) papp);
+      os(sp(base_application) papp);
       virtual ~os();
 
 

@@ -89,7 +89,7 @@ namespace android
       UINT                                m_dwFinishTimeout;
 
 
-      thread(sp(::ca2::application) papp);
+      thread(sp(base_application) papp);
       virtual ~thread();
 
 

@@ -21,7 +21,7 @@ namespace android
 
 
 
-      stdio_file(sp(::ca2::application) papp);
+      stdio_file(sp(base_application) papp);
       virtual ~stdio_file();
 
       virtual void write_string(const char * lpsz);

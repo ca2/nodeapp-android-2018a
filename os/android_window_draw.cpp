@@ -26,7 +26,7 @@ namespace android
 {
 
 
-   window_draw::window_draw(sp(::ca2::application) papp) :
+   window_draw::window_draw(sp(base_application) papp) :
       ca2(papp),
       ::ca2::thread(papp),
       ::ca2::window_draw(papp),

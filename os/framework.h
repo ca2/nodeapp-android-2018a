@@ -7,6 +7,6 @@
 #include "android_internal.h"
 
 
-CLASS_DECL_ANDROID void vfxThrowFileException(::ca2::application * papp, int cause, LONG lOsError, const char * lpszFileName = NULL);
+CLASS_DECL_ANDROID void vfxThrowFileException(base_application * papp, int cause, LONG lOsError, const char * lpszFileName = NULL);
 
 

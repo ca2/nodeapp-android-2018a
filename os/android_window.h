@@ -34,7 +34,7 @@ namespace android
 
 
       window();
-      window(sp(::ca2::application) papp);
+      window(sp(base_application) papp);
       virtual void construct(oswindow hwnd);
 
       virtual void on_delete(::ca2::ca2 * poc);

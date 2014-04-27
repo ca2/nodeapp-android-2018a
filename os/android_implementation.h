@@ -6,8 +6,8 @@ CLASS_DECL_ANDROID BOOL AfxEndDeferRegisterClass(LONG fToRegister, const char **
 
 
 // Temporary ::collection::map management (locks temp ::collection::map on current thread)
-//CLASS_DECL_ANDROID void AfxLockTempMaps(::ca2::application * papp);
-//CLASS_DECL_ANDROID BOOL AfxUnlockTempMaps(::ca2::application * papp, BOOL bDeleteTemps = TRUE);
+//CLASS_DECL_ANDROID void AfxLockTempMaps(base_application * papp);
+//CLASS_DECL_ANDROID BOOL AfxUnlockTempMaps(base_application * papp, BOOL bDeleteTemps = TRUE);
 
 
 

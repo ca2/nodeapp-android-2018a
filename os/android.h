@@ -15,7 +15,7 @@
 
 string get_error_message(DWORD dwError);
 
-::ca2::application *     win_instantiate_application(::ca2::application * pappSystem, const char * pszId);
+base_application *     win_instantiate_application(base_application * pappSystem, const char * pszId);
 
 /////////////////////////////////////////////////////////////////////////////
 // explicit initialization for general purpose classes
@@ -117,4 +117,4 @@ WINBOOL GetMessage(
 int32_t CLASS_DECL_ANDROID __android_main(int32_t argc, char * argv[]);
 
 
-CLASS_DECL_ANDROID void vfxThrowFileException(sp(::ca2::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
+CLASS_DECL_ANDROID void vfxThrowFileException(sp(base_application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);

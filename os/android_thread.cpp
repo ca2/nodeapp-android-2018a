@@ -390,7 +390,7 @@ WINBOOL __cdecl __is_idle_message(MESSAGE* pMsg)
 }
 
 
-/*thread* CLASS_DECL_ANDROID AfxBeginThread(sp(::ca2::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam,
+/*thread* CLASS_DECL_ANDROID AfxBeginThread(sp(base_application) papp, __THREADPROC pfnThreadProc, LPVOID pParam,
                               int32_t nPriority, UINT nStackSize, DWORD dwCreateFlags,
                               LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
@@ -411,7 +411,7 @@ WINBOOL __cdecl __is_idle_message(MESSAGE* pMsg)
 
    return pThread;
 }*/
-void CLASS_DECL_ANDROID __end_thread(sp(::ca2::application) papp, UINT nExitCode, bool bDelete)
+void CLASS_DECL_ANDROID __end_thread(sp(base_application) papp, UINT nExitCode, bool bDelete)
 {
    // remove current thread object from primitive::memory
    __MODULE_THREAD_STATE* pState = __get_module_thread_state();
@@ -419,7 +419,7 @@ void CLASS_DECL_ANDROID __end_thread(sp(::ca2::application) papp, UINT nExitCode
    if (pThread != NULL)
    {
       ASSERT_VALID(pThread);
-      //ASSERT(pThread != System::smart_pointer < sp(::ca2::application)>::m_p);
+      //ASSERT(pThread != System::smart_pointer < sp(base_application)>::m_p);
 
       if (bDelete)
          pThread->Delete();
@@ -434,7 +434,7 @@ void CLASS_DECL_ANDROID __end_thread(sp(::ca2::application) papp, UINT nExitCode
 }
 
 extern __thread thread_local_storage * __thread_data;
-void CLASS_DECL_ANDROID __term_thread(sp(::ca2::application) papp, HINSTANCE hInstTerm)
+void CLASS_DECL_ANDROID __term_thread(sp(base_application) papp, HINSTANCE hInstTerm)
 {
 
    try
@@ -510,7 +510,7 @@ namespace android
       CommonConstruct();
    }
 
-   thread::thread(sp(::ca2::application) papp) :
+   thread::thread(sp(base_application) papp) :
       ca2(papp),
       message_window_simple_callback(papp),//,
       m_evFinish(papp, FALSE, TRUE),
@@ -978,8 +978,8 @@ void thread::Delete()
       // for tracking the idle time state
       WINBOOL bIdle = TRUE;
       LONG lIdleCount = 0;
-      sp(::ca2::application) pappThis1 =  (this);
-      sp(::ca2::application) pappThis2 =  (m_p);
+      sp(base_application) pappThis1 =  (this);
+      sp(base_application) pappThis2 =  (m_p);
 
 
       //XEvent e;
@@ -1776,7 +1776,7 @@ return false;
 
 
 #ifndef _AFX_PORTABLE
-      /*sp(::ca2::application) papp =  (get_app());
+      /*sp(base_application) papp =  (get_app());
       ___THREAD_STATE* pThreadState = gen_ThreadState.GetDataNA();
       if( pThreadState != NULL )
       {
@@ -1845,7 +1845,7 @@ return false;
 
       ::android::thread* pThread = dynamic_cast < ::android::thread * > (pstartup->m_pthread);
 
-      sp(::ca2::application) papp =  (get_app());
+      sp(base_application) papp =  (get_app());
       m_evFinish.ResetEvent();
       install_message_handling(pThread);
       m_p->install_message_handling(pThread);
