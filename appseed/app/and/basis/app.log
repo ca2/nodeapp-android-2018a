@@ -1,0 +1,3 @@
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Platforms\Android\Microsoft.Cpp.Android.Targets(516,5): error : Could not find the Android SDK. Have you run the SDK Manager? Try setting the ANDROID_HOME environment variable to the SDK root.
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Platforms\Android\Microsoft.Cpp.Android.Targets(516,5): error : The Android SDK can be downloaded at this URL:
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Platforms\Android\Microsoft.Cpp.Android.Targets(516,5): error : http://developer.android.com/sdk/index.html

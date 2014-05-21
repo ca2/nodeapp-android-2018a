@@ -20,7 +20,8 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|Android'">
-    <PlatformToolset>arm-linux-androideabi-4.8</PlatformToolset>
+    <PlatformToolset>arm-linux-androideabi-4.6</PlatformToolset>
+    <AndroidStlType>gnustl_dynamic</AndroidStlType>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='basis|Android'">
     <AndroidAPILevel>android-5</AndroidAPILevel>
