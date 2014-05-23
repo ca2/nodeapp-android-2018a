@@ -80,6 +80,7 @@
       <Attributes>NoAttributes</Attributes>
       <Permissive>Yes</Permissive>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
