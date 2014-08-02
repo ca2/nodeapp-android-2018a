@@ -148,7 +148,7 @@ typedef union _XEvent XEvent;
 #ifdef __cplusplus
 
 
-inline void __debug_break() { throw 3; }
+inline void debug_break() { throw 3; }
 
 
 #endif
