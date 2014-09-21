@@ -137,7 +137,7 @@ typedef unsigned long XID;
 #endif
 #endif
 
-
+/*
 #pragma once
 
 
@@ -159,6 +159,7 @@ typedef int32_t long_ptr,*plong_ptr;
 typedef uint32_t ulong_ptr,*pulong_ptr;
 
 #endif
+*/
 
 
 //typedef void * HANDLE;
@@ -183,9 +184,9 @@ typedef uint32_t UINT;
 
 
 /* Types use for passing & returning polymorphic values */
-typedef uint_ptr                 WPARAM;
-typedef long_ptr                 LPARAM;
-typedef long_ptr                 LRESULT;
+//typedef uint_ptr                 WPARAM;
+//typedef long_ptr                 LPARAM;
+//typedef long_ptr                 LRESULT;
 typedef struct oswindow_data *   oswindow;
 typedef struct hthread *         HTHREAD;
 typedef XID                      Window;
@@ -451,7 +452,7 @@ typedef unsigned long   u_long;
 #endif
 
 
-typedef uint64_t dword_ptr;
+//typedef uint64_t dword_ptr;
 
 
 
@@ -464,7 +465,7 @@ typedef uint64_t dword_ptr;
 #define _X86_
 
 
-typedef uint32_t dword_ptr;
+//typedef uint32_t dword_ptr;
 
 
 //#define __int3264   int32_t
