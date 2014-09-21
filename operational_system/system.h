@@ -541,9 +541,9 @@ typedef std::type_info std_type_info;
 #endif
 
 // PASCAL is used for static member functions
-#ifndef PASCAL
-#define PASCAL
-#endif
+//#ifndef PASCAL
+//#define PASCAL
+//#endif
 
 // FASTcaLL is used for static member functions with little or no params
 #ifndef FASTcaLL
