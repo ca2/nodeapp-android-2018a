@@ -211,8 +211,8 @@ typedef std::type_info std_type_info;
 // std:: includes can undef min max macros
 
 
-#define MAX(x,y) (((x) > (y)) ? (x) : (y))
-#define MIN(x,y) (((x) < (y)) ? (x) : (y))
+//#define MAX(x,y) (((x) > (y)) ? (x) : (y))
+//#define MIN(x,y) (((x) < (y)) ? (x) : (y))
 
 
 
