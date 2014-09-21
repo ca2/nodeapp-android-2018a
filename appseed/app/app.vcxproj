@@ -28,7 +28,7 @@
     <AndroidStlType>gnustl_dynamic</AndroidStlType>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='basis|Android'">
-    <AndroidAPILevel>android-5</AndroidAPILevel>
+    <AndroidAPILevel>android-9</AndroidAPILevel>
     <AndroidStlType>gnustl_dynamic</AndroidStlType>
     <PlatformToolset>arm-linux-androideabi-4.8</PlatformToolset>
   </PropertyGroup>
