@@ -467,10 +467,11 @@ typedef uint64_t dword_ptr;
 typedef uint32_t dword_ptr;
 
 
-#define __int3264   int32_t
+//#define __int3264   int32_t
 
 
 #endif
+
 
 
 typedef uint8_t byte;
