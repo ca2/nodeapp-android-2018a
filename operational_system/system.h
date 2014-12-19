@@ -22,7 +22,7 @@
 */
 
 
-#include <pthread.h>
+//#include <pthread.h>
 
 
 #include <sys/resource.h>
@@ -111,7 +111,7 @@ return ::ca::thread_priority_normal;
 #endif
 #include <sys/time.h>
 #undef __USE_BSD
-#include <pthread.h>
+//#include <pthread.h>
 #include <sys/resource.h>
 #include <sys/types.h>
 #include <sys/socket.h>
