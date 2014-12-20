@@ -2403,7 +2403,9 @@ Global
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.static_basis|Win32.Build.0 = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.static_basis|x64.ActiveCfg = basis|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.static_basis|x64.Build.0 = basis|x64
-		{84517714-2000-419D-A87F-4338C9DDE3FA}.basis|Android.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.basis|Android.ActiveCfg = basis|Android
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.basis|Android.Build.0 = basis|Android
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.basis|Android.Deploy.0 = basis|Android
 		{84517714-2000-419D-A87F-4338C9DDE3FA}.basis|ARM.ActiveCfg = basis|Win32
 		{84517714-2000-419D-A87F-4338C9DDE3FA}.basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{84517714-2000-419D-A87F-4338C9DDE3FA}.basis|Mixed Platforms.Build.0 = basis|Win32
@@ -2507,7 +2509,9 @@ Global
 		{84517714-2000-419D-A87F-4338C9DDE3FA}.static_basis|Win32.Build.0 = basis|Win32
 		{84517714-2000-419D-A87F-4338C9DDE3FA}.static_basis|x64.ActiveCfg = basis|x64
 		{84517714-2000-419D-A87F-4338C9DDE3FA}.static_basis|x64.Build.0 = basis|x64
-		{84517713-2000-419D-A87F-4338C9DDE3FA}.basis|Android.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.basis|Android.ActiveCfg = basis|Android
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.basis|Android.Build.0 = basis|Android
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.basis|Android.Deploy.0 = basis|Android
 		{84517713-2000-419D-A87F-4338C9DDE3FA}.basis|ARM.ActiveCfg = basis|Win32
 		{84517713-2000-419D-A87F-4338C9DDE3FA}.basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{84517713-2000-419D-A87F-4338C9DDE3FA}.basis|Mixed Platforms.Build.0 = basis|Win32
@@ -2611,7 +2615,9 @@ Global
 		{84517713-2000-419D-A87F-4338C9DDE3FA}.static_basis|Win32.Build.0 = basis|Win32
 		{84517713-2000-419D-A87F-4338C9DDE3FA}.static_basis|x64.ActiveCfg = basis|x64
 		{84517713-2000-419D-A87F-4338C9DDE3FA}.static_basis|x64.Build.0 = basis|x64
-		{E8AC3EF0-11C5-4E12-A944-5F7EFED6E0C4}.basis|Android.ActiveCfg = basis|Win32
+		{E8AC3EF0-11C5-4E12-A944-5F7EFED6E0C4}.basis|Android.ActiveCfg = basis|Android
+		{E8AC3EF0-11C5-4E12-A944-5F7EFED6E0C4}.basis|Android.Build.0 = basis|Android
+		{E8AC3EF0-11C5-4E12-A944-5F7EFED6E0C4}.basis|Android.Deploy.0 = basis|Android
 		{E8AC3EF0-11C5-4E12-A944-5F7EFED6E0C4}.basis|ARM.ActiveCfg = basis|Win32
 		{E8AC3EF0-11C5-4E12-A944-5F7EFED6E0C4}.basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{E8AC3EF0-11C5-4E12-A944-5F7EFED6E0C4}.basis|Mixed Platforms.Build.0 = basis|Win32
