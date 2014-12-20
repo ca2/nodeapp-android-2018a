@@ -72,6 +72,7 @@
     <Link>
       <AdditionalOptions>-ljnigraphics %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
     </Link>
     <ClCompile>
       <AdditionalOptions>-Wnarrowing -std=c++11 -std=c++11</AdditionalOptions>
