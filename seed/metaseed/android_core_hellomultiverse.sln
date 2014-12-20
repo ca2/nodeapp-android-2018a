@@ -54,57 +54,74 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axisfreeimage", "..\..\..\a
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aqua", "..\..\..\app\appseed\aqua\aqua.vcxproj", "{51778453-C0AA-419D-A87F-4338C9DDE3FA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axispng", "..\..\..\app\axis\png\axispng.vcxproj", "{84517714-2000-419D-A87F-4338C9DDE3FA}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axisjpeg", "..\..\..\app\axis\jpeg\axisjpeg.vcxproj", "{84517713-2000-419D-A87F-4338C9DDE3FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		basis|Android = basis|Android
+		basis|ARM = basis|ARM
 		basis|Mixed Platforms = basis|Mixed Platforms
 		basis|Win32 = basis|Win32
 		basis|x64 = basis|x64
 		codeanalysis|Android = codeanalysis|Android
+		codeanalysis|ARM = codeanalysis|ARM
 		codeanalysis|Mixed Platforms = codeanalysis|Mixed Platforms
 		codeanalysis|Win32 = codeanalysis|Win32
 		codeanalysis|x64 = codeanalysis|x64
 		Debug Multithreaded|Android = Debug Multithreaded|Android
+		Debug Multithreaded|ARM = Debug Multithreaded|ARM
 		Debug Multithreaded|Mixed Platforms = Debug Multithreaded|Mixed Platforms
 		Debug Multithreaded|Win32 = Debug Multithreaded|Win32
 		Debug Multithreaded|x64 = Debug Multithreaded|x64
 		Debug Singlethreaded|Android = Debug Singlethreaded|Android
+		Debug Singlethreaded|ARM = Debug Singlethreaded|ARM
 		Debug Singlethreaded|Mixed Platforms = Debug Singlethreaded|Mixed Platforms
 		Debug Singlethreaded|Win32 = Debug Singlethreaded|Win32
 		Debug Singlethreaded|x64 = Debug Singlethreaded|x64
 		Debug|Android = Debug|Android
+		Debug|ARM = Debug|ARM
 		Debug|Mixed Platforms = Debug|Mixed Platforms
 		Debug|Win32 = Debug|Win32
 		Debug|x64 = Debug|x64
 		memdleak|Android = memdleak|Android
+		memdleak|ARM = memdleak|ARM
 		memdleak|Mixed Platforms = memdleak|Mixed Platforms
 		memdleak|Win32 = memdleak|Win32
 		memdleak|x64 = memdleak|x64
 		no_precompiled_header|Android = no_precompiled_header|Android
+		no_precompiled_header|ARM = no_precompiled_header|ARM
 		no_precompiled_header|Mixed Platforms = no_precompiled_header|Mixed Platforms
 		no_precompiled_header|Win32 = no_precompiled_header|Win32
 		no_precompiled_header|x64 = no_precompiled_header|x64
 		profiler|Android = profiler|Android
+		profiler|ARM = profiler|ARM
 		profiler|Mixed Platforms = profiler|Mixed Platforms
 		profiler|Win32 = profiler|Win32
 		profiler|x64 = profiler|x64
 		Release Multithreaded|Android = Release Multithreaded|Android
+		Release Multithreaded|ARM = Release Multithreaded|ARM
 		Release Multithreaded|Mixed Platforms = Release Multithreaded|Mixed Platforms
 		Release Multithreaded|Win32 = Release Multithreaded|Win32
 		Release Multithreaded|x64 = Release Multithreaded|x64
 		Release Singlethreaded|Android = Release Singlethreaded|Android
+		Release Singlethreaded|ARM = Release Singlethreaded|ARM
 		Release Singlethreaded|Mixed Platforms = Release Singlethreaded|Mixed Platforms
 		Release Singlethreaded|Win32 = Release Singlethreaded|Win32
 		Release Singlethreaded|x64 = Release Singlethreaded|x64
 		Release|Android = Release|Android
+		Release|ARM = Release|ARM
 		Release|Mixed Platforms = Release|Mixed Platforms
 		Release|Win32 = Release|Win32
 		Release|x64 = Release|x64
 		stage|Android = stage|Android
+		stage|ARM = stage|ARM
 		stage|Mixed Platforms = stage|Mixed Platforms
 		stage|Win32 = stage|Win32
 		stage|x64 = stage|x64
 		static_basis|Android = static_basis|Android
+		static_basis|ARM = static_basis|ARM
 		static_basis|Mixed Platforms = static_basis|Mixed Platforms
 		static_basis|Win32 = static_basis|Win32
 		static_basis|x64 = static_basis|x64
@@ -113,6 +130,7 @@ Global
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.basis|Android.ActiveCfg = basis|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.basis|Android.Build.0 = basis|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.basis|Android.Deploy.0 = basis|Android
+		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.basis|ARM.ActiveCfg = basis|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.basis|Mixed Platforms.ActiveCfg = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.basis|Mixed Platforms.Build.0 = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.basis|Mixed Platforms.Deploy.0 = Release|Android
@@ -121,6 +139,7 @@ Global
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.codeanalysis|Android.ActiveCfg = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.codeanalysis|Android.Build.0 = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.codeanalysis|Android.Deploy.0 = Release|Android
+		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.codeanalysis|ARM.ActiveCfg = no_precompiled_header|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.codeanalysis|Mixed Platforms.ActiveCfg = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.codeanalysis|Mixed Platforms.Build.0 = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.codeanalysis|Mixed Platforms.Deploy.0 = Release|Android
@@ -129,6 +148,7 @@ Global
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Debug Multithreaded|Android.ActiveCfg = Debug|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Debug Multithreaded|Android.Build.0 = Debug|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Debug Multithreaded|Android.Deploy.0 = Debug|Android
+		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Debug Multithreaded|ARM.ActiveCfg = Debug|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Debug Multithreaded|Mixed Platforms.ActiveCfg = Debug|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Debug Multithreaded|Mixed Platforms.Build.0 = Debug|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Debug Multithreaded|Mixed Platforms.Deploy.0 = Debug|Android
@@ -137,6 +157,7 @@ Global
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Debug Singlethreaded|Android.ActiveCfg = Debug|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Debug Singlethreaded|Android.Build.0 = Debug|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Debug Singlethreaded|Android.Deploy.0 = Debug|Android
+		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Debug Singlethreaded|ARM.ActiveCfg = Debug|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Debug Singlethreaded|Mixed Platforms.ActiveCfg = Debug|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Debug Singlethreaded|Mixed Platforms.Build.0 = Debug|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Debug Singlethreaded|Mixed Platforms.Deploy.0 = Debug|Android
@@ -145,6 +166,7 @@ Global
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Debug|Android.ActiveCfg = Debug|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Debug|Android.Build.0 = Debug|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Debug|Android.Deploy.0 = Debug|Android
+		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Debug|ARM.ActiveCfg = Debug|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Debug|Mixed Platforms.ActiveCfg = Debug|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Debug|Mixed Platforms.Build.0 = Debug|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Debug|Mixed Platforms.Deploy.0 = Debug|Android
@@ -153,6 +175,7 @@ Global
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.memdleak|Android.ActiveCfg = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.memdleak|Android.Build.0 = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.memdleak|Android.Deploy.0 = Release|Android
+		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.memdleak|ARM.ActiveCfg = no_precompiled_header|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.memdleak|Mixed Platforms.ActiveCfg = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.memdleak|Mixed Platforms.Build.0 = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.memdleak|Mixed Platforms.Deploy.0 = Release|Android
@@ -161,6 +184,7 @@ Global
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.no_precompiled_header|Android.ActiveCfg = no_precompiled_header|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.no_precompiled_header|Android.Build.0 = no_precompiled_header|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.no_precompiled_header|Android.Deploy.0 = no_precompiled_header|Android
+		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.no_precompiled_header|ARM.ActiveCfg = no_precompiled_header|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.no_precompiled_header|Mixed Platforms.ActiveCfg = no_precompiled_header|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.no_precompiled_header|Mixed Platforms.Build.0 = no_precompiled_header|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.no_precompiled_header|Mixed Platforms.Deploy.0 = no_precompiled_header|Android
@@ -169,6 +193,7 @@ Global
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.profiler|Android.ActiveCfg = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.profiler|Android.Build.0 = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.profiler|Android.Deploy.0 = Release|Android
+		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.profiler|ARM.ActiveCfg = no_precompiled_header|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.profiler|Mixed Platforms.ActiveCfg = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.profiler|Mixed Platforms.Build.0 = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.profiler|Mixed Platforms.Deploy.0 = Release|Android
@@ -177,6 +202,7 @@ Global
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Release Multithreaded|Android.ActiveCfg = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Release Multithreaded|Android.Build.0 = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Release Multithreaded|Android.Deploy.0 = Release|Android
+		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Release Multithreaded|ARM.ActiveCfg = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Release Multithreaded|Mixed Platforms.ActiveCfg = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Release Multithreaded|Mixed Platforms.Build.0 = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Release Multithreaded|Mixed Platforms.Deploy.0 = Release|Android
@@ -185,6 +211,7 @@ Global
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Release Singlethreaded|Android.ActiveCfg = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Release Singlethreaded|Android.Build.0 = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Release Singlethreaded|Android.Deploy.0 = Release|Android
+		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Release Singlethreaded|ARM.ActiveCfg = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Release Singlethreaded|Mixed Platforms.ActiveCfg = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Release Singlethreaded|Mixed Platforms.Build.0 = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Release Singlethreaded|Mixed Platforms.Deploy.0 = Release|Android
@@ -193,6 +220,7 @@ Global
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Release|Android.ActiveCfg = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Release|Android.Build.0 = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Release|Android.Deploy.0 = Release|Android
+		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Release|ARM.ActiveCfg = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Release|Mixed Platforms.ActiveCfg = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Release|Mixed Platforms.Build.0 = Release|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.Release|Mixed Platforms.Deploy.0 = Release|Android
@@ -201,6 +229,7 @@ Global
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.stage|Android.ActiveCfg = no_precompiled_header|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.stage|Android.Build.0 = no_precompiled_header|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.stage|Android.Deploy.0 = no_precompiled_header|Android
+		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.stage|ARM.ActiveCfg = no_precompiled_header|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.stage|Mixed Platforms.ActiveCfg = no_precompiled_header|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.stage|Mixed Platforms.Build.0 = no_precompiled_header|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.stage|Mixed Platforms.Deploy.0 = no_precompiled_header|Android
@@ -209,6 +238,7 @@ Global
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.static_basis|Android.ActiveCfg = basis|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.static_basis|Android.Build.0 = basis|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.static_basis|Android.Deploy.0 = basis|Android
+		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.static_basis|ARM.ActiveCfg = basis|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.static_basis|Mixed Platforms.ActiveCfg = basis|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.static_basis|Mixed Platforms.Build.0 = basis|Android
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.static_basis|Mixed Platforms.Deploy.0 = basis|Android
@@ -217,6 +247,7 @@ Global
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.basis|Android.ActiveCfg = basis|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.basis|Android.Build.0 = basis|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.basis|Android.Deploy.0 = basis|Android
+		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.basis|ARM.ActiveCfg = basis|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.basis|Mixed Platforms.Build.0 = basis|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.basis|Win32.ActiveCfg = basis|Win32
@@ -226,6 +257,7 @@ Global
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.codeanalysis|Android.ActiveCfg = codeanalysis|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.codeanalysis|Android.Build.0 = codeanalysis|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.codeanalysis|Android.Deploy.0 = codeanalysis|Android
+		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.codeanalysis|ARM.ActiveCfg = codeanalysis|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.codeanalysis|Mixed Platforms.ActiveCfg = codeanalysis|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.codeanalysis|Mixed Platforms.Build.0 = codeanalysis|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.codeanalysis|Win32.ActiveCfg = codeanalysis|Win32
@@ -235,6 +267,7 @@ Global
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Debug Multithreaded|Android.ActiveCfg = profiler|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Debug Multithreaded|Android.Build.0 = profiler|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Debug Multithreaded|Android.Deploy.0 = profiler|Android
+		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Debug Multithreaded|ARM.ActiveCfg = stage|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Debug Multithreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Debug Multithreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Debug Multithreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -244,6 +277,7 @@ Global
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Debug Singlethreaded|Android.ActiveCfg = profiler|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Debug Singlethreaded|Android.Build.0 = profiler|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Debug Singlethreaded|Android.Deploy.0 = profiler|Android
+		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Debug Singlethreaded|ARM.ActiveCfg = stage|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Debug Singlethreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Debug Singlethreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Debug Singlethreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -253,6 +287,7 @@ Global
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Debug|Android.ActiveCfg = profiler|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Debug|Android.Build.0 = profiler|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Debug|Android.Deploy.0 = profiler|Android
+		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Debug|ARM.ActiveCfg = stage|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Debug|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Debug|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Debug|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -262,6 +297,7 @@ Global
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.memdleak|Android.ActiveCfg = memdleak|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.memdleak|Android.Build.0 = memdleak|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.memdleak|Android.Deploy.0 = memdleak|Android
+		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.memdleak|ARM.ActiveCfg = memdleak|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.memdleak|Mixed Platforms.ActiveCfg = memdleak|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.memdleak|Mixed Platforms.Build.0 = memdleak|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.memdleak|Win32.ActiveCfg = memdleak|Win32
@@ -271,6 +307,7 @@ Global
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.no_precompiled_header|Android.ActiveCfg = no_precompiled_header|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.no_precompiled_header|Android.Build.0 = no_precompiled_header|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.no_precompiled_header|Android.Deploy.0 = no_precompiled_header|Android
+		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.no_precompiled_header|ARM.ActiveCfg = no_precompiled_header|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.no_precompiled_header|Mixed Platforms.ActiveCfg = no_precompiled_header|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.no_precompiled_header|Mixed Platforms.Build.0 = no_precompiled_header|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.no_precompiled_header|Mixed Platforms.Deploy.0 = no_precompiled_header|Android
@@ -279,6 +316,7 @@ Global
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.profiler|Android.ActiveCfg = profiler|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.profiler|Android.Build.0 = profiler|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.profiler|Android.Deploy.0 = profiler|Android
+		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.profiler|ARM.ActiveCfg = profiler|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.profiler|Mixed Platforms.ActiveCfg = profiler|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.profiler|Mixed Platforms.Build.0 = profiler|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.profiler|Win32.ActiveCfg = profiler|Win32
@@ -288,6 +326,7 @@ Global
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Release Multithreaded|Android.ActiveCfg = profiler|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Release Multithreaded|Android.Build.0 = profiler|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Release Multithreaded|Android.Deploy.0 = profiler|Android
+		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Release Multithreaded|ARM.ActiveCfg = stage|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Release Multithreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Release Multithreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Release Multithreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -297,6 +336,7 @@ Global
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Release Singlethreaded|Android.ActiveCfg = profiler|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Release Singlethreaded|Android.Build.0 = profiler|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Release Singlethreaded|Android.Deploy.0 = profiler|Android
+		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Release Singlethreaded|ARM.ActiveCfg = stage|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Release Singlethreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Release Singlethreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Release Singlethreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -306,6 +346,7 @@ Global
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Release|Android.ActiveCfg = profiler|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Release|Android.Build.0 = profiler|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Release|Android.Deploy.0 = profiler|Android
+		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Release|ARM.ActiveCfg = stage|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Release|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Release|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.Release|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -315,6 +356,7 @@ Global
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.stage|Android.ActiveCfg = stage|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.stage|Android.Build.0 = stage|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.stage|Android.Deploy.0 = stage|Android
+		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.stage|ARM.ActiveCfg = stage|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.stage|Mixed Platforms.ActiveCfg = stage|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.stage|Mixed Platforms.Build.0 = stage|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.stage|Win32.ActiveCfg = stage|Win32
@@ -324,6 +366,7 @@ Global
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.static_basis|Android.ActiveCfg = basis|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.static_basis|Android.Build.0 = basis|Android
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.static_basis|Android.Deploy.0 = basis|Android
+		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.static_basis|ARM.ActiveCfg = basis|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.static_basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.static_basis|Mixed Platforms.Build.0 = basis|Win32
 		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}.static_basis|Win32.ActiveCfg = basis|Win32
@@ -333,6 +376,7 @@ Global
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.basis|Android.ActiveCfg = basis|Android
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.basis|Android.Build.0 = basis|Android
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.basis|Android.Deploy.0 = basis|Android
+		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.basis|ARM.ActiveCfg = basis|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.basis|Mixed Platforms.Build.0 = basis|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.basis|Win32.ActiveCfg = basis|Win32
@@ -340,6 +384,7 @@ Global
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.basis|x64.ActiveCfg = basis|x64
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.basis|x64.Build.0 = basis|x64
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.codeanalysis|Android.ActiveCfg = codeanalysis|Win32
+		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.codeanalysis|ARM.ActiveCfg = codeanalysis|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.codeanalysis|Mixed Platforms.ActiveCfg = codeanalysis|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.codeanalysis|Mixed Platforms.Build.0 = codeanalysis|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.codeanalysis|Win32.ActiveCfg = codeanalysis|Win32
@@ -349,6 +394,7 @@ Global
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Debug Multithreaded|Android.ActiveCfg = codeanalysis|Android
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Debug Multithreaded|Android.Build.0 = codeanalysis|Android
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Debug Multithreaded|Android.Deploy.0 = codeanalysis|Android
+		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Debug Multithreaded|ARM.ActiveCfg = stage|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Debug Multithreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Debug Multithreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Debug Multithreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -358,6 +404,7 @@ Global
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Debug Singlethreaded|Android.ActiveCfg = codeanalysis|Android
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Debug Singlethreaded|Android.Build.0 = codeanalysis|Android
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Debug Singlethreaded|Android.Deploy.0 = codeanalysis|Android
+		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Debug Singlethreaded|ARM.ActiveCfg = stage|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Debug Singlethreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Debug Singlethreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Debug Singlethreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -367,6 +414,7 @@ Global
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Debug|Android.ActiveCfg = codeanalysis|Android
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Debug|Android.Build.0 = codeanalysis|Android
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Debug|Android.Deploy.0 = codeanalysis|Android
+		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Debug|ARM.ActiveCfg = stage|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Debug|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Debug|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Debug|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -374,6 +422,7 @@ Global
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Debug|x64.ActiveCfg = no_precompiled_header|x64
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Debug|x64.Build.0 = no_precompiled_header|x64
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.memdleak|Android.ActiveCfg = memdleak|Win32
+		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.memdleak|ARM.ActiveCfg = memdleak|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.memdleak|Mixed Platforms.ActiveCfg = memdleak|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.memdleak|Mixed Platforms.Build.0 = memdleak|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.memdleak|Win32.ActiveCfg = memdleak|Win32
@@ -381,10 +430,12 @@ Global
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.memdleak|x64.ActiveCfg = memdleak|x64
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.memdleak|x64.Build.0 = memdleak|x64
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.no_precompiled_header|Android.ActiveCfg = no_precompiled_header|Android
+		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.no_precompiled_header|ARM.ActiveCfg = no_precompiled_header|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.no_precompiled_header|Mixed Platforms.ActiveCfg = profiler|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.no_precompiled_header|Win32.ActiveCfg = profiler|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.no_precompiled_header|x64.ActiveCfg = profiler|x64
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.profiler|Android.ActiveCfg = profiler|Win32
+		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.profiler|ARM.ActiveCfg = profiler|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.profiler|Mixed Platforms.ActiveCfg = profiler|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.profiler|Mixed Platforms.Build.0 = profiler|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.profiler|Win32.ActiveCfg = profiler|Win32
@@ -394,6 +445,7 @@ Global
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Release Multithreaded|Android.ActiveCfg = codeanalysis|Android
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Release Multithreaded|Android.Build.0 = codeanalysis|Android
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Release Multithreaded|Android.Deploy.0 = codeanalysis|Android
+		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Release Multithreaded|ARM.ActiveCfg = stage|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Release Multithreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Release Multithreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Release Multithreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -403,6 +455,7 @@ Global
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Release Singlethreaded|Android.ActiveCfg = codeanalysis|Android
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Release Singlethreaded|Android.Build.0 = codeanalysis|Android
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Release Singlethreaded|Android.Deploy.0 = codeanalysis|Android
+		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Release Singlethreaded|ARM.ActiveCfg = stage|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Release Singlethreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Release Singlethreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Release Singlethreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -412,6 +465,7 @@ Global
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Release|Android.ActiveCfg = codeanalysis|Android
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Release|Android.Build.0 = codeanalysis|Android
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Release|Android.Deploy.0 = codeanalysis|Android
+		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Release|ARM.ActiveCfg = stage|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Release|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Release|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.Release|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -421,6 +475,7 @@ Global
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.stage|Android.ActiveCfg = stage|Android
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.stage|Android.Build.0 = stage|Android
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.stage|Android.Deploy.0 = stage|Android
+		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.stage|ARM.ActiveCfg = stage|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.stage|Mixed Platforms.ActiveCfg = stage|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.stage|Mixed Platforms.Build.0 = stage|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.stage|Win32.ActiveCfg = stage|Win32
@@ -430,6 +485,7 @@ Global
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.static_basis|Android.ActiveCfg = basis|Android
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.static_basis|Android.Build.0 = basis|Android
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.static_basis|Android.Deploy.0 = basis|Android
+		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.static_basis|ARM.ActiveCfg = basis|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.static_basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.static_basis|Mixed Platforms.Build.0 = basis|Win32
 		{8BFB055E-C614-4A5D-BB61-39B31021BD6E}.static_basis|Win32.ActiveCfg = basis|Win32
@@ -439,6 +495,7 @@ Global
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.basis|Android.ActiveCfg = basis|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.basis|Android.Build.0 = basis|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.basis|Android.Deploy.0 = basis|Android
+		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.basis|ARM.ActiveCfg = basis|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.basis|Mixed Platforms.Build.0 = basis|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.basis|Win32.ActiveCfg = basis|Win32
@@ -448,6 +505,7 @@ Global
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.codeanalysis|Android.ActiveCfg = codeanalysis|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.codeanalysis|Android.Build.0 = codeanalysis|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.codeanalysis|Android.Deploy.0 = codeanalysis|Android
+		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.codeanalysis|ARM.ActiveCfg = codeanalysis|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.codeanalysis|Mixed Platforms.ActiveCfg = codeanalysis|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.codeanalysis|Mixed Platforms.Build.0 = codeanalysis|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.codeanalysis|Win32.ActiveCfg = codeanalysis|Win32
@@ -457,6 +515,7 @@ Global
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Debug Multithreaded|Android.ActiveCfg = static_basis|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Debug Multithreaded|Android.Build.0 = static_basis|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Debug Multithreaded|Android.Deploy.0 = static_basis|Android
+		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Debug Multithreaded|ARM.ActiveCfg = stage|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Debug Multithreaded|Mixed Platforms.ActiveCfg = static_basis|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Debug Multithreaded|Mixed Platforms.Build.0 = static_basis|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Debug Multithreaded|Win32.ActiveCfg = static_basis|Win32
@@ -466,6 +525,7 @@ Global
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Debug Singlethreaded|Android.ActiveCfg = static_basis|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Debug Singlethreaded|Android.Build.0 = static_basis|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Debug Singlethreaded|Android.Deploy.0 = static_basis|Android
+		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Debug Singlethreaded|ARM.ActiveCfg = stage|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Debug Singlethreaded|Mixed Platforms.ActiveCfg = static_basis|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Debug Singlethreaded|Mixed Platforms.Build.0 = static_basis|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Debug Singlethreaded|Win32.ActiveCfg = static_basis|Win32
@@ -475,6 +535,7 @@ Global
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Debug|Android.ActiveCfg = static_basis|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Debug|Android.Build.0 = static_basis|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Debug|Android.Deploy.0 = static_basis|Android
+		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Debug|ARM.ActiveCfg = stage|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Debug|Mixed Platforms.ActiveCfg = static_basis|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Debug|Mixed Platforms.Build.0 = static_basis|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Debug|Win32.ActiveCfg = static_basis|Win32
@@ -484,6 +545,7 @@ Global
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.memdleak|Android.ActiveCfg = memdleak|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.memdleak|Android.Build.0 = memdleak|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.memdleak|Android.Deploy.0 = memdleak|Android
+		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.memdleak|ARM.ActiveCfg = memdleak|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.memdleak|Mixed Platforms.ActiveCfg = memdleak|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.memdleak|Mixed Platforms.Build.0 = memdleak|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.memdleak|Win32.ActiveCfg = memdleak|Win32
@@ -493,6 +555,7 @@ Global
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.no_precompiled_header|Android.ActiveCfg = no_precompiled_header|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.no_precompiled_header|Android.Build.0 = no_precompiled_header|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.no_precompiled_header|Android.Deploy.0 = no_precompiled_header|Android
+		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.no_precompiled_header|ARM.ActiveCfg = no_precompiled_header|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.no_precompiled_header|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.no_precompiled_header|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.no_precompiled_header|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -502,6 +565,7 @@ Global
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.profiler|Android.ActiveCfg = profiler|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.profiler|Android.Build.0 = profiler|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.profiler|Android.Deploy.0 = profiler|Android
+		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.profiler|ARM.ActiveCfg = profiler|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.profiler|Mixed Platforms.ActiveCfg = profiler|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.profiler|Mixed Platforms.Build.0 = profiler|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.profiler|Win32.ActiveCfg = profiler|Win32
@@ -511,6 +575,7 @@ Global
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Release Multithreaded|Android.ActiveCfg = static_basis|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Release Multithreaded|Android.Build.0 = static_basis|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Release Multithreaded|Android.Deploy.0 = static_basis|Android
+		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Release Multithreaded|ARM.ActiveCfg = stage|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Release Multithreaded|Mixed Platforms.ActiveCfg = static_basis|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Release Multithreaded|Mixed Platforms.Build.0 = static_basis|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Release Multithreaded|Win32.ActiveCfg = static_basis|Win32
@@ -520,6 +585,7 @@ Global
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Release Singlethreaded|Android.ActiveCfg = static_basis|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Release Singlethreaded|Android.Build.0 = static_basis|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Release Singlethreaded|Android.Deploy.0 = static_basis|Android
+		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Release Singlethreaded|ARM.ActiveCfg = stage|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Release Singlethreaded|Mixed Platforms.ActiveCfg = static_basis|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Release Singlethreaded|Mixed Platforms.Build.0 = static_basis|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Release Singlethreaded|Win32.ActiveCfg = static_basis|Win32
@@ -529,6 +595,7 @@ Global
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Release|Android.ActiveCfg = static_basis|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Release|Android.Build.0 = static_basis|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Release|Android.Deploy.0 = static_basis|Android
+		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Release|ARM.ActiveCfg = stage|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Release|Mixed Platforms.ActiveCfg = static_basis|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Release|Mixed Platforms.Build.0 = static_basis|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.Release|Win32.ActiveCfg = static_basis|Win32
@@ -538,6 +605,7 @@ Global
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.stage|Android.ActiveCfg = stage|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.stage|Android.Build.0 = stage|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.stage|Android.Deploy.0 = stage|Android
+		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.stage|ARM.ActiveCfg = stage|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.stage|Mixed Platforms.ActiveCfg = stage|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.stage|Mixed Platforms.Build.0 = stage|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.stage|Win32.ActiveCfg = stage|Win32
@@ -547,6 +615,7 @@ Global
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.static_basis|Android.ActiveCfg = static_basis|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.static_basis|Android.Build.0 = static_basis|Android
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.static_basis|Android.Deploy.0 = static_basis|Android
+		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.static_basis|ARM.ActiveCfg = static_basis|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.static_basis|Mixed Platforms.ActiveCfg = static_basis|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.static_basis|Mixed Platforms.Build.0 = static_basis|Win32
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.static_basis|Win32.ActiveCfg = static_basis|Win32
@@ -556,6 +625,7 @@ Global
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.basis|Android.ActiveCfg = basis|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.basis|Android.Build.0 = basis|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.basis|Android.Deploy.0 = basis|Android
+		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.basis|ARM.ActiveCfg = basis|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.basis|Mixed Platforms.Build.0 = basis|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.basis|Win32.ActiveCfg = basis|Win32
@@ -565,6 +635,7 @@ Global
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.codeanalysis|Android.ActiveCfg = codeanalysis|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.codeanalysis|Android.Build.0 = codeanalysis|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.codeanalysis|Android.Deploy.0 = codeanalysis|Android
+		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.codeanalysis|ARM.ActiveCfg = codeanalysis|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.codeanalysis|Mixed Platforms.ActiveCfg = codeanalysis|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.codeanalysis|Mixed Platforms.Build.0 = codeanalysis|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.codeanalysis|Win32.ActiveCfg = codeanalysis|Win32
@@ -574,6 +645,7 @@ Global
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Debug Multithreaded|Android.ActiveCfg = static_basis|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Debug Multithreaded|Android.Build.0 = static_basis|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Debug Multithreaded|Android.Deploy.0 = static_basis|Android
+		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Debug Multithreaded|ARM.ActiveCfg = static_basis|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Debug Multithreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Debug Multithreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Debug Multithreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -583,6 +655,7 @@ Global
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Debug Singlethreaded|Android.ActiveCfg = static_basis|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Debug Singlethreaded|Android.Build.0 = static_basis|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Debug Singlethreaded|Android.Deploy.0 = static_basis|Android
+		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Debug Singlethreaded|ARM.ActiveCfg = static_basis|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Debug Singlethreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Debug Singlethreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Debug Singlethreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -592,6 +665,7 @@ Global
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Debug|Android.ActiveCfg = static_basis|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Debug|Android.Build.0 = static_basis|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Debug|Android.Deploy.0 = static_basis|Android
+		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Debug|ARM.ActiveCfg = static_basis|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Debug|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Debug|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Debug|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -601,6 +675,7 @@ Global
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.memdleak|Android.ActiveCfg = memdleak|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.memdleak|Android.Build.0 = memdleak|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.memdleak|Android.Deploy.0 = memdleak|Android
+		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.memdleak|ARM.ActiveCfg = memdleak|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.memdleak|Mixed Platforms.ActiveCfg = memdleak|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.memdleak|Mixed Platforms.Build.0 = memdleak|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.memdleak|Win32.ActiveCfg = memdleak|Win32
@@ -610,6 +685,7 @@ Global
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.no_precompiled_header|Android.ActiveCfg = no_precompiled_header|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.no_precompiled_header|Android.Build.0 = no_precompiled_header|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.no_precompiled_header|Android.Deploy.0 = no_precompiled_header|Android
+		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.no_precompiled_header|ARM.ActiveCfg = no_precompiled_header|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.no_precompiled_header|Mixed Platforms.ActiveCfg = no_precompiled_header|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.no_precompiled_header|Mixed Platforms.Build.0 = no_precompiled_header|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.no_precompiled_header|Mixed Platforms.Deploy.0 = no_precompiled_header|Android
@@ -618,6 +694,7 @@ Global
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.profiler|Android.ActiveCfg = profiler|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.profiler|Android.Build.0 = profiler|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.profiler|Android.Deploy.0 = profiler|Android
+		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.profiler|ARM.ActiveCfg = profiler|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.profiler|Mixed Platforms.ActiveCfg = profiler|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.profiler|Mixed Platforms.Build.0 = profiler|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.profiler|Win32.ActiveCfg = profiler|Win32
@@ -627,6 +704,7 @@ Global
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Release Multithreaded|Android.ActiveCfg = static_basis|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Release Multithreaded|Android.Build.0 = static_basis|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Release Multithreaded|Android.Deploy.0 = static_basis|Android
+		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Release Multithreaded|ARM.ActiveCfg = static_basis|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Release Multithreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Release Multithreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Release Multithreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -636,6 +714,7 @@ Global
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Release Singlethreaded|Android.ActiveCfg = static_basis|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Release Singlethreaded|Android.Build.0 = static_basis|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Release Singlethreaded|Android.Deploy.0 = static_basis|Android
+		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Release Singlethreaded|ARM.ActiveCfg = static_basis|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Release Singlethreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Release Singlethreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Release Singlethreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -645,6 +724,7 @@ Global
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Release|Android.ActiveCfg = static_basis|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Release|Android.Build.0 = static_basis|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Release|Android.Deploy.0 = static_basis|Android
+		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Release|ARM.ActiveCfg = static_basis|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Release|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Release|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.Release|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -654,6 +734,7 @@ Global
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.stage|Android.ActiveCfg = stage|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.stage|Android.Build.0 = stage|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.stage|Android.Deploy.0 = stage|Android
+		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.stage|ARM.ActiveCfg = stage|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.stage|Mixed Platforms.ActiveCfg = stage|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.stage|Mixed Platforms.Build.0 = stage|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.stage|Win32.ActiveCfg = stage|Win32
@@ -663,6 +744,7 @@ Global
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.static_basis|Android.ActiveCfg = static_basis|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.static_basis|Android.Build.0 = static_basis|Android
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.static_basis|Android.Deploy.0 = static_basis|Android
+		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.static_basis|ARM.ActiveCfg = static_basis|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.static_basis|Mixed Platforms.ActiveCfg = static_basis|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.static_basis|Mixed Platforms.Build.0 = static_basis|Win32
 		{E000FFAF-392F-4E32-BF51-FD7ED638991F}.static_basis|Win32.ActiveCfg = static_basis|Win32
@@ -672,6 +754,7 @@ Global
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.basis|Android.ActiveCfg = basis|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.basis|Android.Build.0 = basis|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.basis|Android.Deploy.0 = basis|Android
+		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.basis|ARM.ActiveCfg = basis|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.basis|Mixed Platforms.Build.0 = basis|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.basis|Win32.ActiveCfg = basis|Win32
@@ -681,6 +764,7 @@ Global
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.codeanalysis|Android.ActiveCfg = codeanalysis|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.codeanalysis|Android.Build.0 = codeanalysis|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.codeanalysis|Android.Deploy.0 = codeanalysis|Android
+		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.codeanalysis|ARM.ActiveCfg = codeanalysis|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.codeanalysis|Mixed Platforms.ActiveCfg = codeanalysis|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.codeanalysis|Mixed Platforms.Build.0 = codeanalysis|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.codeanalysis|Win32.ActiveCfg = codeanalysis|Win32
@@ -690,6 +774,7 @@ Global
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Debug Multithreaded|Android.ActiveCfg = basis|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Debug Multithreaded|Android.Build.0 = basis|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Debug Multithreaded|Android.Deploy.0 = basis|Android
+		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Debug Multithreaded|ARM.ActiveCfg = static_basis|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Debug Multithreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Debug Multithreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Debug Multithreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -699,6 +784,7 @@ Global
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Debug Singlethreaded|Android.ActiveCfg = basis|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Debug Singlethreaded|Android.Build.0 = basis|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Debug Singlethreaded|Android.Deploy.0 = basis|Android
+		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Debug Singlethreaded|ARM.ActiveCfg = static_basis|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Debug Singlethreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Debug Singlethreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Debug Singlethreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -708,6 +794,7 @@ Global
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Debug|Android.ActiveCfg = basis|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Debug|Android.Build.0 = basis|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Debug|Android.Deploy.0 = basis|Android
+		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Debug|ARM.ActiveCfg = static_basis|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Debug|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Debug|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Debug|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -717,6 +804,7 @@ Global
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.memdleak|Android.ActiveCfg = memdleak|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.memdleak|Android.Build.0 = memdleak|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.memdleak|Android.Deploy.0 = memdleak|Android
+		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.memdleak|ARM.ActiveCfg = memdleak|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.memdleak|Mixed Platforms.ActiveCfg = memdleak|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.memdleak|Mixed Platforms.Build.0 = memdleak|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.memdleak|Win32.ActiveCfg = memdleak|Win32
@@ -726,6 +814,7 @@ Global
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.no_precompiled_header|Android.ActiveCfg = no_precompiled_header|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.no_precompiled_header|Android.Build.0 = no_precompiled_header|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.no_precompiled_header|Android.Deploy.0 = no_precompiled_header|Android
+		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.no_precompiled_header|ARM.ActiveCfg = no_precompiled_header|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.no_precompiled_header|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.no_precompiled_header|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.no_precompiled_header|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -735,6 +824,7 @@ Global
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.profiler|Android.ActiveCfg = profiler|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.profiler|Android.Build.0 = profiler|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.profiler|Android.Deploy.0 = profiler|Android
+		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.profiler|ARM.ActiveCfg = profiler|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.profiler|Mixed Platforms.ActiveCfg = profiler|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.profiler|Mixed Platforms.Build.0 = profiler|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.profiler|Win32.ActiveCfg = profiler|Win32
@@ -744,6 +834,7 @@ Global
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Release Multithreaded|Android.ActiveCfg = basis|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Release Multithreaded|Android.Build.0 = basis|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Release Multithreaded|Android.Deploy.0 = basis|Android
+		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Release Multithreaded|ARM.ActiveCfg = static_basis|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Release Multithreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Release Multithreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Release Multithreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -753,6 +844,7 @@ Global
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Release Singlethreaded|Android.ActiveCfg = basis|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Release Singlethreaded|Android.Build.0 = basis|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Release Singlethreaded|Android.Deploy.0 = basis|Android
+		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Release Singlethreaded|ARM.ActiveCfg = static_basis|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Release Singlethreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Release Singlethreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Release Singlethreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -762,6 +854,7 @@ Global
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Release|Android.ActiveCfg = basis|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Release|Android.Build.0 = basis|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Release|Android.Deploy.0 = basis|Android
+		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Release|ARM.ActiveCfg = static_basis|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Release|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Release|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.Release|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -771,6 +864,7 @@ Global
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.stage|Android.ActiveCfg = stage|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.stage|Android.Build.0 = stage|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.stage|Android.Deploy.0 = stage|Android
+		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.stage|ARM.ActiveCfg = stage|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.stage|Mixed Platforms.ActiveCfg = stage|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.stage|Mixed Platforms.Build.0 = stage|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.stage|Win32.ActiveCfg = stage|Win32
@@ -780,6 +874,7 @@ Global
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.static_basis|Android.ActiveCfg = static_basis|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.static_basis|Android.Build.0 = static_basis|Android
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.static_basis|Android.Deploy.0 = static_basis|Android
+		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.static_basis|ARM.ActiveCfg = static_basis|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.static_basis|Mixed Platforms.ActiveCfg = static_basis|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.static_basis|Mixed Platforms.Build.0 = static_basis|Win32
 		{E2D7833B-9B59-4826-BBDF-C270A2115E86}.static_basis|Win32.ActiveCfg = static_basis|Win32
@@ -789,6 +884,7 @@ Global
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.basis|Android.ActiveCfg = basis|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.basis|Android.Build.0 = basis|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.basis|Android.Deploy.0 = basis|Android
+		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.basis|ARM.ActiveCfg = basis|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.basis|Mixed Platforms.Build.0 = basis|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.basis|Win32.ActiveCfg = basis|Win32
@@ -798,6 +894,7 @@ Global
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.codeanalysis|Android.ActiveCfg = codeanalysis|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.codeanalysis|Android.Build.0 = codeanalysis|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.codeanalysis|Android.Deploy.0 = codeanalysis|Android
+		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.codeanalysis|ARM.ActiveCfg = codeanalysis|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.codeanalysis|Mixed Platforms.ActiveCfg = codeanalysis|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.codeanalysis|Mixed Platforms.Build.0 = codeanalysis|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.codeanalysis|Win32.ActiveCfg = codeanalysis|Win32
@@ -807,6 +904,7 @@ Global
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Debug Multithreaded|Android.ActiveCfg = basis|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Debug Multithreaded|Android.Build.0 = basis|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Debug Multithreaded|Android.Deploy.0 = basis|Android
+		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Debug Multithreaded|ARM.ActiveCfg = stage|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Debug Multithreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Debug Multithreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Debug Multithreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -816,6 +914,7 @@ Global
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Debug Singlethreaded|Android.ActiveCfg = basis|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Debug Singlethreaded|Android.Build.0 = basis|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Debug Singlethreaded|Android.Deploy.0 = basis|Android
+		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Debug Singlethreaded|ARM.ActiveCfg = stage|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Debug Singlethreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Debug Singlethreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Debug Singlethreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -825,6 +924,7 @@ Global
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Debug|Android.ActiveCfg = basis|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Debug|Android.Build.0 = basis|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Debug|Android.Deploy.0 = basis|Android
+		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Debug|ARM.ActiveCfg = stage|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Debug|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Debug|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Debug|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -834,6 +934,7 @@ Global
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.memdleak|Android.ActiveCfg = memdleak|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.memdleak|Android.Build.0 = memdleak|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.memdleak|Android.Deploy.0 = memdleak|Android
+		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.memdleak|ARM.ActiveCfg = memdleak|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.memdleak|Mixed Platforms.ActiveCfg = memdleak|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.memdleak|Mixed Platforms.Build.0 = memdleak|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.memdleak|Win32.ActiveCfg = memdleak|Win32
@@ -843,6 +944,7 @@ Global
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.no_precompiled_header|Android.ActiveCfg = no_precompiled_header|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.no_precompiled_header|Android.Build.0 = no_precompiled_header|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.no_precompiled_header|Android.Deploy.0 = no_precompiled_header|Android
+		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.no_precompiled_header|ARM.ActiveCfg = no_precompiled_header|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.no_precompiled_header|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.no_precompiled_header|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.no_precompiled_header|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -852,6 +954,7 @@ Global
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.profiler|Android.ActiveCfg = profiler|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.profiler|Android.Build.0 = profiler|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.profiler|Android.Deploy.0 = profiler|Android
+		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.profiler|ARM.ActiveCfg = profiler|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.profiler|Mixed Platforms.ActiveCfg = profiler|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.profiler|Mixed Platforms.Build.0 = profiler|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.profiler|Win32.ActiveCfg = profiler|Win32
@@ -861,6 +964,7 @@ Global
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Release Multithreaded|Android.ActiveCfg = basis|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Release Multithreaded|Android.Build.0 = basis|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Release Multithreaded|Android.Deploy.0 = basis|Android
+		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Release Multithreaded|ARM.ActiveCfg = stage|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Release Multithreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Release Multithreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Release Multithreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -870,6 +974,7 @@ Global
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Release Singlethreaded|Android.ActiveCfg = basis|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Release Singlethreaded|Android.Build.0 = basis|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Release Singlethreaded|Android.Deploy.0 = basis|Android
+		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Release Singlethreaded|ARM.ActiveCfg = stage|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Release Singlethreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Release Singlethreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Release Singlethreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -879,6 +984,7 @@ Global
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Release|Android.ActiveCfg = basis|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Release|Android.Build.0 = basis|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Release|Android.Deploy.0 = basis|Android
+		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Release|ARM.ActiveCfg = stage|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Release|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Release|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.Release|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -888,6 +994,7 @@ Global
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.stage|Android.ActiveCfg = stage|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.stage|Android.Build.0 = stage|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.stage|Android.Deploy.0 = stage|Android
+		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.stage|ARM.ActiveCfg = stage|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.stage|Mixed Platforms.ActiveCfg = stage|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.stage|Mixed Platforms.Build.0 = stage|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.stage|Win32.ActiveCfg = stage|Win32
@@ -897,6 +1004,7 @@ Global
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.static_basis|Android.ActiveCfg = basis|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.static_basis|Android.Build.0 = basis|Android
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.static_basis|Android.Deploy.0 = basis|Android
+		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.static_basis|ARM.ActiveCfg = basis|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.static_basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.static_basis|Mixed Platforms.Build.0 = basis|Win32
 		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}.static_basis|Win32.ActiveCfg = basis|Win32
@@ -906,6 +1014,7 @@ Global
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.basis|Android.ActiveCfg = basis|Android
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.basis|Android.Build.0 = basis|Android
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.basis|Android.Deploy.0 = basis|Android
+		{A5A649E1-D516-4F29-A627-DA6884DD421C}.basis|ARM.ActiveCfg = basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.basis|Mixed Platforms.Build.0 = basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.basis|Win32.ActiveCfg = basis|Win32
@@ -913,6 +1022,7 @@ Global
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.basis|x64.ActiveCfg = basis|x64
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.basis|x64.Build.0 = basis|x64
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.codeanalysis|Android.ActiveCfg = basis|Win32
+		{A5A649E1-D516-4F29-A627-DA6884DD421C}.codeanalysis|ARM.ActiveCfg = profiler|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.codeanalysis|Mixed Platforms.ActiveCfg = basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.codeanalysis|Mixed Platforms.Build.0 = basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.codeanalysis|Win32.ActiveCfg = basis|Win32
@@ -920,6 +1030,7 @@ Global
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.codeanalysis|x64.ActiveCfg = basis|x64
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.codeanalysis|x64.Build.0 = basis|x64
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Debug Multithreaded|Android.ActiveCfg = basis|Win32
+		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Debug Multithreaded|ARM.ActiveCfg = profiler|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Debug Multithreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Debug Multithreaded|Mixed Platforms.Build.0 = basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Debug Multithreaded|Win32.ActiveCfg = basis|Win32
@@ -927,6 +1038,7 @@ Global
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Debug Multithreaded|x64.ActiveCfg = basis|x64
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Debug Multithreaded|x64.Build.0 = basis|x64
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Debug Singlethreaded|Android.ActiveCfg = basis|Win32
+		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Debug Singlethreaded|ARM.ActiveCfg = profiler|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Debug Singlethreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Debug Singlethreaded|Mixed Platforms.Build.0 = basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Debug Singlethreaded|Win32.ActiveCfg = basis|Win32
@@ -934,6 +1046,7 @@ Global
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Debug Singlethreaded|x64.ActiveCfg = basis|x64
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Debug Singlethreaded|x64.Build.0 = basis|x64
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Debug|Android.ActiveCfg = basis|Win32
+		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Debug|ARM.ActiveCfg = profiler|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Debug|Mixed Platforms.ActiveCfg = basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Debug|Mixed Platforms.Build.0 = basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Debug|Win32.ActiveCfg = basis|Win32
@@ -941,6 +1054,7 @@ Global
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Debug|x64.ActiveCfg = basis|x64
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Debug|x64.Build.0 = basis|x64
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.memdleak|Android.ActiveCfg = memdleak|Win32
+		{A5A649E1-D516-4F29-A627-DA6884DD421C}.memdleak|ARM.ActiveCfg = memdleak|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.memdleak|Mixed Platforms.ActiveCfg = memdleak|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.memdleak|Mixed Platforms.Build.0 = memdleak|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.memdleak|Win32.ActiveCfg = memdleak|Win32
@@ -948,6 +1062,7 @@ Global
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.memdleak|x64.ActiveCfg = memdleak|x64
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.memdleak|x64.Build.0 = memdleak|x64
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.no_precompiled_header|Android.ActiveCfg = basis|Win32
+		{A5A649E1-D516-4F29-A627-DA6884DD421C}.no_precompiled_header|ARM.ActiveCfg = profiler|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.no_precompiled_header|Mixed Platforms.ActiveCfg = basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.no_precompiled_header|Mixed Platforms.Build.0 = basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.no_precompiled_header|Win32.ActiveCfg = basis|Win32
@@ -955,6 +1070,7 @@ Global
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.no_precompiled_header|x64.ActiveCfg = basis|x64
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.no_precompiled_header|x64.Build.0 = basis|x64
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.profiler|Android.ActiveCfg = basis|Win32
+		{A5A649E1-D516-4F29-A627-DA6884DD421C}.profiler|ARM.ActiveCfg = profiler|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.profiler|Mixed Platforms.ActiveCfg = basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.profiler|Mixed Platforms.Build.0 = basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.profiler|Win32.ActiveCfg = basis|Win32
@@ -962,6 +1078,7 @@ Global
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.profiler|x64.ActiveCfg = basis|x64
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.profiler|x64.Build.0 = basis|x64
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Release Multithreaded|Android.ActiveCfg = basis|Win32
+		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Release Multithreaded|ARM.ActiveCfg = profiler|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Release Multithreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Release Multithreaded|Mixed Platforms.Build.0 = basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Release Multithreaded|Win32.ActiveCfg = basis|Win32
@@ -969,6 +1086,7 @@ Global
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Release Multithreaded|x64.ActiveCfg = basis|x64
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Release Multithreaded|x64.Build.0 = basis|x64
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Release Singlethreaded|Android.ActiveCfg = basis|Win32
+		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Release Singlethreaded|ARM.ActiveCfg = profiler|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Release Singlethreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Release Singlethreaded|Mixed Platforms.Build.0 = basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Release Singlethreaded|Win32.ActiveCfg = basis|Win32
@@ -976,6 +1094,7 @@ Global
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Release Singlethreaded|x64.ActiveCfg = basis|x64
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Release Singlethreaded|x64.Build.0 = basis|x64
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Release|Android.ActiveCfg = basis|Win32
+		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Release|ARM.ActiveCfg = profiler|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Release|Mixed Platforms.ActiveCfg = basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Release|Mixed Platforms.Build.0 = basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.Release|Win32.ActiveCfg = basis|Win32
@@ -985,6 +1104,7 @@ Global
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.stage|Android.ActiveCfg = stage|Android
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.stage|Android.Build.0 = stage|Android
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.stage|Android.Deploy.0 = stage|Android
+		{A5A649E1-D516-4F29-A627-DA6884DD421C}.stage|ARM.ActiveCfg = stage|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.stage|Mixed Platforms.ActiveCfg = stage|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.stage|Mixed Platforms.Build.0 = stage|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.stage|Win32.ActiveCfg = stage|Win32
@@ -992,6 +1112,7 @@ Global
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.stage|x64.ActiveCfg = stage|x64
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.stage|x64.Build.0 = stage|x64
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.static_basis|Android.ActiveCfg = static_basis|Win32
+		{A5A649E1-D516-4F29-A627-DA6884DD421C}.static_basis|ARM.ActiveCfg = static_basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.static_basis|Mixed Platforms.ActiveCfg = static_basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.static_basis|Mixed Platforms.Build.0 = static_basis|Win32
 		{A5A649E1-D516-4F29-A627-DA6884DD421C}.static_basis|Win32.ActiveCfg = static_basis|Win32
@@ -1001,6 +1122,7 @@ Global
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.basis|Android.ActiveCfg = basis|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.basis|Android.Build.0 = basis|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.basis|Android.Deploy.0 = basis|Android
+		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.basis|ARM.ActiveCfg = basis|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.basis|Mixed Platforms.Build.0 = basis|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.basis|Win32.ActiveCfg = basis|Win32
@@ -1010,6 +1132,7 @@ Global
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.codeanalysis|Android.ActiveCfg = stage|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.codeanalysis|Android.Build.0 = stage|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.codeanalysis|Android.Deploy.0 = stage|Android
+		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.codeanalysis|ARM.ActiveCfg = profiler|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.codeanalysis|Mixed Platforms.ActiveCfg = stage|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.codeanalysis|Mixed Platforms.Build.0 = stage|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.codeanalysis|Win32.ActiveCfg = stage|Win32
@@ -1019,6 +1142,7 @@ Global
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Debug Multithreaded|Android.ActiveCfg = stage|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Debug Multithreaded|Android.Build.0 = stage|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Debug Multithreaded|Android.Deploy.0 = stage|Android
+		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Debug Multithreaded|ARM.ActiveCfg = profiler|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Debug Multithreaded|Mixed Platforms.ActiveCfg = stage|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Debug Multithreaded|Mixed Platforms.Build.0 = stage|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Debug Multithreaded|Win32.ActiveCfg = stage|Win32
@@ -1028,6 +1152,7 @@ Global
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Debug Singlethreaded|Android.ActiveCfg = stage|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Debug Singlethreaded|Android.Build.0 = stage|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Debug Singlethreaded|Android.Deploy.0 = stage|Android
+		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Debug Singlethreaded|ARM.ActiveCfg = profiler|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Debug Singlethreaded|Mixed Platforms.ActiveCfg = stage|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Debug Singlethreaded|Mixed Platforms.Build.0 = stage|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Debug Singlethreaded|Win32.ActiveCfg = stage|Win32
@@ -1037,6 +1162,7 @@ Global
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Debug|Android.ActiveCfg = stage|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Debug|Android.Build.0 = stage|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Debug|Android.Deploy.0 = stage|Android
+		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Debug|ARM.ActiveCfg = profiler|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Debug|Mixed Platforms.ActiveCfg = stage|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Debug|Mixed Platforms.Build.0 = stage|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Debug|Win32.ActiveCfg = stage|Win32
@@ -1044,6 +1170,7 @@ Global
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Debug|x64.ActiveCfg = stage|x64
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Debug|x64.Build.0 = stage|x64
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.memdleak|Android.ActiveCfg = memdleak|Win32
+		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.memdleak|ARM.ActiveCfg = memdleak|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.memdleak|Mixed Platforms.ActiveCfg = memdleak|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.memdleak|Mixed Platforms.Build.0 = memdleak|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.memdleak|Win32.ActiveCfg = memdleak|Win32
@@ -1053,6 +1180,7 @@ Global
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.no_precompiled_header|Android.ActiveCfg = stage|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.no_precompiled_header|Android.Build.0 = stage|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.no_precompiled_header|Android.Deploy.0 = stage|Android
+		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.no_precompiled_header|ARM.ActiveCfg = profiler|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.no_precompiled_header|Mixed Platforms.ActiveCfg = stage|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.no_precompiled_header|Mixed Platforms.Build.0 = stage|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.no_precompiled_header|Win32.ActiveCfg = stage|Win32
@@ -1062,6 +1190,7 @@ Global
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.profiler|Android.ActiveCfg = profiler|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.profiler|Android.Build.0 = profiler|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.profiler|Android.Deploy.0 = profiler|Android
+		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.profiler|ARM.ActiveCfg = profiler|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.profiler|Mixed Platforms.ActiveCfg = profiler|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.profiler|Mixed Platforms.Build.0 = profiler|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.profiler|Mixed Platforms.Deploy.0 = profiler|Android
@@ -1070,6 +1199,7 @@ Global
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Release Multithreaded|Android.ActiveCfg = stage|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Release Multithreaded|Android.Build.0 = stage|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Release Multithreaded|Android.Deploy.0 = stage|Android
+		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Release Multithreaded|ARM.ActiveCfg = profiler|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Release Multithreaded|Mixed Platforms.ActiveCfg = stage|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Release Multithreaded|Mixed Platforms.Build.0 = stage|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Release Multithreaded|Win32.ActiveCfg = stage|Win32
@@ -1079,6 +1209,7 @@ Global
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Release Singlethreaded|Android.ActiveCfg = stage|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Release Singlethreaded|Android.Build.0 = stage|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Release Singlethreaded|Android.Deploy.0 = stage|Android
+		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Release Singlethreaded|ARM.ActiveCfg = profiler|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Release Singlethreaded|Mixed Platforms.ActiveCfg = stage|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Release Singlethreaded|Mixed Platforms.Build.0 = stage|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Release Singlethreaded|Win32.ActiveCfg = stage|Win32
@@ -1088,6 +1219,7 @@ Global
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Release|Android.ActiveCfg = stage|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Release|Android.Build.0 = stage|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Release|Android.Deploy.0 = stage|Android
+		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Release|ARM.ActiveCfg = profiler|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Release|Mixed Platforms.ActiveCfg = stage|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Release|Mixed Platforms.Build.0 = stage|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.Release|Win32.ActiveCfg = stage|Win32
@@ -1097,6 +1229,7 @@ Global
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.stage|Android.ActiveCfg = stage|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.stage|Android.Build.0 = stage|Android
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.stage|Android.Deploy.0 = stage|Android
+		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.stage|ARM.ActiveCfg = stage|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.stage|Mixed Platforms.ActiveCfg = stage|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.stage|Mixed Platforms.Build.0 = stage|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.stage|Win32.ActiveCfg = stage|Win32
@@ -1104,6 +1237,7 @@ Global
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.stage|x64.ActiveCfg = stage|x64
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.stage|x64.Build.0 = stage|x64
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.static_basis|Android.ActiveCfg = static_basis|Win32
+		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.static_basis|ARM.ActiveCfg = static_basis|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.static_basis|Mixed Platforms.ActiveCfg = static_basis|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.static_basis|Mixed Platforms.Build.0 = static_basis|Win32
 		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}.static_basis|Win32.ActiveCfg = static_basis|Win32
@@ -1113,6 +1247,7 @@ Global
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.basis|Android.ActiveCfg = basis|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.basis|Android.Build.0 = basis|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.basis|Android.Deploy.0 = basis|Android
+		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.basis|ARM.ActiveCfg = basis|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.basis|Mixed Platforms.Build.0 = basis|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.basis|Win32.ActiveCfg = basis|Win32
@@ -1122,6 +1257,7 @@ Global
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.codeanalysis|Android.ActiveCfg = codeanalysis|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.codeanalysis|Android.Build.0 = codeanalysis|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.codeanalysis|Android.Deploy.0 = codeanalysis|Android
+		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.codeanalysis|ARM.ActiveCfg = codeanalysis|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.codeanalysis|Mixed Platforms.ActiveCfg = codeanalysis|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.codeanalysis|Mixed Platforms.Build.0 = codeanalysis|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.codeanalysis|Win32.ActiveCfg = codeanalysis|Win32
@@ -1131,6 +1267,7 @@ Global
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Debug Multithreaded|Android.ActiveCfg = basis|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Debug Multithreaded|Android.Build.0 = basis|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Debug Multithreaded|Android.Deploy.0 = basis|Android
+		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Debug Multithreaded|ARM.ActiveCfg = static_basis|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Debug Multithreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Debug Multithreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Debug Multithreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -1140,6 +1277,7 @@ Global
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Debug Singlethreaded|Android.ActiveCfg = basis|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Debug Singlethreaded|Android.Build.0 = basis|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Debug Singlethreaded|Android.Deploy.0 = basis|Android
+		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Debug Singlethreaded|ARM.ActiveCfg = static_basis|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Debug Singlethreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Debug Singlethreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Debug Singlethreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -1149,6 +1287,7 @@ Global
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Debug|Android.ActiveCfg = basis|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Debug|Android.Build.0 = basis|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Debug|Android.Deploy.0 = basis|Android
+		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Debug|ARM.ActiveCfg = static_basis|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Debug|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Debug|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Debug|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -1158,6 +1297,7 @@ Global
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.memdleak|Android.ActiveCfg = memdleak|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.memdleak|Android.Build.0 = memdleak|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.memdleak|Android.Deploy.0 = memdleak|Android
+		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.memdleak|ARM.ActiveCfg = memdleak|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.memdleak|Mixed Platforms.ActiveCfg = memdleak|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.memdleak|Mixed Platforms.Build.0 = memdleak|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.memdleak|Win32.ActiveCfg = memdleak|Win32
@@ -1167,6 +1307,7 @@ Global
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.no_precompiled_header|Android.ActiveCfg = no_precompiled_header|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.no_precompiled_header|Android.Build.0 = no_precompiled_header|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.no_precompiled_header|Android.Deploy.0 = no_precompiled_header|Android
+		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.no_precompiled_header|ARM.ActiveCfg = no_precompiled_header|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.no_precompiled_header|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.no_precompiled_header|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.no_precompiled_header|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -1176,6 +1317,7 @@ Global
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.profiler|Android.ActiveCfg = profiler|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.profiler|Android.Build.0 = profiler|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.profiler|Android.Deploy.0 = profiler|Android
+		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.profiler|ARM.ActiveCfg = profiler|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.profiler|Mixed Platforms.ActiveCfg = profiler|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.profiler|Mixed Platforms.Build.0 = profiler|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.profiler|Win32.ActiveCfg = profiler|Win32
@@ -1185,6 +1327,7 @@ Global
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Release Multithreaded|Android.ActiveCfg = basis|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Release Multithreaded|Android.Build.0 = basis|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Release Multithreaded|Android.Deploy.0 = basis|Android
+		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Release Multithreaded|ARM.ActiveCfg = static_basis|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Release Multithreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Release Multithreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Release Multithreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -1194,6 +1337,7 @@ Global
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Release Singlethreaded|Android.ActiveCfg = basis|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Release Singlethreaded|Android.Build.0 = basis|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Release Singlethreaded|Android.Deploy.0 = basis|Android
+		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Release Singlethreaded|ARM.ActiveCfg = static_basis|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Release Singlethreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Release Singlethreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Release Singlethreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -1203,6 +1347,7 @@ Global
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Release|Android.ActiveCfg = basis|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Release|Android.Build.0 = basis|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Release|Android.Deploy.0 = basis|Android
+		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Release|ARM.ActiveCfg = static_basis|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Release|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Release|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.Release|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -1212,6 +1357,7 @@ Global
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.stage|Android.ActiveCfg = stage|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.stage|Android.Build.0 = stage|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.stage|Android.Deploy.0 = stage|Android
+		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.stage|ARM.ActiveCfg = stage|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.stage|Mixed Platforms.ActiveCfg = stage|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.stage|Mixed Platforms.Build.0 = stage|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.stage|Win32.ActiveCfg = stage|Win32
@@ -1221,6 +1367,7 @@ Global
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.static_basis|Android.ActiveCfg = static_basis|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.static_basis|Android.Build.0 = static_basis|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.static_basis|Android.Deploy.0 = static_basis|Android
+		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.static_basis|ARM.ActiveCfg = static_basis|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.static_basis|Mixed Platforms.ActiveCfg = static_basis|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.static_basis|Mixed Platforms.Build.0 = static_basis|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.static_basis|Win32.ActiveCfg = static_basis|Win32
@@ -1230,6 +1377,7 @@ Global
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.basis|Android.ActiveCfg = basis|Android
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.basis|Android.Build.0 = basis|Android
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.basis|Android.Deploy.0 = basis|Android
+		{0A298E22-839B-4D11-B5A7-456EAD013C11}.basis|ARM.ActiveCfg = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.basis|Mixed Platforms.Build.0 = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.basis|Win32.ActiveCfg = basis|Win32
@@ -1237,6 +1385,7 @@ Global
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.basis|x64.ActiveCfg = basis|x64
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.basis|x64.Build.0 = basis|x64
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.codeanalysis|Android.ActiveCfg = basis|Win32
+		{0A298E22-839B-4D11-B5A7-456EAD013C11}.codeanalysis|ARM.ActiveCfg = profiler|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.codeanalysis|Mixed Platforms.ActiveCfg = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.codeanalysis|Mixed Platforms.Build.0 = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.codeanalysis|Win32.ActiveCfg = basis|Win32
@@ -1244,6 +1393,7 @@ Global
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.codeanalysis|x64.ActiveCfg = basis|x64
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.codeanalysis|x64.Build.0 = basis|x64
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Debug Multithreaded|Android.ActiveCfg = basis|Win32
+		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Debug Multithreaded|ARM.ActiveCfg = profiler|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Debug Multithreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Debug Multithreaded|Mixed Platforms.Build.0 = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Debug Multithreaded|Win32.ActiveCfg = basis|Win32
@@ -1251,6 +1401,7 @@ Global
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Debug Multithreaded|x64.ActiveCfg = basis|x64
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Debug Multithreaded|x64.Build.0 = basis|x64
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Debug Singlethreaded|Android.ActiveCfg = basis|Win32
+		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Debug Singlethreaded|ARM.ActiveCfg = profiler|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Debug Singlethreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Debug Singlethreaded|Mixed Platforms.Build.0 = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Debug Singlethreaded|Win32.ActiveCfg = basis|Win32
@@ -1258,6 +1409,7 @@ Global
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Debug Singlethreaded|x64.ActiveCfg = basis|x64
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Debug Singlethreaded|x64.Build.0 = basis|x64
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Debug|Android.ActiveCfg = basis|Win32
+		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Debug|ARM.ActiveCfg = profiler|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Debug|Mixed Platforms.ActiveCfg = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Debug|Mixed Platforms.Build.0 = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Debug|Win32.ActiveCfg = basis|Win32
@@ -1265,6 +1417,7 @@ Global
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Debug|x64.ActiveCfg = basis|x64
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Debug|x64.Build.0 = basis|x64
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.memdleak|Android.ActiveCfg = memdleak|Win32
+		{0A298E22-839B-4D11-B5A7-456EAD013C11}.memdleak|ARM.ActiveCfg = memdleak|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.memdleak|Mixed Platforms.ActiveCfg = memdleak|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.memdleak|Mixed Platforms.Build.0 = memdleak|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.memdleak|Win32.ActiveCfg = memdleak|Win32
@@ -1272,6 +1425,7 @@ Global
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.memdleak|x64.ActiveCfg = memdleak|x64
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.memdleak|x64.Build.0 = memdleak|x64
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.no_precompiled_header|Android.ActiveCfg = basis|Win32
+		{0A298E22-839B-4D11-B5A7-456EAD013C11}.no_precompiled_header|ARM.ActiveCfg = profiler|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.no_precompiled_header|Mixed Platforms.ActiveCfg = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.no_precompiled_header|Mixed Platforms.Build.0 = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.no_precompiled_header|Win32.ActiveCfg = basis|Win32
@@ -1279,6 +1433,7 @@ Global
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.no_precompiled_header|x64.ActiveCfg = basis|x64
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.no_precompiled_header|x64.Build.0 = basis|x64
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.profiler|Android.ActiveCfg = basis|Win32
+		{0A298E22-839B-4D11-B5A7-456EAD013C11}.profiler|ARM.ActiveCfg = profiler|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.profiler|Mixed Platforms.ActiveCfg = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.profiler|Mixed Platforms.Build.0 = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.profiler|Win32.ActiveCfg = basis|Win32
@@ -1286,6 +1441,7 @@ Global
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.profiler|x64.ActiveCfg = basis|x64
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.profiler|x64.Build.0 = basis|x64
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Release Multithreaded|Android.ActiveCfg = basis|Win32
+		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Release Multithreaded|ARM.ActiveCfg = profiler|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Release Multithreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Release Multithreaded|Mixed Platforms.Build.0 = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Release Multithreaded|Win32.ActiveCfg = basis|Win32
@@ -1293,6 +1449,7 @@ Global
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Release Multithreaded|x64.ActiveCfg = basis|x64
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Release Multithreaded|x64.Build.0 = basis|x64
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Release Singlethreaded|Android.ActiveCfg = basis|Win32
+		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Release Singlethreaded|ARM.ActiveCfg = profiler|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Release Singlethreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Release Singlethreaded|Mixed Platforms.Build.0 = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Release Singlethreaded|Win32.ActiveCfg = basis|Win32
@@ -1300,6 +1457,7 @@ Global
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Release Singlethreaded|x64.ActiveCfg = basis|x64
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Release Singlethreaded|x64.Build.0 = basis|x64
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Release|Android.ActiveCfg = basis|Win32
+		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Release|ARM.ActiveCfg = profiler|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Release|Mixed Platforms.ActiveCfg = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Release|Mixed Platforms.Build.0 = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.Release|Win32.ActiveCfg = basis|Win32
@@ -1309,6 +1467,7 @@ Global
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.stage|Android.ActiveCfg = stage|Android
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.stage|Android.Build.0 = stage|Android
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.stage|Android.Deploy.0 = stage|Android
+		{0A298E22-839B-4D11-B5A7-456EAD013C11}.stage|ARM.ActiveCfg = stage|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.stage|Mixed Platforms.ActiveCfg = stage|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.stage|Mixed Platforms.Build.0 = stage|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.stage|Win32.ActiveCfg = stage|Win32
@@ -1316,6 +1475,7 @@ Global
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.stage|x64.ActiveCfg = stage|x64
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.stage|x64.Build.0 = stage|x64
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.static_basis|Android.ActiveCfg = basis|Win32
+		{0A298E22-839B-4D11-B5A7-456EAD013C11}.static_basis|ARM.ActiveCfg = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.static_basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.static_basis|Mixed Platforms.Build.0 = basis|Win32
 		{0A298E22-839B-4D11-B5A7-456EAD013C11}.static_basis|Win32.ActiveCfg = basis|Win32
@@ -1325,6 +1485,7 @@ Global
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.basis|Android.ActiveCfg = basis|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.basis|Android.Build.0 = basis|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.basis|Android.Deploy.0 = basis|Android
+		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.basis|ARM.ActiveCfg = basis|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.basis|Mixed Platforms.Build.0 = basis|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.basis|Win32.ActiveCfg = basis|Win32
@@ -1334,6 +1495,7 @@ Global
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.codeanalysis|Android.ActiveCfg = codeanalysis|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.codeanalysis|Android.Build.0 = codeanalysis|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.codeanalysis|Android.Deploy.0 = codeanalysis|Android
+		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.codeanalysis|ARM.ActiveCfg = codeanalysis|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.codeanalysis|Mixed Platforms.ActiveCfg = codeanalysis|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.codeanalysis|Mixed Platforms.Build.0 = codeanalysis|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.codeanalysis|Win32.ActiveCfg = codeanalysis|Win32
@@ -1343,6 +1505,7 @@ Global
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Debug Multithreaded|Android.ActiveCfg = basis|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Debug Multithreaded|Android.Build.0 = basis|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Debug Multithreaded|Android.Deploy.0 = basis|Android
+		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Debug Multithreaded|ARM.ActiveCfg = stage|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Debug Multithreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Debug Multithreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Debug Multithreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -1352,6 +1515,7 @@ Global
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Debug Singlethreaded|Android.ActiveCfg = basis|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Debug Singlethreaded|Android.Build.0 = basis|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Debug Singlethreaded|Android.Deploy.0 = basis|Android
+		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Debug Singlethreaded|ARM.ActiveCfg = stage|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Debug Singlethreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Debug Singlethreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Debug Singlethreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -1361,6 +1525,7 @@ Global
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Debug|Android.ActiveCfg = basis|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Debug|Android.Build.0 = basis|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Debug|Android.Deploy.0 = basis|Android
+		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Debug|ARM.ActiveCfg = stage|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Debug|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Debug|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Debug|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -1370,6 +1535,7 @@ Global
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.memdleak|Android.ActiveCfg = memdleak|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.memdleak|Android.Build.0 = memdleak|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.memdleak|Android.Deploy.0 = memdleak|Android
+		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.memdleak|ARM.ActiveCfg = memdleak|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.memdleak|Mixed Platforms.ActiveCfg = memdleak|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.memdleak|Mixed Platforms.Build.0 = memdleak|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.memdleak|Win32.ActiveCfg = memdleak|Win32
@@ -1379,6 +1545,7 @@ Global
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.no_precompiled_header|Android.ActiveCfg = no_precompiled_header|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.no_precompiled_header|Android.Build.0 = no_precompiled_header|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.no_precompiled_header|Android.Deploy.0 = no_precompiled_header|Android
+		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.no_precompiled_header|ARM.ActiveCfg = no_precompiled_header|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.no_precompiled_header|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.no_precompiled_header|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.no_precompiled_header|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -1388,6 +1555,7 @@ Global
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.profiler|Android.ActiveCfg = profiler|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.profiler|Android.Build.0 = profiler|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.profiler|Android.Deploy.0 = profiler|Android
+		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.profiler|ARM.ActiveCfg = profiler|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.profiler|Mixed Platforms.ActiveCfg = profiler|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.profiler|Mixed Platforms.Build.0 = profiler|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.profiler|Win32.ActiveCfg = profiler|Win32
@@ -1397,6 +1565,7 @@ Global
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Release Multithreaded|Android.ActiveCfg = basis|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Release Multithreaded|Android.Build.0 = basis|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Release Multithreaded|Android.Deploy.0 = basis|Android
+		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Release Multithreaded|ARM.ActiveCfg = stage|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Release Multithreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Release Multithreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Release Multithreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -1406,6 +1575,7 @@ Global
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Release Singlethreaded|Android.ActiveCfg = basis|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Release Singlethreaded|Android.Build.0 = basis|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Release Singlethreaded|Android.Deploy.0 = basis|Android
+		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Release Singlethreaded|ARM.ActiveCfg = stage|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Release Singlethreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Release Singlethreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Release Singlethreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -1415,6 +1585,7 @@ Global
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Release|Android.ActiveCfg = basis|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Release|Android.Build.0 = basis|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Release|Android.Deploy.0 = basis|Android
+		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Release|ARM.ActiveCfg = stage|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Release|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Release|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Release|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -1422,12 +1593,14 @@ Global
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Release|x64.ActiveCfg = no_precompiled_header|x64
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.Release|x64.Build.0 = no_precompiled_header|x64
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.stage|Android.ActiveCfg = static_basis|Android
+		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.stage|ARM.ActiveCfg = stage|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.stage|Mixed Platforms.ActiveCfg = static_basis|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.stage|Win32.ActiveCfg = static_basis|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.stage|x64.ActiveCfg = static_basis|x64
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.static_basis|Android.ActiveCfg = static_basis|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.static_basis|Android.Build.0 = static_basis|Android
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.static_basis|Android.Deploy.0 = static_basis|Android
+		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.static_basis|ARM.ActiveCfg = static_basis|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.static_basis|Mixed Platforms.ActiveCfg = static_basis|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.static_basis|Mixed Platforms.Build.0 = static_basis|Win32
 		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}.static_basis|Win32.ActiveCfg = static_basis|Win32
@@ -1437,6 +1610,7 @@ Global
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.basis|Android.ActiveCfg = basis|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.basis|Android.Build.0 = basis|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.basis|Android.Deploy.0 = basis|Android
+		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.basis|ARM.ActiveCfg = basis|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.basis|Mixed Platforms.Build.0 = basis|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.basis|Win32.ActiveCfg = basis|Win32
@@ -1446,6 +1620,7 @@ Global
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.codeanalysis|Android.ActiveCfg = codeanalysis|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.codeanalysis|Android.Build.0 = codeanalysis|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.codeanalysis|Android.Deploy.0 = codeanalysis|Android
+		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.codeanalysis|ARM.ActiveCfg = codeanalysis|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.codeanalysis|Mixed Platforms.ActiveCfg = codeanalysis|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.codeanalysis|Mixed Platforms.Build.0 = codeanalysis|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.codeanalysis|Win32.ActiveCfg = codeanalysis|Win32
@@ -1455,6 +1630,7 @@ Global
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Debug Multithreaded|Android.ActiveCfg = basis|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Debug Multithreaded|Android.Build.0 = basis|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Debug Multithreaded|Android.Deploy.0 = basis|Android
+		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Debug Multithreaded|ARM.ActiveCfg = static_basis|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Debug Multithreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Debug Multithreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Debug Multithreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -1464,6 +1640,7 @@ Global
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Debug Singlethreaded|Android.ActiveCfg = basis|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Debug Singlethreaded|Android.Build.0 = basis|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Debug Singlethreaded|Android.Deploy.0 = basis|Android
+		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Debug Singlethreaded|ARM.ActiveCfg = static_basis|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Debug Singlethreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Debug Singlethreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Debug Singlethreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -1473,6 +1650,7 @@ Global
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Debug|Android.ActiveCfg = basis|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Debug|Android.Build.0 = basis|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Debug|Android.Deploy.0 = basis|Android
+		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Debug|ARM.ActiveCfg = static_basis|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Debug|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Debug|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Debug|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -1482,6 +1660,7 @@ Global
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.memdleak|Android.ActiveCfg = memdleak|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.memdleak|Android.Build.0 = memdleak|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.memdleak|Android.Deploy.0 = memdleak|Android
+		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.memdleak|ARM.ActiveCfg = memdleak|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.memdleak|Mixed Platforms.ActiveCfg = memdleak|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.memdleak|Mixed Platforms.Build.0 = memdleak|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.memdleak|Win32.ActiveCfg = memdleak|Win32
@@ -1491,6 +1670,7 @@ Global
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.no_precompiled_header|Android.ActiveCfg = no_precompiled_header|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.no_precompiled_header|Android.Build.0 = no_precompiled_header|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.no_precompiled_header|Android.Deploy.0 = no_precompiled_header|Android
+		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.no_precompiled_header|ARM.ActiveCfg = no_precompiled_header|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.no_precompiled_header|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.no_precompiled_header|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.no_precompiled_header|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -1500,6 +1680,7 @@ Global
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.profiler|Android.ActiveCfg = profiler|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.profiler|Android.Build.0 = profiler|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.profiler|Android.Deploy.0 = profiler|Android
+		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.profiler|ARM.ActiveCfg = profiler|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.profiler|Mixed Platforms.ActiveCfg = profiler|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.profiler|Mixed Platforms.Build.0 = profiler|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.profiler|Win32.ActiveCfg = profiler|Win32
@@ -1509,6 +1690,7 @@ Global
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Release Multithreaded|Android.ActiveCfg = basis|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Release Multithreaded|Android.Build.0 = basis|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Release Multithreaded|Android.Deploy.0 = basis|Android
+		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Release Multithreaded|ARM.ActiveCfg = static_basis|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Release Multithreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Release Multithreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Release Multithreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -1518,6 +1700,7 @@ Global
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Release Singlethreaded|Android.ActiveCfg = basis|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Release Singlethreaded|Android.Build.0 = basis|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Release Singlethreaded|Android.Deploy.0 = basis|Android
+		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Release Singlethreaded|ARM.ActiveCfg = static_basis|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Release Singlethreaded|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Release Singlethreaded|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Release Singlethreaded|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -1527,6 +1710,7 @@ Global
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Release|Android.ActiveCfg = basis|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Release|Android.Build.0 = basis|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Release|Android.Deploy.0 = basis|Android
+		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Release|ARM.ActiveCfg = static_basis|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Release|Mixed Platforms.ActiveCfg = no_precompiled_header|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Release|Mixed Platforms.Build.0 = no_precompiled_header|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.Release|Win32.ActiveCfg = no_precompiled_header|Win32
@@ -1536,6 +1720,7 @@ Global
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.stage|Android.ActiveCfg = stage|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.stage|Android.Build.0 = stage|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.stage|Android.Deploy.0 = stage|Android
+		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.stage|ARM.ActiveCfg = stage|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.stage|Mixed Platforms.ActiveCfg = stage|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.stage|Mixed Platforms.Build.0 = stage|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.stage|Win32.ActiveCfg = stage|Win32
@@ -1545,6 +1730,7 @@ Global
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.static_basis|Android.ActiveCfg = static_basis|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.static_basis|Android.Build.0 = static_basis|Android
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.static_basis|Android.Deploy.0 = static_basis|Android
+		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.static_basis|ARM.ActiveCfg = static_basis|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.static_basis|Mixed Platforms.ActiveCfg = static_basis|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.static_basis|Mixed Platforms.Build.0 = static_basis|Win32
 		{73A245F9-C92F-4487-AEF7-CB0531F665BD}.static_basis|Win32.ActiveCfg = static_basis|Win32
@@ -1554,6 +1740,7 @@ Global
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.basis|Android.ActiveCfg = basis|Android
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.basis|Android.Build.0 = basis|Android
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.basis|Android.Deploy.0 = basis|Android
+		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.basis|ARM.ActiveCfg = basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.basis|Mixed Platforms.Build.0 = basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.basis|Win32.ActiveCfg = basis|Win32
@@ -1561,6 +1748,7 @@ Global
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.basis|x64.ActiveCfg = basis|x64
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.basis|x64.Build.0 = basis|x64
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.codeanalysis|Android.ActiveCfg = basis|Win32
+		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.codeanalysis|ARM.ActiveCfg = profiler|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.codeanalysis|Mixed Platforms.ActiveCfg = basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.codeanalysis|Mixed Platforms.Build.0 = basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.codeanalysis|Win32.ActiveCfg = basis|Win32
@@ -1568,6 +1756,7 @@ Global
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.codeanalysis|x64.ActiveCfg = basis|x64
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.codeanalysis|x64.Build.0 = basis|x64
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Debug Multithreaded|Android.ActiveCfg = basis|Win32
+		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Debug Multithreaded|ARM.ActiveCfg = profiler|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Debug Multithreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Debug Multithreaded|Mixed Platforms.Build.0 = basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Debug Multithreaded|Win32.ActiveCfg = basis|Win32
@@ -1575,6 +1764,7 @@ Global
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Debug Multithreaded|x64.ActiveCfg = basis|x64
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Debug Multithreaded|x64.Build.0 = basis|x64
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Debug Singlethreaded|Android.ActiveCfg = basis|Win32
+		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Debug Singlethreaded|ARM.ActiveCfg = profiler|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Debug Singlethreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Debug Singlethreaded|Mixed Platforms.Build.0 = basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Debug Singlethreaded|Win32.ActiveCfg = basis|Win32
@@ -1582,6 +1772,7 @@ Global
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Debug Singlethreaded|x64.ActiveCfg = basis|x64
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Debug Singlethreaded|x64.Build.0 = basis|x64
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Debug|Android.ActiveCfg = basis|Win32
+		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Debug|ARM.ActiveCfg = profiler|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Debug|Mixed Platforms.ActiveCfg = basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Debug|Mixed Platforms.Build.0 = basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Debug|Win32.ActiveCfg = basis|Win32
@@ -1589,6 +1780,7 @@ Global
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Debug|x64.ActiveCfg = basis|x64
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Debug|x64.Build.0 = basis|x64
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.memdleak|Android.ActiveCfg = memdleak|Win32
+		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.memdleak|ARM.ActiveCfg = memdleak|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.memdleak|Mixed Platforms.ActiveCfg = memdleak|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.memdleak|Mixed Platforms.Build.0 = memdleak|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.memdleak|Win32.ActiveCfg = memdleak|Win32
@@ -1596,6 +1788,7 @@ Global
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.memdleak|x64.ActiveCfg = memdleak|x64
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.memdleak|x64.Build.0 = memdleak|x64
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.no_precompiled_header|Android.ActiveCfg = basis|Win32
+		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.no_precompiled_header|ARM.ActiveCfg = profiler|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.no_precompiled_header|Mixed Platforms.ActiveCfg = basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.no_precompiled_header|Mixed Platforms.Build.0 = basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.no_precompiled_header|Win32.ActiveCfg = basis|Win32
@@ -1603,6 +1796,7 @@ Global
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.no_precompiled_header|x64.ActiveCfg = basis|x64
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.no_precompiled_header|x64.Build.0 = basis|x64
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.profiler|Android.ActiveCfg = basis|Win32
+		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.profiler|ARM.ActiveCfg = profiler|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.profiler|Mixed Platforms.ActiveCfg = basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.profiler|Mixed Platforms.Build.0 = basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.profiler|Win32.ActiveCfg = basis|Win32
@@ -1610,6 +1804,7 @@ Global
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.profiler|x64.ActiveCfg = basis|x64
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.profiler|x64.Build.0 = basis|x64
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Release Multithreaded|Android.ActiveCfg = basis|Win32
+		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Release Multithreaded|ARM.ActiveCfg = profiler|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Release Multithreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Release Multithreaded|Mixed Platforms.Build.0 = basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Release Multithreaded|Win32.ActiveCfg = basis|Win32
@@ -1617,6 +1812,7 @@ Global
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Release Multithreaded|x64.ActiveCfg = basis|x64
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Release Multithreaded|x64.Build.0 = basis|x64
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Release Singlethreaded|Android.ActiveCfg = basis|Win32
+		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Release Singlethreaded|ARM.ActiveCfg = profiler|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Release Singlethreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Release Singlethreaded|Mixed Platforms.Build.0 = basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Release Singlethreaded|Win32.ActiveCfg = basis|Win32
@@ -1624,6 +1820,7 @@ Global
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Release Singlethreaded|x64.ActiveCfg = basis|x64
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Release Singlethreaded|x64.Build.0 = basis|x64
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Release|Android.ActiveCfg = basis|Win32
+		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Release|ARM.ActiveCfg = profiler|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Release|Mixed Platforms.ActiveCfg = basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Release|Mixed Platforms.Build.0 = basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.Release|Win32.ActiveCfg = basis|Win32
@@ -1633,6 +1830,7 @@ Global
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.stage|Android.ActiveCfg = stage|Android
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.stage|Android.Build.0 = stage|Android
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.stage|Android.Deploy.0 = stage|Android
+		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.stage|ARM.ActiveCfg = stage|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.stage|Mixed Platforms.ActiveCfg = stage|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.stage|Mixed Platforms.Build.0 = stage|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.stage|Win32.ActiveCfg = stage|Win32
@@ -1640,6 +1838,7 @@ Global
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.stage|x64.ActiveCfg = stage|x64
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.stage|x64.Build.0 = stage|x64
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.static_basis|Android.ActiveCfg = static_basis|Win32
+		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.static_basis|ARM.ActiveCfg = static_basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.static_basis|Mixed Platforms.ActiveCfg = static_basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.static_basis|Mixed Platforms.Build.0 = static_basis|Win32
 		{AC6A52B4-C049-439C-88FF-5A262D968C8F}.static_basis|Win32.ActiveCfg = static_basis|Win32
@@ -1649,6 +1848,7 @@ Global
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.basis|Android.ActiveCfg = basis|Android
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.basis|Android.Build.0 = basis|Android
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.basis|Android.Deploy.0 = basis|Android
+		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.basis|ARM.ActiveCfg = basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.basis|Mixed Platforms.Build.0 = basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.basis|Win32.ActiveCfg = basis|Win32
@@ -1656,6 +1856,7 @@ Global
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.basis|x64.ActiveCfg = basis|x64
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.basis|x64.Build.0 = basis|x64
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.codeanalysis|Android.ActiveCfg = basis|Win32
+		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.codeanalysis|ARM.ActiveCfg = static_basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.codeanalysis|Mixed Platforms.ActiveCfg = basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.codeanalysis|Mixed Platforms.Build.0 = basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.codeanalysis|Win32.ActiveCfg = basis|Win32
@@ -1663,6 +1864,7 @@ Global
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.codeanalysis|x64.ActiveCfg = basis|x64
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.codeanalysis|x64.Build.0 = basis|x64
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Debug Multithreaded|Android.ActiveCfg = basis|Win32
+		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Debug Multithreaded|ARM.ActiveCfg = static_basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Debug Multithreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Debug Multithreaded|Mixed Platforms.Build.0 = basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Debug Multithreaded|Win32.ActiveCfg = basis|Win32
@@ -1670,6 +1872,7 @@ Global
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Debug Multithreaded|x64.ActiveCfg = basis|x64
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Debug Multithreaded|x64.Build.0 = basis|x64
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Debug Singlethreaded|Android.ActiveCfg = basis|Win32
+		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Debug Singlethreaded|ARM.ActiveCfg = static_basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Debug Singlethreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Debug Singlethreaded|Mixed Platforms.Build.0 = basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Debug Singlethreaded|Win32.ActiveCfg = basis|Win32
@@ -1677,6 +1880,7 @@ Global
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Debug Singlethreaded|x64.ActiveCfg = basis|x64
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Debug Singlethreaded|x64.Build.0 = basis|x64
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Debug|Android.ActiveCfg = basis|Win32
+		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Debug|ARM.ActiveCfg = static_basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Debug|Mixed Platforms.ActiveCfg = basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Debug|Mixed Platforms.Build.0 = basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Debug|Win32.ActiveCfg = basis|Win32
@@ -1684,6 +1888,7 @@ Global
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Debug|x64.ActiveCfg = basis|x64
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Debug|x64.Build.0 = basis|x64
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.memdleak|Android.ActiveCfg = memdleak|Win32
+		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.memdleak|ARM.ActiveCfg = memdleak|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.memdleak|Mixed Platforms.ActiveCfg = memdleak|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.memdleak|Mixed Platforms.Build.0 = memdleak|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.memdleak|Win32.ActiveCfg = memdleak|Win32
@@ -1691,6 +1896,7 @@ Global
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.memdleak|x64.ActiveCfg = memdleak|x64
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.memdleak|x64.Build.0 = memdleak|x64
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.no_precompiled_header|Android.ActiveCfg = basis|Win32
+		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.no_precompiled_header|ARM.ActiveCfg = static_basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.no_precompiled_header|Mixed Platforms.ActiveCfg = basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.no_precompiled_header|Mixed Platforms.Build.0 = basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.no_precompiled_header|Win32.ActiveCfg = basis|Win32
@@ -1698,6 +1904,7 @@ Global
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.no_precompiled_header|x64.ActiveCfg = basis|x64
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.no_precompiled_header|x64.Build.0 = basis|x64
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.profiler|Android.ActiveCfg = basis|Win32
+		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.profiler|ARM.ActiveCfg = static_basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.profiler|Mixed Platforms.ActiveCfg = basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.profiler|Mixed Platforms.Build.0 = basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.profiler|Win32.ActiveCfg = basis|Win32
@@ -1705,6 +1912,7 @@ Global
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.profiler|x64.ActiveCfg = basis|x64
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.profiler|x64.Build.0 = basis|x64
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Release Multithreaded|Android.ActiveCfg = basis|Win32
+		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Release Multithreaded|ARM.ActiveCfg = static_basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Release Multithreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Release Multithreaded|Mixed Platforms.Build.0 = basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Release Multithreaded|Win32.ActiveCfg = basis|Win32
@@ -1712,6 +1920,7 @@ Global
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Release Multithreaded|x64.ActiveCfg = basis|x64
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Release Multithreaded|x64.Build.0 = basis|x64
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Release Singlethreaded|Android.ActiveCfg = basis|Win32
+		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Release Singlethreaded|ARM.ActiveCfg = static_basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Release Singlethreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Release Singlethreaded|Mixed Platforms.Build.0 = basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Release Singlethreaded|Win32.ActiveCfg = basis|Win32
@@ -1719,6 +1928,7 @@ Global
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Release Singlethreaded|x64.ActiveCfg = basis|x64
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Release Singlethreaded|x64.Build.0 = basis|x64
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Release|Android.ActiveCfg = basis|Win32
+		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Release|ARM.ActiveCfg = static_basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Release|Mixed Platforms.ActiveCfg = basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Release|Mixed Platforms.Build.0 = basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.Release|Win32.ActiveCfg = basis|Win32
@@ -1728,6 +1938,7 @@ Global
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.stage|Android.ActiveCfg = static_basis|Android
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.stage|Android.Build.0 = static_basis|Android
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.stage|Android.Deploy.0 = static_basis|Android
+		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.stage|ARM.ActiveCfg = static_basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.stage|Mixed Platforms.ActiveCfg = static_basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.stage|Mixed Platforms.Build.0 = static_basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.stage|Win32.ActiveCfg = static_basis|Win32
@@ -1735,6 +1946,7 @@ Global
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.stage|x64.ActiveCfg = static_basis|x64
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.stage|x64.Build.0 = static_basis|x64
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.static_basis|Android.ActiveCfg = static_basis|Win32
+		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.static_basis|ARM.ActiveCfg = static_basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.static_basis|Mixed Platforms.ActiveCfg = static_basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.static_basis|Mixed Platforms.Build.0 = static_basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.static_basis|Win32.ActiveCfg = static_basis|Win32
@@ -1744,6 +1956,7 @@ Global
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.basis|Android.ActiveCfg = basis|Android
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.basis|Android.Build.0 = basis|Android
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.basis|Android.Deploy.0 = basis|Android
+		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.basis|ARM.ActiveCfg = basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.basis|Mixed Platforms.Build.0 = basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.basis|Win32.ActiveCfg = basis|Win32
@@ -1751,6 +1964,7 @@ Global
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.basis|x64.ActiveCfg = basis|x64
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.basis|x64.Build.0 = basis|x64
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.codeanalysis|Android.ActiveCfg = basis|Win32
+		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.codeanalysis|ARM.ActiveCfg = profiler|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.codeanalysis|Mixed Platforms.ActiveCfg = basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.codeanalysis|Mixed Platforms.Build.0 = basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.codeanalysis|Win32.ActiveCfg = basis|Win32
@@ -1758,6 +1972,7 @@ Global
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.codeanalysis|x64.ActiveCfg = basis|x64
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.codeanalysis|x64.Build.0 = basis|x64
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Debug Multithreaded|Android.ActiveCfg = basis|Win32
+		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Debug Multithreaded|ARM.ActiveCfg = profiler|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Debug Multithreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Debug Multithreaded|Mixed Platforms.Build.0 = basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Debug Multithreaded|Win32.ActiveCfg = basis|Win32
@@ -1765,6 +1980,7 @@ Global
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Debug Multithreaded|x64.ActiveCfg = basis|x64
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Debug Multithreaded|x64.Build.0 = basis|x64
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Debug Singlethreaded|Android.ActiveCfg = basis|Win32
+		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Debug Singlethreaded|ARM.ActiveCfg = profiler|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Debug Singlethreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Debug Singlethreaded|Mixed Platforms.Build.0 = basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Debug Singlethreaded|Win32.ActiveCfg = basis|Win32
@@ -1772,6 +1988,7 @@ Global
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Debug Singlethreaded|x64.ActiveCfg = basis|x64
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Debug Singlethreaded|x64.Build.0 = basis|x64
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Debug|Android.ActiveCfg = basis|Win32
+		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Debug|ARM.ActiveCfg = profiler|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Debug|Mixed Platforms.ActiveCfg = basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Debug|Mixed Platforms.Build.0 = basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Debug|Win32.ActiveCfg = basis|Win32
@@ -1779,6 +1996,7 @@ Global
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Debug|x64.ActiveCfg = basis|x64
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Debug|x64.Build.0 = basis|x64
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.memdleak|Android.ActiveCfg = memdleak|Win32
+		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.memdleak|ARM.ActiveCfg = memdleak|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.memdleak|Mixed Platforms.ActiveCfg = memdleak|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.memdleak|Mixed Platforms.Build.0 = memdleak|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.memdleak|Win32.ActiveCfg = memdleak|Win32
@@ -1786,6 +2004,7 @@ Global
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.memdleak|x64.ActiveCfg = memdleak|x64
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.memdleak|x64.Build.0 = memdleak|x64
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.no_precompiled_header|Android.ActiveCfg = basis|Win32
+		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.no_precompiled_header|ARM.ActiveCfg = profiler|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.no_precompiled_header|Mixed Platforms.ActiveCfg = basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.no_precompiled_header|Mixed Platforms.Build.0 = basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.no_precompiled_header|Win32.ActiveCfg = basis|Win32
@@ -1793,6 +2012,7 @@ Global
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.no_precompiled_header|x64.ActiveCfg = basis|x64
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.no_precompiled_header|x64.Build.0 = basis|x64
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.profiler|Android.ActiveCfg = basis|Win32
+		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.profiler|ARM.ActiveCfg = profiler|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.profiler|Mixed Platforms.ActiveCfg = basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.profiler|Mixed Platforms.Build.0 = basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.profiler|Win32.ActiveCfg = basis|Win32
@@ -1800,6 +2020,7 @@ Global
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.profiler|x64.ActiveCfg = basis|x64
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.profiler|x64.Build.0 = basis|x64
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Release Multithreaded|Android.ActiveCfg = basis|Win32
+		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Release Multithreaded|ARM.ActiveCfg = profiler|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Release Multithreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Release Multithreaded|Mixed Platforms.Build.0 = basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Release Multithreaded|Win32.ActiveCfg = basis|Win32
@@ -1807,6 +2028,7 @@ Global
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Release Multithreaded|x64.ActiveCfg = basis|x64
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Release Multithreaded|x64.Build.0 = basis|x64
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Release Singlethreaded|Android.ActiveCfg = basis|Win32
+		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Release Singlethreaded|ARM.ActiveCfg = profiler|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Release Singlethreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Release Singlethreaded|Mixed Platforms.Build.0 = basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Release Singlethreaded|Win32.ActiveCfg = basis|Win32
@@ -1814,6 +2036,7 @@ Global
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Release Singlethreaded|x64.ActiveCfg = basis|x64
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Release Singlethreaded|x64.Build.0 = basis|x64
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Release|Android.ActiveCfg = basis|Win32
+		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Release|ARM.ActiveCfg = profiler|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Release|Mixed Platforms.ActiveCfg = basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Release|Mixed Platforms.Build.0 = basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.Release|Win32.ActiveCfg = basis|Win32
@@ -1823,6 +2046,7 @@ Global
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.stage|Android.ActiveCfg = stage|Android
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.stage|Android.Build.0 = stage|Android
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.stage|Android.Deploy.0 = stage|Android
+		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.stage|ARM.ActiveCfg = stage|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.stage|Mixed Platforms.ActiveCfg = stage|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.stage|Mixed Platforms.Build.0 = stage|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.stage|Win32.ActiveCfg = stage|Win32
@@ -1830,6 +2054,7 @@ Global
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.stage|x64.ActiveCfg = stage|x64
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.stage|x64.Build.0 = stage|x64
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.static_basis|Android.ActiveCfg = static_basis|Win32
+		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.static_basis|ARM.ActiveCfg = static_basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.static_basis|Mixed Platforms.ActiveCfg = static_basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.static_basis|Mixed Platforms.Build.0 = static_basis|Win32
 		{424F72D6-053A-41C5-BE03-3B0BD535F1EB}.static_basis|Win32.ActiveCfg = static_basis|Win32
@@ -1839,6 +2064,7 @@ Global
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.basis|Android.ActiveCfg = basis|Android
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.basis|Android.Build.0 = basis|Android
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.basis|Android.Deploy.0 = basis|Android
+		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.basis|ARM.ActiveCfg = basis|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.basis|Mixed Platforms.Build.0 = basis|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.basis|Win32.ActiveCfg = basis|Win32
@@ -1848,6 +2074,7 @@ Global
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.codeanalysis|Android.ActiveCfg = stage|Android
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.codeanalysis|Android.Build.0 = stage|Android
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.codeanalysis|Android.Deploy.0 = stage|Android
+		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.codeanalysis|ARM.ActiveCfg = static_basis|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.codeanalysis|Mixed Platforms.ActiveCfg = stage|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.codeanalysis|Mixed Platforms.Build.0 = stage|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.codeanalysis|Win32.ActiveCfg = stage|Win32
@@ -1857,6 +2084,7 @@ Global
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Debug Multithreaded|Android.ActiveCfg = stage|Android
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Debug Multithreaded|Android.Build.0 = stage|Android
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Debug Multithreaded|Android.Deploy.0 = stage|Android
+		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Debug Multithreaded|ARM.ActiveCfg = static_basis|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Debug Multithreaded|Mixed Platforms.ActiveCfg = stage|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Debug Multithreaded|Mixed Platforms.Build.0 = stage|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Debug Multithreaded|Win32.ActiveCfg = stage|Win32
@@ -1866,6 +2094,7 @@ Global
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Debug Singlethreaded|Android.ActiveCfg = stage|Android
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Debug Singlethreaded|Android.Build.0 = stage|Android
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Debug Singlethreaded|Android.Deploy.0 = stage|Android
+		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Debug Singlethreaded|ARM.ActiveCfg = static_basis|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Debug Singlethreaded|Mixed Platforms.ActiveCfg = stage|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Debug Singlethreaded|Mixed Platforms.Build.0 = stage|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Debug Singlethreaded|Win32.ActiveCfg = stage|Win32
@@ -1875,6 +2104,7 @@ Global
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Debug|Android.ActiveCfg = stage|Android
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Debug|Android.Build.0 = stage|Android
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Debug|Android.Deploy.0 = stage|Android
+		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Debug|ARM.ActiveCfg = static_basis|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Debug|Mixed Platforms.ActiveCfg = stage|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Debug|Mixed Platforms.Build.0 = stage|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Debug|Win32.ActiveCfg = stage|Win32
@@ -1882,6 +2112,7 @@ Global
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Debug|x64.ActiveCfg = stage|x64
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Debug|x64.Build.0 = stage|x64
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.memdleak|Android.ActiveCfg = memdleak|Win32
+		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.memdleak|ARM.ActiveCfg = memdleak|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.memdleak|Mixed Platforms.ActiveCfg = memdleak|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.memdleak|Mixed Platforms.Build.0 = memdleak|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.memdleak|Win32.ActiveCfg = memdleak|Win32
@@ -1891,6 +2122,7 @@ Global
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.no_precompiled_header|Android.ActiveCfg = stage|Android
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.no_precompiled_header|Android.Build.0 = stage|Android
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.no_precompiled_header|Android.Deploy.0 = stage|Android
+		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.no_precompiled_header|ARM.ActiveCfg = static_basis|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.no_precompiled_header|Mixed Platforms.ActiveCfg = stage|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.no_precompiled_header|Mixed Platforms.Build.0 = stage|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.no_precompiled_header|Win32.ActiveCfg = stage|Win32
@@ -1900,6 +2132,7 @@ Global
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.profiler|Android.ActiveCfg = profiler|Android
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.profiler|Android.Build.0 = profiler|Android
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.profiler|Android.Deploy.0 = profiler|Android
+		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.profiler|ARM.ActiveCfg = profiler|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.profiler|Mixed Platforms.ActiveCfg = profiler|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.profiler|Mixed Platforms.Build.0 = profiler|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.profiler|Win32.ActiveCfg = profiler|Win32
@@ -1909,6 +2142,7 @@ Global
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release Multithreaded|Android.ActiveCfg = stage|Android
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release Multithreaded|Android.Build.0 = stage|Android
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release Multithreaded|Android.Deploy.0 = stage|Android
+		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release Multithreaded|ARM.ActiveCfg = static_basis|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release Multithreaded|Mixed Platforms.ActiveCfg = stage|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release Multithreaded|Mixed Platforms.Build.0 = stage|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release Multithreaded|Win32.ActiveCfg = stage|Win32
@@ -1918,6 +2152,7 @@ Global
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release Singlethreaded|Android.ActiveCfg = stage|Android
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release Singlethreaded|Android.Build.0 = stage|Android
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release Singlethreaded|Android.Deploy.0 = stage|Android
+		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release Singlethreaded|ARM.ActiveCfg = static_basis|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release Singlethreaded|Mixed Platforms.ActiveCfg = stage|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release Singlethreaded|Mixed Platforms.Build.0 = stage|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release Singlethreaded|Win32.ActiveCfg = stage|Win32
@@ -1927,6 +2162,7 @@ Global
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release|Android.ActiveCfg = stage|Android
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release|Android.Build.0 = stage|Android
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release|Android.Deploy.0 = stage|Android
+		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release|ARM.ActiveCfg = static_basis|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release|Mixed Platforms.ActiveCfg = stage|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release|Mixed Platforms.Build.0 = stage|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release|Win32.ActiveCfg = stage|Win32
@@ -1936,6 +2172,7 @@ Global
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.stage|Android.ActiveCfg = stage|Android
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.stage|Android.Build.0 = stage|Android
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.stage|Android.Deploy.0 = stage|Android
+		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.stage|ARM.ActiveCfg = stage|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.stage|Mixed Platforms.ActiveCfg = stage|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.stage|Mixed Platforms.Build.0 = stage|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.stage|Win32.ActiveCfg = stage|Win32
@@ -1943,6 +2180,7 @@ Global
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.stage|x64.ActiveCfg = stage|x64
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.stage|x64.Build.0 = stage|x64
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.static_basis|Android.ActiveCfg = static_basis|Win32
+		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.static_basis|ARM.ActiveCfg = static_basis|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.static_basis|Mixed Platforms.ActiveCfg = static_basis|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.static_basis|Mixed Platforms.Build.0 = static_basis|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.static_basis|Win32.ActiveCfg = static_basis|Win32
@@ -1952,6 +2190,7 @@ Global
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.basis|Android.ActiveCfg = basis|Android
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.basis|Android.Build.0 = basis|Android
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.basis|Android.Deploy.0 = basis|Android
+		{B39ED2B3-D53A-4077-B957-930979A3577D}.basis|ARM.ActiveCfg = basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.basis|Mixed Platforms.Build.0 = basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.basis|Win32.ActiveCfg = basis|Win32
@@ -1959,6 +2198,7 @@ Global
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.basis|x64.ActiveCfg = basis|x64
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.basis|x64.Build.0 = basis|x64
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.codeanalysis|Android.ActiveCfg = basis|Win32
+		{B39ED2B3-D53A-4077-B957-930979A3577D}.codeanalysis|ARM.ActiveCfg = profiler|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.codeanalysis|Mixed Platforms.ActiveCfg = basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.codeanalysis|Mixed Platforms.Build.0 = basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.codeanalysis|Win32.ActiveCfg = basis|Win32
@@ -1966,6 +2206,7 @@ Global
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.codeanalysis|x64.ActiveCfg = basis|x64
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.codeanalysis|x64.Build.0 = basis|x64
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Debug Multithreaded|Android.ActiveCfg = basis|Win32
+		{B39ED2B3-D53A-4077-B957-930979A3577D}.Debug Multithreaded|ARM.ActiveCfg = profiler|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Debug Multithreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Debug Multithreaded|Mixed Platforms.Build.0 = basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Debug Multithreaded|Win32.ActiveCfg = basis|Win32
@@ -1973,6 +2214,7 @@ Global
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Debug Multithreaded|x64.ActiveCfg = basis|x64
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Debug Multithreaded|x64.Build.0 = basis|x64
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Debug Singlethreaded|Android.ActiveCfg = basis|Win32
+		{B39ED2B3-D53A-4077-B957-930979A3577D}.Debug Singlethreaded|ARM.ActiveCfg = profiler|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Debug Singlethreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Debug Singlethreaded|Mixed Platforms.Build.0 = basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Debug Singlethreaded|Win32.ActiveCfg = basis|Win32
@@ -1980,6 +2222,7 @@ Global
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Debug Singlethreaded|x64.ActiveCfg = basis|x64
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Debug Singlethreaded|x64.Build.0 = basis|x64
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Debug|Android.ActiveCfg = basis|Win32
+		{B39ED2B3-D53A-4077-B957-930979A3577D}.Debug|ARM.ActiveCfg = profiler|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Debug|Mixed Platforms.ActiveCfg = basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Debug|Mixed Platforms.Build.0 = basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Debug|Win32.ActiveCfg = basis|Win32
@@ -1987,6 +2230,7 @@ Global
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Debug|x64.ActiveCfg = basis|x64
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Debug|x64.Build.0 = basis|x64
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.memdleak|Android.ActiveCfg = memdleak|Win32
+		{B39ED2B3-D53A-4077-B957-930979A3577D}.memdleak|ARM.ActiveCfg = memdleak|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.memdleak|Mixed Platforms.ActiveCfg = memdleak|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.memdleak|Mixed Platforms.Build.0 = memdleak|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.memdleak|Win32.ActiveCfg = memdleak|Win32
@@ -1994,6 +2238,7 @@ Global
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.memdleak|x64.ActiveCfg = memdleak|x64
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.memdleak|x64.Build.0 = memdleak|x64
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.no_precompiled_header|Android.ActiveCfg = basis|Win32
+		{B39ED2B3-D53A-4077-B957-930979A3577D}.no_precompiled_header|ARM.ActiveCfg = profiler|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.no_precompiled_header|Mixed Platforms.ActiveCfg = basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.no_precompiled_header|Mixed Platforms.Build.0 = basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.no_precompiled_header|Win32.ActiveCfg = basis|Win32
@@ -2001,6 +2246,7 @@ Global
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.no_precompiled_header|x64.ActiveCfg = basis|x64
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.no_precompiled_header|x64.Build.0 = basis|x64
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.profiler|Android.ActiveCfg = basis|Win32
+		{B39ED2B3-D53A-4077-B957-930979A3577D}.profiler|ARM.ActiveCfg = profiler|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.profiler|Mixed Platforms.ActiveCfg = basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.profiler|Mixed Platforms.Build.0 = basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.profiler|Win32.ActiveCfg = basis|Win32
@@ -2008,6 +2254,7 @@ Global
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.profiler|x64.ActiveCfg = basis|x64
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.profiler|x64.Build.0 = basis|x64
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Release Multithreaded|Android.ActiveCfg = basis|Win32
+		{B39ED2B3-D53A-4077-B957-930979A3577D}.Release Multithreaded|ARM.ActiveCfg = profiler|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Release Multithreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Release Multithreaded|Mixed Platforms.Build.0 = basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Release Multithreaded|Win32.ActiveCfg = basis|Win32
@@ -2015,6 +2262,7 @@ Global
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Release Multithreaded|x64.ActiveCfg = basis|x64
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Release Multithreaded|x64.Build.0 = basis|x64
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Release Singlethreaded|Android.ActiveCfg = basis|Win32
+		{B39ED2B3-D53A-4077-B957-930979A3577D}.Release Singlethreaded|ARM.ActiveCfg = profiler|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Release Singlethreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Release Singlethreaded|Mixed Platforms.Build.0 = basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Release Singlethreaded|Win32.ActiveCfg = basis|Win32
@@ -2022,6 +2270,7 @@ Global
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Release Singlethreaded|x64.ActiveCfg = basis|x64
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Release Singlethreaded|x64.Build.0 = basis|x64
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Release|Android.ActiveCfg = basis|Win32
+		{B39ED2B3-D53A-4077-B957-930979A3577D}.Release|ARM.ActiveCfg = profiler|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Release|Mixed Platforms.ActiveCfg = basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Release|Mixed Platforms.Build.0 = basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.Release|Win32.ActiveCfg = basis|Win32
@@ -2031,6 +2280,7 @@ Global
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.stage|Android.ActiveCfg = stage|Android
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.stage|Android.Build.0 = stage|Android
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.stage|Android.Deploy.0 = stage|Android
+		{B39ED2B3-D53A-4077-B957-930979A3577D}.stage|ARM.ActiveCfg = stage|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.stage|Mixed Platforms.ActiveCfg = stage|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.stage|Mixed Platforms.Build.0 = stage|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.stage|Win32.ActiveCfg = stage|Win32
@@ -2038,6 +2288,7 @@ Global
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.stage|x64.ActiveCfg = stage|x64
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.stage|x64.Build.0 = stage|x64
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.static_basis|Android.ActiveCfg = static_basis|Win32
+		{B39ED2B3-D53A-4077-B957-930979A3577D}.static_basis|ARM.ActiveCfg = static_basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.static_basis|Mixed Platforms.ActiveCfg = static_basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.static_basis|Mixed Platforms.Build.0 = static_basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.static_basis|Win32.ActiveCfg = static_basis|Win32
@@ -2047,6 +2298,7 @@ Global
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.basis|Android.ActiveCfg = basis|Android
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.basis|Android.Build.0 = basis|Android
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.basis|Android.Deploy.0 = basis|Android
+		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.basis|ARM.ActiveCfg = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.basis|Mixed Platforms.Build.0 = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.basis|Win32.ActiveCfg = basis|Win32
@@ -2054,6 +2306,7 @@ Global
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.basis|x64.ActiveCfg = basis|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.basis|x64.Build.0 = basis|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.codeanalysis|Android.ActiveCfg = codeanalysis|Win32
+		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.codeanalysis|ARM.ActiveCfg = codeanalysis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.codeanalysis|Mixed Platforms.ActiveCfg = codeanalysis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.codeanalysis|Mixed Platforms.Build.0 = codeanalysis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.codeanalysis|Win32.ActiveCfg = codeanalysis|Win32
@@ -2061,6 +2314,7 @@ Global
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.codeanalysis|x64.ActiveCfg = codeanalysis|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.codeanalysis|x64.Build.0 = codeanalysis|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Debug Multithreaded|Android.ActiveCfg = basis|Win32
+		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Debug Multithreaded|ARM.ActiveCfg = stage|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Debug Multithreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Debug Multithreaded|Mixed Platforms.Build.0 = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Debug Multithreaded|Win32.ActiveCfg = basis|Win32
@@ -2068,6 +2322,7 @@ Global
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Debug Multithreaded|x64.ActiveCfg = basis|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Debug Multithreaded|x64.Build.0 = basis|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Debug Singlethreaded|Android.ActiveCfg = basis|Win32
+		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Debug Singlethreaded|ARM.ActiveCfg = stage|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Debug Singlethreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Debug Singlethreaded|Mixed Platforms.Build.0 = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Debug Singlethreaded|Win32.ActiveCfg = basis|Win32
@@ -2075,6 +2330,7 @@ Global
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Debug Singlethreaded|x64.ActiveCfg = basis|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Debug Singlethreaded|x64.Build.0 = basis|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Debug|Android.ActiveCfg = basis|Win32
+		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Debug|ARM.ActiveCfg = stage|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Debug|Mixed Platforms.ActiveCfg = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Debug|Mixed Platforms.Build.0 = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Debug|Win32.ActiveCfg = basis|Win32
@@ -2082,6 +2338,7 @@ Global
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Debug|x64.ActiveCfg = basis|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Debug|x64.Build.0 = basis|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.memdleak|Android.ActiveCfg = memdleak|Win32
+		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.memdleak|ARM.ActiveCfg = memdleak|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.memdleak|Mixed Platforms.ActiveCfg = memdleak|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.memdleak|Mixed Platforms.Build.0 = memdleak|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.memdleak|Win32.ActiveCfg = memdleak|Win32
@@ -2089,6 +2346,7 @@ Global
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.memdleak|x64.ActiveCfg = memdleak|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.memdleak|x64.Build.0 = memdleak|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.no_precompiled_header|Android.ActiveCfg = basis|Win32
+		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.no_precompiled_header|ARM.ActiveCfg = stage|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.no_precompiled_header|Mixed Platforms.ActiveCfg = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.no_precompiled_header|Mixed Platforms.Build.0 = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.no_precompiled_header|Win32.ActiveCfg = basis|Win32
@@ -2096,6 +2354,7 @@ Global
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.no_precompiled_header|x64.ActiveCfg = basis|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.no_precompiled_header|x64.Build.0 = basis|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.profiler|Android.ActiveCfg = profiler|Win32
+		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.profiler|ARM.ActiveCfg = profiler|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.profiler|Mixed Platforms.ActiveCfg = profiler|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.profiler|Mixed Platforms.Build.0 = profiler|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.profiler|Win32.ActiveCfg = profiler|Win32
@@ -2103,6 +2362,7 @@ Global
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.profiler|x64.ActiveCfg = profiler|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.profiler|x64.Build.0 = profiler|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Release Multithreaded|Android.ActiveCfg = basis|Win32
+		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Release Multithreaded|ARM.ActiveCfg = stage|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Release Multithreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Release Multithreaded|Mixed Platforms.Build.0 = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Release Multithreaded|Win32.ActiveCfg = basis|Win32
@@ -2110,6 +2370,7 @@ Global
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Release Multithreaded|x64.ActiveCfg = basis|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Release Multithreaded|x64.Build.0 = basis|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Release Singlethreaded|Android.ActiveCfg = basis|Win32
+		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Release Singlethreaded|ARM.ActiveCfg = stage|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Release Singlethreaded|Mixed Platforms.ActiveCfg = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Release Singlethreaded|Mixed Platforms.Build.0 = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Release Singlethreaded|Win32.ActiveCfg = basis|Win32
@@ -2117,6 +2378,7 @@ Global
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Release Singlethreaded|x64.ActiveCfg = basis|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Release Singlethreaded|x64.Build.0 = basis|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Release|Android.ActiveCfg = basis|Win32
+		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Release|ARM.ActiveCfg = stage|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Release|Mixed Platforms.ActiveCfg = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Release|Mixed Platforms.Build.0 = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Release|Win32.ActiveCfg = basis|Win32
@@ -2124,6 +2386,7 @@ Global
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Release|x64.ActiveCfg = basis|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.Release|x64.Build.0 = basis|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.stage|Android.ActiveCfg = stage|Win32
+		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.stage|ARM.ActiveCfg = stage|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.stage|Mixed Platforms.ActiveCfg = stage|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.stage|Mixed Platforms.Build.0 = stage|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.stage|Win32.ActiveCfg = stage|Win32
@@ -2131,12 +2394,221 @@ Global
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.stage|x64.ActiveCfg = stage|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.stage|x64.Build.0 = stage|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.static_basis|Android.ActiveCfg = basis|Win32
+		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.static_basis|ARM.ActiveCfg = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.static_basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.static_basis|Mixed Platforms.Build.0 = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.static_basis|Win32.ActiveCfg = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.static_basis|Win32.Build.0 = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.static_basis|x64.ActiveCfg = basis|x64
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.static_basis|x64.Build.0 = basis|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.basis|Android.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.basis|ARM.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.basis|Mixed Platforms.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.basis|Mixed Platforms.Build.0 = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.basis|Win32.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.basis|Win32.Build.0 = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.basis|x64.ActiveCfg = basis|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.basis|x64.Build.0 = basis|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.codeanalysis|Android.ActiveCfg = codeanalysis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.codeanalysis|ARM.ActiveCfg = codeanalysis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.codeanalysis|Mixed Platforms.ActiveCfg = codeanalysis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.codeanalysis|Mixed Platforms.Build.0 = codeanalysis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.codeanalysis|Win32.ActiveCfg = codeanalysis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.codeanalysis|Win32.Build.0 = codeanalysis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.codeanalysis|x64.ActiveCfg = codeanalysis|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.codeanalysis|x64.Build.0 = codeanalysis|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug Multithreaded|Android.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug Multithreaded|ARM.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug Multithreaded|Mixed Platforms.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug Multithreaded|Mixed Platforms.Build.0 = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug Multithreaded|Win32.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug Multithreaded|Win32.Build.0 = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug Multithreaded|x64.ActiveCfg = basis|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug Multithreaded|x64.Build.0 = basis|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug Singlethreaded|Android.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug Singlethreaded|ARM.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug Singlethreaded|Mixed Platforms.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug Singlethreaded|Mixed Platforms.Build.0 = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug Singlethreaded|Win32.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug Singlethreaded|Win32.Build.0 = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug Singlethreaded|x64.ActiveCfg = basis|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug Singlethreaded|x64.Build.0 = basis|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug|Android.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug|ARM.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug|Mixed Platforms.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug|Mixed Platforms.Build.0 = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug|Win32.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug|Win32.Build.0 = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug|x64.ActiveCfg = basis|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Debug|x64.Build.0 = basis|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.memdleak|Android.ActiveCfg = memdleak|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.memdleak|ARM.ActiveCfg = memdleak|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.memdleak|Mixed Platforms.ActiveCfg = memdleak|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.memdleak|Mixed Platforms.Build.0 = memdleak|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.memdleak|Win32.ActiveCfg = memdleak|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.memdleak|Win32.Build.0 = memdleak|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.memdleak|x64.ActiveCfg = memdleak|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.memdleak|x64.Build.0 = memdleak|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.no_precompiled_header|Android.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.no_precompiled_header|ARM.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.no_precompiled_header|Mixed Platforms.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.no_precompiled_header|Mixed Platforms.Build.0 = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.no_precompiled_header|Win32.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.no_precompiled_header|Win32.Build.0 = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.no_precompiled_header|x64.ActiveCfg = basis|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.no_precompiled_header|x64.Build.0 = basis|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.profiler|Android.ActiveCfg = profiler|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.profiler|ARM.ActiveCfg = profiler|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.profiler|Mixed Platforms.ActiveCfg = profiler|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.profiler|Mixed Platforms.Build.0 = profiler|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.profiler|Win32.ActiveCfg = profiler|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.profiler|Win32.Build.0 = profiler|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.profiler|x64.ActiveCfg = profiler|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.profiler|x64.Build.0 = profiler|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release Multithreaded|Android.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release Multithreaded|ARM.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release Multithreaded|Mixed Platforms.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release Multithreaded|Mixed Platforms.Build.0 = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release Multithreaded|Win32.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release Multithreaded|Win32.Build.0 = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release Multithreaded|x64.ActiveCfg = basis|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release Multithreaded|x64.Build.0 = basis|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release Singlethreaded|Android.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release Singlethreaded|ARM.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release Singlethreaded|Mixed Platforms.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release Singlethreaded|Mixed Platforms.Build.0 = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release Singlethreaded|Win32.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release Singlethreaded|Win32.Build.0 = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release Singlethreaded|x64.ActiveCfg = basis|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release Singlethreaded|x64.Build.0 = basis|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release|Android.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release|ARM.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release|Mixed Platforms.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release|Mixed Platforms.Build.0 = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release|Win32.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release|Win32.Build.0 = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release|x64.ActiveCfg = basis|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.Release|x64.Build.0 = basis|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.stage|Android.ActiveCfg = stage|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.stage|ARM.ActiveCfg = stage|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.stage|Mixed Platforms.ActiveCfg = stage|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.stage|Mixed Platforms.Build.0 = stage|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.stage|Win32.ActiveCfg = stage|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.stage|Win32.Build.0 = stage|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.stage|x64.ActiveCfg = stage|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.stage|x64.Build.0 = stage|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.static_basis|Android.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.static_basis|ARM.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.static_basis|Mixed Platforms.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.static_basis|Mixed Platforms.Build.0 = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.static_basis|Win32.ActiveCfg = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.static_basis|Win32.Build.0 = basis|Win32
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.static_basis|x64.ActiveCfg = basis|x64
+		{84517714-2000-419D-A87F-4338C9DDE3FA}.static_basis|x64.Build.0 = basis|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.basis|Android.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.basis|ARM.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.basis|Mixed Platforms.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.basis|Mixed Platforms.Build.0 = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.basis|Win32.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.basis|Win32.Build.0 = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.basis|x64.ActiveCfg = basis|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.basis|x64.Build.0 = basis|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.codeanalysis|Android.ActiveCfg = codeanalysis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.codeanalysis|ARM.ActiveCfg = codeanalysis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.codeanalysis|Mixed Platforms.ActiveCfg = codeanalysis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.codeanalysis|Mixed Platforms.Build.0 = codeanalysis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.codeanalysis|Win32.ActiveCfg = codeanalysis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.codeanalysis|Win32.Build.0 = codeanalysis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.codeanalysis|x64.ActiveCfg = codeanalysis|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.codeanalysis|x64.Build.0 = codeanalysis|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug Multithreaded|Android.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug Multithreaded|ARM.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug Multithreaded|Mixed Platforms.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug Multithreaded|Mixed Platforms.Build.0 = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug Multithreaded|Win32.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug Multithreaded|Win32.Build.0 = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug Multithreaded|x64.ActiveCfg = basis|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug Multithreaded|x64.Build.0 = basis|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug Singlethreaded|Android.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug Singlethreaded|ARM.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug Singlethreaded|Mixed Platforms.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug Singlethreaded|Mixed Platforms.Build.0 = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug Singlethreaded|Win32.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug Singlethreaded|Win32.Build.0 = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug Singlethreaded|x64.ActiveCfg = basis|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug Singlethreaded|x64.Build.0 = basis|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug|Android.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug|ARM.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug|Mixed Platforms.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug|Mixed Platforms.Build.0 = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug|Win32.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug|Win32.Build.0 = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug|x64.ActiveCfg = basis|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Debug|x64.Build.0 = basis|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.memdleak|Android.ActiveCfg = memdleak|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.memdleak|ARM.ActiveCfg = memdleak|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.memdleak|Mixed Platforms.ActiveCfg = memdleak|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.memdleak|Mixed Platforms.Build.0 = memdleak|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.memdleak|Win32.ActiveCfg = memdleak|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.memdleak|Win32.Build.0 = memdleak|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.memdleak|x64.ActiveCfg = memdleak|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.memdleak|x64.Build.0 = memdleak|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.no_precompiled_header|Android.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.no_precompiled_header|ARM.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.no_precompiled_header|Mixed Platforms.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.no_precompiled_header|Mixed Platforms.Build.0 = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.no_precompiled_header|Win32.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.no_precompiled_header|Win32.Build.0 = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.no_precompiled_header|x64.ActiveCfg = basis|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.no_precompiled_header|x64.Build.0 = basis|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.profiler|Android.ActiveCfg = profiler|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.profiler|ARM.ActiveCfg = profiler|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.profiler|Mixed Platforms.ActiveCfg = profiler|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.profiler|Mixed Platforms.Build.0 = profiler|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.profiler|Win32.ActiveCfg = profiler|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.profiler|Win32.Build.0 = profiler|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.profiler|x64.ActiveCfg = profiler|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.profiler|x64.Build.0 = profiler|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release Multithreaded|Android.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release Multithreaded|ARM.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release Multithreaded|Mixed Platforms.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release Multithreaded|Mixed Platforms.Build.0 = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release Multithreaded|Win32.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release Multithreaded|Win32.Build.0 = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release Multithreaded|x64.ActiveCfg = basis|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release Multithreaded|x64.Build.0 = basis|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release Singlethreaded|Android.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release Singlethreaded|ARM.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release Singlethreaded|Mixed Platforms.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release Singlethreaded|Mixed Platforms.Build.0 = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release Singlethreaded|Win32.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release Singlethreaded|Win32.Build.0 = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release Singlethreaded|x64.ActiveCfg = basis|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release Singlethreaded|x64.Build.0 = basis|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release|Android.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release|ARM.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release|Mixed Platforms.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release|Mixed Platforms.Build.0 = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release|Win32.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release|Win32.Build.0 = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release|x64.ActiveCfg = basis|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.Release|x64.Build.0 = basis|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.stage|Android.ActiveCfg = stage|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.stage|ARM.ActiveCfg = stage|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.stage|Mixed Platforms.ActiveCfg = stage|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.stage|Mixed Platforms.Build.0 = stage|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.stage|Win32.ActiveCfg = stage|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.stage|Win32.Build.0 = stage|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.stage|x64.ActiveCfg = stage|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.stage|x64.Build.0 = stage|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.static_basis|Android.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.static_basis|ARM.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.static_basis|Mixed Platforms.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.static_basis|Mixed Platforms.Build.0 = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.static_basis|Win32.ActiveCfg = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.static_basis|Win32.Build.0 = basis|Win32
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.static_basis|x64.ActiveCfg = basis|x64
+		{84517713-2000-419D-A87F-4338C9DDE3FA}.static_basis|x64.Build.0 = basis|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
