@@ -2044,7 +2044,9 @@ Global
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.static_basis|Win32.Build.0 = static_basis|Win32
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.static_basis|x64.ActiveCfg = static_basis|x64
 		{B39ED2B3-D53A-4077-B957-930979A3577D}.static_basis|x64.Build.0 = static_basis|x64
-		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.basis|Android.ActiveCfg = basis|Win32
+		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.basis|Android.ActiveCfg = basis|Android
+		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.basis|Android.Build.0 = basis|Android
+		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.basis|Android.Deploy.0 = basis|Android
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.basis|Mixed Platforms.ActiveCfg = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.basis|Mixed Platforms.Build.0 = basis|Win32
 		{51778453-C0AA-419D-A87F-4338C9DDE3FA}.basis|Win32.ActiveCfg = basis|Win32
