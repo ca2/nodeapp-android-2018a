@@ -11,9 +11,6 @@
 typedef std::type_info std_type_info;
 
 
-#include <math.h>
-
-
 #if defined(_LP64)
 
 #define AMD64
@@ -63,7 +60,8 @@ typedef std::type_info std_type_info;
 // UNALIGNED is used for unaligned data access (in carchive mostly)
 #if !defined(UNALIGNED)
 #if defined(_M_IA64) || defined(_M_AMD64)
-#define UNALIGNED __unaligned
+//#define UNALIGNED __unaligned
+#define UNALIGNED
 #else
 #define UNALIGNED
 #endif
@@ -71,19 +69,21 @@ typedef std::type_info std_type_info;
 
 // __DEPREcaTED is used for functions that should no longer be used
 #ifndef __DEPREcaTED
-#ifdef _AFX_DISABLE_DEPREcaTED
-#define __DEPREcaTED(_Message)
+#ifdef _AFX_DISABLE_DEPRECATED
+#define __DEPRECATED(_Message)
 #else
-#define __DEPREcaTED(_Message) __declspec(deprecated(_Message))
+//#define __DEPRECATED(_Message) __declspec(deprecated(_Message))
+#define __DEPRECATED(_Message) 
 #endif
 #endif
 
 // _AFX_INSECURE_DEPREcaTE is used for deprecated, insecure functions.
-#ifndef _AFX_INSECURE_DEPREcaTE
-#ifdef _AFX_SECURE_NO_DEPREcaTE
-#define _AFX_INSECURE_DEPREcaTE(_Message)
+#ifndef _AFX_INSECURE_DEPRECATE
+#ifdef _AFX_SECURE_NO_DEPRECATE
+#define _AFX_INSECURE_DEPRECATE(_Message)
 #else
-#define _AFX_INSECURE_DEPREcaTE(_Message) __declspec(deprecated(_Message))
+//#define _AFX_INSECURE_DEPRECATE(_Message) __declspec(deprecated(_Message))
+#define _AFX_INSECURE_DEPRECATE(_Message) 
 #endif // _AFX_SECURE_NO_DEPREcaTE
 #endif // _AFX_INSECURE_DEPREcaTE
 
@@ -104,7 +104,8 @@ typedef std::type_info std_type_info;
 
 #ifndef __STATIC
 #define __STATIC extern
-#define __STATIC_DATA extern __declspec(selectany)
+#define __STATIC_DATA extern 
+// #define __STATIC_DATA extern  //__declspec(selectany)
 #endif
 
 // for data
@@ -134,11 +135,7 @@ typedef std::type_info std_type_info;
 // This macro is used to reduce size requirements of some classes
 #ifndef __ALWAYS_VTABLE
 #ifndef __NOVTABLE
-#if _MSC_VER >= 1100 && !defined(DEBUG)
-#define __NOVTABLE __declspec(novtable)
-#else
 #define __NOVTABLE
-#endif
 #endif
 #endif
 
@@ -151,11 +148,13 @@ typedef std::type_info std_type_info;
 // The following macros are used on data declarations/definitions
 //  (they are redefined for extension DLLs and the shared MFC DLL)
 #define __DATADEF
-#define __API CLASS_DECL_ca
+#ifndef __API
+#define __API
+#endif
 
 // used when building the "core" MFC80.DLL
 #ifndef __CORE_DATA
-#define __CORE_DATA CLASS_DECL_ca
+#define __CORE_DATA
 #define __CORE_DATADEF
 #endif
 
@@ -180,16 +179,8 @@ typedef std::type_info std_type_info;
 #define BASED_STACK
 #endif
 
-
-
-
-
-
-
 #ifdef _AFX_DEVBUILD
-#define __IMPL_DATA __DATA_EXPORT
-#else
-#define __IMPL_DATA CLASS_DECL_ca
+#define __IMPL_DATA
 #endif
 
 
@@ -200,21 +191,5 @@ typedef std::type_info std_type_info;
 
 
 #undef AfxWndProc
-
-
-
-
-//#define _API
-
-
-
-// std:: includes can undef min max macros
-
-
-//#define MAX(x,y) (((x) > (y)) ? (x) : (y))
-//#define MIN(x,y) (((x) < (y)) ? (x) : (y))
-
-
-
 
 

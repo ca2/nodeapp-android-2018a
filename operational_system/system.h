@@ -87,44 +87,58 @@ return ::ca::thread_priority_normal;
 
 
 
-#include <features.h>
+//#include <features.h>
+//
+//
+//#include <stdlib.h>
+//#include <stdio.h>
+//#include <stdarg.h>
+//#include <stddef.h>
+////#include <unistd.h>
+//#ifdef __USE_STRING_H_BSD
+//#ifndef __USE_BSD
+//#define __USE_BSD
+//#endif
+//#endif
+//#include <string.h>
+//#include <time.h>
+//#include <limits.h>
+//#include <errno.h>
+//#include <malloc.h>
+//#include <inttypes.h>
+//#ifndef __USE_BSD
+//#define __USE_BSD
+//#endif
+//#include <sys/time.h>
+//#undef __USE_BSD
+////#include <pthread.h>
+//#include <sys/resource.h>
+//#include <sys/types.h>
+//#include <sys/socket.h>
+//#include <netinet/in.h>
+//#include <arpa/inet.h>
+//#include <netdb.h>
+//#include <assert.h>
+//
+//
 
+
+#include <features.h>
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
-#include <stddef.h>
-//#include <unistd.h>
-#ifdef __USE_STRING_H_BSD
-#ifndef __USE_BSD
-#define __USE_BSD
-#endif
-#endif
-#include <string.h>
-#include <time.h>
-#include <limits.h>
-#include <errno.h>
-#include <malloc.h>
-#include <inttypes.h>
-#ifndef __USE_BSD
-#define __USE_BSD
-#endif
-#include <sys/time.h>
+
 #undef __USE_BSD
-//#include <pthread.h>
-#include <sys/resource.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <netdb.h>
-#include <math.h>
-#include <assert.h>
+#include <string.h>
+#define __USE_BSD 1
+
+#include <strings.h>
+#include <inttypes.h>
+#include <errno.h>
 
 
 #include <semaphore.h>
-
-
 
 
 #define _gmtime64 gmtime
@@ -357,8 +371,9 @@ inline void debug_break() { throw 3; }
 // The following macros are used on data declarations/definitions
 //  (they are redefined for extension DLLs and the shared MFC DLL)
 #define __DATADEF
-#define __API CLASS_DECL_ca
-
+#ifndef __API
+#define __API
+#endif
 
 // used when building extension DLLs
 #ifndef __EXT_DATA
