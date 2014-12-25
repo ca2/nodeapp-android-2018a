@@ -68,11 +68,13 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Android'">
     <AntBuild>
       <AntBuildPath>$(ProjectDir)\AndroidApk</AntBuildPath>
+      <AntBuildType>Debug</AntBuildType>
     </AntBuild>
     <Link>
       <AdditionalOptions>-ljnigraphics %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
+      <AndroidSystemLibs>c;m;log;gcc;jnigraphics</AndroidSystemLibs>
     </Link>
     <ClCompile>
       <AdditionalOptions>-Wnarrowing -std=c++11 -std=c++11</AdditionalOptions>
@@ -119,7 +121,7 @@
     <None Include="AndroidApk\project.properties" />
     <None Include="AndroidApk\local.properties" />
     <None Include="AndroidApk\res\values\strings.xml" />
-    <None Include="AndroidApk\src\com\example\plasma\Plasma.java" />
+    <None Include="AndroidApk\src\com\example\plasma\app_activity.java" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CppSource\app.cpp" />

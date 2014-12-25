@@ -23,7 +23,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define  LOG_TAG    "libplasma"
+#define  LOG_TAG    "libapp"
 #define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
 #define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 
@@ -183,6 +183,23 @@ static void init_tables(void)
 {
     init_palette();
     init_angles();
+}
+
+static void fill_plasma2(AndroidBitmapInfo*  info,void*  pixels,double  t)
+{
+   int yy;
+   for(yy = 0; yy < info->height; yy++) {
+      uint16_t*  line = (uint16_t*)pixels;
+      int xx;
+      for(xx = 0; xx < info->width; xx++) {
+
+         line[xx] = make565(0, 255, 0);
+      }
+
+      // go to next line
+      pixels = (char*)pixels + info->stride;
+   }
+
 }
 
 static void fill_plasma( AndroidBitmapInfo*  info, void*  pixels, double  t )
@@ -361,7 +378,7 @@ stats_endFrame( Stats*  s )
     s->lastTime = now;
 }
 
-JNIEXPORT void JNICALL Java_ca2_android_app_AppView_render(JNIEnv * env, jobject  obj, jobject bitmap,  jlong  time_ms)
+JNIEXPORT void JNICALL Java_ca2_android_app_app_view_render(JNIEnv * env,jobject  obj,jobject bitmap,jlong  time_ms)
 {
     AndroidBitmapInfo  info;
     void*              pixels;
@@ -392,7 +409,7 @@ JNIEXPORT void JNICALL Java_ca2_android_app_AppView_render(JNIEnv * env, jobject
     stats_startFrame(&stats);
 
     /* Now fill the values with a nice little plasma */
-    fill_plasma(&info, pixels, time_ms );
+    fill_plasma2(&info, pixels, time_ms );
 
     AndroidBitmap_unlockPixels(env, bitmap);
 

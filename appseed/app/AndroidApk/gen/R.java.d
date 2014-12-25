@@ -1,3 +1,3 @@
-V:\laboratory\vs-android_samples\bitmap-plasma\AndroidApk\gen\com\example\plasma\R.java \
- : V:\laboratory\vs-android_samples\bitmap-plasma\AndroidApk\res\values\strings.xml \
-V:\laboratory\vs-android_samples\bitmap-plasma\AndroidApk\AndroidManifest.xml \
+Z:\nordroid\nodeapp\appseed\app\AndroidApk\gen\ca2\android\app\R.java \
+ : Z:\nordroid\nodeapp\appseed\app\AndroidApk\res\values\strings.xml \
+Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\AndroidManifest.xml \

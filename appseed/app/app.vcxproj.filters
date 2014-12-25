@@ -18,9 +18,6 @@
     <None Include="AndroidApk\AndroidManifest.xml">
       <Filter>AndroidApk</Filter>
     </None>
-    <None Include="AndroidApk\src\com\example\plasma\Plasma.java">
-      <Filter>AndroidApk\JavaSource</Filter>
-    </None>
     <None Include="AndroidApk\build.xml">
       <Filter>AndroidApk</Filter>
     </None>
@@ -29,6 +26,9 @@
     </None>
     <None Include="AndroidApk\res\values\strings.xml">
       <Filter>AndroidApk</Filter>
+    </None>
+    <None Include="AndroidApk\src\com\example\plasma\app_activity.java">
+      <Filter>AndroidApk\JavaSource</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
