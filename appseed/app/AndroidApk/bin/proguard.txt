@@ -1,0 +1,3 @@
+# view AndroidManifest.xml #generated:7
+-keep class ca2.android.app.app_activity { <init>(...); }
+
