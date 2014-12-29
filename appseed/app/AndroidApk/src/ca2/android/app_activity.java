@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//package ca2.android.app;
+package ca2.android.app;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -86,7 +86,7 @@ class app_view extends View
 
         canvas.drawColor(0xFFCCFFCC);
 
-        //render(mBitmap, System.currentTimeMillis() - mStartTime);
+        render(mBitmap, System.currentTimeMillis() - mStartTime);
 
         canvas.drawBitmap(mBitmap, 0, 0, null);
 

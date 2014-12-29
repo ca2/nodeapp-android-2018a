@@ -1,6 +1,8 @@
 Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes.dex : \
 Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes\app_activity.class \
 Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes\app_view.class \
+Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes\ca2\android\app\app_activity.class \
+Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes\ca2\android\app\app_view.class \
 Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes\ca2\android\app\BuildConfig.class \
 Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes\ca2\android\app\R$attr.class \
 Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes\ca2\android\app\R$string.class \

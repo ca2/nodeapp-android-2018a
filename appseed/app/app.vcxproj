@@ -74,7 +74,8 @@
       <AdditionalOptions>-ljnigraphics %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
-      <AndroidSystemLibs>c;m;log;gcc;jnigraphics</AndroidSystemLibs>
+      <AndroidSystemLibs>m;log;gcc;jnigraphics</AndroidSystemLibs>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <ClCompile>
       <AdditionalOptions>-Wnarrowing -std=c++11 -std=c++11</AdditionalOptions>
@@ -116,7 +117,9 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="AndroidApk\AndroidManifest.xml" />
+    <None Include="AndroidApk\AndroidManifest.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="AndroidApk\build.xml" />
     <None Include="AndroidApk\project.properties" />
     <None Include="AndroidApk\local.properties" />
