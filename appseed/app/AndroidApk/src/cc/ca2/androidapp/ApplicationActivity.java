@@ -28,9 +28,7 @@ public class ApplicationActivity extends Activity
 
     // Called when the activity is first created. 
 
-    @Override
-
-    public void onCreate(Bundle savedInstanceState)
+    @Override public void onCreate(Bundle savedInstanceState)
     {
 
         super.onCreate(savedInstanceState);
@@ -81,9 +79,7 @@ class ApplicationView extends View
 
     }
 
-    @Override
-	
-	protected void onDraw(Canvas canvas)
+    @Override protected void onDraw(Canvas canvas)
 	{
 
         //canvas.drawColor(0xFFCCFFCC);
