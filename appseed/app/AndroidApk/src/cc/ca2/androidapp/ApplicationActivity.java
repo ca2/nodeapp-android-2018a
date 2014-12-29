@@ -44,7 +44,7 @@ public class ApplicationActivity extends Activity
     static
 	{
 
-        System.loadLibrary("android-application-activity");
+        System.loadLibrary("app");
 
     }
 
@@ -73,7 +73,9 @@ class ApplicationView extends View
 
         final int H = 200;
 
-        mBitmap = Bitmap.createBitmap(W, H, Bitmap.Config.ARGB_565);
+        mBitmap = Bitmap.createBitmap(W, H, Bitmap.Config.RGB_565);
+
+		//mBitmap = Bitmap.createBitmap(W, H, Bitmap.Config.ARGB_8888);
 
         mStartTime = System.currentTimeMillis();
 

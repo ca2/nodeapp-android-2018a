@@ -378,7 +378,7 @@ stats_endFrame( Stats*  s )
     s->lastTime = now;
 }
 
-JNIEXPORT void JNICALL Java_ca2_android_app_app_view_render(JNIEnv * env,jobject  obj,jobject bitmap,jlong  time_ms)
+JNIEXPORT void JNICALL Java_cc_ca2_androidapp_ApplicationView_renderView(JNIEnv * env,jobject  obj,jobject bitmap,jlong  time_ms)
 {
     AndroidBitmapInfo  info;
     void*              pixels;

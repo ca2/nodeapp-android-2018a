@@ -7,6 +7,15 @@ Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes\ca2\android\app\BuildConf
 Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes\ca2\android\app\R$attr.class \
 Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes\ca2\android\app\R$string.class \
 Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes\ca2\android\app\R.class \
+Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes\cc\ca2\androidapp\ApplicationActivity.class \
+Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes\cc\ca2\androidapp\ApplicationView.class \
+Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes\cc\ca2\androidapp\BuildConfig.class \
+Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes\cc\ca2\androidapp\R$attr.class \
+Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes\cc\ca2\androidapp\R$string.class \
+Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes\cc\ca2\androidapp\R.class \
+Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes\com\example\plasma\BuildConfig.class \
+Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes\com\example\plasma\Plasma.class \
+Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes\com\example\plasma\PlasmaView.class \
 Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes\com\example\plasma\R$attr.class \
 Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes\com\example\plasma\R$string.class \
 Z:\nordroid\nodeapp\appseed\app\AndroidApk\bin\classes\com\example\plasma\R.class \
