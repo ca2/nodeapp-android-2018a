@@ -52,7 +52,6 @@
     <AlreadyRunningDecision>Ask</AlreadyRunningDecision>
     <ShowLogCat>true</ShowLogCat>
     <EnableThreadNameWatcher>true</EnableThreadNameWatcher>
-    <ToolchainWithGDB>arm-linux-androideabi-4.8</ToolchainWithGDB>
     <LaunchAMStartParameters />
     <StartupActivity />
     <GDBServer />
@@ -66,7 +65,7 @@
       </Environment>
       <StartGDBServerAsRoot>false</StartGDBServerAsRoot>
     </StandaloneExeSettings>
-    <LinkerBreakpointWorkaroundMode>EnabledWithOddAddress</LinkerBreakpointWorkaroundMode>
+    <LinkerBreakpointWorkaroundMode>EnabledWithEvenAddress</LinkerBreakpointWorkaroundMode>
   </Debug>
   <CustomBuild>
     <PreBuildActions />
