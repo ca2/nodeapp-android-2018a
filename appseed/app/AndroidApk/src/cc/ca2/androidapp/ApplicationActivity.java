@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ca2.android.app;
+package cc.ca2.androidapp;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -23,7 +23,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 
-public class app_activity extends Activity
+public class ApplicationActivity extends Activity
 {
 
     // Called when the activity is first created. 
@@ -35,7 +35,7 @@ public class app_activity extends Activity
 
         super.onCreate(savedInstanceState);
 
-        setContentView(new app_view(this));
+        setContentView(new ApplicationView(this));
 
     }
 
@@ -46,7 +46,7 @@ public class app_activity extends Activity
     static
 	{
 
-        System.loadLibrary("app");
+        System.loadLibrary("android-application-activity");
 
     }
 
@@ -54,7 +54,7 @@ public class app_activity extends Activity
 }
 
 
-class app_view extends View
+class ApplicationView extends View
 {
 
 
@@ -63,10 +63,10 @@ class app_view extends View
 
 
     // implementend by libapp.so 
-    private static native void render(Bitmap  bitmap, long time_ms);
+    private static native void renderView(Bitmap  bitmap, long time_ms);
 
 
-    public app_view(Context context)
+    public ApplicationView(Context context)
 	{
     
 	    super(context);
@@ -75,18 +75,20 @@ class app_view extends View
 
         final int H = 200;
 
-        mBitmap = Bitmap.createBitmap(W, H, Bitmap.Config.ARGB_8888);
+        mBitmap = Bitmap.createBitmap(W, H, Bitmap.Config.ARGB_565);
 
         mStartTime = System.currentTimeMillis();
 
     }
 
-    @Override protected void onDraw(Canvas canvas)
+    @Override
+	
+	protected void onDraw(Canvas canvas)
 	{
 
-        canvas.drawColor(0xFFCCFFCC);
+        //canvas.drawColor(0xFFCCFFCC);
 
-        render(mBitmap, System.currentTimeMillis() - mStartTime);
+        renderView(mBitmap, System.currentTimeMillis() - mStartTime);
 
         canvas.drawBitmap(mBitmap, 0, 0, null);
 
