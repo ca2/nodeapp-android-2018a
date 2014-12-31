@@ -19,6 +19,11 @@
 #include <android/log.h>
 #include <android/bitmap.h>
 
+
+#include <GLES2/gl2.h>
+#include <GLES2/gl2ext.h>
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -179,21 +184,22 @@ static __inline__ uint16_t  palette_from_fixed( Fixed  x )
 
 /* Angles expressed as fixed point radians */
 
-static void init_tables(void)
+void init_tables(void)
 {
     init_palette();
     init_angles();
 }
 
-static void fill_plasma2(AndroidBitmapInfo*  info,void*  pixels,double  t)
+void fill_plasma2(AndroidBitmapInfo*  info,void*  pixels,double  t)
 {
+   uint16_t ushColor = make565(0,(unsigned char)(255.0 * (0.5 + sin(fmod(t / 1000.0,3.14159)) / 2.0)),0);
    int yy;
    for(yy = 0; yy < info->height; yy++) {
       uint16_t*  line = (uint16_t*)pixels;
       int xx;
       for(xx = 0; xx < info->width; xx++) {
 
-         line[xx] = make565(0, 255, 0);
+         line[xx] = ushColor;
       }
 
       // go to next line
@@ -202,86 +208,86 @@ static void fill_plasma2(AndroidBitmapInfo*  info,void*  pixels,double  t)
 
 }
 
-static void fill_plasma( AndroidBitmapInfo*  info, void*  pixels, double  t )
-{
-    Fixed ft  = FIXED_FROM_FLOAT(t/1000.);
-    Fixed yt1 = FIXED_FROM_FLOAT(t/1230.);
-    Fixed yt2 = yt1;
-    Fixed xt10 = FIXED_FROM_FLOAT(t/3000.);
-    Fixed xt20 = xt10;
-
-#define  YT1_INCR   FIXED_FROM_FLOAT(1/100.)
-#define  YT2_INCR   FIXED_FROM_FLOAT(1/163.)
-
-    int  yy;
-    for (yy = 0; yy < info->height; yy++) {
-        uint16_t*  line = (uint16_t*)pixels;
-        Fixed      base = fixed_sin(yt1) + fixed_sin(yt2);
-        Fixed      xt1 = xt10;
-        Fixed      xt2 = xt20;
-
-        yt1 += YT1_INCR;
-        yt2 += YT2_INCR;
-
-#define  XT1_INCR  FIXED_FROM_FLOAT(1/173.)
-#define  XT2_INCR  FIXED_FROM_FLOAT(1/242.)
-
-#if OPTIMIZE_WRITES
-        /* optimize memory writes by generating one aligned 32-bit store
-         * for every pair of pixels.
-         */
-        uint16_t*  line_end = line + info->width;
-
-        if (line < line_end) {
-            if (((uint32_t)line & 3) != 0) {
-                Fixed ii = base + fixed_sin(xt1) + fixed_sin(xt2);
-
-                xt1 += XT1_INCR;
-                xt2 += XT2_INCR;
-
-                line[0] = palette_from_fixed(ii >> 2);
-                line++;
-            }
-
-            while (line + 2 <= line_end) {
-                Fixed i1 = base + fixed_sin(xt1) + fixed_sin(xt2);
-                xt1 += XT1_INCR;
-                xt2 += XT2_INCR;
-
-                Fixed i2 = base + fixed_sin(xt1) + fixed_sin(xt2);
-                xt1 += XT1_INCR;
-                xt2 += XT2_INCR;
-
-                uint32_t  pixel = ((uint32_t)palette_from_fixed(i1 >> 2) << 16) |
-                                   (uint32_t)palette_from_fixed(i2 >> 2);
-
-                ((uint32_t*)line)[0] = pixel;
-                line += 2;
-            }
-
-            if (line < line_end) {
-                Fixed ii = base + fixed_sin(xt1) + fixed_sin(xt2);
-                line[0] = palette_from_fixed(ii >> 2);
-                line++;
-            }
-        }
-#else /* !OPTIMIZE_WRITES */
-        int xx;
-        for (xx = 0; xx < info->width; xx++) {
-
-            Fixed ii = base + fixed_sin(xt1) + fixed_sin(xt2);
-
-            xt1 += XT1_INCR;
-            xt2 += XT2_INCR;
-
-            line[xx] = palette_from_fixed(ii / 4);
-        }
-#endif /* !OPTIMIZE_WRITES */
-
-        // go to next line
-        pixels = (char*)pixels + info->stride;
-    }
-}
+//static void fill_plasma( AndroidBitmapInfo*  info, void*  pixels, double  t )
+//{
+//    Fixed ft  = FIXED_FROM_FLOAT(t/1000.);
+//    Fixed yt1 = FIXED_FROM_FLOAT(t/1230.);
+//    Fixed yt2 = yt1;
+//    Fixed xt10 = FIXED_FROM_FLOAT(t/3000.);
+//    Fixed xt20 = xt10;
+//
+//#define  YT1_INCR   FIXED_FROM_FLOAT(1/100.)
+//#define  YT2_INCR   FIXED_FROM_FLOAT(1/163.)
+//
+//    int  yy;
+//    for (yy = 0; yy < info->height; yy++) {
+//        uint16_t*  line = (uint16_t*)pixels;
+//        Fixed      base = fixed_sin(yt1) + fixed_sin(yt2);
+//        Fixed      xt1 = xt10;
+//        Fixed      xt2 = xt20;
+//
+//        yt1 += YT1_INCR;
+//        yt2 += YT2_INCR;
+//
+//#define  XT1_INCR  FIXED_FROM_FLOAT(1/173.)
+//#define  XT2_INCR  FIXED_FROM_FLOAT(1/242.)
+//
+//#if OPTIMIZE_WRITES
+//        /* optimize memory writes by generating one aligned 32-bit store
+//         * for every pair of pixels.
+//         */
+//        uint16_t*  line_end = line + info->width;
+//
+//        if (line < line_end) {
+//            if (((uint32_t)line & 3) != 0) {
+//                Fixed ii = base + fixed_sin(xt1) + fixed_sin(xt2);
+//
+//                xt1 += XT1_INCR;
+//                xt2 += XT2_INCR;
+//
+//                line[0] = palette_from_fixed(ii >> 2);
+//                line++;
+//            }
+//
+//            while (line + 2 <= line_end) {
+//                Fixed i1 = base + fixed_sin(xt1) + fixed_sin(xt2);
+//                xt1 += XT1_INCR;
+//                xt2 += XT2_INCR;
+//
+//                Fixed i2 = base + fixed_sin(xt1) + fixed_sin(xt2);
+//                xt1 += XT1_INCR;
+//                xt2 += XT2_INCR;
+//
+//                uint32_t  pixel = ((uint32_t)palette_from_fixed(i1 >> 2) << 16) |
+//                                   (uint32_t)palette_from_fixed(i2 >> 2);
+//
+//                ((uint32_t*)line)[0] = pixel;
+//                line += 2;
+//            }
+//
+//            if (line < line_end) {
+//                Fixed ii = base + fixed_sin(xt1) + fixed_sin(xt2);
+//                line[0] = palette_from_fixed(ii >> 2);
+//                line++;
+//            }
+//        }
+//#else /* !OPTIMIZE_WRITES */
+//        int xx;
+//        for (xx = 0; xx < info->width; xx++) {
+//
+//            Fixed ii = base + fixed_sin(xt1) + fixed_sin(xt2);
+//
+//            xt1 += XT1_INCR;
+//            xt2 += XT2_INCR;
+//
+//            line[xx] = palette_from_fixed(ii / 4);
+//        }
+//#endif /* !OPTIMIZE_WRITES */
+//
+//        // go to next line
+//        pixels = (char*)pixels + info->stride;
+//    }
+//}
 
 /* simple stats management */
 typedef struct {
@@ -378,7 +384,17 @@ stats_endFrame( Stats*  s )
     s->lastTime = now;
 }
 
-JNIEXPORT void JNICALL Java_cc_ca2_androidapp_ApplicationView_renderView(JNIEnv * env,jobject  obj,jobject bitmap,jlong  time_ms)
+//JNIEXPORT void JNICALL Java_cc_ca2_androidapp_ApplicationView_startView(JNIEnv * env,jobject  obj)
+//{
+//
+//}
+
+extern "C" {
+   JNIEXPORT void JNICALL Java_cc_ca2_androidapp_ApplicationView_applicationViewUpdateBitmap(JNIEnv * env,jobject  obj,jobject bitmap,jlong  time_ms);
+      
+};
+
+JNIEXPORT void JNICALL Java_cc_ca2_androidapp_ApplicationView_applicationViewUpdateBitmap(JNIEnv * env,jobject  obj,jobject bitmap,jlong  time_ms)
 {
     AndroidBitmapInfo  info;
     void*              pixels;
@@ -414,4 +430,163 @@ JNIEXPORT void JNICALL Java_cc_ca2_androidapp_ApplicationView_renderView(JNIEnv 
     AndroidBitmap_unlockPixels(env, bitmap);
 
     stats_endFrame(&stats);
+}
+
+
+
+
+
+static void printGLString(const char *name,GLenum s) {
+   const char *v = (const char *)glGetString(s);
+   LOGI("GL %s = %s\n",name,v);
+}
+
+static void checkGlError(const char* op) {
+   for(GLint error = glGetError(); error; error
+      = glGetError()) {
+      LOGI("after %s() glError (0x%x)\n",op,error);
+   }
+}
+
+static const char gVertexShader[] =
+"attribute vec4 vPosition;\n"
+"void main() {\n"
+"  gl_Position = vPosition;\n"
+"}\n";
+
+static const char gFragmentShader[] =
+"precision mediump float;\n"
+"void main() {\n"
+"  gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);\n"
+"}\n";
+
+GLuint loadShader(GLenum shaderType,const char* pSource) {
+   GLuint shader = glCreateShader(shaderType);
+   if(shader) {
+      glShaderSource(shader,1,&pSource,NULL);
+      glCompileShader(shader);
+      GLint compiled = 0;
+      glGetShaderiv(shader,GL_COMPILE_STATUS,&compiled);
+      if(!compiled) {
+         GLint infoLen = 0;
+         glGetShaderiv(shader,GL_INFO_LOG_LENGTH,&infoLen);
+         if(infoLen) {
+            char* buf = (char*)malloc(infoLen);
+            if(buf) {
+               glGetShaderInfoLog(shader,infoLen,NULL,buf);
+               LOGE("Could not compile shader %d:\n%s\n",
+                  shaderType,buf);
+               free(buf);
+            }
+            glDeleteShader(shader);
+            shader = 0;
+         }
+      }
+   }
+   return shader;
+}
+
+GLuint createProgram(const char* pVertexSource,const char* pFragmentSource) {
+   GLuint vertexShader = loadShader(GL_VERTEX_SHADER,pVertexSource);
+   if(!vertexShader) {
+      return 0;
+   }
+
+   GLuint pixelShader = loadShader(GL_FRAGMENT_SHADER,pFragmentSource);
+   if(!pixelShader) {
+      return 0;
+   }
+
+   GLuint program = glCreateProgram();
+   if(program) {
+      glAttachShader(program,vertexShader);
+      checkGlError("glAttachShader");
+      glAttachShader(program,pixelShader);
+      checkGlError("glAttachShader");
+      glLinkProgram(program);
+      GLint linkStatus = GL_FALSE;
+      glGetProgramiv(program,GL_LINK_STATUS,&linkStatus);
+      if(linkStatus != GL_TRUE) {
+         GLint bufLength = 0;
+         glGetProgramiv(program,GL_INFO_LOG_LENGTH,&bufLength);
+         if(bufLength) {
+            char* buf = (char*)malloc(bufLength);
+            if(buf) {
+               glGetProgramInfoLog(program,bufLength,NULL,buf);
+               LOGE("Could not link program:\n%s\n",buf);
+               free(buf);
+            }
+         }
+         glDeleteProgram(program);
+         program = 0;
+      }
+   }
+   return program;
+}
+
+GLuint gProgram;
+GLuint gvPositionHandle;
+
+bool setupGraphics(int w,int h) {
+   printGLString("Version",GL_VERSION);
+   printGLString("Vendor",GL_VENDOR);
+   printGLString("Renderer",GL_RENDERER);
+   printGLString("Extensions",GL_EXTENSIONS);
+
+   LOGI("setupGraphics(%d, %d)",w,h);
+   gProgram = createProgram(gVertexShader,gFragmentShader);
+   if(!gProgram) {
+      LOGE("Could not create program.");
+      return false;
+   }
+   gvPositionHandle = glGetAttribLocation(gProgram,"vPosition");
+   checkGlError("glGetAttribLocation");
+   LOGI("glGetAttribLocation(\"vPosition\") = %d\n",
+      gvPositionHandle);
+
+   glViewport(0,0,w,h);
+   checkGlError("glViewport");
+   return true;
+}
+
+const GLfloat gTriangleVertices[] ={0.0f,0.5f,-0.5f,-0.5f,
+0.5f,-0.5f};
+
+void renderFrame()
+{
+   static float grey;
+   grey += 0.01f;
+   if(grey > 1.0f) {
+      grey = 0.0f;
+   }
+   glClearColor(grey,grey,grey,1.0f);
+   checkGlError("glClearColor");
+   glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+   checkGlError("glClear");
+
+   glUseProgram(gProgram);
+   checkGlError("glUseProgram");
+
+   glVertexAttribPointer(gvPositionHandle,2,GL_FLOAT,GL_FALSE,0,gTriangleVertices);
+   checkGlError("glVertexAttribPointer");
+   glEnableVertexAttribArray(gvPositionHandle);
+   checkGlError("glEnableVertexAttribArray");
+   glDrawArrays(GL_TRIANGLES,0,3);
+   checkGlError("glDrawArrays");
+}
+
+extern "C"
+{
+   JNIEXPORT void JNICALL Java_cc_ca2_androidapp_ApplicationLib_init(JNIEnv * env,jobject obj,jint width,jint height);
+   JNIEXPORT void JNICALL Java_cc_ca2_androidapp_ApplicationLib_step(JNIEnv * env,jobject obj);
+};
+
+JNIEXPORT void JNICALL Java_cc_ca2_androidapp_ApplicationLib_init(JNIEnv * env,jobject obj,jint width,jint height)
+{
+   setupGraphics(width,height);
+}
+
+JNIEXPORT void JNICALL Java_cc_ca2_androidapp_ApplicationLib_step(JNIEnv * env,jobject obj)
+{
+   renderFrame();
 }

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="CppSource">
+      <UniqueIdentifier>{d41b07db-b45d-4cad-baec-bd580aad0e0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AndroidApk">
+      <UniqueIdentifier>{b7023c98-8eed-4d81-a222-a09c24068b31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AndroidApk\JavaSource">
+      <UniqueIdentifier>{942f2517-60a1-4e35-be41-ab03c5da1860}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AndroidApk\AndroidManifest.xml">
+      <Filter>AndroidApk</Filter>
+    </None>
+    <None Include="AndroidApk\build.xml">
+      <Filter>AndroidApk</Filter>
+    </None>
+    <None Include="AndroidApk\res\values\strings.xml">
+      <Filter>AndroidApk</Filter>
+    </None>
+    <None Include="AndroidApk\project.properties">
+      <Filter>AndroidApk</Filter>
+    </None>
+    <None Include="AndroidApk\src\cc\ca2\androidapp\ApplicationActivity.java">
+      <Filter>AndroidApk\JavaSource</Filter>
+    </None>
+    <None Include="AndroidApk\src\cc\ca2\androidapp\ApplicationView.java">
+      <Filter>AndroidApk\JavaSource</Filter>
+    </None>
+    <None Include="AndroidApk\src\cc\ca2\androidapp\ApplicationLib.java">
+      <Filter>AndroidApk\JavaSource</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CppSource\app.cpp">
+      <Filter>CppSource</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

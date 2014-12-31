@@ -17,87 +17,34 @@ package cc.ca2.androidapp;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.content.Context;
-import android.view.View;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
+import android.util.Log;
+import android.view.WindowManager;
+
+import java.io.File;
 
 
 public class ApplicationActivity extends Activity
 {
 
-    // Called when the activity is first created. 
+    ApplicationView mView;
 
-    @Override public void onCreate(Bundle savedInstanceState)
-    {
-
-        super.onCreate(savedInstanceState);
-
-        setContentView(new ApplicationView(this));
-
-    }
-
-    
-	// load our native library 
-
-
-    static
+    @Override protected void onCreate(Bundle icicle)
 	{
-
-        System.loadLibrary("app");
-
+        super.onCreate(icicle);
+        mView = new ApplicationView(getApplication());
+		setContentView(mView);
     }
 
+    @Override protected void onPause()
+	{
+        super.onPause();
+        mView.onPause();
+    }
 
+    @Override protected void onResume()
+	{
+        super.onResume();
+        mView.onResume();
+    }
 }
-
-
-class ApplicationView extends View
-{
-
-
-    private Bitmap mBitmap;
-    private long mStartTime;
-
-
-    // implementend by libapp.so 
-    private static native void renderView(Bitmap  bitmap, long time_ms);
-
-
-    public ApplicationView(Context context)
-	{
-    
-	    super(context);
-
-        final int W = 200;
-
-        final int H = 200;
-
-        mBitmap = Bitmap.createBitmap(W, H, Bitmap.Config.RGB_565);
-
-		//mBitmap = Bitmap.createBitmap(W, H, Bitmap.Config.ARGB_8888);
-
-        mStartTime = System.currentTimeMillis();
-
-    }
-
-    @Override protected void onDraw(Canvas canvas)
-	{
-
-        //canvas.drawColor(0xFFCCFFCC);
-
-        renderView(mBitmap, System.currentTimeMillis() - mStartTime);
-
-        canvas.drawBitmap(mBitmap, 0, 0, null);
-
-        // force a redraw, with a different time-based pattern.
-
-        invalidate();
-
-    }
-
-}
-
-
-
 
