@@ -36,7 +36,7 @@
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Android'">
-    <OutDir>$(SolutionDir)..\..\..\stage\Android\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(PlatformName)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">
@@ -53,7 +53,9 @@
       <AntBuildType>Debug</AntBuildType>
     </AntBuild>
     <Link>
-      <AndroidSystemLibs>c;m;log;gcc;jnigraphics;GLESv2</AndroidSystemLibs>
+      <AndroidSystemLibs>c;m;log;gcc;jnigraphics;aura;axis;base;core</AndroidSystemLibs>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
       <Command>if not exist $(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName) mkdir $(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)
@@ -63,7 +65,16 @@ xcopy $(ProjectDir)AndroidApk $(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectN
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <GccExceptionHandling>true</GccExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OptimizationLevel>O0</OptimizationLevel>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Wnarrowing -std=c++11 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Android'">
     <Link>
@@ -74,6 +85,174 @@ xcopy $(ProjectDir)AndroidApk $(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectN
     </AntBuild>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <CustomBuild Include="..\..\..\stage\Android\libapp_core_hellomultiverse.so">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Android'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">%(FullPath)</AdditionalInputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</TreatOutputAsContent>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaqua.so">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Android'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">%(FullPath)</AdditionalInputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</TreatOutputAsContent>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libatomiconv.so">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Android'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">%(FullPath)</AdditionalInputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</TreatOutputAsContent>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaura.so">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Android'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">%(FullPath)</AdditionalInputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</TreatOutputAsContent>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libauracharguess.so">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Android'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">%(FullPath)</AdditionalInputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</TreatOutputAsContent>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaurasqlite.so">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Android'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">%(FullPath)</AdditionalInputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</TreatOutputAsContent>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaxis.so">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Android'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">%(FullPath)</AdditionalInputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</TreatOutputAsContent>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaxisbzip2.so">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Android'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">%(FullPath)</AdditionalInputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</TreatOutputAsContent>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaxiscairo.so">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Android'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">%(FullPath)</AdditionalInputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</TreatOutputAsContent>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaxisfreeimage.so">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Android'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">%(FullPath)</AdditionalInputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</TreatOutputAsContent>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaxisfreetype.so">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Android'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">%(FullPath)</AdditionalInputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</TreatOutputAsContent>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaxisidn.so">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Android'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">%(FullPath)</AdditionalInputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</TreatOutputAsContent>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaxisjpeg.so">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Android'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">%(FullPath)</AdditionalInputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</TreatOutputAsContent>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaxisopenssl.so">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Android'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">%(FullPath)</AdditionalInputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</TreatOutputAsContent>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaxispixman.so">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Android'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">%(FullPath)</AdditionalInputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</TreatOutputAsContent>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaxispng.so">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Android'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">%(FullPath)</AdditionalInputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</TreatOutputAsContent>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaxiszlib.so">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Android'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">%(FullPath)</AdditionalInputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</TreatOutputAsContent>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libbase.so">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Android'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">%(FullPath)</AdditionalInputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</TreatOutputAsContent>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libcore.so">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Android'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">%(FullPath)</AdditionalInputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</TreatOutputAsContent>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libdraw2d_cairo.so">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Android'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">%(FullPath)</AdditionalInputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</TreatOutputAsContent>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libwndfrm_core.so">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Android'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">%(FullPath)</AdditionalInputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</TreatOutputAsContent>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)</Outputs>
+    </CustomBuild>
     <None Include="AndroidApk\AndroidManifest.xml">
       <SubType>Designer</SubType>
     </None>
@@ -81,11 +260,72 @@ xcopy $(ProjectDir)AndroidApk $(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectN
     <None Include="AndroidApk\project.properties" />
     <None Include="AndroidApk\res\values\strings.xml" />
     <None Include="AndroidApk\src\cc\ca2\androidapp\ApplicationActivity.java" />
-    <None Include="AndroidApk\src\cc\ca2\androidapp\ApplicationLib.java" />
-    <None Include="AndroidApk\src\cc\ca2\androidapp\ApplicationView.java" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CppSource\app.cpp" />
+    <ClCompile Include="CppSource\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\app-core\appseed\wndfrm_core\wndfrm_core.vcxproj">
+      <Project>{e2d7833b-9b59-4826-bbdf-c270a2115e86}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\appseed\aqua\aqua.vcxproj">
+      <Project>{51778453-c0aa-419d-a87f-4338c9dde3fa}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\appseed\aura\aura.vcxproj">
+      <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\appseed\axis\axis.vcxproj">
+      <Project>{73a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\appseed\base\base.vcxproj">
+      <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\appseed\core\core.vcxproj">
+      <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\appseed\draw2d_cairo\draw2d_cairo.vcxproj">
+      <Project>{b5b26a30-a18d-4dc2-bace-48c2de33cd75}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\atom\iconv\atomiconv.vcxproj">
+      <Project>{7cfb99a0-47a8-4485-beff-3d0104d66509}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\aura\charguess\auracharguess.vcxproj">
+      <Project>{ac6a52b4-c049-439c-88ff-5a262d968c8f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\aura\sqlite\aurasqlite.vcxproj">
+      <Project>{424f72d6-053a-41c5-be03-3b0bd535f1eb}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\axis\bzip2\axisbzip2.vcxproj">
+      <Project>{a5a649e1-d516-4f29-a627-da6884dd421c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\axis\cairo\axiscairo.vcxproj">
+      <Project>{e6c58c82-71e5-48e6-98ed-1b505d6f10c2}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\axis\freeimage\axisfreeimage.vcxproj">
+      <Project>{b39ed2b3-d53a-4077-b957-930979a3577d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\axis\freetype\axisfreetype.vcxproj">
+      <Project>{78b079bd-9fc7-4b9e-b4a6-96da0f00248b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\axis\idn\axisidn.vcxproj">
+      <Project>{e8ac3ef0-11c5-4e12-a944-5f7efed6e0c4}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\axis\jpeg\axisjpeg.vcxproj">
+      <Project>{84517713-2000-419d-a87f-4338c9dde3fa}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\axis\openssl\axisopenssl.vcxproj">
+      <Project>{29676444-4d0f-4dd0-9104-0499d94da2c9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\axis\pixman\axispixman.vcxproj">
+      <Project>{0a298e22-839b-4d11-b5a7-456ead013c11}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\axis\png\axispng.vcxproj">
+      <Project>{84517714-2000-419d-a87f-4338c9dde3fa}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\axis\zlib\axiszlib.vcxproj">
+      <Project>{34fcfbf1-e922-4fdc-bc83-b3c04623e8c2}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

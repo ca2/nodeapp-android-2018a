@@ -10,6 +10,9 @@
     <Filter Include="AndroidApk\JavaSource">
       <UniqueIdentifier>{942f2517-60a1-4e35-be41-ab03c5da1860}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AndroidApk\libs">
+      <UniqueIdentifier>{4de1d010-6ad5-42de-ba33-a5f45200bb5b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="AndroidApk\AndroidManifest.xml">
@@ -27,16 +30,78 @@
     <None Include="AndroidApk\src\cc\ca2\androidapp\ApplicationActivity.java">
       <Filter>AndroidApk\JavaSource</Filter>
     </None>
-    <None Include="AndroidApk\src\cc\ca2\androidapp\ApplicationView.java">
-      <Filter>AndroidApk\JavaSource</Filter>
-    </None>
-    <None Include="AndroidApk\src\cc\ca2\androidapp\ApplicationLib.java">
-      <Filter>AndroidApk\JavaSource</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CppSource\app.cpp">
       <Filter>CppSource</Filter>
     </ClCompile>
+    <ClCompile Include="CppSource\main.cpp">
+      <Filter>CppSource</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\stage\Android\libapp_core_hellomultiverse.so">
+      <Filter>AndroidApk\libs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaqua.so">
+      <Filter>AndroidApk\libs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libatomiconv.so">
+      <Filter>AndroidApk\libs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaura.so">
+      <Filter>AndroidApk\libs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libauracharguess.so">
+      <Filter>AndroidApk\libs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaurasqlite.so">
+      <Filter>AndroidApk\libs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaxis.so">
+      <Filter>AndroidApk\libs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaxisbzip2.so">
+      <Filter>AndroidApk\libs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaxiscairo.so">
+      <Filter>AndroidApk\libs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaxisfreeimage.so">
+      <Filter>AndroidApk\libs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaxisfreetype.so">
+      <Filter>AndroidApk\libs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaxisidn.so">
+      <Filter>AndroidApk\libs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaxisjpeg.so">
+      <Filter>AndroidApk\libs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaxisopenssl.so">
+      <Filter>AndroidApk\libs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaxispixman.so">
+      <Filter>AndroidApk\libs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaxispng.so">
+      <Filter>AndroidApk\libs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libaxiszlib.so">
+      <Filter>AndroidApk\libs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libbase.so">
+      <Filter>AndroidApk\libs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libcore.so">
+      <Filter>AndroidApk\libs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libdraw2d_cairo.so">
+      <Filter>AndroidApk\libs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\stage\Android\libwndfrm_core.so">
+      <Filter>AndroidApk\libs</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>

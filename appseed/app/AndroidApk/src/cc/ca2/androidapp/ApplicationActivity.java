@@ -17,34 +17,140 @@ package cc.ca2.androidapp;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.WindowManager;
-
-import java.io.File;
+import android.content.Context;
+import android.view.View;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 
 
 public class ApplicationActivity extends Activity
 {
 
-    ApplicationView mView;
+    ApplicationView m_view;
 
-    @Override protected void onCreate(Bundle icicle)
+    @Override protected void onCreate(Bundle bundle)
 	{
-        super.onCreate(icicle);
-        mView = new ApplicationView(getApplication());
-		setContentView(mView);
+        
+		super.onCreate(bundle);
+
+        m_view = new ApplicationView(this);
+
+		setContentView(m_view);
+
     }
 
-    @Override protected void onPause()
+
+	static
 	{
-        super.onPause();
-        mView.onPause();
+       
+	   System.loadLibrary("app");
+
     }
 
-    @Override protected void onResume()
-	{
-        super.onResume();
-        mView.onResume();
-    }
 }
+
+
+
+
+class ApplicationView extends View
+{
+
+
+    private Bitmap	m_bitmap;
+    private long	m_lStartTime;
+	private int		m_iW;
+	private int		m_iH;
+
+
+	private static native void applicationViewUpdateBitmap(Bitmap  bitmap, long time_ms);
+
+	private static native void applicationViewStart();
+	private static native void applicationViewStop();
+
+    public ApplicationView(Context context)
+	{
+
+        super(context);
+
+		applicationViewStart();
+
+        m_lStartTime = System.currentTimeMillis();
+
+    }
+
+
+
+ /*
+    This onSizeChanged() method gets called automatically
+    BEFORE the view gets layed out or drawn for the first time.
+    It alse gets called when the view's orientation changes
+    or gets resized etc. This is the method that does the trick.
+    In this method, you get your view's updated dimensions.
+    Then you should store these dimension values into
+    the global int variables that are declared above.
+    Later, you can call these global variables to read what
+    is the new width or height of the object
+    --------- thanks to kgiannakakis May 25 '10 at 9:18
+    --------- http://ow.ly/44hzw  
+    */
+    @Override
+    protected void onSizeChanged(int wNew, int hNew, int wOld, int hOld)
+	{
+
+		super.onSizeChanged(wNew, hNew, wOld, hOld);
+
+		m_iW = wNew;
+
+		m_iH = hNew;
+
+		createGraphicsResources();
+
+    }
+ 
+
+    @Override protected void onDraw(Canvas canvas)
+	{
+
+
+		if(m_bitmap != null)
+		{
+
+			applicationViewUpdateBitmap(m_bitmap, System.currentTimeMillis() - m_lStartTime);
+
+			canvas.drawBitmap(m_bitmap, 0, 0, null);
+
+		}
+
+		invalidate();
+
+    }
+
+	void createGraphicsResources()
+	{
+
+		int iW = 200;
+
+		int iH = 200;
+
+		if(m_iW > 0)
+		{
+		
+			iW = m_iW;
+
+		}
+	
+		if(m_iH > 0)
+		{
+		
+			iH = m_iH;
+
+		}
+	
+		m_bitmap = Bitmap.createBitmap(iW, iH, Bitmap.Config.ARGB_8888);	
+
+	}
+
+
+}
+
 
