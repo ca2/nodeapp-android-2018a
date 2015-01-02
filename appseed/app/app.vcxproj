@@ -51,6 +51,7 @@
     <AntBuild>
       <AntBuildPath>$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)</AntBuildPath>
       <AntBuildType>Debug</AntBuildType>
+      <IgnoreJavaOpts>false</IgnoreJavaOpts>
     </AntBuild>
     <Link>
       <AndroidSystemLibs>c;m;log;gcc;jnigraphics;aura;axis;base;core</AndroidSystemLibs>
@@ -258,7 +259,9 @@ xcopy $(ProjectDir)AndroidApk $(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectN
     </None>
     <None Include="AndroidApk\build.xml" />
     <None Include="AndroidApk\project.properties" />
-    <None Include="AndroidApk\res\values\strings.xml" />
+    <None Include="AndroidApk\res\values\strings.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="AndroidApk\src\cc\ca2\androidapp\ApplicationActivity.java" />
   </ItemGroup>
   <ItemGroup>
