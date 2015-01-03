@@ -13,7 +13,15 @@
 
 
 #if defined(_DEBUG) || defined(NDEBUG)
+#ifndef DEBUG
 #define DEBUG
+#endif // DEBUG
+#ifndef _DEBUG
+#define _DEBUG
+#endif // _DEBUG
+#ifndef NDEBUG
+#define NDEBUG
+#endif // NDEBUG
 #endif
 
 #ifdef __clang__

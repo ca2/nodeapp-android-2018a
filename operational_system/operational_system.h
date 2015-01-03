@@ -8,25 +8,25 @@
 #include <typeinfo>
 
 
-#ifdef __clang__
-
-namespace std
-{
-
-	class type_info :
-		public ::type_info
-	{
-	public:
-
-		type_info() {}
-		virtual ~type_info() {}
-
-	};
-
-
-}
-
-#endif
+//#ifdef __clang__
+//
+//namespace std
+//{
+//
+//	class type_info :
+//		public ::type_info
+//	{
+//	public:
+//
+//		type_info() {}
+//		virtual ~type_info() {}
+//
+//	};
+//
+//
+//}
+//
+//#endif
 
 typedef ::std::type_info std_type_info; 
 
