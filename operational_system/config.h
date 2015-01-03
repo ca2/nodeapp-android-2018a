@@ -12,10 +12,13 @@
 //typedef short index;
 
 
-#ifdef _DEBUG
+#if defined(_DEBUG) || defined(NDEBUG)
 #define DEBUG
 #endif
 
+#ifdef __clang__
+#define VSNORD // Visual Studio Nor-droid (Android)
+#endif
 
 #ifndef ANDROID
 #define ANDROID

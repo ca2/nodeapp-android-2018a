@@ -1,17 +1,6 @@
 #pragma once
 
 
-
-
-
-
-
-
-
-
-#pragma once
-
-
 #include "get_platform.h"
 
 
@@ -489,9 +478,9 @@ typedef unsigned long   u_long;
 #endif
 
 
-
+#ifndef VSNORD
 typedef uint8_t byte;
-
+#endif
 
 typedef void * PVOID;
 

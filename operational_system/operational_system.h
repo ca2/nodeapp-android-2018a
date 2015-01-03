@@ -8,7 +8,29 @@
 #include <typeinfo>
 
 
-typedef std::type_info std_type_info;
+#ifdef __clang__
+
+namespace std
+{
+
+	class type_info :
+		public ::type_info
+	{
+	public:
+
+		type_info() {}
+		virtual ~type_info() {}
+
+	};
+
+
+}
+
+#endif
+
+typedef ::std::type_info std_type_info; 
+
+
 
 
 #if defined(_LP64)
