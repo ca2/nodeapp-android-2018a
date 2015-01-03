@@ -61,7 +61,12 @@
 typedef int int_bool;
 
 
+#define index system_index
+#define lconv system_lconv
+#define localeconv system_localeconv
 
-#define index bsd_index
+
+
+
 
 
