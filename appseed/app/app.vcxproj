@@ -59,7 +59,8 @@
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
-      <Command>if not exist $(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName) mkdir $(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)
+      <Command>del /S /Q $(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\*.*
+if not exist $(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName) mkdir $(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)
 xcopy $(ProjectDir)AndroidApk $(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName) /E /Y</Command>
     </PreBuildEvent>
     <ClCompile>
