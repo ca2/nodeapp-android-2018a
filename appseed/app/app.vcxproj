@@ -52,6 +52,8 @@
       <AntBuildPath>$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)</AntBuildPath>
       <AntBuildType>Debug</AntBuildType>
       <IgnoreJavaOpts>false</IgnoreJavaOpts>
+      <JVMHeapInitial>512</JVMHeapInitial>
+      <JVMHeapMaximum>784</JVMHeapMaximum>
     </AntBuild>
     <Link>
       <AndroidSystemLibs>c;m;log;gcc;jnigraphics;aura;axis;base;core</AndroidSystemLibs>
