@@ -222,11 +222,13 @@ typedef union _XEvent XEvent;
 
 #ifdef _DEBUG
 
+#ifndef DEBUG
 
 #define DEBUG
 
+#endif // DEBUG
 
-#endif
+#endif // _DEBUG
 
 
 #include "version_android.h"
