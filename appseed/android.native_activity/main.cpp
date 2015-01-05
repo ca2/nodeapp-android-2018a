@@ -236,11 +236,11 @@ void native_activity_android_main(struct android_app* state) {
 
    psystem->m_pbasesystem->m_posdata->m_pui = new ::user::interaction(psystem);
 
-   ::oswindow_data * pwindow = new oswindow();
+   ::oswindow_data * pwindow = new oswindow_data;
 
    oswindow window = pwindow;
 
-   psystem->m_pbasesystem->m_posdata->m_pui->m_pwindow = pwindow;
+   psystem->m_pbasesystem->m_posdata->m_oswindow = pwindow;
 
    engine & engine = pwindow->m_engine;
 
