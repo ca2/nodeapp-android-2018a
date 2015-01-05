@@ -1,8 +1,0 @@
-C:\nordroid\stage\x86\Debug\android.packaging.apk.recipe
-C:\nordroid\stage\x86\Debug\android.packaging.apk.recipe.merged
-C:\nordroid\stage\x86\Debug\Package\build.xml
-C:\nordroid\stage\x86\Debug\Package\project.properties
-C:\nordroid\stage\x86\Debug\Package\androidmanifest.xml
-C:\nordroid\stage\x86\Debug\android.packaging.apk
-C:\nordroid\stage\x86\Debug\android.packaging.lastsuccessfuldeploy
-C:\nordroid\nodeapp\appseed\android.packaging\obj\x86\Debug\GenerateAndroidAntScript.incremental
