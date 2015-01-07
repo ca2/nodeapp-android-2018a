@@ -191,7 +191,11 @@ typedef uint32_t UINT;
 //typedef long_ptr                 LPARAM;
 //typedef long_ptr                 LRESULT;
 typedef struct oswindow_data *   oswindow;
-typedef struct hthread *         HTHREAD;
+
+#include <pthread.h>
+
+typedef pthread_t HTHREAD;
+
 typedef XID                      Window;
 
 struct device_context;
