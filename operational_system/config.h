@@ -78,6 +78,6 @@ typedef int int_bool;
 
 
 
-
+#define static_inline inline
 
 

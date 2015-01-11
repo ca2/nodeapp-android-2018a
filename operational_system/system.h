@@ -192,7 +192,9 @@ typedef uint32_t UINT;
 //typedef long_ptr                 LRESULT;
 typedef struct oswindow_data *   oswindow;
 
-#include <pthread.h>
+//#include <pthread.h>
+
+typedef long pthread_t;
 
 typedef pthread_t HTHREAD;
 
