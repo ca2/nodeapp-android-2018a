@@ -35,6 +35,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Android'" Label="Configuration">
     <PlatformToolset>arm-linux-androideabi-4.8</PlatformToolset>
     <AndroidStlType>gnustl_static</AndroidStlType>
+    <AndroidAPILevel>android-19</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'" Label="Configuration">
     <PlatformToolset>arm-linux-androideabi-4.8</PlatformToolset>
@@ -122,7 +123,7 @@ xcopy $(ProjectDir)AndroidApk $(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectN
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OptimizationLevel>O0</OptimizationLevel>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>-Wnarrowing -std=c++11 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-Wnarrowing -std=c++11 -fpermissive %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
@@ -366,7 +367,8 @@ xcopy $(ProjectDir)AndroidApk $(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectN
       <Command Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='stage|Android'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">copy "%(FullPath)" "$(SolutionDir)..\..\..\stage\AndroidApk\$(ProjectName)\libs\armeabi\%(Filename)%(Extension)"</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">
+      </AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">%(FullPath)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">%(FullPath)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">%(FullPath)</AdditionalInputs>
