@@ -3,31 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app", "..\..\appseed\app\app.vcxproj", "{B2A3AD3B-1026-4D24-A527-2E1B38324184}"
-	ProjectSection(ProjectDependencies) = postProject
-		{84517713-2000-419D-A87F-4338C9DDE3FA} = {84517713-2000-419D-A87F-4338C9DDE3FA}
-		{84517714-2000-419D-A87F-4338C9DDE3FA} = {84517714-2000-419D-A87F-4338C9DDE3FA}
-		{0A298E22-839B-4D11-B5A7-456EAD013C11} = {0A298E22-839B-4D11-B5A7-456EAD013C11}
-		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51} = {4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}
-		{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75} = {B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}
-		{E2D7833B-9B59-4826-BBDF-C270A2115E86} = {E2D7833B-9B59-4826-BBDF-C270A2115E86}
-		{29676444-4D0F-4DD0-9104-0499D94DA2C9} = {29676444-4D0F-4DD0-9104-0499D94DA2C9}
-		{51778453-C0AA-419D-A87F-4338C9DDE3FA} = {51778453-C0AA-419D-A87F-4338C9DDE3FA}
-		{E6C58C82-71E5-48E6-98ED-1B505D6F10C2} = {E6C58C82-71E5-48E6-98ED-1B505D6F10C2}
-		{7CFB99A0-47A8-4485-BEFF-3D0104D66509} = {7CFB99A0-47A8-4485-BEFF-3D0104D66509}
-		{E000FFAF-392F-4E32-BF51-FD7ED638991F} = {E000FFAF-392F-4E32-BF51-FD7ED638991F}
-		{B39ED2B3-D53A-4077-B957-930979A3577D} = {B39ED2B3-D53A-4077-B957-930979A3577D}
-		{AC6A52B4-C049-439C-88FF-5A262D968C8F} = {AC6A52B4-C049-439C-88FF-5A262D968C8F}
-		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B} = {78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}
-		{424F72D6-053A-41C5-BE03-3B0BD535F1EB} = {424F72D6-053A-41C5-BE03-3B0BD535F1EB}
-		{A5A649E1-D516-4F29-A627-DA6884DD421C} = {A5A649E1-D516-4F29-A627-DA6884DD421C}
-		{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5} = {03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}
-		{E8AC3EF0-11C5-4E12-A944-5F7EFED6E0C4} = {E8AC3EF0-11C5-4E12-A944-5F7EFED6E0C4}
-		{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2} = {34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}
-		{73A245F9-C92F-4487-AEF7-CB0531F665BD} = {73A245F9-C92F-4487-AEF7-CB0531F665BD}
-		{C7AFCEFA-3079-4B23-8F97-4543BB980265} = {C7AFCEFA-3079-4B23-8F97-4543BB980265}
-	EndProjectSection
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app_core_hellomultiverse", "..\..\..\app-core\appseed\hellomultiverse\and_hellomultiverse.vcxproj", "{C7AFCEFA-3079-4B23-8F97-4543BB980265}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "atomiconv", "..\..\..\app\atom\iconv\and_atomiconv.vcxproj", "{7CFB99A0-47A8-4485-BEFF-3D0104D66509}"
@@ -84,6 +59,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axisidn", "..\..\..\app\axi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axisopenssl", "..\..\..\app\axis\openssl\and_axisopenssl.vcxproj", "{29676444-4D0F-4DD0-9104-0499D94DA2C9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axiscrypto", "..\..\..\app\axis\crypto\and_axiscrypto.vcxproj", "{05F3C48C-41DA-4E99-81B9-5B592CD54FF0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		basis|Android = basis|Android
@@ -95,22 +72,6 @@ Global
 		static_basis|Android = static_basis|Android
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.basis|Android.ActiveCfg = basis|Android
-		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.basis|Android.Build.0 = basis|Android
-		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.basis|Android.Deploy.0 = basis|Android
-		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.codeanalysis|Android.ActiveCfg = static_basis|Android
-		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.codeanalysis|Android.Build.0 = static_basis|Android
-		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.codeanalysis|Android.Deploy.0 = static_basis|Android
-		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.memdleak|Android.ActiveCfg = memdleak|Android
-		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.memdleak|Android.Deploy.0 = memdleak|Android
-		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.no_precompiled_header|Android.ActiveCfg = no_precompiled_header|Android
-		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.no_precompiled_header|Android.Deploy.0 = no_precompiled_header|Android
-		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.profiler|Android.ActiveCfg = profiler|Android
-		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.profiler|Android.Deploy.0 = profiler|Android
-		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.stage|Android.ActiveCfg = stage|Android
-		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.stage|Android.Deploy.0 = stage|Android
-		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.static_basis|Android.ActiveCfg = static_basis|Android
-		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.static_basis|Android.Deploy.0 = static_basis|Android
 		{C7AFCEFA-3079-4B23-8F97-4543BB980265}.basis|Android.ActiveCfg = basis|Android
 		{C7AFCEFA-3079-4B23-8F97-4543BB980265}.basis|Android.Build.0 = basis|Android
 		{C7AFCEFA-3079-4B23-8F97-4543BB980265}.basis|Android.Deploy.0 = basis|Android
@@ -457,6 +418,27 @@ Global
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.static_basis|Android.ActiveCfg = static_basis|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.static_basis|Android.Build.0 = static_basis|Android
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.static_basis|Android.Deploy.0 = static_basis|Android
+		{05F3C48C-41DA-4E99-81B9-5B592CD54FF0}.basis|Android.ActiveCfg = basis|Android
+		{05F3C48C-41DA-4E99-81B9-5B592CD54FF0}.basis|Android.Build.0 = basis|Android
+		{05F3C48C-41DA-4E99-81B9-5B592CD54FF0}.basis|Android.Deploy.0 = basis|Android
+		{05F3C48C-41DA-4E99-81B9-5B592CD54FF0}.codeanalysis|Android.ActiveCfg = basis|Android
+		{05F3C48C-41DA-4E99-81B9-5B592CD54FF0}.codeanalysis|Android.Build.0 = basis|Android
+		{05F3C48C-41DA-4E99-81B9-5B592CD54FF0}.codeanalysis|Android.Deploy.0 = basis|Android
+		{05F3C48C-41DA-4E99-81B9-5B592CD54FF0}.memdleak|Android.ActiveCfg = memdleak|Android
+		{05F3C48C-41DA-4E99-81B9-5B592CD54FF0}.memdleak|Android.Build.0 = memdleak|Android
+		{05F3C48C-41DA-4E99-81B9-5B592CD54FF0}.memdleak|Android.Deploy.0 = memdleak|Android
+		{05F3C48C-41DA-4E99-81B9-5B592CD54FF0}.no_precompiled_header|Android.ActiveCfg = no_precompiled_header|Android
+		{05F3C48C-41DA-4E99-81B9-5B592CD54FF0}.no_precompiled_header|Android.Build.0 = no_precompiled_header|Android
+		{05F3C48C-41DA-4E99-81B9-5B592CD54FF0}.no_precompiled_header|Android.Deploy.0 = no_precompiled_header|Android
+		{05F3C48C-41DA-4E99-81B9-5B592CD54FF0}.profiler|Android.ActiveCfg = profiler|Android
+		{05F3C48C-41DA-4E99-81B9-5B592CD54FF0}.profiler|Android.Build.0 = profiler|Android
+		{05F3C48C-41DA-4E99-81B9-5B592CD54FF0}.profiler|Android.Deploy.0 = profiler|Android
+		{05F3C48C-41DA-4E99-81B9-5B592CD54FF0}.stage|Android.ActiveCfg = stage|Android
+		{05F3C48C-41DA-4E99-81B9-5B592CD54FF0}.stage|Android.Build.0 = stage|Android
+		{05F3C48C-41DA-4E99-81B9-5B592CD54FF0}.stage|Android.Deploy.0 = stage|Android
+		{05F3C48C-41DA-4E99-81B9-5B592CD54FF0}.static_basis|Android.ActiveCfg = static_basis|Android
+		{05F3C48C-41DA-4E99-81B9-5B592CD54FF0}.static_basis|Android.Build.0 = static_basis|Android
+		{05F3C48C-41DA-4E99-81B9-5B592CD54FF0}.static_basis|Android.Deploy.0 = static_basis|Android
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
