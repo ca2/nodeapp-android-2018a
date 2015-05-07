@@ -129,9 +129,11 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <CompileAs>CompileAsCpp</CompileAs>
+      <CppLanguageStandard>c++1y</CppLanguageStandard>
     </ClCompile>
+    <Link />
     <Link>
-      <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;</LibraryDependencies>
+      <LibraryDependencies>$(StlLibraryName);%(LibraryDependencies);GLESv1_CM;EGL;</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">

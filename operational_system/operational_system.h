@@ -4,9 +4,11 @@
 #pragma once
 
 
-
+#define user android_user
 #include <typeinfo>
-
+#include <initializer_list>
+#include <pthread.h>
+#undef user
 
 //#ifdef __clang__
 //
