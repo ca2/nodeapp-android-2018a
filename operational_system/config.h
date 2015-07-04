@@ -24,12 +24,14 @@
 #endif // NDEBUG
 #endif
 
-#ifdef __clang__
-#define VSNORD // Visual Studio Nor-droid (Android)
-#endif
+//#ifdef __clang__
+//#define VSNORD // Visual Studio Nor-droid (Android)
+//#endif
 
 #ifndef ANDROID
 #define ANDROID
+#define MD_SWAP
+#define VSNORD // Visual Studio Nor-droid (Android)
 #endif
 
 #undef _GNU_SOURCE
