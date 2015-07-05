@@ -13,15 +13,21 @@ public class app extends Activity
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+
         super.onCreate(savedInstanceState);
+
         setContentView(new view(this));
+
     }
 
     static
 	{
 
-		System.loadLibrary("launcher");
         System.loadLibrary("activity");
+
+		//System.loadLibrary("axis");
+
+		//System.loadLibrary("launcher");
 
     }
 
@@ -38,22 +44,34 @@ class view extends View
 
     public view(Context context)
 	{
+
         super(context);
 
         final int W = 200;
+
         final int H = 200;
 
         m_bitmap = Bitmap.createBitmap(W, H, Bitmap.Config.RGB_565);
+
         m_lStartTime = System.currentTimeMillis();
+
 		start();
+
     }
 
     @Override
 	protected void onDraw(Canvas canvas)
 	{
-        renderPlasma(m_bitmap, System.currentTimeMillis() - m_lStartTime);
+        
+		renderPlasma(m_bitmap, System.currentTimeMillis() - m_lStartTime);
+
         canvas.drawBitmap(m_bitmap, 0, 0, null);
+
         invalidate();
+
     }
 
 }
+
+
+

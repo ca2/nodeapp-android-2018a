@@ -62,7 +62,6 @@
 
 #define CLASS_DECL_EXPORT
 #define CLASS_DECL_IMPORT
-#define CLASS_DECL_THREAD __thread
 
 #ifdef _LP64
 #define OS64BIT

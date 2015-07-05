@@ -31,8 +31,8 @@
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "AndroidProject1.NativeActivity", __VA_ARGS__))
 #define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "AndroidProject1.NativeActivity", __VA_ARGS__))
 
-extern "C"
-void lib_ANativeActivity_onCreate(ANativeActivity* activity, void* savedState, size_t savedStateSize);
+//extern "C"
+//void lib_ANativeActivity_onCreate(ANativeActivity* activity, void* savedState, size_t savedStateSize);
 
 
 /**
@@ -328,25 +328,25 @@ void native_activity_android_main(struct android_app* state) {
 }
 
 
-class native_activity_static_init
-{
-public:
+//class native_activity_static_init
+//{
+//public:
+//
+//	native_activity_static_init()
+//	{
+//		g_android_main = native_activity_android_main;
+//	}
+//	~native_activity_static_init()
+//	{
+//	}
+//
+//} g_native_activity_static_init;
 
-	native_activity_static_init()
-	{
-		g_android_main = native_activity_android_main;
-	}
-	~native_activity_static_init()
-	{
-	}
-
-} g_native_activity_static_init;
 
 
-
-void ANativeActivity_onCreate(ANativeActivity* activity,
-	void* savedState, size_t savedStateSize)
-{
-	lib_ANativeActivity_onCreate(activity, savedState, savedStateSize);
-
-}
+//void ANativeActivity_onCreate(ANativeActivity* activity,
+//	void* savedState, size_t savedStateSize)
+//{
+//	//lib_ANativeActivity_onCreate(activity, savedState, savedStateSize);
+//
+//}

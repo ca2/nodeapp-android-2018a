@@ -63,9 +63,6 @@
     <AntProjectPropertiesFile Include="project.properties" />
     <Content Include="src\com\app\app.java" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\app.Activity\app.Activity.vcxproj" />
-  </ItemGroup>
   <Import Project="$(AndroidTargetsPath)\Android.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>

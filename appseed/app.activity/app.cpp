@@ -1,4 +1,4 @@
-#include <android/native_activity.h>
+//#include <android/native_activity.h>
 #include <android/log.h>
 #include <dlfcn.h>
 #include <errno.h>
@@ -30,12 +30,12 @@
 //	void       *dli_saddr;  /* Exact address of symbol named
 //							in dli_sname */
 //} Dl_info;
-Dl_info dl_info;
-
-__attribute__((constructor))
-void on_load(void) {
-	dladdr((void *)on_load, &dl_info);
-}
+//Dl_info dl_info;
+//
+//__attribute__((constructor))
+//void on_load(void) {
+//	dladdr((void *)on_load, &dl_info);
+//}
 
 char szDir[1024];
 
@@ -105,3 +105,17 @@ JNIEXPORT void JNICALL Java_com_app_view_start(JNIEnv * env, jobject  obj)
 }
 
 
+
+extern "C"
+jint JNI_OnLoad(JavaVM* vm, void* reserved)
+{
+	JNIEnv* env;
+	if (vm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6) != JNI_OK) {
+		return -1;
+	}
+
+	// Get jclass with env->FindClass.
+	// Register methods with env->RegisterNatives.
+
+	return JNI_VERSION_1_6;
+}
