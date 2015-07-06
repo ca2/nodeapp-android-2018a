@@ -11,7 +11,7 @@
 */
 
 
-//#include <pthread.h>
+#include <pthread.h>
 
 
 #include <sys/resource.h>
@@ -511,3 +511,6 @@ typedef void * PVOID;
 
 
 
+
+#undef index
+#undef user

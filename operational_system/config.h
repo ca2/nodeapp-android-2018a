@@ -74,6 +74,7 @@ typedef int int_bool;
 
 
 #define index system_index
+#define user system_user
 #define lconv system_lconv
 #define localeconv system_localeconv
 
