@@ -159,7 +159,9 @@ static void engine_handle_cmd(struct android_app* app, int32_t cmd) {
 * android_native_app_glue.  It runs in its own thread, with its own
 * event loop for receiving input events and doing other things.
 */
-void native_activity_android_main(struct android_app* state) {
+//void native_activity_android_main(struct android_app* state) {
+extern "C"
+void native_activity_android_main() {
 
 
 	if (!defer_core_init())
@@ -245,29 +247,29 @@ void native_activity_android_main(struct android_app* state) {
 
 	psystem->m_pbasesystem->m_posdata->m_oswindow = pwindow;
 
-	engine & engine = pwindow->m_engine;
+	//engine & engine = pwindow->m_engine;
 
-	engine.m_pstate = new saved_state;
+	//engine.m_pstate = new saved_state;
 
-	memset(&engine, 0, sizeof(engine));
-	state->userData = &engine;
-	state->onAppCmd = engine_handle_cmd;
-	state->onInputEvent = engine_handle_input;
-	engine.app = state;
+	//memset(&engine, 0, sizeof(engine));
+	//state->userData = &engine;
+	//state->onAppCmd = engine_handle_cmd;
+	//state->onInputEvent = engine_handle_input;
+	//engine.app = state;
 
-	// Prepare to monitor accelerometer
-	engine.sensorManager = ASensorManager_getInstance();
-	engine.accelerometerSensor = ASensorManager_getDefaultSensor(engine.sensorManager,
-		ASENSOR_TYPE_ACCELEROMETER);
-	engine.sensorEventQueue = ASensorManager_createEventQueue(engine.sensorManager,
-		state->looper, LOOPER_ID_USER, NULL, NULL);
+	//// Prepare to monitor accelerometer
+	//engine.sensorManager = ASensorManager_getInstance();
+	//engine.accelerometerSensor = ASensorManager_getDefaultSensor(engine.sensorManager,
+	//	ASENSOR_TYPE_ACCELEROMETER);
+	//engine.sensorEventQueue = ASensorManager_createEventQueue(engine.sensorManager,
+	//	state->looper, LOOPER_ID_USER, NULL, NULL);
 
-	if (state->savedState != NULL) {
-		// We are starting with a previous saved state; restore from it.
-		*engine.m_pstate = *(struct saved_state*)state->savedState;
-	}
+	//if (state->savedState != NULL) {
+	//	// We are starting with a previous saved state; restore from it.
+	//	*engine.m_pstate = *(struct saved_state*)state->savedState;
+	//}
 
-	engine.animating = 1;
+	//engine.animating = 1;
 
 	psystem->main();
 

@@ -25,11 +25,19 @@ public class app extends Activity
 
         System.loadLibrary("activity");
 
-		System.loadLibrary("axis");
+		//System.loadLibrary("axis");
 
-		//System.loadLibrary("base");
+		//System.loadLibrary("core");
 
-		//System.loadLibrary("launcher");
+		//System.loadLibrary("axispixman");
+
+		//System.loadLibrary("axiscairo");
+
+		System.loadLibrary("draw2d_cairo");
+
+		System.loadLibrary("app_core_hellomultiverse");
+
+		System.loadLibrary("launcher");
 
     }
 

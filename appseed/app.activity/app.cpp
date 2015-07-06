@@ -80,6 +80,8 @@ void * load_lib(const char * l)
 	return handle;
 }
 
+typedef void FN_native_activity_android_main();
+typedef FN_native_activity_android_main * PFN_native_activity_android_main;
 
 extern "C"
 JNIEXPORT void JNICALL Java_com_app_view_start(JNIEnv * env, jobject  obj)
@@ -87,9 +89,9 @@ JNIEXPORT void JNICALL Java_com_app_view_start(JNIEnv * env, jobject  obj)
 	
 	LOGI("Java_com_app_view_start");
 	
-	//void * handle = load_lib("/data/app-lib/com.app/liblauncher.so");
+	void * handle = load_lib("liblauncher.so");
 
-	/*PFN_ANativeActivity_onCreate main = (PFN_ANativeActivity_onCreate)dlsym(handle, "android_start_activity");
+   PFN_native_activity_android_main main = (PFN_native_activity_android_main)dlsym(handle, "native_activity_android_main");
 
 	if (!main)
 	{
@@ -100,7 +102,7 @@ JNIEXPORT void JNICALL Java_com_app_view_start(JNIEnv * env, jobject  obj)
 
 	}
 
-	android_start_activity();*/
+	main();
 
 }
 
