@@ -27,6 +27,8 @@ public class app extends Activity
 
 		System.loadLibrary("axis");
 
+		//System.loadLibrary("base");
+
 		//System.loadLibrary("launcher");
 
     }

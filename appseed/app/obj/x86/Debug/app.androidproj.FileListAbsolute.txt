@@ -1,0 +1,9 @@
+Z:\nordroid\stage\x86\Debug\app.apk.recipe
+Z:\nordroid\stage\x86\Debug\app.apk.recipe.merged
+Z:\nordroid\stage\x86\Debug\Package\build.xml
+Z:\nordroid\stage\x86\Debug\Package\project.properties
+Z:\nordroid\stage\x86\Debug\Package\androidmanifest.xml
+Z:\nordroid\stage\x86\Debug\app.apk
+Z:\nordroid\stage\x86\Debug\app.lastsuccessfuldeploy
+Z:\nordroid\nodeapp\appseed\app\obj\x86\Debug\GenerateAndroidAntScript.incremental
+Z:\nordroid\stage\x86\Debug\Package\src\com\app\app.java
