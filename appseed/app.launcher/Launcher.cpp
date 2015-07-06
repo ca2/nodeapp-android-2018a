@@ -27,6 +27,8 @@
 #include "core/core/core/core.h"
 #include "axis/os/android/android.h"
 #include "axis/node/android/android.h"
+#include "aura/aura/os/android/android_init_data.h"
+
 
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "AndroidProject1.NativeActivity", __VA_ARGS__))
 #define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "AndroidProject1.NativeActivity", __VA_ARGS__))
@@ -161,13 +163,17 @@ static void engine_handle_cmd(struct android_app* app, int32_t cmd) {
 */
 //void native_activity_android_main(struct android_app* state) {
 extern "C"
-void native_activity_android_main() {
+void native_activity_android_main(android_init_data * pinitdata) {
 
 
 	if (!defer_core_init())
 		return;
 
 	::core::system * psystem = new ::core::system();
+
+   psystem->m_pandroidinitdata = new android_init_data;
+   
+   memcpy(psystem->m_pandroidinitdata, pinitdata, sizeof(android_init_data));
 
 	psystem->m_durationRunLock = millis(1);
 

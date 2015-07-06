@@ -13,6 +13,9 @@
 #include <stdlib.h>
 #include <math.h>
 
+
+#include "aura/aura/os/android/android_init_data.h"
+
 #define  LOG_TAG    "libapp"
 #define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
 #define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
@@ -80,11 +83,11 @@ void * load_lib(const char * l)
 	return handle;
 }
 
-typedef void FN_native_activity_android_main();
-typedef FN_native_activity_android_main * PFN_native_activity_android_main;
+
+
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_app_view_start(JNIEnv * env, jobject  obj)
+JNIEXPORT void JNICALL Java_com_app_view_start(JNIEnv * env, jobject  obj, jint iScreenWidth, jint iScreenHeight)
 {
 	
 	LOGI("Java_com_app_view_start");
@@ -102,7 +105,13 @@ JNIEXPORT void JNICALL Java_com_app_view_start(JNIEnv * env, jobject  obj)
 
 	}
 
-	main();
+   android_init_data initdata;
+
+   initdata.m_iScreenWidth    = iScreenWidth;
+
+   initdata.m_iScreenHeight   = iScreenHeight;
+
+	main(&initdata);
 
 }
 

@@ -6,9 +6,13 @@ import android.content.Context;
 import android.view.View;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.view.Display;
+import android.graphics.Point;
 
 public class app extends Activity
 {
+
+	view			m_view;
     
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -16,7 +20,15 @@ public class app extends Activity
 
         super.onCreate(savedInstanceState);
 
-        setContentView(new view(this));
+		Display display = getWindowManager().getDefaultDisplay();
+
+		Point size = new Point();
+		
+		display.getSize(size);
+
+		m_view = new view(this, size);
+		
+        setContentView(m_view);
 
     }
 
@@ -50,9 +62,9 @@ class view extends View
     private long m_lStartTime;
 
     private static native void renderPlasma(Bitmap  bitmap, long time_ms);
-	private static native void start();
+	private static native void start(int iScreenWidth, int iScreenHeight);
 
-    public view(Context context)
+    public view(Context context, Point size)
 	{
 
         super(context);
@@ -65,7 +77,7 @@ class view extends View
 
         m_lStartTime = System.currentTimeMillis();
 
-		start();
+		start(size.x, size.y);
 
     }
 
