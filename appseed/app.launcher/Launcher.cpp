@@ -161,9 +161,9 @@ static void engine_handle_cmd(struct android_app* app, int32_t cmd) {
 * android_native_app_glue.  It runs in its own thread, with its own
 * event loop for receiving input events and doing other things.
 */
-//void native_activity_android_main(struct android_app* state) {
+//void native_activity_android_start(struct android_app* state) {
 extern "C"
-void native_activity_android_main(android_init_data * pinitdata) {
+void native_activity_android_start(android_init_data * pinitdata) {
 
 
 	if (!defer_core_init())
@@ -187,7 +187,13 @@ void native_activity_android_main(android_init_data * pinitdata) {
 
 	pinitmaindata->m_hPrevInstance = NULL;
 
-	//if(argc > 0)
+   if (pinitdata != NULL)
+   {
+
+      pinitmaindata->m_vssCommandLine = pinitdata->m_pszCommandLine;
+
+   }
+   else
 	{
 
 		// pinitmaindata->m_vssCommandLine     = argv[0];
@@ -204,7 +210,7 @@ void native_activity_android_main(android_init_data * pinitdata) {
 	try
 	{
 
-		if (psystem->pre_run())
+		if (psystem->begin_synch())
 		{
 
 			bOk = true;
@@ -216,6 +222,15 @@ void native_activity_android_main(android_init_data * pinitdata) {
 	{
 
 	}
+
+   psystem->m_pbasesystem->m_posdata->m_pui = new ::user::interaction(psystem);
+
+   ::oswindow_data * pwindow = new oswindow_data;
+
+   oswindow window = pwindow;
+
+   psystem->m_pbasesystem->m_posdata->m_oswindow = pwindow;
+
 
 	try
 	{
@@ -245,13 +260,6 @@ void native_activity_android_main(android_init_data * pinitdata) {
 
 
 
-	psystem->m_pbasesystem->m_posdata->m_pui = new ::user::interaction(psystem);
-
-	::oswindow_data * pwindow = new oswindow_data;
-
-	oswindow window = pwindow;
-
-	psystem->m_pbasesystem->m_posdata->m_oswindow = pwindow;
 
 	//engine & engine = pwindow->m_engine;
 
@@ -277,7 +285,7 @@ void native_activity_android_main(android_init_data * pinitdata) {
 
 	//engine.animating = 1;
 
-	psystem->main();
+	//psystem->main();
 
 	// loop waiting for stuff to do.
 
@@ -331,7 +339,7 @@ void native_activity_android_main(android_init_data * pinitdata) {
 	//	}
 	//}
 
-	defer_core_term();
+	//defer_core_term();
 
 }
 
@@ -342,7 +350,7 @@ void native_activity_android_main(android_init_data * pinitdata) {
 //
 //	native_activity_static_init()
 //	{
-//		g_android_main = native_activity_android_main;
+//		g_android_main = native_activity_android_start;
 //	}
 //	~native_activity_static_init()
 //	{

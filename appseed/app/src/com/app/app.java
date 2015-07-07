@@ -13,6 +13,8 @@ public class app extends Activity
 {
 
 	view			m_view;
+
+	private static native void configureApp(String strCommandLine, int iScreenW, int iScreenH);
     
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -25,6 +27,8 @@ public class app extends Activity
 		Point size = new Point();
 		
 		display.getSize(size);
+
+		configureApp("app : app=app-core/hellomultiverse no_hello_edit client_only", size.x, size.y);
 
 		m_view = new view(this, size);
 		
@@ -64,7 +68,7 @@ class view extends View
 	private int m_iScreenW;
 	private int m_iScreenH;
 
-    private static native void renderPlasma(Bitmap  bitmap, long time_ms, int iScreenW, int iScreenH);
+    private static native void renderPlasma(Bitmap  bitmap, long time_ms);
 
     public view(Context context, Point size)
 	{
@@ -85,7 +89,7 @@ class view extends View
 	protected void onDraw(Canvas canvas)
 	{
         
-		renderPlasma(m_bitmap, System.currentTimeMillis() - m_lStartTime, m_iScreenW, m_iScreenH);
+		renderPlasma(m_bitmap, System.currentTimeMillis() - m_lStartTime);
 
         canvas.drawBitmap(m_bitmap, 0, 0, null);
 

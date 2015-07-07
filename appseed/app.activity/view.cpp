@@ -28,6 +28,10 @@ typedef FN_android_fill_plasma * PFN_android_fill_plasma;
 
 extern PFN_android_fill_plasma g_android_fill_plasma;
 
+extern int g_iScreenW;
+extern int g_iScreenH;
+extern const char * g_pszCommandLine;
+
 #define  LOG_TAG    "app.activity (view.cpp)"
 #define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
 #define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
@@ -46,7 +50,7 @@ static double now_ms(void)
 	return tv.tv_sec*1000. + tv.tv_usec / 1000.;
 }
 
-void start(jint iScreenWidth, jint iScreenHeight);
+void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine);
 
 /* We're going to perform computations for every pixel of the target
 * bitmap. floating-point operations are very slow on ARMv5, and not
@@ -370,7 +374,7 @@ stats_endFrame(Stats*  s)
 }
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_app_view_renderPlasma(JNIEnv * env, jobject  obj, jobject bitmap, jlong  time_ms, jint iScreenW, int iScreenH)
+JNIEXPORT void JNICALL Java_com_app_view_renderPlasma(JNIEnv * env, jobject  obj, jobject bitmap, jlong  time_ms)
 {
 	AndroidBitmapInfo  info;
 	void*              pixels;
@@ -381,7 +385,7 @@ JNIEXPORT void JNICALL Java_com_app_view_renderPlasma(JNIEnv * env, jobject  obj
 	if (!init)
    {
       init = 1;
-      start(iScreenW, iScreenH);
+      start(g_iScreenW, g_iScreenH, g_pszCommandLine);
 		init_tables();
 		stats_init(&stats);
 	}

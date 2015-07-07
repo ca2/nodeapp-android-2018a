@@ -51,12 +51,12 @@ typedef FN_android_fill_plasma * PFN_android_fill_plasma;
 PFN_android_fill_plasma g_android_fill_plasma = NULL;
 
 
-void start(jint iScreenWidth, jint iScreenHeight)
+void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine)
 {
 	
 	LOGI("start(%d, %d)", iScreenWidth, iScreenHeight);
 
-   PFN_native_activity_android_main main = NULL;
+   PFN_native_activity_android_start main = NULL;
 
    {
 
@@ -98,12 +98,12 @@ void start(jint iScreenWidth, jint iScreenHeight)
       }
 
 
-      main = (PFN_native_activity_android_main)dlsym(handle, "native_activity_android_main");
+      main = (PFN_native_activity_android_start)dlsym(handle, "native_activity_android_start");
 
       if (!main)
       {
 
-         LOGE("Fatal: undefined symbol \"native_activity_android_main\" from liblauncher.so");
+         LOGE("Fatal: undefined symbol \"native_activity_android_start\" from liblauncher.so");
 
          exit(1);
 
@@ -116,6 +116,8 @@ void start(jint iScreenWidth, jint iScreenHeight)
    initdata.m_iScreenWidth    = iScreenWidth;
 
    initdata.m_iScreenHeight   = iScreenHeight;
+
+   initdata.m_pszCommandLine  = pszCommandLine;
 
 	main(&initdata);
 
@@ -138,5 +140,23 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved)
 
 }
 
+int g_iScreenW = 0;
+int g_iScreenH = 0;
+const char * g_pszCommandLine = NULL;
 
 
+extern "C"
+JNIEXPORT void JNICALL Java_com_app_app_configureApp(JNIEnv * env, jobject  obj, jstring strCommandLine, jint iScreenW, jint iScreenH)
+{
+
+   const char * nativeString = env->GetStringUTFChars(strCommandLine, NULL);
+
+   g_pszCommandLine = strdup(nativeString);
+
+   env->ReleaseStringUTFChars(strCommandLine, nativeString);
+
+   g_iScreenW = iScreenW;
+
+   g_iScreenH = iScreenH;
+
+}
