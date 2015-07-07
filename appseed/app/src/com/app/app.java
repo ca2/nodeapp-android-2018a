@@ -75,7 +75,7 @@ class view extends View
 
         m_iScreenH = size.y;
 
-        m_bitmap = Bitmap.createBitmap(m_iScreenW, m_iScreenH - 66, Bitmap.Config.RGBA_8888);
+        m_bitmap = Bitmap.createBitmap(m_iScreenW, m_iScreenH - 66, Bitmap.Config.ARGB_8888);
 
         m_lStartTime = System.currentTimeMillis();
 

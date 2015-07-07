@@ -56,50 +56,60 @@ void start(jint iScreenWidth, jint iScreenHeight)
 	
 	LOGI("start(%d, %d)", iScreenWidth, iScreenHeight);
 
-   void * handle1 = load_lib("libbase.so");
+   PFN_native_activity_android_main main = NULL;
 
-   if (!handle1)
    {
 
-      LOGE("Fatal: Unable to reload shared library libbase.so. It should be already be loaded thorugh Java System.loadLibrary call (explicitly or implicitly)");
+      void * handle = load_lib("libbase.so");
 
-      exit(1);
+      if (!handle)
+      {
+
+         LOGE("Fatal: Unable to reload shared library libbase.so. It should be already be loaded thorugh Java System.loadLibrary call (explicitly or implicitly)");
+
+         exit(1);
+
+      }
+
+      g_android_fill_plasma = (PFN_android_fill_plasma)dlsym(handle, "android_fill_plasma");
+
+      if (!g_android_fill_plasma)
+      {
+
+         LOGE("Fatal: undefined symbol \"android_fill_plasma\" from libbase.so");
+
+         exit(1);
+
+      }
 
    }
 
-   g_android_fill_plasma = (PFN_android_fill_plasma) dlsym(handle1, "android_fill_plasma");
-
-   if (!g_android_fill_plasma)
    {
 
-      LOGE("Fatal: undefined symbol \"android_fill_plasma\" from libbase.so");
+      void * handle = load_lib("liblauncher.so");
 
-      exit(1);
+      if (!handle)
+      {
+
+         LOGE("Fatal: Unable to reload shared library liblauncher.so. It should be already be loaded thorugh Java System.loadLibrary call (explicitly or implicitly)");
+
+         exit(1);
+
+      }
+
+
+      main = (PFN_native_activity_android_main)dlsym(handle, "native_activity_android_main");
+
+      if (!main)
+      {
+
+         LOGE("Fatal: undefined symbol \"native_activity_android_main\" from liblauncher.so");
+
+         exit(1);
+
+      }
 
    }
-
-	void * handle = load_lib("liblauncher.so");
-
-   if (!handle1)
-   {
-
-      LOGE("Fatal: Unable to reload shared library liblauncher.so. It should be already be loaded thorugh Java System.loadLibrary call (explicitly or implicitly)");
-
-      exit(1);
-
-   }
-
-
-   PFN_native_activity_android_main main = (PFN_native_activity_android_main)dlsym(handle, "native_activity_android_main");
-
-	if (!main)
-	{
-
-		LOGE("Fatal: undefined symbol \"native_activity_android_main\" from liblauncher.so");
-
-		exit(1);
-
-	}
 
    android_init_data initdata;
 

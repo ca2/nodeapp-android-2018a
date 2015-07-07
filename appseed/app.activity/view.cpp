@@ -380,10 +380,10 @@ JNIEXPORT void JNICALL Java_com_app_view_renderPlasma(JNIEnv * env, jobject  obj
 
 	if (!init)
    {
+      init = 1;
       start(iScreenW, iScreenH);
 		init_tables();
 		stats_init(&stats);
-		init = 1;
 	}
 
 	if ((ret = AndroidBitmap_getInfo(env, bitmap, &info)) < 0) {
