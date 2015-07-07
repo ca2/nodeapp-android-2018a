@@ -23,7 +23,12 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define  LOG_TAG    "libapp"
+typedef void FN_android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t);
+typedef FN_android_fill_plasma * PFN_android_fill_plasma;
+
+extern PFN_android_fill_plasma g_android_fill_plasma;
+
+#define  LOG_TAG    "app.activity (view.cpp)"
 #define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
 #define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 
@@ -40,6 +45,8 @@ static double now_ms(void)
 	gettimeofday(&tv, NULL);
 	return tv.tv_sec*1000. + tv.tv_usec / 1000.;
 }
+
+void start(jint iScreenWidth, jint iScreenHeight);
 
 /* We're going to perform computations for every pixel of the target
 * bitmap. floating-point operations are very slow on ARMv5, and not
@@ -363,7 +370,7 @@ stats_endFrame(Stats*  s)
 }
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_app_view_renderPlasma(JNIEnv * env, jobject  obj, jobject bitmap, jlong  time_ms)
+JNIEXPORT void JNICALL Java_com_app_view_renderPlasma(JNIEnv * env, jobject  obj, jobject bitmap, jlong  time_ms, jint iScreenW, int iScreenH)
 {
 	AndroidBitmapInfo  info;
 	void*              pixels;
@@ -371,7 +378,9 @@ JNIEXPORT void JNICALL Java_com_app_view_renderPlasma(JNIEnv * env, jobject  obj
 	static Stats       stats;
 	static int         init;
 
-	if (!init) {
+	if (!init)
+   {
+      start(iScreenW, iScreenH);
 		init_tables();
 		stats_init(&stats);
 		init = 1;
@@ -382,7 +391,7 @@ JNIEXPORT void JNICALL Java_com_app_view_renderPlasma(JNIEnv * env, jobject  obj
 		return;
 	}
 
-	if (info.format != ANDROID_BITMAP_FORMAT_RGB_565) {
+	if (info.format != ANDROID_BITMAP_FORMAT_RGBA_8888) {
 		LOGE("Bitmap format is not RGB_565 !");
 		return;
 	}
@@ -394,9 +403,10 @@ JNIEXPORT void JNICALL Java_com_app_view_renderPlasma(JNIEnv * env, jobject  obj
 	stats_startFrame(&stats);
 
 	/* Now fill the values with a nice little plasma */
-	fill_plasma(&info, pixels, time_ms);
+   g_android_fill_plasma(&info, pixels, time_ms);
 
 	AndroidBitmap_unlockPixels(env, bitmap);
 
 	stats_endFrame(&stats);
+
 }

@@ -16,90 +16,86 @@
 
 #include "aura/aura/os/android/android_init_data.h"
 
-#define  LOG_TAG    "libapp"
+#define  LOG_TAG    "app.activity (app.cpp)"
 #define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
 #define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 
 
-//#define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "Porkholt", __VA_ARGS__))
-//#define LOGE(...) ((void)__android_log_print(ANDROID_LOG_ERROR, "Porkholt", __VA_ARGS__))
-//typedef struct {
-//	const char *dli_fname;  /* Pathname of shared object that
-//							contains address */
-//	void       *dli_fbase;  /* Address at which shared object
-//							is loaded */
-//	const char *dli_sname;  /* Name of nearest symbol with address
-//							lower than addr */
-//	void       *dli_saddr;  /* Exact address of symbol named
-//							in dli_sname */
-//} Dl_info;
-//Dl_info dl_info;
-//
-//__attribute__((constructor))
-//void on_load(void) {
-//	dladdr((void *)on_load, &dl_info);
-//}
-
-char szDir[1024];
-
-
-
-
 void * load_lib(const char * l)
 {
-	//char szFile[2048];
 
-	//
-	//strcpy(szFile, "/lib/x86/");
-	//strcat(szFile, l);
-	//void * handle = dlopen(szFile, RTLD_LAZY);
-	//if (handle)
-	//{
-	//	LOGI("dlopen(\"%s\"): Library Opened Successfully : %s", l, szFile);
-	//}
-	//else
-	//{
-	//	strcpy(szFile, szDir);
-	//	strcat(szFile, "/lib/x86/");
-	//	strcat(szFile, l);
-	//	handle = dlopen(szFile, RTLD_LAZY);
-	//	if (handle)
-	//	{
-	//		LOGI("dlopen(\"%s\"){2}: Library Opened Successfully : %s", l, szFile);
-	//	}
-	//	else
-	//	{
-			void * handle = dlopen(l, RTLD_NOW | RTLD_GLOBAL);
-			if (handle)
-			{
-				LOGI("dlopen(\"%s\"){3}: Library Opened Successfully : %s", l, l);
-			}
-			else
-			{
-				LOGE("dlopen(\"%s\"): %s", l, strerror(errno));
-			}
-	//	}
-	//}
-	return handle;
+   void * handle = dlopen(l, RTLD_NOW | RTLD_GLOBAL);
+	
+   if (handle)
+	{
+	
+      LOGI("dlopen(\"%s\"){3}: Library Opened Successfully : %s", l, l);
+	
+   }
+	else
+   {
+
+      LOGE("dlopen(\"%s\"): %s", l, strerror(errno));
+
+	}
+
+   return handle;
+
 }
 
 
+typedef void FN_android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t);
+
+typedef FN_android_fill_plasma * PFN_android_fill_plasma;
+
+PFN_android_fill_plasma g_android_fill_plasma = NULL;
 
 
-extern "C"
-JNIEXPORT void JNICALL Java_com_app_view_start(JNIEnv * env, jobject  obj, jint iScreenWidth, jint iScreenHeight)
+void start(jint iScreenWidth, jint iScreenHeight)
 {
 	
-	LOGI("Java_com_app_view_start");
-	
+	LOGI("start(%d, %d)", iScreenWidth, iScreenHeight);
+
+   void * handle1 = load_lib("libbase.so");
+
+   if (!handle1)
+   {
+
+      LOGE("Fatal: Unable to reload shared library libbase.so. It should be already be loaded thorugh Java System.loadLibrary call (explicitly or implicitly)");
+
+      exit(1);
+
+   }
+
+   g_android_fill_plasma = (PFN_android_fill_plasma) dlsym(handle1, "android_fill_plasma");
+
+   if (!g_android_fill_plasma)
+   {
+
+      LOGE("Fatal: undefined symbol \"android_fill_plasma\" from libbase.so");
+
+      exit(1);
+
+   }
+
 	void * handle = load_lib("liblauncher.so");
+
+   if (!handle1)
+   {
+
+      LOGE("Fatal: Unable to reload shared library liblauncher.so. It should be already be loaded thorugh Java System.loadLibrary call (explicitly or implicitly)");
+
+      exit(1);
+
+   }
+
 
    PFN_native_activity_android_main main = (PFN_native_activity_android_main)dlsym(handle, "native_activity_android_main");
 
 	if (!main)
 	{
 
-		LOGE("undefined symbol ANativeActivity_onCreate");
+		LOGE("Fatal: undefined symbol \"native_activity_android_main\" from liblauncher.so");
 
 		exit(1);
 
@@ -129,4 +125,8 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved)
 	// Register methods with env->RegisterNatives.
 
 	return JNI_VERSION_1_6;
+
 }
+
+
+

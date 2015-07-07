@@ -61,23 +61,23 @@ class view extends View
     private Bitmap m_bitmap;
     private long m_lStartTime;
 
-    private static native void renderPlasma(Bitmap  bitmap, long time_ms);
-	private static native void start(int iScreenWidth, int iScreenHeight);
+	private int m_iScreenW;
+	private int m_iScreenH;
+
+    private static native void renderPlasma(Bitmap  bitmap, long time_ms, int iScreenW, int iScreenH);
 
     public view(Context context, Point size)
 	{
 
         super(context);
 
-        final int W = 200;
+        m_iScreenW = size.x;
 
-        final int H = 200;
+        m_iScreenH = size.y;
 
-        m_bitmap = Bitmap.createBitmap(W, H, Bitmap.Config.RGB_565);
+        m_bitmap = Bitmap.createBitmap(m_iScreenW, m_iScreenH - 66, Bitmap.Config.RGBA_8888);
 
         m_lStartTime = System.currentTimeMillis();
-
-		start(size.x, size.y);
 
     }
 
@@ -85,7 +85,7 @@ class view extends View
 	protected void onDraw(Canvas canvas)
 	{
         
-		renderPlasma(m_bitmap, System.currentTimeMillis() - m_lStartTime);
+		renderPlasma(m_bitmap, System.currentTimeMillis() - m_lStartTime, m_iScreenW, m_iScreenH);
 
         canvas.drawBitmap(m_bitmap, 0, 0, null);
 
