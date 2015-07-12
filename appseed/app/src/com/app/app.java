@@ -16,7 +16,7 @@ public class app extends Activity
 
 	view			m_view;
 
-	private static native void configureApp(String strCommandLine, int iScreenW, int iScreenH);
+	private static native void configureApp(String strCommandLine, String strCacheDir, int iScreenW, int iScreenH);
     
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -30,7 +30,7 @@ public class app extends Activity
 		
 		display.getSize(size);
 
-		configureApp("app : app=app-core/hellomultiverse no_hello_edit client_only", size.x, size.y);
+		configureApp("app : app=app-core/hellomultiverse no_hello_edit client_only", getApplicationContext().getCacheDir().getAbsolutePath(), size.x, size.y);
 
 		m_view = new view(this, size);
 		

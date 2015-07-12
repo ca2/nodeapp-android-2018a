@@ -225,6 +225,16 @@ void native_activity_android_start(android_init_data * pinitdata) {
 
    psystem->m_pbasesystem->m_posdata->m_pui = new ::user::interaction(psystem);
 
+   ::user::native_window_initialize initialize;
+
+   initialize.m_rect.left = 0;
+   initialize.m_rect.top = 0;
+   initialize.m_rect.right = pinitdata->m_iScreenWidth;
+   initialize.m_rect.bottom = pinitdata->m_iScreenHeight;
+
+
+   psystem->m_pbasesystem->m_posdata->m_pui->initialize(&initialize);
+
    ::oswindow_data * pwindow = new oswindow_data;
 
    oswindow window = pwindow;

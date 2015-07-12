@@ -60,7 +60,7 @@ PFN_mouse mouse_move = NULL;
 
 PFN_mouse l_button_up = NULL;
 
-void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine)
+void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, const char * pszCacheDir)
 {
 	
 	LOGI("start(%d, %d)", iScreenWidth, iScreenHeight);
@@ -161,6 +161,8 @@ void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine)
 
    initdata.m_pszCommandLine  = pszCommandLine;
 
+   initdata.m_pszCacheDir     = pszCacheDir;
+
 	main(&initdata);
 
 }
@@ -185,17 +187,28 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved)
 int g_iScreenW = 0;
 int g_iScreenH = 0;
 const char * g_pszCommandLine = NULL;
+const char * g_pszCacheDir = NULL;
 
+const char * jstrdup(JNIEnv * env, jstring jstr)
+{
+   
+   const char * nativeString = env->GetStringUTFChars(jstr, NULL);
+
+   const char * psz = strdup(nativeString);
+
+   env->ReleaseStringUTFChars(jstr, nativeString);
+
+   return psz;
+
+}
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_app_app_configureApp(JNIEnv * env, jobject  obj, jstring strCommandLine, jint iScreenW, jint iScreenH)
+JNIEXPORT void JNICALL Java_com_app_app_configureApp(JNIEnv * env, jobject  obj, jstring strCommandLine, jstring strCacheDir, jint iScreenW, jint iScreenH)
 {
 
-   const char * nativeString = env->GetStringUTFChars(strCommandLine, NULL);
+   g_pszCommandLine = jstrdup(env, strCommandLine);
 
-   g_pszCommandLine = strdup(nativeString);
-
-   env->ReleaseStringUTFChars(strCommandLine, nativeString);
+   g_pszCacheDir = jstrdup(env, strCacheDir);
 
    g_iScreenW = iScreenW;
 
