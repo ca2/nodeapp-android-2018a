@@ -51,9 +51,6 @@ static double now_ms(void)
 }
 
 void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine);
-void l_button_down(float x, float y);
-void mouse_move(float x, float y);
-void l_button_up(float x, float y);
 
 /* We're going to perform computations for every pixel of the target
 * bitmap. floating-point operations are very slow on ARMv5, and not
@@ -62,6 +59,17 @@ void l_button_up(float x, float y);
 * For better performance on all platforms, we're going to use fixed-point
 * arithmetic and all kinds of tricks
 */
+
+typedef void FN_mouse(float x, float y);
+
+typedef FN_mouse * PFN_mouse;
+
+
+extern PFN_mouse l_button_down;
+
+extern PFN_mouse mouse_move;
+
+extern PFN_mouse l_button_up;
 
 typedef int32_t  Fixed;
 
@@ -420,7 +428,7 @@ JNIEXPORT void JNICALL Java_com_app_view_renderPlasma(JNIEnv * env, jobject  obj
 
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_app_view_l_button_down(JNIEnv * env, jobject  obj, jfloat x, jfloat y)
+JNIEXPORT void JNICALL Java_com_app_view_lButtonDown(JNIEnv * env, jobject  obj, jfloat x, jfloat y)
 {
 
    l_button_down(x, y);
@@ -429,7 +437,7 @@ JNIEXPORT void JNICALL Java_com_app_view_l_button_down(JNIEnv * env, jobject  ob
 
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_app_view_mouse_move(JNIEnv * env, jobject  obj, jfloat x, jfloat y)
+JNIEXPORT void JNICALL Java_com_app_view_mouseMove(JNIEnv * env, jobject  obj, jfloat x, jfloat y)
 {
    
    mouse_move(x, y);
@@ -438,7 +446,7 @@ JNIEXPORT void JNICALL Java_com_app_view_mouse_move(JNIEnv * env, jobject  obj, 
 
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_app_view_l_button_up(JNIEnv * env, jobject  obj, jfloat x, jfloat y)
+JNIEXPORT void JNICALL Java_com_app_view_lButtonUp(JNIEnv * env, jobject  obj, jfloat x, jfloat y)
 {
 
    l_button_up(x, y);

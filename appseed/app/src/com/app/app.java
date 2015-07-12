@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.graphics.Point;
+import android.view.MotionEvent.PointerProperties;
 
 public class app extends Activity
 {
@@ -72,9 +73,9 @@ class view extends View
 	private int m_iScreenH;
 
     private static native void renderPlasma(Bitmap  bitmap, long time_ms);
-	private static native void l_button_down(float x, float y);
-	private static native void mouse_move(float x, float y);
-	private static native void l_button_up(float x, float y);
+	private static native void lButtonDown(float x, float y);
+	private static native void mouseMove(float x, float y);
+	private static native void lButtonUp(float x, float y);
 
     public view(Context context, Point size)
 	{
@@ -103,32 +104,32 @@ class view extends View
 
     }
 
-		@Override
-	public boolean onTouchEvent (MotionEvent ev)
+	public boolean onTouchEvent (final MotionEvent ev)
 	{
         // my Code
-        boolean b = super.onTouchEvent(ev);
+        //boolean b = super.onTouchEvent(ev);
 
-		if(ev.getActionMasked() & MotionEvent.ACTION_DOWN)
+		if(ev.getAction() == MotionEvent.ACTION_DOWN)
 		{
 
-			l_button_down(ev.PointerProperties.x, ev.PointerProperties.y);
+			lButtonDown(ev.getX(), ev.getY());
 		
 		}
-		else if(ev.getActionMasked() & MotionEvent.ACTION_DOWN)
+		else if(ev.getAction() == MotionEvent.ACTION_MOVE)
 		{
 
-			mouse_move(ev.PointerProperties.x, ev.PointerProperties.y);
+			mouseMove(ev.getX(), ev.getY());
 		
 		}
-		else if(ev.getActionMasked() & MotionEvent.ACTION_DOWN)
+		else if(ev.getAction() == MotionEvent.ACTION_UP)
 		{
 
-			l_button_up(ev.PointerProperties.x, ev.PointerProperties.y);
+			lButtonUp(ev.getX(), ev.getY());
 		
 		}
 
-		return b;
+		//return b;
+		return true;
     }
 
 }
