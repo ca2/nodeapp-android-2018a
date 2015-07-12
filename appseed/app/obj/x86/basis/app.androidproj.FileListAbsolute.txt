@@ -1,0 +1,13 @@
+Z:\nordroid\stage\x86\basis\app.apk.recipe
+Z:\nordroid\stage\x86\basis\app.apk.recipe.merged
+Z:\nordroid\stage\x86\basis\Package\libs\x86\gdbserver
+Z:\nordroid\stage\x86\basis\Package\libs\x86\libgnustl_shared.so
+Z:\nordroid\stage\x86\basis\Package\libs\x86\libactivity.so
+Z:\nordroid\stage\x86\basis\Package\res\values\strings.xml
+Z:\nordroid\stage\x86\basis\Package\src\com\app\app.java
+Z:\nordroid\stage\x86\basis\Package\build.xml
+Z:\nordroid\stage\x86\basis\Package\project.properties
+Z:\nordroid\stage\x86\basis\Package\androidmanifest.xml
+Z:\nordroid\stage\x86\basis\app.apk
+Z:\nordroid\stage\x86\basis\app.lastsuccessfuldeploy
+Z:\nordroid\nodeapp\appseed\app\obj\x86\basis\GenerateAndroidAntScript.incremental

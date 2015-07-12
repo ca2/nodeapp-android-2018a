@@ -50,6 +50,15 @@ typedef FN_android_fill_plasma * PFN_android_fill_plasma;
 
 PFN_android_fill_plasma g_android_fill_plasma = NULL;
 
+typedef void FN_mouse(float x, float y);
+
+typedef FN_mouse * PFN_mouse;
+
+PFN_mouse l_button_down = NULL;
+
+PFN_mouse mouse_move = NULL;
+
+PFN_mouse l_button_up = NULL;
 
 void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine)
 {
@@ -77,6 +86,39 @@ void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine)
       {
 
          LOGE("Fatal: undefined symbol \"android_fill_plasma\" from libbase.so");
+
+         exit(1);
+
+      }
+
+      l_button_down = (PFN_mouse)dlsym(handle, "android_l_button_down");
+
+      if (!l_button_down)
+      {
+
+         LOGE("Fatal: undefined symbol \"android_l_button_down\" from libbase.so");
+
+         exit(1);
+
+      }
+
+      mouse_move = (PFN_mouse)dlsym(handle, "android_mouse_move");
+
+      if (!mouse_move)
+      {
+
+         LOGE("Fatal: undefined symbol \"android_l_button_down\" from libbase.so");
+
+         exit(1);
+
+      }
+
+      l_button_up = (PFN_mouse)dlsym(handle, "android_l_button_up");
+
+      if (!l_button_up)
+      {
+
+         LOGE("Fatal: undefined symbol \"android_l_button_up\" from libbase.so");
 
          exit(1);
 
