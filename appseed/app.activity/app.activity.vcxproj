@@ -134,167 +134,189 @@
     <ClCompile Include="view.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libapp_core_hellomultiverse.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libapp_core_hellomultiverse.so">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|x86'">copy %(FullPath) $(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaqua.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaqua.so">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|x86'">copy %(FullPath) $(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libatomiconv.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libatomiconv.so">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|x86'">copy %(FullPath) $(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaura.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaura.so">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|x86'">copy %(FullPath) $(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libauracharguess.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libauracharguess.so">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|x86'">copy %(FullPath) $(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaurasqlite.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaurasqlite.so">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|x86'">copy %(FullPath) $(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxis.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxis.so">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|x86'">copy %(FullPath) $(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxisbzip2.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxisbzip2.so">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|x86'">copy %(FullPath) $(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxiscairo.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxiscairo.so">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|x86'">copy %(FullPath) $(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxiscrypto.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxiscrypto.so">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|x86'">copy %(FullPath) $(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxisfreeimage.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxisfreeimage.so">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|x86'">copy %(FullPath) $(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxisfreetype.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxisfreetype.so">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|x86'">copy %(FullPath) $(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxisidn.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxisidn.so">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|x86'">copy %(FullPath) $(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxisjpeg.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxisjpeg.so">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|x86'">copy %(FullPath) $(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxisopenssl.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxisopenssl.so">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|x86'">copy %(FullPath) $(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxispixman.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxispixman.so">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|x86'">copy %(FullPath) $(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxispng.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxispng.so">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|x86'">copy %(FullPath) $(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxiszlib.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxiszlib.so">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|x86'">copy %(FullPath) $(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libbase.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libbase.so">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|x86'">copy %(FullPath) $(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libcore.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libcore.so">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|x86'">copy %(FullPath) $(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libdraw2d_cairo.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libdraw2d_cairo.so">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|x86'">copy %(FullPath) $(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libwndfrm_core.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\liblauncher.so">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|x86'">copy %(FullPath) $(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\liblauncher.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libwndfrm_core.so">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|x86'">copy %(FullPath) $(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(OutDir)Package\libs\$(TargetArchAbi)\%(Filename)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x86'">false</LinkObjects>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

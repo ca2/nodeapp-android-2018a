@@ -10,73 +10,73 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libapp_core_hellomultiverse.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libapp_core_hellomultiverse.so">
       <Filter>Library</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaqua.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaqua.so">
       <Filter>Library</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libatomiconv.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libatomiconv.so">
       <Filter>Library</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaura.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaura.so">
       <Filter>Library</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libauracharguess.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libauracharguess.so">
       <Filter>Library</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaurasqlite.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaurasqlite.so">
       <Filter>Library</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxis.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxis.so">
       <Filter>Library</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxisbzip2.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxisbzip2.so">
       <Filter>Library</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxiscairo.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxiscairo.so">
       <Filter>Library</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxiscrypto.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxiscrypto.so">
       <Filter>Library</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxisfreeimage.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxisfreeimage.so">
       <Filter>Library</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxisfreetype.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxisfreetype.so">
       <Filter>Library</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxisidn.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxisidn.so">
       <Filter>Library</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxisjpeg.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxisjpeg.so">
       <Filter>Library</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxisopenssl.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxisopenssl.so">
       <Filter>Library</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxispixman.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxispixman.so">
       <Filter>Library</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxispng.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxispng.so">
       <Filter>Library</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libaxiszlib.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libaxiszlib.so">
       <Filter>Library</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libbase.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libbase.so">
       <Filter>Library</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libcore.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libcore.so">
       <Filter>Library</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libdraw2d_cairo.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libdraw2d_cairo.so">
       <Filter>Library</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\libwndfrm_core.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\liblauncher.so">
       <Filter>Library</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\stage\x86\Debug\liblauncher.so">
+    <CustomBuild Include="..\..\..\stage\x86\basis\libwndfrm_core.so">
       <Filter>Library</Filter>
     </CustomBuild>
   </ItemGroup>
