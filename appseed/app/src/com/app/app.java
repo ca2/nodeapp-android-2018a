@@ -106,6 +106,10 @@ class view extends View
 
 	private static native void keyUp(int keycode);
 
+	private static native void keyPreImeDown(int keycode);
+
+	private static native void keyPreImeUp(int keycode);
+
 	private static native void onReceivedShowKeyboard();
 
 
@@ -226,6 +230,27 @@ class view extends View
 		//return b;
 		return true;
     }
+
+
+	public boolean onKeyPreIme(int keyCode, KeyEvent ev)
+	{
+
+		if(ev.getAction() == KeyEvent.ACTION_DOWN)
+		{
+
+			keyPreImeDown(keyCode);
+		
+		}
+		else if(ev.getAction() == KeyEvent.ACTION_UP)
+		{
+
+			keyPreImeUp(keyCode);
+		
+		}
+		
+		return true;
+
+	}
 
 }
 

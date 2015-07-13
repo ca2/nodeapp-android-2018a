@@ -1,24 +1,25 @@
-//#include <android/native_activity.h>
-#include <android/log.h>
-#include <dlfcn.h>
-#include <errno.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <jni.h>
-#include <time.h>
-#include <android/log.h>
-#include <android/bitmap.h>
+#include "activity.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-
-
-#include "aura/aura/os/android/android_init_data.h"
 
 #define  LOG_TAG    "app.activity (app.cpp)"
 #define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
 #define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
+
+
+PFN_android_fill_plasma g_android_fill_plasma = NULL;
+
+PFN_mouse l_button_down = NULL;
+
+PFN_mouse mouse_move = NULL;
+
+PFN_mouse l_button_up = NULL;
+
+android_init_data g_initdata;
+
+PFN_key key_down = NULL;
+
+PFN_key key_up = NULL;
+
 
 
 void * load_lib(const char * l)
@@ -44,23 +45,6 @@ void * load_lib(const char * l)
 }
 
 
-typedef void FN_android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t);
-
-typedef FN_android_fill_plasma * PFN_android_fill_plasma;
-
-PFN_android_fill_plasma g_android_fill_plasma = NULL;
-
-typedef void FN_mouse(float x, float y);
-
-typedef FN_mouse * PFN_mouse;
-
-PFN_mouse l_button_down = NULL;
-
-PFN_mouse mouse_move = NULL;
-
-PFN_mouse l_button_up = NULL;
-
-android_init_data g_initdata;
 
 void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, const char * pszCacheDir)
 {
@@ -121,6 +105,28 @@ void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, con
       {
 
          LOGE("Fatal: undefined symbol \"android_l_button_up\" from libbase.so");
+
+         exit(1);
+
+      }
+
+      key_down = (PFN_key)dlsym(handle, "android_key_down");
+
+      if (!key_down)
+      {
+
+         LOGE("Fatal: undefined symbol \"android_key_down\" from libbase.so");
+
+         exit(1);
+
+      }
+
+      key_up = (PFN_key)dlsym(handle, "android_key_up");
+
+      if (!key_up)
+      {
+
+         LOGE("Fatal: undefined symbol \"android_key_up\" from libbase.so");
 
          exit(1);
 

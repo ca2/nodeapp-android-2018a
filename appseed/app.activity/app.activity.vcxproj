@@ -319,6 +319,9 @@
       <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</TreatOutputAsContent>
     </CustomBuild>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="activity.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

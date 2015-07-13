@@ -80,4 +80,7 @@
       <Filter>Library</Filter>
     </CustomBuild>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="activity.h" />
+  </ItemGroup>
 </Project>
