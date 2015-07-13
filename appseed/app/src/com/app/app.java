@@ -61,6 +61,8 @@ public class app extends Activity
 
 		//System.loadLibrary("axiscairo");
 
+		System.loadLibrary("axisjpeg");
+
 		System.loadLibrary("draw2d_cairo");
 
 		System.loadLibrary("app_core_hellomultiverse");
