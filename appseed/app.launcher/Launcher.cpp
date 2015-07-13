@@ -163,18 +163,16 @@ static void engine_handle_cmd(struct android_app* app, int32_t cmd) {
 */
 //void native_activity_android_start(struct android_app* state) {
 extern "C"
-void native_activity_android_start(android_init_data * pinitdata) {
-
+void native_activity_android_start(android_init_data * pinitdata)
+{
 
 	if (!defer_core_init())
 		return;
 
 	::core::system * psystem = new ::core::system();
 
-   psystem->m_pandroidinitdata = new android_init_data;
+   psystem->m_pandroidinitdata = pinitdata;
    
-   memcpy(psystem->m_pandroidinitdata, pinitdata, sizeof(android_init_data));
-
 	psystem->m_durationRunLock = millis(1);
 
 	//psystem->::exception::translator::attach();

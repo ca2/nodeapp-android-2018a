@@ -23,6 +23,8 @@
 #include <stdlib.h>
 #include <math.h>
 
+#include "aura/aura/os/android/android_init_data.h"
+
 typedef void FN_android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t);
 typedef FN_android_fill_plasma * PFN_android_fill_plasma;
 
@@ -32,6 +34,7 @@ extern int g_iScreenW;
 extern int g_iScreenH;
 extern const char * g_pszCommandLine;
 extern const char * g_pszCacheDir;
+extern android_init_data g_initdata;
 
 #define  LOG_TAG    "app.activity (view.cpp)"
 #define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
@@ -386,8 +389,10 @@ stats_endFrame(Stats*  s)
 }
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_app_view_renderPlasma(JNIEnv * env, jobject  obj, jobject bitmap, jlong  time_ms)
+JNIEXPORT void JNICALL Java_com_app_view_renderPlasma(JNIEnv * env, jobject  obj, jobject bitmap, jlong  time_ms, jobject result)
 {
+
+
 	AndroidBitmapInfo  info;
 	void*              pixels;
 	int                ret;
@@ -425,8 +430,46 @@ JNIEXPORT void JNICALL Java_com_app_view_renderPlasma(JNIEnv * env, jobject  obj
 
 	stats_endFrame(&stats);
 
+   jfieldID fid;
+   
+   jmethodID mid;
+   
+   jclass myclass;
+
+   jclass cls = env->GetObjectClass(result);
+
+   fid = env->GetFieldID(cls, "m_bShowKeyboard", "Z");
+
+   env->SetBooleanField(result, fid, g_initdata.m_bShowKeyboard);
+
+   g_initdata.m_bShowKeyboard = false;
+
 }
 
+extern "C"
+JNIEXPORT void JNICALL Java_com_app_view_keyDown(JNIEnv * env, jobject  obj, jint keyCode)
+{
+   
+   LOGI("%s\n", "Java_com_app_view_keyDown");
+
+}
+
+extern "C"
+JNIEXPORT void JNICALL Java_com_app_view_keyUp(JNIEnv * env, jobject  obj, jint keyCode)
+{
+
+   LOGI("%s\n", "Java_com_app_view_keyUp");
+
+}
+
+
+extern "C"
+JNIEXPORT void JNICALL Java_com_app_view_onReceivedShowKeyboard(JNIEnv * env, jobject  obj)
+{
+
+   LOGI("%s\n", "Java_com_app_onReceivedShowKeyboard");
+
+}
 
 extern "C"
 JNIEXPORT void JNICALL Java_com_app_view_lButtonDown(JNIEnv * env, jobject  obj, jfloat x, jfloat y)

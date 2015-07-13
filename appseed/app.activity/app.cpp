@@ -60,6 +60,8 @@ PFN_mouse mouse_move = NULL;
 
 PFN_mouse l_button_up = NULL;
 
+android_init_data g_initdata;
+
 void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, const char * pszCacheDir)
 {
 	
@@ -153,7 +155,7 @@ void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, con
 
    }
 
-   android_init_data initdata;
+   android_init_data & initdata = g_initdata;
 
    initdata.m_iScreenWidth    = iScreenWidth;
 
@@ -169,20 +171,20 @@ void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, con
 
 
 
-extern "C"
-jint JNI_OnLoad(JavaVM* vm, void* reserved)
-{
-	JNIEnv* env;
-	if (vm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6) != JNI_OK) {
-		return -1;
-	}
-
-	// Get jclass with env->FindClass.
-	// Register methods with env->RegisterNatives.
-
-	return JNI_VERSION_1_6;
-
-}
+//extern "C"
+//jint JNI_OnLoad(JavaVM* vm, void* reserved)
+//{
+//	JNIEnv* env;
+//	if (vm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6) != JNI_OK) {
+//		return -1;
+//	}
+//
+//	// Get jclass with env->FindClass.
+//	// Register methods with env->RegisterNatives.
+//
+//	return JNI_VERSION_1_6;
+//
+//}
 
 int g_iScreenW = 0;
 int g_iScreenH = 0;
