@@ -191,7 +191,7 @@ class view extends View
 	protected void onDraw(Canvas canvas)
 	{
         
-		renderPlasma(m_bitmap, System.currentTimeMillis() - m_lStartTime, m_result);
+		renderImpact(m_bitmap, System.currentTimeMillis() - m_lStartTime, m_result);
 
         canvas.drawBitmap(m_bitmap, 0, 0, null);
 

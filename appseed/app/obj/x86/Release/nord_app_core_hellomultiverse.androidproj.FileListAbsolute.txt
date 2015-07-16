@@ -6,3 +6,10 @@ Z:\nordroid\nodeapp\seed\metaseed\x86\Release\Package\androidmanifest.xml
 Z:\nordroid\nodeapp\seed\metaseed\x86\Release\nord_app_core_hellomultiverse.apk
 Z:\nordroid\nodeapp\seed\metaseed\x86\Release\nord_app_core_hellomultiverse.lastsuccessfuldeploy
 Z:\nordroid\nodeapp\appseed\app\obj\x86\Release\GenerateAndroidAntScript.incremental
+Z:\nordroid\stage\x86\Release\nord_app_core_hellomultiverse\nord_app_core_hellomultiverse.apk.recipe
+Z:\nordroid\stage\x86\Release\nord_app_core_hellomultiverse\nord_app_core_hellomultiverse.apk.recipe.merged
+Z:\nordroid\stage\x86\Release\nord_app_core_hellomultiverse\Package\build.xml
+Z:\nordroid\stage\x86\Release\nord_app_core_hellomultiverse\Package\project.properties
+Z:\nordroid\stage\x86\Release\nord_app_core_hellomultiverse\Package\androidmanifest.xml
+Z:\nordroid\stage\x86\Release\nord_app_core_hellomultiverse\nord_app_core_hellomultiverse.apk
+Z:\nordroid\stage\x86\Release\nord_app_core_hellomultiverse\nord_app_core_hellomultiverse.lastsuccessfuldeploy
