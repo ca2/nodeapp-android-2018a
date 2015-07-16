@@ -18,6 +18,5 @@
             </intent-filter>
         </activity>
         
-	<meta-data android:name="command_line" android:value="@string/cmd_line" />
     </application>
 </manifest> 
