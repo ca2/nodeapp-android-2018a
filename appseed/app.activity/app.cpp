@@ -211,7 +211,7 @@ const char * jstrdup(JNIEnv * env, jstring jstr)
 }
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_app_app_configureApp(JNIEnv * env, jobject  obj, jstring strCommandLine, jstring strCacheDir, jint iScreenW, jint iScreenH)
+JNIEXPORT void JNICALL Java_com_ca2_app_configureApp(JNIEnv * env, jobject  obj, jstring strCommandLine, jstring strCacheDir, jint iScreenW, jint iScreenH)
 {
 
    g_pszCommandLine = jstrdup(env, strCommandLine);

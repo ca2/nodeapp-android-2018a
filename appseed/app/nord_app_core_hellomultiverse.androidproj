@@ -22,7 +22,7 @@
     <RootNamespace>app</RootNamespace>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <ProjectVersion>1.0</ProjectVersion>
-    <ProjectGuid>{f934aa2e-87d8-459c-af6d-98a0656f2704}</ProjectGuid>
+    <ProjectGuid>{19841115-1951-0422-af6d-98a0656f2704}</ProjectGuid>
     <_PackagingProjectWithoutNativeComponent>true</_PackagingProjectWithoutNativeComponent>
     <LaunchActivity Condition="'$(LaunchActivity)' == ''">com.app.app</LaunchActivity>
   </PropertyGroup>
@@ -45,7 +45,7 @@
   <ImportGroup Label="ExtensionSettings" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
-    <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <AntPackage>
@@ -58,13 +58,11 @@
     </AntPackage>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Content Include="$(ProjectDir)AndroidManifest.xml" />
     <Content Include="res\values\strings.xml" />
-    <AntBuildXml Include="build.xml">
-      <SubType>Designer</SubType>
-    </AntBuildXml>
-    <AndroidManifest Include="AndroidManifest.xml" />
-    <AntProjectPropertiesFile Include="project.properties" />
-    <Content Include="src\com\app\app.java" />
+    <AntBuildXml Include="build.xml" />
+    <AntProjectPropertiesFile Include="nord_app_core_hellomultiverse.properties" />
+    <Content Include="src\com\ca2\app.java" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\app-core\appseed\hellomultiverse\nord_core_hellomultiverse.vcxproj" />

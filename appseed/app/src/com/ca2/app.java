@@ -1,4 +1,4 @@
-package com.app;
+package com.ca2;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -16,6 +16,9 @@ import android.text.InputType;
 import android.view.inputmethod.EditorInfo;
 import android.graphics.Point;
 import android.view.MotionEvent.PointerProperties;
+import android.content.pm.PackageManager;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 
 public class app extends Activity
 {
@@ -38,7 +41,28 @@ public class app extends Activity
 
 		//configureApp("app : app=app-core/hellomultiverse no_hello_edit client_only", getApplicationContext().getCacheDir().getAbsolutePath(), size.x, size.y);
 
-		configureApp("app : app=app-core/hellomultiverse client_only", getApplicationContext().getCacheDir().getAbsolutePath(), size.x, size.y);
+		String cmdline = "";
+
+		try
+		{
+
+			ApplicationInfo ai = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
+    
+			Bundle bundle = ai.metaData;
+		
+			cmdline = bundle.getString("command_line");
+
+		}
+		catch (NameNotFoundException e)
+		{
+			
+		}
+		catch (NullPointerException e)
+		{
+			
+		}
+
+		configureApp(cmdline, getApplicationContext().getCacheDir().getAbsolutePath(), size.x, size.y);
 
 		m_view = new view(this, size);
 		
@@ -96,7 +120,7 @@ class view extends View
 	private TakeInfoResult m_result;
 
 
-    private static native void renderPlasma(Bitmap  bitmap, long time_ms, TakeInfoResult result);
+    private static native void renderImpact(Bitmap  bitmap, long time_ms, TakeInfoResult result);
 
 	private static native void lButtonDown(float x, float y);
 

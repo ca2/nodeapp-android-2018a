@@ -122,9 +122,6 @@
     <ProjectReference Include="..\..\..\..\app\axis\pixman\nord_axispixman.vcxproj" />
     <ProjectReference Include="..\..\..\..\app\axis\png\nord_axispng.vcxproj" />
     <ProjectReference Include="..\..\..\..\app\axis\zlib\nord_axiszlib.vcxproj" />
-    <ProjectReference Include="..\app.NativeActivity\app.NativeActivity.vcxproj">
-      <Project>{5b61ac26-4d98-4574-94ac-b4c8e1234cbe}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(AndroidTargetsPath)\Android.targets" />
   <ImportGroup Label="ExtensionTargets" />
