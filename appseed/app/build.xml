@@ -56,17 +56,10 @@
             -post-build
             -pre-clean
     -->
-    <import file="custom_rules.xml" optional="true" />
-    <target name="-pre-build" depends="-custom-strings">
-    </target>
+  
+  <import file="custom_rules.xml" optional="true" />
 
-    <target name="-custom-strings">
-      <echo>Custom Strings</echo>
-      <replace file="res/values/strings.xml" token="@PKGNAME@"  value="${pkg_name}" />
-      <replace file="res/values/strings.xml" token="@APPNAME@"  value="${app_name}" />
-      <replace file="res/values/strings.xml" token="@CMDLINE@"  value="${cmd_line}" />
-    </target>
-    <!-- Import the actual build file.
+  <!-- Import the actual build file.
 
          To customize existing targets, there are two options:
          - Customize only one target:

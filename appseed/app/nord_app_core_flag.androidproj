@@ -5,47 +5,51 @@
       <Configuration>basis</Configuration>
       <Platform>ARM</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="stage|ARM">
-      <Configuration>stage</Configuration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
       <Platform>ARM</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="basis|x86">
       <Configuration>basis</Configuration>
       <Platform>x86</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="stage|x86">
-      <Configuration>stage</Configuration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
       <Platform>x86</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <RootNamespace>app</RootNamespace>
+    <RootNamespace>nord_app_core_flag</RootNamespace>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <ProjectVersion>1.0</ProjectVersion>
-    <ProjectGuid>{19841115-1951-0422-af6d-98a0656f2704}</ProjectGuid>
+    <ProjectGuid>19841115-1951-0422-af6d-98a0656f2704</ProjectGuid>
     <_PackagingProjectWithoutNativeComponent>true</_PackagingProjectWithoutNativeComponent>
-    <LaunchActivity Condition="'$(LaunchActivity)' == ''">com.app.app</LaunchActivity>
+    <LaunchActivity Condition="'$(LaunchActivity)' == ''">com.nord_app_core_flag.nord_app_core_flag</LaunchActivity>
   </PropertyGroup>
   <Import Project="$(AndroidTargetsPath)\Android.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
     <UseDebugLibraries>true</UseDebugLibraries>
     <TargetName>$(RootNamespace)</TargetName>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
     <UseDebugLibraries>false</UseDebugLibraries>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">
     <UseDebugLibraries>true</UseDebugLibraries>
     <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
     <UseDebugLibraries>false</UseDebugLibraries>
+    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <Import Project="$(AndroidTargetsPath)\Android.props" />
   <ImportGroup Label="ExtensionSettings" />
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\$(ProjectName)</OutDir>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
-    <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\$(ProjectName)</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <AntPackage>
@@ -58,10 +62,12 @@
     </AntPackage>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Content Include="AndroidManifest.xml" />
-    <Content Include="res\values\strings.xml" />
+    <Content Include="nord_app_core_flag\values\strings.xml" />
     <AntBuildXml Include="build.xml" />
-    <Content Include="src\com\app\app.java" />
+    <AndroidManifest Include="AndroidManifest.xml">
+      <SubType>Designer</SubType>
+    </AndroidManifest>
+    <Content Include="src\com\ca2\app.java" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\app-core\appseed\hellomultiverse\nord_core_hellomultiverse.vcxproj" />
@@ -90,7 +96,7 @@
     <ProjectReference Include="..\app.launcher\app.launcher.vcxproj" />
   </ItemGroup>
   <ItemGroup>
-    <AntProjectPropertiesFile Include="nord_app_core_flag.properties" />
+    <AntProjectPropertiesFile Include="project.properties" />
   </ItemGroup>
   <Import Project="$(AndroidTargetsPath)\Android.targets" />
   <ImportGroup Label="ExtensionTargets" />

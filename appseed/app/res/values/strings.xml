@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-  <string name="pkg_name">@PKGNAME@</string>
-  <string name="app_name">@APPNAME@</string>
-  <string name="cmd_line">@CMDLINE@</string>
-</resources>

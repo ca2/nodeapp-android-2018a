@@ -74,43 +74,43 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
 }
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_view_view_keyDown(JNIEnv * env, jobject  obj, jint keyCode)
+JNIEXPORT void JNICALL Java_com_ca2_view_keyDown(JNIEnv * env, jobject  obj, jint keyCode)
 {
    
-   LOGI("%s\n", "Java_com_view_view_keyDown");
+   LOGI("%s\n", "Java_com_ca2_view_keyDown");
 
 }
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_view_view_keyUp(JNIEnv * env, jobject  obj, jint keyCode)
+JNIEXPORT void JNICALL Java_com_ca2_view_keyUp(JNIEnv * env, jobject  obj, jint keyCode)
 {
 
-   LOGI("%s\n", "Java_com_view_view_keyUp");
+   LOGI("%s\n", "Java_com_ca2_view_keyUp");
 
 }
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_view_view_keyPreImeDown(JNIEnv * env, jobject  obj, jint keyCode)
+JNIEXPORT void JNICALL Java_com_ca2_view_keyPreImeDown(JNIEnv * env, jobject  obj, jint keyCode)
 {
 
-   //LOGI("%s\n", "Java_com_view_view_keyPreImeDown");
+   //LOGI("%s\n", "Java_com_ca2_view_keyPreImeDown");
 
    key_down(keyCode);
 
 }
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_view_view_keyPreImeUp(JNIEnv * env, jobject  obj, jint keyCode)
+JNIEXPORT void JNICALL Java_com_ca2_view_keyPreImeUp(JNIEnv * env, jobject  obj, jint keyCode)
 {
 
-   LOGI("%s\n", "Java_com_view_view_keyPreImeUp");
+   LOGI("%s\n", "Java_com_ca2_view_keyPreImeUp");
 
    key_up(keyCode);
 
 }
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_view_view_onReceivedShowKeyboard(JNIEnv * env, jobject  obj)
+JNIEXPORT void JNICALL Java_com_ca2_view_onReceivedShowKeyboard(JNIEnv * env, jobject  obj)
 {
 
    LOGI("%s\n", "Java_com_view_onReceivedShowKeyboard");
@@ -118,7 +118,7 @@ JNIEXPORT void JNICALL Java_com_view_view_onReceivedShowKeyboard(JNIEnv * env, j
 }
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_view_view_lButtonDown(JNIEnv * env, jobject  obj, jfloat x, jfloat y)
+JNIEXPORT void JNICALL Java_com_ca2_view_lButtonDown(JNIEnv * env, jobject  obj, jfloat x, jfloat y)
 {
 
    l_button_down(x, y);
@@ -127,7 +127,7 @@ JNIEXPORT void JNICALL Java_com_view_view_lButtonDown(JNIEnv * env, jobject  obj
 
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_view_view_mouseMove(JNIEnv * env, jobject  obj, jfloat x, jfloat y)
+JNIEXPORT void JNICALL Java_com_ca2_view_mouseMove(JNIEnv * env, jobject  obj, jfloat x, jfloat y)
 {
    
    mouse_move(x, y);
@@ -136,7 +136,7 @@ JNIEXPORT void JNICALL Java_com_view_view_mouseMove(JNIEnv * env, jobject  obj, 
 
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_view_view_lButtonUp(JNIEnv * env, jobject  obj, jfloat x, jfloat y)
+JNIEXPORT void JNICALL Java_com_ca2_view_lButtonUp(JNIEnv * env, jobject  obj, jfloat x, jfloat y)
 {
 
    l_button_up(x, y);

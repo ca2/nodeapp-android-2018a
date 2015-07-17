@@ -62,7 +62,9 @@
     </AntPackage>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Content Include="res\values\strings.xml" />
+    <Content Include="nord_app_core_hellomultiverse\values\strings.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <AntBuildXml Include="build.xml" />
     <AndroidManifest Include="AndroidManifest.xml">
       <SubType>Designer</SubType>
@@ -70,7 +72,7 @@
     <Content Include="src\com\ca2\app.java" />
   </ItemGroup>
   <ItemGroup>
-    <AntProjectPropertiesFile Include="nord_app_core_hellomultiverse.properties" />
+    <AntProjectPropertiesFile Include="project.properties" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\app-core\appseed\hellomultiverse\nord_core_hellomultiverse.vcxproj" />
