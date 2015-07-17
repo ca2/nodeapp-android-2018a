@@ -41,6 +41,8 @@ public class app extends Activity
 
 		//configureApp("app : app=app-core/hellomultiverse no_hello_edit client_only", getApplicationContext().getCacheDir().getAbsolutePath(), size.x, size.y);
 
+		String prjname = "";
+
 		String cmdline = "";
 
 		try
@@ -50,6 +52,8 @@ public class app extends Activity
     
 			Bundle bundle = ai.metaData;
 		
+			prjname = bundle.getString("project_name");
+
 			cmdline = bundle.getString("command_line");
 
 		}
@@ -61,6 +65,15 @@ public class app extends Activity
 		{
 			
 		}
+
+		if(prjname.substring(0, 5) == "nord_")
+		{
+
+			prjname = prjname.substring(5);
+
+		}
+
+		System.loadLibrary(prjname);
 
 		configureApp(cmdline, getApplicationContext().getCacheDir().getAbsolutePath(), size.x, size.y);
 
@@ -88,8 +101,6 @@ public class app extends Activity
 		System.loadLibrary("axisjpeg");
 
 		System.loadLibrary("draw2d_cairo");
-
-		System.loadLibrary("app_core_hellomultiverse");
 
 		System.loadLibrary("launcher");
 
