@@ -66,27 +66,12 @@ public class app extends Activity
 			
 		}
 
-		if(prjname.substring(0, 5) == "nord_")
+		if(prjname.substring(0, 5).equals("nord_"))
 		{
 
 			prjname = prjname.substring(5);
 
 		}
-
-		System.loadLibrary(prjname);
-
-		configureApp(cmdline, getApplicationContext().getCacheDir().getAbsolutePath(), size.x, size.y);
-
-		m_view = new view(this, size);
-		
-        setContentView(m_view);
-
-    }
-
-
-
-    static
-	{
 
         System.loadLibrary("activity");
 
@@ -102,9 +87,21 @@ public class app extends Activity
 
 		System.loadLibrary("draw2d_cairo");
 
+		System.loadLibrary(prjname);
+
 		System.loadLibrary("launcher");
 
+
+		configureApp(cmdline, getApplicationContext().getCacheDir().getAbsolutePath(), size.x, size.y);
+
+		m_view = new view(this, size);
+		
+        setContentView(m_view);
+
     }
+
+
+
 
 }
 

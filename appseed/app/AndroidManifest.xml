@@ -23,7 +23,7 @@
     
     </activity>
     
-    <meta-data android:name="project_name" android:value="$(project_name)" />
+    <meta-data android:name="project_name" android:value="$(projectname)" />
   
     <meta-data android:name="command_line" android:value="@string/cmd_line" />
 
