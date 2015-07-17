@@ -19,12 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <RootNamespace>nord_app_core_flag</RootNamespace>
+    <RootNamespace>nord_app_core_projection</RootNamespace>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <ProjectVersion>1.0</ProjectVersion>
-    <ProjectGuid>19841115-1951-0422-af6d-98a0656f2704</ProjectGuid>
+    <ProjectGuid>19841115-1951-0422-af6d-98a065770402</ProjectGuid>
     <_PackagingProjectWithoutNativeComponent>true</_PackagingProjectWithoutNativeComponent>
-    <LaunchActivity Condition="'$(LaunchActivity)' == ''">com.nord_app_core_flag.nord_app_core_flag</LaunchActivity>
+    <LaunchActivity Condition="'$(LaunchActivity)' == ''">com.nord_app_core_projection.nord_app_core_projection</LaunchActivity>
   </PropertyGroup>
   <Import Project="$(AndroidTargetsPath)\Android.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
@@ -62,7 +62,7 @@
     </AntPackage>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Content Include="nord_app_core_flag\values\strings.xml">
+    <Content Include="nord_app_core_projection\values\strings.xml">
       <SubType>Designer</SubType>
     </Content>
     <AntBuildXml Include="build.xml" />
@@ -72,8 +72,7 @@
     <Content Include="src\com\ca2\app.java" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\app-core\appseed\flag\nord_core_flag.vcxproj" />
-    <ProjectReference Include="..\..\..\app-core\appseed\hellomultiverse\nord_core_hellomultiverse.vcxproj" />
+    <ProjectReference Include="..\..\..\app-core\appseed\projection\nord_core_projection.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\wndfrm_core\nord_wndfrm_core.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\aqua\nord_aqua.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\aura\nord_aura.vcxproj" />
