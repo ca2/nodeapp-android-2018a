@@ -62,7 +62,9 @@
     </AntPackage>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Content Include="nord_app_core_flag\values\strings.xml" />
+    <Content Include="nord_app_core_flag\values\strings.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <AntBuildXml Include="build.xml" />
     <AndroidManifest Include="AndroidManifest.xml">
       <SubType>Designer</SubType>
