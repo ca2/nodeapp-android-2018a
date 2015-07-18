@@ -84,6 +84,11 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axisbzip2", "..\..\..\app\axis\bzip2\nord_axisbzip2.vcxproj", "{8FA09539-41BF-4E5B-A16A-EA4586690593}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "draw2d_cairo", "..\..\..\app\appseed\draw2d_cairo\nord_draw2d_cairo.vcxproj", "{06207BC4-C08B-4A2D-B754-F3BD46AD3098}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0D31523B-0C88-474F-A5C8-4091BB3D10AC} = {0D31523B-0C88-474F-A5C8-4091BB3D10AC}
+		{02207BC4-C08B-4A2D-B754-F3BD46AD3098} = {02207BC4-C08B-4A2D-B754-F3BD46AD3098}
+		{AD0A44D0-7716-439B-AED5-48C654569171} = {AD0A44D0-7716-439B-AED5-48C654569171}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wndfrm_core", "..\..\..\app-core\appseed\wndfrm_core\nord_wndfrm_core.vcxproj", "{0365BD5F-5C57-4DB4-9270-D850D2A84FBB}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -141,8 +146,17 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app_core_projection", "..\.
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app.activity", "..\..\appseed\app.activity\app.activity.vcxproj", "{0CEBDB3A-CC7E-4237-8448-FC56095B2173}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A2A7BC8C-519F-4F38-B7FB-58AF0860D021} = {A2A7BC8C-519F-4F38-B7FB-58AF0860D021}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app.launcher", "..\..\appseed\app.launcher\app.launcher.vcxproj", "{A2A7BC8C-519F-4F38-B7FB-58AF0860D021}"
+	ProjectSection(ProjectDependencies) = postProject
+		{16AB3478-F401-43C0-8BF1-A19F28802711} = {16AB3478-F401-43C0-8BF1-A19F28802711}
+		{02207BC4-C08B-4A2D-B754-F3BD46AD3098} = {02207BC4-C08B-4A2D-B754-F3BD46AD3098}
+		{03207BC4-C08B-4A2D-B754-F3BD46AD3098} = {03207BC4-C08B-4A2D-B754-F3BD46AD3098}
+		{04207BC4-C08B-4A2D-B754-F3BD46AD3098} = {04207BC4-C08B-4A2D-B754-F3BD46AD3098}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
