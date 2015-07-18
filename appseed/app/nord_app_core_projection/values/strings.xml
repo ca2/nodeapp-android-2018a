@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="app_name">Projection</string>
-  <string name="cmd_line">app.exe : app=app-core/projection</string>
+  <string name="cmd_line">app.exe : app=app-core/projection wfi_maximize projection_bk=\"http://server.ca2.cc/image/_std/os/android.jpg?sessid=noauth\" </string>
 </resources>
