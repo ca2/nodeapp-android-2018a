@@ -65,7 +65,9 @@
     <Content Include="nord_app_core_hellomultiverse\values\strings.xml">
       <SubType>Designer</SubType>
     </Content>
-    <AntBuildXml Include="build.xml" />
+    <AntBuildXml Include="build.xml">
+      <SubType>Designer</SubType>
+    </AntBuildXml>
     <AndroidManifest Include="AndroidManifest.xml">
       <SubType>Designer</SubType>
     </AndroidManifest>
