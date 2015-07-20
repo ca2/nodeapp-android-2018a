@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <RootNamespace>nord_game_tictactoe</RootNamespace>
+    <RootNamespace>nord_app_game_tictactoe</RootNamespace>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <ProjectVersion>1.0</ProjectVersion>
     <ProjectGuid>19841115-1951-0422-1977-98a065770402</ProjectGuid>
@@ -62,7 +62,7 @@
     </AntPackage>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Content Include="nord_game_tictactoe\values\strings.xml">
+    <Content Include="nord_app_game_tictactoe\values\strings.xml">
       <SubType>Designer</SubType>
     </Content>
     <AntBuildXml Include="build.xml" />

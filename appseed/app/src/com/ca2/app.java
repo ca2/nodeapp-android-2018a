@@ -20,6 +20,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 
+
 public class app extends Activity
 {
 
@@ -87,7 +88,57 @@ public class app extends Activity
 
 		System.loadLibrary("draw2d_cairo");
 
-		System.loadLibrary(prjname);
+		boolean bLoaded = false;
+
+		if(!bLoaded)
+		{
+
+
+			try
+			{
+
+				System.loadLibrary(prjname);
+
+				bLoaded = true;
+
+			}
+			catch (UnsatisfiedLinkError e)
+			{
+
+			}
+		
+		}
+
+		if(!bLoaded)
+		{
+
+			if(prjname.substring(0, 4).equals("app_"))
+			{
+
+				prjname = prjname.substring(4);
+
+			}
+			else
+			{
+
+				throw new UnsatisfiedLinkError(prjname);
+
+			}
+		
+			//try
+			{
+
+				System.loadLibrary(prjname);
+
+				bLoaded = true;
+
+			}
+			//catch (UnsatisfiedLinkError e)
+			{
+
+			}
+
+		}
 
 		System.loadLibrary("launcher");
 
