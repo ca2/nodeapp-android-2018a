@@ -191,9 +191,9 @@ class view extends View
 
 	private static native void keyUp(int keycode);
 
-	private static native void keyPreImeDown(int keycode);
+	private static native void keyPreImeDown(int keycode, int iUni);
 
-	private static native void keyPreImeUp(int keycode);
+	private static native void keyPreImeUp(int keycode, int iUni);
 
 	private static native void onReceivedShowKeyboard();
 
@@ -323,13 +323,13 @@ class view extends View
 		if(ev.getAction() == KeyEvent.ACTION_DOWN)
 		{
 
-			keyPreImeDown(keyCode);
+			keyPreImeDown(keyCode, ev.getUnicodeChar());
 		
 		}
 		else if(ev.getAction() == KeyEvent.ACTION_UP)
 		{
 
-			keyPreImeUp(keyCode);
+			keyPreImeUp(keyCode, ev.getUnicodeChar());
 		
 		}
 		

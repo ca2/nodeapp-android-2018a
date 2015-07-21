@@ -42,7 +42,7 @@ extern PFN_mouse l_button_up;
 
 
 
-typedef void FN_key(int keyCode);
+typedef void FN_key(int keyCode, int iUni);
 
 typedef FN_key * PFN_key;
 

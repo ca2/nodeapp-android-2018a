@@ -90,22 +90,22 @@ JNIEXPORT void JNICALL Java_com_ca2_view_keyUp(JNIEnv * env, jobject  obj, jint 
 }
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_ca2_view_keyPreImeDown(JNIEnv * env, jobject  obj, jint keyCode)
+JNIEXPORT void JNICALL Java_com_ca2_view_keyPreImeDown(JNIEnv * env, jobject  obj, jint keyCode, jint iUni)
 {
 
    //LOGI("%s\n", "Java_com_ca2_view_keyPreImeDown");
 
-   key_down(keyCode);
+   key_down(keyCode, iUni);
 
 }
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_ca2_view_keyPreImeUp(JNIEnv * env, jobject  obj, jint keyCode)
+JNIEXPORT void JNICALL Java_com_ca2_view_keyPreImeUp(JNIEnv * env, jobject  obj, jint keyCode, jint iUni)
 {
 
    LOGI("%s\n", "Java_com_ca2_view_keyPreImeUp");
 
-   key_up(keyCode);
+   key_up(keyCode, iUni);
 
 }
 
