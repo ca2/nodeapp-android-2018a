@@ -86,8 +86,10 @@
     <ProjectReference Include="..\..\..\app\aura\sqlite\nord_aurasqlite.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\bzip2\nord_axisbzip2.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\cairo\nord_axiscairo.vcxproj" />
+    <ProjectReference Include="..\..\..\app\axis\clientchannels\nord_axisclientchannels.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\crypto\nord_axiscrypto.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\freeimage\nord_axisfreeimage.vcxproj" />
+    <ProjectReference Include="..\..\..\app\axis\freerdp\nord_axisfreerdp.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\freetype\nord_freetype.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\html_lite\nord_html_lite.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\idn\nord_axisidn.vcxproj" />
@@ -95,6 +97,8 @@
     <ProjectReference Include="..\..\..\app\axis\openssl\nord_axisopenssl.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\pixman\nord_axispixman.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\png\nord_axispng.vcxproj" />
+    <ProjectReference Include="..\..\..\app\axis\rdpclient\nord_axisrdpclient.vcxproj" />
+    <ProjectReference Include="..\..\..\app\axis\winpr\nord_axiswinpr.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\zlib\nord_axiszlib.vcxproj" />
     <ProjectReference Include="..\app.activity\app.activity.vcxproj" />
     <ProjectReference Include="..\app.launcher\app.launcher.vcxproj" />
