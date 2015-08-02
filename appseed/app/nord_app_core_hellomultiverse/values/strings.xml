@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="app_name">Hello Multiverse!!</string>
-  <string name="cmd_line">app.exe : app=app-core/hellomultiverse client_only no_hello_edit hellomultiverse=Hi3,talktomyVsmartphone!!</string>
+  <string name="cmd_line">app.exe : app=app-core/hellomultiverse client_only hellomultiverse=\"Hello Multiverse!!\" hello_bk=\"https://ca2.cc/image/_std/os/android.jpg?sessid=noauth\"</string>
 </resources>

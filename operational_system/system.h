@@ -516,3 +516,10 @@ typedef void * PVOID;
 
 #undef index
 #undef user
+
+
+typedef unsigned short  unichar;
+typedef wchar_t         unichar32;
+
+
+
