@@ -90,10 +90,10 @@
     <ProjectReference Include="..\..\..\app\axis\freeimage\nord_axisfreeimage.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\freetype\nord_freetype.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\idn\nord_axisidn.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\jpeg\nord_axisjpeg.vcxproj" />
+    <ProjectReference Include="..\..\..\app\axis\image_jpeg\nord_axis_image_jpeg.vcxproj" />
+    <ProjectReference Include="..\..\..\app\axis\image_png\nord_axis_image_png.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\openssl\nord_axisopenssl.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\pixman\nord_axispixman.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\png\nord_axispng.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\zlib\nord_axiszlib.vcxproj" />
     <ProjectReference Include="..\app.activity\app.activity.vcxproj" />
     <ProjectReference Include="..\app.launcher\app.launcher.vcxproj" />

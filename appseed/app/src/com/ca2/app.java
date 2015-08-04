@@ -84,7 +84,7 @@ public class app extends Activity
 
 		//System.loadLibrary("axiscairo");
 
-		System.loadLibrary("axisjpeg");
+		System.loadLibrary("axis_image_jpeg");
 
 		System.loadLibrary("draw2d_cairo");
 

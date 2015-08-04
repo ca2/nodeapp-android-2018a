@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="app_name">Flag</string>
-  <string name="cmd_line">app.exe http://server.ca2.cc/image/_std/os/android_hibye.png : app=app-core/flag client_only no_hello_edit</string>
+  <string name="cmd_line">app.exe \"https://ca2.cc/image/_std/os/android_hibye.png?sessid=noauth\" : app=app-core/flag full_screen</string>
 </resources>
