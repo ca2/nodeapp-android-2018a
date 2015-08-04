@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<ApkDeploymentStatus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ApkFile>Z:\nordroid\stage\AndroidApk\app\bin\ApplicationActivity-debug.apk</ApkFile>
-  <DeviceID>emulator-xp</DeviceID>
-  <ApkTimestamp>2015-01-11T15:06:14.4930191-02:00</ApkTimestamp>
-  <LastDeployment>2015-01-11T15:07:15.9348131-02:00</LastDeployment>
-</ApkDeploymentStatus>
