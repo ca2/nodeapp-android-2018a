@@ -39,7 +39,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <UseOfStl>c++_shared</UseOfStl>
+    <UseOfStl>gnustl_shared</UseOfStl>
+    <PlatformToolset>Gcc_4_9</PlatformToolset>
+    <ThumbMode>Disabled</ThumbMode>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>

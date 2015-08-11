@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="app_name">Projection</string>
-  <string name="cmd_line">app.exe : app=app-core/projection wfi_maximize countries=br,ru,us,se,jp br.link=\"http://ca2.com.br\" ru.link=\"http://ca2.com.ru\" us.link=\"http://ca2.us\" se.link=\"http://ca2.se\" jp.link=\"http://ca2.ne.jp\" projection_bk_alpha=0.33 projection_bk=\"http://server.ca2.cc/image/_std/os/android.jpg?sessid=noauth\" </string>
+  <string name="cmd_line">app.exe : app=app-core/projection wfi_maximize countries=br,ru,us,se,jp br.link=\"http://ca2.com.br\" ru.link=\"http://ca2.com.ru\" us.link=\"http://ca2.us\" se.link=\"http://ca2.se\" jp.link=\"http://ca2.ne.jp\" projection_bk_alpha=0.33 projection_bk=\"https://server.ca2.cc/image/_std/os/android.jpg?sessid=noauth\" </string>
 </resources>
