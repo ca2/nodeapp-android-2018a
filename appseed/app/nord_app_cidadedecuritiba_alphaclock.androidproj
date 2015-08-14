@@ -62,6 +62,7 @@
     </AntPackage>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Content Include="nord_app_cidadedecuritiba_alphaclock\drawable\icon.png" />
     <Content Include="nord_app_cidadedecuritiba_alphaclock\values\strings.xml">
       <SubType>Designer</SubType>
     </Content>
