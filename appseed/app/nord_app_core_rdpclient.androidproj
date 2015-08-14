@@ -62,6 +62,7 @@
     </AntPackage>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Content Include="nord_app_core_rdpclient\drawable\icon.png" />
     <Content Include="nord_app_core_rdpclient\values\strings.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -93,10 +94,10 @@
     <ProjectReference Include="..\..\..\app\axis\freetype\nord_freetype.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\html_lite\nord_html_lite.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\idn\nord_axisidn.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\jpeg\nord_axisjpeg.vcxproj" />
+    <ProjectReference Include="..\..\..\app\axis\image_jpeg\nord_axis_image_jpeg.vcxproj" />
+    <ProjectReference Include="..\..\..\app\axis\image_png\nord_axis_image_png.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\openssl\nord_axisopenssl.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\pixman\nord_axispixman.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\png\nord_axispng.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\rdpclient\nord_axisrdpclient.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\winpr\nord_axiswinpr.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\zlib\nord_axiszlib.vcxproj" />
