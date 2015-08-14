@@ -62,6 +62,7 @@
     </AntPackage>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Content Include="nord_app_core_projection\drawable\icon.png" />
     <Content Include="nord_app_core_projection\values\strings.xml">
       <SubType>Designer</SubType>
     </Content>

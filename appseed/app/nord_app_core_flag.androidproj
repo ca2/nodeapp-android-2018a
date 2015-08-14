@@ -90,6 +90,7 @@
     </AntPackage>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Content Include="nord_app_core_flag\drawable\icon.png" />
     <Content Include="nord_app_core_flag\values\strings.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -111,6 +112,7 @@
     <ProjectReference Include="..\..\..\app\appseed\draw2d_cairo\nord_draw2d_cairo.vcxproj" />
     <ProjectReference Include="..\..\..\app\atom\iconv\nord_iconv.vcxproj" />
     <ProjectReference Include="..\..\..\app\aura\charguess\nord_auracharguess.vcxproj" />
+    <ProjectReference Include="..\..\..\app\aura\pcre\nord_aurapcre.vcxproj" />
     <ProjectReference Include="..\..\..\app\aura\sqlite\nord_aurasqlite.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\bzip2\nord_axisbzip2.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\cairo\nord_axiscairo.vcxproj" />

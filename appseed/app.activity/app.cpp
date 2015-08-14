@@ -171,6 +171,10 @@ void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, con
 
    initdata.m_pszCacheDir     = pszCacheDir;
 
+   initdata.m_bShowKeyboard   = false;
+
+   initdata.m_pszOpenUrl      = NULL;
+
 	main(&initdata);
 
 }

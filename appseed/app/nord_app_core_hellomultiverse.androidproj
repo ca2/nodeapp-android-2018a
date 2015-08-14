@@ -62,6 +62,7 @@
     </AntPackage>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Content Include="nord_app_core_hellomultiverse\drawable\icon.png" />
     <Content Include="nord_app_core_hellomultiverse\values\strings.xml">
       <SubType>Designer</SubType>
     </Content>

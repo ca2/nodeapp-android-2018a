@@ -19,6 +19,8 @@ import android.view.MotionEvent.PointerProperties;
 import android.content.pm.PackageManager;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.net.Uri;
+import android.content.Intent;
 
 
 public class app extends Activity
@@ -160,7 +162,8 @@ public class app extends Activity
 class TakeInfoResult
 {
 
-   boolean m_bShowKeyboard;
+   boolean	m_bShowKeyboard;
+   String	m_strOpenUrl;
    
 }
 
@@ -204,6 +207,8 @@ class view extends View
         super(context);
 
 		m_result = new TakeInfoResult();
+
+		//m_result.m_strOpenUrl = new String();
 
 		setFocusableInTouchMode(true);
 
@@ -267,6 +272,12 @@ class view extends View
 				
 			imm.showSoftInput(this, InputMethodManager.SHOW_FORCED);
 
+		}
+
+		if(m_result.m_strOpenUrl != null && m_result.m_strOpenUrl.length() > 0)
+		{
+
+			openUrl(m_result.m_strOpenUrl);
 		}
 
     }
@@ -337,6 +348,15 @@ class view extends View
 
 	}
 
+
+
+    private void openUrl( String url )
+    {
+        Uri uriUrl = Uri.parse( url );
+        Intent intent = new Intent(Intent.ACTION_VIEW, uriUrl);
+        intent.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
+        getContext().startActivity( intent );
+    } 
 }
 
 
