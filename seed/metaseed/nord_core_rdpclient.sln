@@ -200,7 +200,15 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WelsEncPlus", "..\..\..\app
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WelsVP", "..\..\..\app\axis\openh264\codec\processing\build\win32\nord_WelsVP.vcxproj", "{C8901976-D974-4D41-9CFE-5A2A1D4E4BEE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{40BEDF11-6DD7-4E08-89E3-512114DC0779}"
+	ProjectSection(SolutionItems) = preProject
+		Performance1.psess = Performance1.psess
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
 		Debug|x64 = Debug|x64
