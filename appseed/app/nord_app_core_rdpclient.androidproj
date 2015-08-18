@@ -96,6 +96,9 @@
     <ProjectReference Include="..\..\..\app\axis\idn\nord_axisidn.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\image_jpeg\nord_axis_image_jpeg.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\image_png\nord_axis_image_png.vcxproj" />
+    <ProjectReference Include="..\..\..\app\axis\openh264\codec\build\win32\dec\nord_WelsDecPlus.vcxproj" />
+    <ProjectReference Include="..\..\..\app\axis\openh264\codec\build\win32\enc\nord_WelsEncPlus.vcxproj" />
+    <ProjectReference Include="..\..\..\app\axis\openh264\codec\processing\build\win32\nord_WelsVP.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\openssl\nord_axisopenssl.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\pixman\nord_axispixman.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\rdpclient\nord_axisrdpclient.vcxproj" />
