@@ -29,10 +29,11 @@
   <Import Project="$(AndroidTargetsPath)\Android.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
     <UseDebugLibraries>true</UseDebugLibraries>
-    <TargetName>$(RootNamespace)</TargetName>
+    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'" Label="Configuration">
     <UseDebugLibraries>false</UseDebugLibraries>
+    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">
     <UseDebugLibraries>true</UseDebugLibraries>
@@ -46,10 +47,16 @@
   <ImportGroup Label="ExtensionSettings" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
-    <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\$(ProjectName)</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\$(ProjectName)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
-    <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\$(ProjectName)</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\$(ProjectName)</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
+    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\$(ProjectName)</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
+    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\$(ProjectName)</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <AntPackage>
