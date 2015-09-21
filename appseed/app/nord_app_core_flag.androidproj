@@ -68,7 +68,7 @@
     <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\$(ProjectName)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
-    <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\$(ProjectName)</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\$(ProjectName)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\$(ProjectName)</OutDir>
@@ -110,6 +110,8 @@
     <ProjectReference Include="..\..\..\app\appseed\base\nord_base.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\core\nord_core.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\draw2d_cairo\nord_draw2d_cairo.vcxproj" />
+    <ProjectReference Include="..\..\..\app\appseed\html\nord_html.vcxproj" />
+    <ProjectReference Include="..\..\..\app\appseed\math\nord_math.vcxproj" />
     <ProjectReference Include="..\..\..\app\atom\iconv\nord_iconv.vcxproj" />
     <ProjectReference Include="..\..\..\app\aura\charguess\nord_auracharguess.vcxproj" />
     <ProjectReference Include="..\..\..\app\aura\pcre\nord_aurapcre.vcxproj" />
@@ -119,6 +121,7 @@
     <ProjectReference Include="..\..\..\app\axis\crypto\nord_axiscrypto.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\freeimage\nord_axisfreeimage.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\freetype\nord_freetype.vcxproj" />
+    <ProjectReference Include="..\..\..\app\axis\html_lite\nord_html_lite.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\idn\nord_axisidn.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\image_jpeg\nord_axis_image_jpeg.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\image_png\nord_axis_image_png.vcxproj" />
