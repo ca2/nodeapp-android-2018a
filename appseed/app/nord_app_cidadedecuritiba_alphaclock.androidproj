@@ -49,7 +49,7 @@
     <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\$(ProjectName)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
-    <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\$(ProjectName)</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\$(ProjectName)</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <AntPackage>
@@ -84,6 +84,7 @@
     <ProjectReference Include="..\..\..\app\appseed\core\nord_core.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\draw2d_cairo\nord_draw2d_cairo.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\html\nord_html.vcxproj" />
+    <ProjectReference Include="..\..\..\app\appseed\math\nord_math.vcxproj" />
     <ProjectReference Include="..\..\..\app\atom\iconv\nord_iconv.vcxproj" />
     <ProjectReference Include="..\..\..\app\aura\charguess\nord_auracharguess.vcxproj" />
     <ProjectReference Include="..\..\..\app\aura\pcre\nord_aurapcre.vcxproj" />
