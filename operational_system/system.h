@@ -508,6 +508,10 @@ typedef void * PVOID;
 #undef user
 
 
+// unichar should 16 bit wide - if wchar_t is 16 bit wide in the platform
+// the wchar_t can be used instead of unsigned short or uint16_t
+// unichar32 should 32 bit wide - if wchar_t is 32 bit wide in the platform
+// the wchar_t can be used instead of unsigned int or uint32_t
 typedef unsigned short  unichar;
 typedef wchar_t         unichar32;
 
