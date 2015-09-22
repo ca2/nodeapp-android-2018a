@@ -84,22 +84,13 @@ return ::ca::thread_priority_normal;
 //#include <stdarg.h>
 //#include <stddef.h>
 ////#include <unistd.h>
-//#ifdef __USE_STRING_H_BSD
-//#ifndef __USE_BSD
-//#define __USE_BSD
-//#endif
-//#endif
 //#include <string.h>
 //#include <time.h>
 //#include <limits.h>
 //#include <errno.h>
 //#include <malloc.h>
 //#include <inttypes.h>
-//#ifndef __USE_BSD
-//#define __USE_BSD
-//#endif
 //#include <sys/time.h>
-//#undef __USE_BSD
 ////#include <pthread.h>
 //#include <sys/resource.h>
 //#include <sys/types.h>
@@ -120,9 +111,8 @@ return ::ca::thread_priority_normal;
 #include <stdio.h>
 #include <stdarg.h>
 
-#undef __USE_BSD
+
 #include <string.h>
-#define __USE_BSD 1
 
 #include <strings.h>
 #include <inttypes.h>
