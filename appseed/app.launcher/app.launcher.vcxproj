@@ -84,7 +84,7 @@
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
-      <AdditionalOptions>-Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign</AdditionalOptions>
+      <AdditionalOptions>-Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable</AdditionalOptions>
       <PreprocessorDefinitions>_DEBUG</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <CLanguageStandard>gnu11</CLanguageStandard>
