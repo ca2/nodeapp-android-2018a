@@ -46,10 +46,8 @@
 #define CLASS_DECL_EXPORT
 #define CLASS_DECL_IMPORT
 
-#ifdef _LP64
-#define OS64BIT
-#endif
 
+#include "bit.h"
 
 
 
