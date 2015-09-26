@@ -21,6 +21,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.content.Intent;
+import android.util.Log;
 
 
 public class app extends Activity
@@ -307,6 +308,8 @@ class view extends View
 		if(m_result.m_bHideKeyboard)
 		{
 
+			Log.d("com.ca2.app.view", "onDraw Start Hiding Soft Keyboard");
+
 			m_result.m_bHideKeyboard = false;
 
 			onReceivedHideKeyboard();
@@ -314,6 +317,8 @@ class view extends View
 			InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 				
 			imm.showSoftInput(this, InputMethodManager.HIDE_IMPLICIT_ONLY);
+
+			Log.d("com.ca2.app.view", "onDraw Soft Keyboard (Should be) Hidden");
 
 		}
 

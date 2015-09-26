@@ -88,6 +88,13 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
 
       fid = env->GetFieldID(cls,"m_bHideKeyboard","Z");
 
+      if(g_initdata.m_bHideKeyboard)
+      {
+
+         LOGI("%s\n", "Java_com_ca2_view_renderImpact g_initdata.m_bHideKeyboard : true");
+
+      }
+
       env->SetBooleanField(result,fid,g_initdata.m_bHideKeyboard);
 
       g_initdata.m_bHideKeyboard = false;
@@ -183,6 +190,8 @@ extern "C"
 JNIEXPORT void JNICALL Java_com_ca2_view_lButtonDown(JNIEnv * env, jobject  obj, jfloat x, jfloat y)
 {
 
+   LOGI("%s\n","Java_com_ca2_view_lButtonDown");
+
    l_button_down(x, y);
 
 }
@@ -200,6 +209,8 @@ JNIEXPORT void JNICALL Java_com_ca2_view_mouseMove(JNIEnv * env, jobject  obj, j
 extern "C"
 JNIEXPORT void JNICALL Java_com_ca2_view_lButtonUp(JNIEnv * env, jobject  obj, jfloat x, jfloat y)
 {
+
+   LOGI("%s\n","Java_com_ca2_view_lButtonUp");
 
    l_button_up(x, y);
 
