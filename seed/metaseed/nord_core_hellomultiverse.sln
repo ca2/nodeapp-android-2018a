@@ -190,7 +190,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "html_lite", "..\..\..\app\axis\html_lite\nord_html_lite.vcxproj", "{35B6AD98-4D2B-4852-ADD6-9EDCAD095524}"
 	ProjectSection(ProjectDependencies) = postProject
 		{02207BC4-C08B-4A2D-B754-F3BD46AD3098} = {02207BC4-C08B-4A2D-B754-F3BD46AD3098}
-		{03207BC4-C08B-4A2D-B754-F3BD46AD3098} = {03207BC4-C08B-4A2D-B754-F3BD46AD3098}
 	EndProjectSection
 EndProject
 Global

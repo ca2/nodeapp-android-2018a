@@ -27,6 +27,8 @@
   
     <meta-data android:name="command_line" android:value="@string/cmd_line" />
 
-  </application>
+    <meta-data android:name="library_name" android:value="@string/lib_name" />
+
+</application>
 
 </manifest>

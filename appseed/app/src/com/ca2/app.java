@@ -48,6 +48,8 @@ public class app extends Activity
 
 		String cmdline = "";
 
+		String libname = "";
+
 		try
 		{
 
@@ -59,6 +61,8 @@ public class app extends Activity
 
 			cmdline = bundle.getString("command_line");
 
+			libname = bundle.getString("library_name");
+
 		}
 		catch (NameNotFoundException e)
 		{
@@ -68,6 +72,8 @@ public class app extends Activity
 		{
 			
 		}
+
+
 
 		if(prjname.substring(0, 5).equals("nord_"))
 		{
@@ -85,6 +91,27 @@ public class app extends Activity
 		//System.loadLibrary("axispixman");
 
 		//System.loadLibrary("axiscairo");
+
+		if(libname.length() > 0)
+		{
+			
+			String[] parts = libname.split(",");
+
+			for(int i = 0; i < parts.length; i++)
+			{
+				
+				String lib = parts[i];
+
+				if(lib.length() > 0)
+				{
+
+					System.loadLibrary(lib);
+
+				}
+
+			}
+
+		}
 
 		System.loadLibrary("axis_image_jpeg");
 
@@ -163,6 +190,7 @@ class TakeInfoResult
 {
 
    boolean	m_bShowKeyboard;
+   boolean	m_bHideKeyboard;
    String	m_strOpenUrl;
    
 }
@@ -181,7 +209,6 @@ class view extends View
 
 	private TakeInfoResult m_result;
 
-
     private static native void renderImpact(Bitmap  bitmap, long time_ms, TakeInfoResult result);
 
 	private static native void lButtonDown(float x, float y);
@@ -199,6 +226,8 @@ class view extends View
 	private static native void keyPreImeUp(int keycode, int iUni);
 
 	private static native void onReceivedShowKeyboard();
+
+	private static native void onReceivedHideKeyboard();
 
 
     public view(Context context, Point size)
@@ -274,6 +303,21 @@ class view extends View
 
 		}
 
+
+		if(m_result.m_bHideKeyboard)
+		{
+
+			m_result.m_bHideKeyboard = false;
+
+			onReceivedHideKeyboard();
+
+			InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+				
+			imm.showSoftInput(this, InputMethodManager.HIDE_IMPLICIT_ONLY);
+
+		}
+
+
 		if(m_result.m_strOpenUrl != null && m_result.m_strOpenUrl.length() > 0)
 		{
 
@@ -286,10 +330,13 @@ class view extends View
    @Override
    public InputConnection onCreateInputConnection(EditorInfo outAttrs)
    {
-        BaseInputConnection fic = new BaseInputConnection(this, true);
+        //BaseInputConnection fic = new BaseInputConnection(this, true); // avoid send raw events (avoid sending key up key down)
+		BaseInputConnection fic = new BaseInputConnection(this, false); // send raw events (key up key down)
         outAttrs.actionLabel = null;
-        outAttrs.inputType = InputType.TYPE_CLASS_TEXT;
-        outAttrs.imeOptions = EditorInfo.IME_ACTION_NEXT;
+//        outAttrs.inputType = InputType.TYPE_CLASS_TEXT; // if is rich editable (offer suggestions?)
+        outAttrs.inputType = InputType.TYPE_NULL; // send raw events
+        //outAttrs.imeOptions = EditorInfo.IME_ACTION_NEXT;
+		outAttrs.imeOptions = EditorInfo.IME_ACTION_DONE;
         return fic;
     }
 

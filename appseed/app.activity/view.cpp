@@ -75,6 +75,25 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
 
    }
 
+
+   {
+
+      jfieldID fid;
+
+      jmethodID mid;
+
+      jclass myclass;
+
+      jclass cls = env->GetObjectClass(result);
+
+      fid = env->GetFieldID(cls,"m_bHideKeyboard","Z");
+
+      env->SetBooleanField(result,fid,g_initdata.m_bHideKeyboard);
+
+      g_initdata.m_bHideKeyboard = false;
+
+   }
+
    if(g_initdata.m_pszOpenUrl != NULL)
    {
 
@@ -148,6 +167,15 @@ JNIEXPORT void JNICALL Java_com_ca2_view_onReceivedShowKeyboard(JNIEnv * env, jo
 {
 
    LOGI("%s\n", "Java_com_view_onReceivedShowKeyboard");
+
+}
+
+
+extern "C"
+JNIEXPORT void JNICALL Java_com_ca2_view_onReceivedHideKeyboard(JNIEnv * env,jobject  obj)
+{
+
+   LOGI("%s\n","Java_com_view_onReceivedHideKeyboard");
 
 }
 
