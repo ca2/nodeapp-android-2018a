@@ -2,10 +2,16 @@ package com.ca2;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Build;
+import android.text.Selection;
 import android.content.Context;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.EditText;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.text.Editable;
+import android.text.SpannableStringBuilder;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.KeyEvent;
@@ -172,7 +178,6 @@ public class app extends Activity
 
 		System.loadLibrary("launcher");
 
-
 		configureApp(cmdline, getApplicationContext().getCacheDir().getAbsolutePath(), size.x, size.y);
 
 		m_view = new view(this, size);
@@ -182,23 +187,117 @@ public class app extends Activity
     }
 
 
-
-
 }
+
 
 
 class TakeInfoResult
 {
 
    boolean	m_bShowKeyboard;
+
    boolean	m_bHideKeyboard;
+
    String	m_strOpenUrl;
    
 }
 
 
-class view extends View
+class view extends EditText implements View.OnKeyListener
 {
+
+
+	class MyInputConnection extends BaseInputConnection
+	{
+
+		private MyEditable mEditable;
+
+		public MyInputConnection(View targetView, boolean fullEditor)
+		{
+
+			super(targetView, fullEditor);
+
+		}
+
+		private class MyEditable extends SpannableStringBuilder
+		{
+
+			MyEditable(CharSequence source)
+			{
+        
+				super(source);
+
+			}
+
+			@Override
+			public SpannableStringBuilder replace(final int start, final int end, CharSequence tb, int tbstart, int tbend)
+			{
+
+				if (tbend > tbstart)
+				{
+
+					super.replace(0, length(), "", 0, 0);
+
+					return super.replace(0, 0, tb, tbstart, tbend);
+
+				}
+				else if (end > start)
+				{
+            
+					super.replace(0, length(), "", 0, 0);
+
+					return super.replace(0, 0, DUMMY, 0, DUMMY.length());
+
+				}
+
+				return super.replace(start, end, tb, tbstart, tbend);
+
+			}
+
+		}
+
+		@Override
+		public Editable getEditable()
+		{
+    
+			if (Build.VERSION.SDK_INT < 14)
+				return super.getEditable();
+
+			if (mEditable == null)
+			{
+        
+				mEditable = this.new MyEditable(DUMMY);
+
+				Selection.setSelection(mEditable, DUMMY.length());
+
+			}
+			else if (mEditable.length() == 0)
+			{
+        
+				mEditable.append(DUMMY);
+
+				Selection.setSelection(mEditable, DUMMY.length());
+
+			}
+
+			return mEditable;
+
+		}
+
+
+		@Override
+		public boolean deleteSurroundingText(int beforeLength, int afterLength)
+		{
+    
+			// Not called in latest Android version...
+
+			return super.deleteSurroundingText(beforeLength, afterLength);
+
+		}
+
+	}
+
+
 
     private Bitmap m_bitmap;
 
@@ -230,6 +329,10 @@ class view extends View
 
 	private static native void onReceivedHideKeyboard();
 
+	private static native void onText(String str);
+
+	private String DUMMY;
+
 
     public view(Context context, Point size)
 	{
@@ -242,34 +345,34 @@ class view extends View
 
 		setFocusableInTouchMode(true);
 
-		setOnKeyListener(new OnKeyListener()
-			{
+//		setOnKeyListener(new OnKeyListener()
+//			{
 
-				public boolean onKey(View v, int keyCode, KeyEvent event)
-				{
+//				public boolean onKey(View v, int keyCode, KeyEvent event)
+//				{
 
-	                if (event.getAction() == KeyEvent.ACTION_DOWN)
-					{
+//	                if (event.getAction() == KeyEvent.ACTION_DOWN)
+//					{
 
-						keyDown(keyCode);
+//						keyDown(keyCode);
 
-	                    return true;
+//	                    return true;
 
-		            }
-	                else if (event.getAction() == KeyEvent.ACTION_UP)
-					{
+//		            }
+//	                else if (event.getAction() == KeyEvent.ACTION_UP)
+//					{
 
-						keyUp(keyCode);
+//						keyUp(keyCode);
 
-	                    return true;
+//	                    return true;
 
-		            }
+//		            }
 
-		            return false;
+//		            return false;
 	
-				}
+//				}
 
-            });
+//            });
 
         m_iScreenW = size.x;
 
@@ -279,7 +382,19 @@ class view extends View
 
         m_lStartTime = System.currentTimeMillis();
 
+        this.setOnKeyListener(this);
+
+        // Generate a dummy buffer string
+        // Make longer or shorter as desired.
+        DUMMY = "";
+        for (int i = 0; i < 1000; i++)
+            DUMMY += "\0";
+
     }
+
+
+
+
 
     @Override
 	protected void onDraw(Canvas canvas)
@@ -316,9 +431,11 @@ class view extends View
 
 			InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 				
-			imm.showSoftInput(this, InputMethodManager.HIDE_IMPLICIT_ONLY);
+//			imm.hideSoftInputFromWindow (getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);
 
-			Log.d("com.ca2.app.view", "onDraw Soft Keyboard (Should be) Hidden");
+			imm.hideSoftInputFromWindow (getWindowToken(), 0);
+
+			Log.d("com.ca2.app.view", "onDraw Soft Keyboard (Should be) Hidden (2)");
 
 		}
 
@@ -332,24 +449,122 @@ class view extends View
     }
 
 
-   @Override
-   public InputConnection onCreateInputConnection(EditorInfo outAttrs)
-   {
-        //BaseInputConnection fic = new BaseInputConnection(this, true); // avoid send raw events (avoid sending key up key down)
-		BaseInputConnection fic = new BaseInputConnection(this, false); // send raw events (key up key down)
-        outAttrs.actionLabel = null;
-//        outAttrs.inputType = InputType.TYPE_CLASS_TEXT; // if is rich editable (offer suggestions?)
-        outAttrs.inputType = InputType.TYPE_NULL; // send raw events
-        //outAttrs.imeOptions = EditorInfo.IME_ACTION_NEXT;
-		outAttrs.imeOptions = EditorInfo.IME_ACTION_DONE;
-        return fic;
+    @Override
+    public InputConnection onCreateInputConnection(EditorInfo outAttrs)
+	{
+
+        MyInputConnection ic = new MyInputConnection(this, false);
+
+        outAttrs.inputType = InputType.TYPE_NULL;
+
+		//outAttrs.imeOptions = EditorInfo.IME_ACTION_DONE;
+
+        return ic;
+
     }
 
+
     @Override
-    public boolean onCheckIsTextEditor() 
+    public boolean onKey(View view, int keyCode, KeyEvent keyEvent)
 	{
-        return true;
+
+        int action = keyEvent.getAction();
+
+        // Catch unicode characters (even character sequeneces)
+        // But make sure we aren't catching the dummy buffer.
+        if (action == KeyEvent.ACTION_MULTIPLE)
+		{
+
+            String s = keyEvent.getCharacters();
+
+            if (!s.equals(DUMMY) && !s.equals("\n")) 
+			{
+            
+			    onText(s);
+
+            }
+
+        }
+
+        // Catch key presses...
+        else if (action == KeyEvent.ACTION_DOWN)
+		{
+
+			keyPreImeDown(keyCode, keyEvent.getUnicodeChar());
+
+//            switch (keyCode) {
+//                case KeyEvent.KEYCODE_DEL:
+//                    ...
+//                    break;
+//                case KeyEvent.KEYCODE_ENTER:
+//                    ...
+//                    break;
+//                case KeyEvent.KEYCODE_TAB:
+//                    ...
+//                    break;
+//                default:
+//                   char ch = (char)keyEvent.getUnicodeChar();
+//                    if (ch != '\0') {
+//                        ...
+//                   }
+//                    break;
+//            }
+        }
+        else if (action == KeyEvent.ACTION_UP)
+		{
+
+			keyPreImeUp(keyCode, keyEvent.getUnicodeChar());
+
+		}
+
+        return false;
     }
+
+
+//	@Override
+//	public InputConnection onCreateInputConnection(EditorInfo outAttrs)
+//	{
+    
+//		outAttrs.actionLabel = null;
+
+//		outAttrs.label = "Test text";
+
+//		outAttrs.inputType = InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS;
+
+//		outAttrs.imeOptions = EditorInfo.IME_ACTION_DONE;
+
+//		return new inputDislexia(this, true);
+
+//	}
+
+
+//	@Override
+//	public boolean onCheckIsTextEditor()
+//	{
+    
+//		return true;
+
+//	}
+
+
+//   @Override
+//   public InputConnection onCreateInputConnection(EditorInfo outAttrs)
+//   {
+//		BaseInputConnection fic = new BaseInputConnection(this, true); // avoid send raw events (avoid sending key up key down)
+//		BaseInputConnection fic = new BaseInputConnection(this, false); // send raw events (key up key down)
+//		outAttrs.actionLabel = null;
+//      outAttrs.inputType = InputType.TYPE_CLASS_TEXT; // if is rich editable (offer suggestions?)
+//		outAttrs.inputType = InputType.TYPE_NULL; // send raw events
+//		outAttrs.imeOptions = EditorInfo.IME_ACTION_NEXT;
+//		outAttrs.imeOptions = EditorInfo.IME_ACTION_DONE;
+//      return fic;
+//	}
+
+//  @Override
+//  public boolean onCheckIsTextEditor() 
+//	{
+//		return true;
+//  }
 
 	public boolean onTouchEvent (final MotionEvent ev)
 	{
@@ -401,14 +616,20 @@ class view extends View
 	}
 
 
-
     private void openUrl( String url )
     {
-        Uri uriUrl = Uri.parse( url );
+        
+		Uri uriUrl = Uri.parse( url );
+
         Intent intent = new Intent(Intent.ACTION_VIEW, uriUrl);
+
         intent.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
+
         getContext().startActivity( intent );
+
     } 
+
+
 }
 
 

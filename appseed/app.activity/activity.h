@@ -42,6 +42,14 @@ extern PFN_mouse l_button_up;
 
 
 
+typedef void FN_text(const wchar_t * pwch, size_t len);
+
+typedef FN_text * PFN_text;
+
+extern PFN_text on_text;
+
+
+
 typedef void FN_key(int keyCode, int iUni);
 
 typedef FN_key * PFN_key;

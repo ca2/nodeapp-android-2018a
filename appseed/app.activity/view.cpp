@@ -217,4 +217,26 @@ JNIEXPORT void JNICALL Java_com_ca2_view_lButtonUp(JNIEnv * env, jobject  obj, j
 }
 
 
+extern "C"
+JNIEXPORT void JNICALL Java_com_ca2_view_onText(JNIEnv * env,jobject  obj,jstring bytes)
+{
+
+   LOGI("%s\n","Java_com_ca2_view_onText");
+
+   if(bytes == NULL)
+      return;
+   
+   const wchar_t * utf16 = (wchar_t *)env->GetStringChars(bytes,NULL);
+
+   if(utf16 == NULL)
+      return;
+   
+   size_t length = (size_t)env->GetStringLength(bytes);
+   
+   on_text(utf16,length);
+
+   env->ReleaseStringChars(bytes,(jchar *)utf16);
+   
+}
+
 

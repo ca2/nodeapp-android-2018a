@@ -20,6 +20,8 @@ PFN_key key_down = NULL;
 
 PFN_key key_up = NULL;
 
+PFN_text on_text = NULL;
+
 
 
 void * load_lib(const char * l)
@@ -127,6 +129,18 @@ void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, con
       {
 
          LOGE("Fatal: undefined symbol \"android_key_up\" from libbase.so");
+
+         exit(1);
+
+      }
+
+
+      on_text = (PFN_text)dlsym(handle,"android_on_text");
+
+      if(!on_text)
+      {
+
+         LOGE("Fatal: undefined symbol \"android_on_text\" from libbase.so");
 
          exit(1);
 
