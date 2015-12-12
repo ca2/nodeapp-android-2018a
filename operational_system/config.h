@@ -64,3 +64,7 @@ typedef int int_bool;
 #define static_inline inline
 
 
+#define FONT_SANS "sans-serif"
+
+
+
