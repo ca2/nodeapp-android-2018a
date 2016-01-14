@@ -122,6 +122,9 @@ return ::ca::thread_priority_normal;
 #include <semaphore.h>
 
 
+#include "_stdint.h"
+
+
 
 #define _gmtime64 gmtime
 #define _stricmp  stricmp

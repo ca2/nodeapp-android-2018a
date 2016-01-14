@@ -65,6 +65,14 @@ typedef int int_bool;
 
 
 #define FONT_SANS "sans-serif"
+#define FONT_SERIF "FreeSerif"
+#define FONT_SANS_EX "Liberation Sans"
+#define FONT_SERIF_EX "Liberation Serif"
+#define FONT_SANS_FX "Ubuntu"
+#define FONT_SERIF_FX "Bitstream Charter"
+
+
+
 
 
 
