@@ -150,6 +150,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app.activity", "..\..\appse
 	EndProjectSection
 EndProject
 Project("{39E2626F-3545-4960-A6E8-258AD8476CE5}") = "nord_app_core_hellomultiverse", "..\..\appseed\app\nord_app_core_hellomultiverse.androidproj", "{19841115-1951-0422-AF6D-98A0656F2704}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7EE7598E-8C77-4D1A-B248-6E65BD72A8F6} = {7EE7598E-8C77-4D1A-B248-6E65BD72A8F6}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axis_image_jpeg", "..\..\..\app\axis\image_jpeg\nord_axis_image_jpeg.vcxproj", "{3C4A93D3-9B9B-4EA9-8BCF-A53BE3A0F9B5}"
 	ProjectSection(ProjectDependencies) = postProject

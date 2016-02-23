@@ -173,7 +173,7 @@ void native_activity_android_start(android_init_data * pinitdata)
 
    psystem->m_pandroidinitdata = pinitdata;
    
-	psystem->m_durationRunLock = millis(1);
+   //	psystem->m_durationRunLock = millis(1);
 
 	//psystem->::exception::translator::attach();
 
