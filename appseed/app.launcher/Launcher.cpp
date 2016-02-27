@@ -66,7 +66,7 @@ static void engine_draw_frame(oswindow window) {
 	//	return;
 	//}
 
-	window->get_user_interaction()->_001UpdateScreen();
+	window->get_user_interaction()->_001UpdateWindow();
 
 	// Just fill the screen with a color.
 	//glClearColor(((float)window->m_engine.m_pstate->x) / window->m_engine.width, window->m_engine.m_pstate->angle,
