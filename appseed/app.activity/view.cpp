@@ -20,43 +20,44 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
 {
 
 
-	AndroidBitmapInfo  info;
-	void*              pixels;
-	int                ret;
-	//static Stats       stats;
-	static int         init;
+   AndroidBitmapInfo  info;
+   void*              pixels;
+   int                ret;
+   //static Stats       stats;
+   static int         init;
 
-	if (!init)
+   if (!init)
    {
       init = 1;
       start(g_iScreenW, g_iScreenH, g_pszCommandLine, g_pszCacheDir);
-		//init_tables();
-		//stats_init(&stats);
-	}
+      //init_tables();
+      //stats_init(&stats);
+   }
 
-	if ((ret = AndroidBitmap_getInfo(env, bitmap, &info)) < 0) {
-		LOGE("AndroidBitmap_getInfo() failed ! error=%d", ret);
-		return;
-	}
+   if ((ret = AndroidBitmap_getInfo(env, bitmap, &info)) < 0) {
+      LOGE("AndroidBitmap_getInfo() failed ! error=%d", ret);
+      return;
+   }
 
-	if (info.format != ANDROID_BITMAP_FORMAT_RGBA_8888) {
-		LOGE("Bitmap format is not RGB_565 !");
-		return;
-	}
+   if (info.format != ANDROID_BITMAP_FORMAT_RGBA_8888) {
+      LOGE("Bitmap format is not RGB_565 !");
+      return;
+   }
 
-	if ((ret = AndroidBitmap_lockPixels(env, bitmap, &pixels)) < 0) {
-		LOGE("AndroidBitmap_lockPixels() failed ! error=%d", ret);
-	}
+   if ((ret = AndroidBitmap_lockPixels(env, bitmap, &pixels)) < 0) {
+      LOGE("AndroidBitmap_lockPixels() failed ! error=%d", ret);
+   }
 
-	//stats_startFrame(&stats);
+   //stats_startFrame(&stats);
 
-	/* Now fill the values with a nice little plasma */
+   /* Now fill the values with a nice little plasma */
    g_android_fill_plasma(&info, pixels, time_ms);
 
-	AndroidBitmap_unlockPixels(env, bitmap);
+   AndroidBitmap_unlockPixels(env, bitmap);
 
-	//stats_endFrame(&stats);
+   //stats_endFrame(&stats);
 
+   if(g_initdata.m_bShowKeyboard)
    {
 
       jfieldID fid;
@@ -75,7 +76,7 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
 
    }
 
-
+   if(g_initdata.m_bHideKeyboard)
    {
 
       jfieldID fid;
@@ -88,12 +89,7 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
 
       fid = env->GetFieldID(cls,"m_bHideKeyboard","Z");
 
-      if(g_initdata.m_bHideKeyboard)
-      {
-
-         LOGI("%s\n", "Java_com_ca2_view_renderImpact g_initdata.m_bHideKeyboard : true");
-
-      }
+      LOGI("%s\n", "Java_com_ca2_view_renderImpact g_initdata.m_bHideKeyboard : true");
 
       env->SetBooleanField(result,fid,g_initdata.m_bHideKeyboard);
 
@@ -121,7 +117,7 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
       if(NULL == message) return;
 
       // modify the instance variables
-     env->SetObjectField(result,fid,message);
+      env->SetObjectField(result,fid,message);
 
 
       free((void *) g_initdata.m_pszOpenUrl);
@@ -136,7 +132,7 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
 extern "C"
 JNIEXPORT void JNICALL Java_com_ca2_view_keyDown(JNIEnv * env, jobject  obj, jint keyCode)
 {
-   
+
    LOGI("%s\n", "Java_com_ca2_view_keyDown");
 
 }
@@ -200,7 +196,7 @@ JNIEXPORT void JNICALL Java_com_ca2_view_lButtonDown(JNIEnv * env, jobject  obj,
 extern "C"
 JNIEXPORT void JNICALL Java_com_ca2_view_mouseMove(JNIEnv * env, jobject  obj, jfloat x, jfloat y)
 {
-   
+
    mouse_move(x, y);
 
 }
@@ -225,18 +221,18 @@ JNIEXPORT void JNICALL Java_com_ca2_view_onText(JNIEnv * env,jobject  obj,jstrin
 
    if(bytes == NULL)
       return;
-   
+
    const wchar_t * utf16 = (wchar_t *)env->GetStringChars(bytes,NULL);
 
    if(utf16 == NULL)
       return;
-   
+
    size_t length = (size_t)env->GetStringLength(bytes);
-   
+
    on_text(utf16,length);
 
    env->ReleaseStringChars(bytes,(jchar *)utf16);
-   
+
 }
 
 
