@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aqua", "..\..\..\app\appseed\aqua\nord_aqua.vcxproj", "{BD207BC4-C08B-4A2D-B754-F3BD46AD3098}"
 EndProject
@@ -147,6 +147,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app_cidadedecuritiba_alphac
 		{02207BC4-C08B-4A2D-B754-F3BD46AD3098} = {02207BC4-C08B-4A2D-B754-F3BD46AD3098}
 		{03207BC4-C08B-4A2D-B754-F3BD46AD3098} = {03207BC4-C08B-4A2D-B754-F3BD46AD3098}
 		{04207BC4-C08B-4A2D-B754-F3BD46AD3098} = {04207BC4-C08B-4A2D-B754-F3BD46AD3098}
+		{7F61A6F3-4ED9-4460-9270-4EA7CB00E634} = {7F61A6F3-4ED9-4460-9270-4EA7CB00E634}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axis_image_jpeg", "..\..\..\app\axis\image_jpeg\nord_axis_image_jpeg.vcxproj", "{3C4A93D3-9B9B-4EA9-8BCF-A53BE3A0F9B5}"
@@ -168,6 +169,15 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aurapcre", "..\..\..\app\au
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pcre", "..\..\..\app\appseed\pcre\nord_pcre.vcxproj", "{7EE7598E-8C77-4D1A-B248-6E65BD72A8F6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gcom", "..\..\..\app-core\appseed\gcom\nord_gcom.vcxproj", "{7F61A6F3-4ED9-4460-9270-4EA7CB00E634}"
+	ProjectSection(ProjectDependencies) = postProject
+		{16AB3478-F401-43C0-8BF1-A19F28802711} = {16AB3478-F401-43C0-8BF1-A19F28802711}
+		{02207BC4-C08B-4A2D-B754-F3BD46AD3098} = {02207BC4-C08B-4A2D-B754-F3BD46AD3098}
+		{03207BC4-C08B-4A2D-B754-F3BD46AD3098} = {03207BC4-C08B-4A2D-B754-F3BD46AD3098}
+		{04207BC4-C08B-4A2D-B754-F3BD46AD3098} = {04207BC4-C08B-4A2D-B754-F3BD46AD3098}
+		{BD207BC4-C08B-4A2D-B754-F3BD46AD3098} = {BD207BC4-C08B-4A2D-B754-F3BD46AD3098}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -478,6 +488,16 @@ Global
 		{7EE7598E-8C77-4D1A-B248-6E65BD72A8F6}.stage|x64.ActiveCfg = stage|x86
 		{7EE7598E-8C77-4D1A-B248-6E65BD72A8F6}.stage|x86.ActiveCfg = stage|x86
 		{7EE7598E-8C77-4D1A-B248-6E65BD72A8F6}.stage|x86.Build.0 = stage|x86
+		{7F61A6F3-4ED9-4460-9270-4EA7CB00E634}.basis|ARM.ActiveCfg = basis|ARM
+		{7F61A6F3-4ED9-4460-9270-4EA7CB00E634}.basis|ARM.Build.0 = basis|ARM
+		{7F61A6F3-4ED9-4460-9270-4EA7CB00E634}.basis|x64.ActiveCfg = basis|x86
+		{7F61A6F3-4ED9-4460-9270-4EA7CB00E634}.basis|x86.ActiveCfg = basis|x86
+		{7F61A6F3-4ED9-4460-9270-4EA7CB00E634}.basis|x86.Build.0 = basis|x86
+		{7F61A6F3-4ED9-4460-9270-4EA7CB00E634}.stage|ARM.ActiveCfg = stage|ARM
+		{7F61A6F3-4ED9-4460-9270-4EA7CB00E634}.stage|ARM.Build.0 = stage|ARM
+		{7F61A6F3-4ED9-4460-9270-4EA7CB00E634}.stage|x64.ActiveCfg = stage|x86
+		{7F61A6F3-4ED9-4460-9270-4EA7CB00E634}.stage|x86.ActiveCfg = stage|x86
+		{7F61A6F3-4ED9-4460-9270-4EA7CB00E634}.stage|x86.Build.0 = stage|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

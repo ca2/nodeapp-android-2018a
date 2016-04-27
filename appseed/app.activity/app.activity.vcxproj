@@ -35,6 +35,7 @@
     <UseOfStl>gnustl_shared</UseOfStl>
     <PlatformToolset>Gcc_4_9</PlatformToolset>
     <ThumbMode>Disabled</ThumbMode>
+    <AndroidAPILevel>android-18</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
