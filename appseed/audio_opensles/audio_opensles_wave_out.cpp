@@ -1,12 +1,13 @@
 #include "framework.h"
 
 
+void bqPlayerCallback(SLAndroidSimpleBufferQueueItf bq, void *context);
 
 namespace multimedia
 {
 
 
-   namespace audio_alsa
+   namespace audio_opensles
    {
 
 
@@ -14,7 +15,7 @@ namespace multimedia
          object(papp),
          ::thread(papp),
         wave_base(papp),
-         snd_pcm(papp),
+         engine(papp),
          ::multimedia::audio::wave_out(papp)
       {
 
@@ -70,12 +71,12 @@ namespace multimedia
       ::multimedia::e_result wave_out::wave_out_open(thread * pthreadCallback, int32_t iBufferCount, int32_t iBufferSampleCount)
       {
          single_lock sLock(&m_mutex, TRUE);
-         if(m_ppcm != NULL &&
+         if(engineObject != NULL &&
             m_estate != state_initial)
             return result_success;
          m_pthreadCallback = pthreadCallback;
          ::multimedia::e_result mmr;
-         ASSERT(m_ppcm == NULL);
+         ASSERT(engineObject == NULL);
          ASSERT(m_estate == state_initial);
 
          //m_pwaveformat->wFormatTag = WAVE_FORMAT_PCM;
@@ -87,116 +88,116 @@ namespace multimedia
          m_pwaveformat->nAvgBytesPerSec = m_pwaveformat->nSamplesPerSec * m_pwaveformat->nBlockAlign;
          m_pwaveformat->cbSize = 0;
 
-         if((m_mmr = this->snd_pcm_open(SND_PCM_STREAM_PLAYBACK)) != result_success)
-         {
+         //if((m_mmr = this->snd_pcm_open(SND_PCM_STREAM_PLAYBACK)) != result_success)
+         //{
 
-            return result_error;
+         //   return result_error;
 
-         }
-
-
-
-         uint32_t uiBufferSizeLog2;
-         uint32_t uiBufferSize;
-         uint32_t uiAnalysisSize;
-         uint32_t uiAllocationSize;
-         uint32_t uiInterestSize;
-         uint32_t uiSkippedSamplesCount;
-         uint32_t uiBufferCount = iBufferCount;
-
-         if(m_pwaveformat->nSamplesPerSec == 44100)
-         {
-            uiBufferSizeLog2 = 16;
-            uiBufferSize = m_pwaveformat->nChannels * 2 * iBufferSampleCount; // 512 kbytes
-            uiAnalysisSize = 4 * 1 << uiBufferSizeLog2;
-            if(iBufferCount > 0)
-            {
-               uiAllocationSize = iBufferCount * uiAnalysisSize;
-            }
-            else
-            {
-               uiAllocationSize = 8 * uiAnalysisSize;
-            }
-            uiInterestSize = 200;
-            uiSkippedSamplesCount = 2;
-         }
-         else if(m_pwaveformat->nSamplesPerSec == 22050)
-         {
-            uiBufferSizeLog2 = 10;
-            uiBufferSize = 4 * 1 << uiBufferSizeLog2;
-            uiAnalysisSize = 4 * 1 << uiBufferSizeLog2;
-            uiAllocationSize = 4 * uiAnalysisSize;
-            uiInterestSize = 200;
-            uiSkippedSamplesCount = 1;
-         }
-         else if(m_pwaveformat->nSamplesPerSec == 11025)
-         {
-            uiBufferSizeLog2 = 10;
-            uiBufferSize = 2 * 1 << uiBufferSizeLog2;
-            uiAnalysisSize = 2 * 1 << uiBufferSizeLog2;
-            uiAllocationSize = 4 * uiAnalysisSize;
-            uiInterestSize = 200;
-            uiSkippedSamplesCount = 1;
-         }
-
-         //uiBufferCount = 1;
-
-         wave_out_get_buffer()->PCMOutOpen(this, uiBufferSize, uiBufferCount, 128, m_pwaveformat, m_pwaveformat);
-
-         m_pprebuffer->open(this, m_pwaveformat->nChannels, uiBufferCount, iBufferSampleCount); // group sample count
-
-         int iFrameSize = (m_pwaveformat->nChannels * m_pwaveformat->wBitsPerSample) / 8;
-
-         int err;
-
-         snd_pcm_sw_params_alloca(&m_pswparams);
-
-         /* get the current m_pswparams */
-         err = snd_pcm_sw_params_current(m_ppcm, m_pswparams);
-
-         if (err < 0)
-         {
-
-            TRACE("Unable to determine current m_pswparams for playback: %s\n", snd_strerror(err));
-
-            return result_error;
-
-         }
+         //}
 
 
-         /* start the transfer when the buffer is almost full: */
-         /* (buffer_size / avail_min) * avail_min */
-         err = snd_pcm_sw_params_set_start_threshold(m_ppcm, m_pswparams, (buffer_size / period_size) * period_size);
-         if (err < 0)
-         {
 
-            TRACE("Unable to set start threshold mode for playback: %s\n", snd_strerror(err));
+         //uint32_t uiBufferSizeLog2;
+         //uint32_t uiBufferSize;
+         //uint32_t uiAnalysisSize;
+         //uint32_t uiAllocationSize;
+         //uint32_t uiInterestSize;
+         //uint32_t uiSkippedSamplesCount;
+         //uint32_t uiBufferCount = iBufferCount;
 
-            return result_error;
+         //if(m_pwaveformat->nSamplesPerSec == 44100)
+         //{
+         //   uiBufferSizeLog2 = 16;
+         //   uiBufferSize = m_pwaveformat->nChannels * 2 * iBufferSampleCount; // 512 kbytes
+         //   uiAnalysisSize = 4 * 1 << uiBufferSizeLog2;
+         //   if(iBufferCount > 0)
+         //   {
+         //      uiAllocationSize = iBufferCount * uiAnalysisSize;
+         //   }
+         //   else
+         //   {
+         //      uiAllocationSize = 8 * uiAnalysisSize;
+         //   }
+         //   uiInterestSize = 200;
+         //   uiSkippedSamplesCount = 2;
+         //}
+         //else if(m_pwaveformat->nSamplesPerSec == 22050)
+         //{
+         //   uiBufferSizeLog2 = 10;
+         //   uiBufferSize = 4 * 1 << uiBufferSizeLog2;
+         //   uiAnalysisSize = 4 * 1 << uiBufferSizeLog2;
+         //   uiAllocationSize = 4 * uiAnalysisSize;
+         //   uiInterestSize = 200;
+         //   uiSkippedSamplesCount = 1;
+         //}
+         //else if(m_pwaveformat->nSamplesPerSec == 11025)
+         //{
+         //   uiBufferSizeLog2 = 10;
+         //   uiBufferSize = 2 * 1 << uiBufferSizeLog2;
+         //   uiAnalysisSize = 2 * 1 << uiBufferSizeLog2;
+         //   uiAllocationSize = 4 * uiAnalysisSize;
+         //   uiInterestSize = 200;
+         //   uiSkippedSamplesCount = 1;
+         //}
 
-         }
+         ////uiBufferCount = 1;
 
-         /* allow the transfer when at least period_size samples can be processed */
-         err = snd_pcm_sw_params_set_avail_min(m_ppcm, m_pswparams, period_size);
-         if (err < 0)
-         {
+         //wave_out_get_buffer()->PCMOutOpen(this, uiBufferSize, uiBufferCount, 128, m_pwaveformat, m_pwaveformat);
 
-            TRACE("Unable to set avail min for playback: %s\n", snd_strerror(err));
+         //m_pprebuffer->open(this, m_pwaveformat->nChannels, uiBufferCount, iBufferSampleCount); // group sample count
 
-            return result_error;
+         //int iFrameSize = (m_pwaveformat->nChannels * m_pwaveformat->wBitsPerSample) / 8;
 
-         }
+         //int err;
 
-         /* write the parameters to the playback device */
-         err = snd_pcm_sw_params(m_ppcm, m_pswparams);
-         if (err < 0)
-         {
+         //snd_pcm_sw_params_alloca(&m_pswparams);
 
-            TRACE("Unable to set sw params for playback: %s\n", snd_strerror(err));
+         ///* get the current m_pswparams */
+         //err = snd_pcm_sw_params_current(m_ppcm, m_pswparams);
 
-            return result_error;
+         //if (err < 0)
+         //{
 
-         }
+         //   TRACE("Unable to determine current m_pswparams for playback: %s\n", snd_strerror(err));
+
+         //   return result_error;
+
+         //}
+
+
+         ///* start the transfer when the buffer is almost full: */
+         ///* (buffer_size / avail_min) * avail_min */
+         //err = snd_pcm_sw_params_set_start_threshold(m_ppcm, m_pswparams, (buffer_size / period_size) * period_size);
+         //if (err < 0)
+         //{
+
+         //   TRACE("Unable to set start threshold mode for playback: %s\n", snd_strerror(err));
+
+         //   return result_error;
+
+         //}
+
+         ///* allow the transfer when at least period_size samples can be processed */
+         //err = snd_pcm_sw_params_set_avail_min(m_ppcm, m_pswparams, period_size);
+         //if (err < 0)
+         //{
+
+         //   TRACE("Unable to set avail min for playback: %s\n", snd_strerror(err));
+
+         //   return result_error;
+
+         //}
+
+         ///* write the parameters to the playback device */
+         //err = snd_pcm_sw_params(m_ppcm, m_pswparams);
+         //if (err < 0)
+         //{
+
+         //   TRACE("Unable to set sw params for playback: %s\n", snd_strerror(err));
+
+         //   return result_error;
+
+         //}
 
          m_estate = state_opened;
          return result_success;
@@ -211,12 +212,13 @@ namespace multimedia
 
          single_lock sLock(&m_mutex, TRUE);
 
-         if(m_ppcm != NULL && m_estate != state_initial)
+         if(engineObject != NULL && m_estate != state_initial)
             return result_success;
 
          m_pthreadCallback = pthreadCallback;
 
-         ASSERT(m_ppcm == NULL);
+         int period_size = 4096;
+         ASSERT(engineObject == NULL);
 
          ASSERT(m_estate == state_initial);
 
@@ -228,19 +230,144 @@ namespace multimedia
          m_pwaveformat->nAvgBytesPerSec   = m_pwaveformat->nSamplesPerSec * m_pwaveformat->nBlockAlign;
          m_pwaveformat->cbSize            = 0;
 
-         if((m_mmr = this->snd_pcm_open(SND_PCM_STREAM_PLAYBACK)) != result_success)
-         {
-
-            return m_mmr;
-
-         }
-
+         SLresult result;
+         SLuint32 sr = uiSamplesPerSec;
+         SLuint32  channels = uiChannelCount;
          uint32_t uiBufferSizeLog2;
          uint32_t uiBufferSize;
          uint32_t uiAnalysisSize;
          uint32_t uiAllocationSize;
          uint32_t uiInterestSize;
          uint32_t uiSkippedSamplesCount;
+         int err;
+         if (create() != SL_RESULT_SUCCESS)
+            return ::multimedia::result_error;
+
+            // configure audio source
+            SLDataLocator_AndroidSimpleBufferQueue loc_bufq =
+            {
+               SL_DATALOCATOR_ANDROIDSIMPLEBUFFERQUEUE,
+               queuesize
+            };
+
+            switch (sr) {
+
+            case 8000:
+               sr = SL_SAMPLINGRATE_8;
+               break;
+            case 11025:
+               sr = SL_SAMPLINGRATE_11_025;
+               break;
+            case 16000:
+               sr = SL_SAMPLINGRATE_16;
+               break;
+            case 22050:
+               sr = SL_SAMPLINGRATE_22_05;
+               break;
+            case 24000:
+               sr = SL_SAMPLINGRATE_24;
+               break;
+            case 32000:
+               sr = SL_SAMPLINGRATE_32;
+               break;
+            case 44100:
+               sr = SL_SAMPLINGRATE_44_1;
+               break;
+            case 48000:
+               sr = SL_SAMPLINGRATE_48;
+               break;
+            case 64000:
+               sr = SL_SAMPLINGRATE_64;
+               break;
+            case 88200:
+               sr = SL_SAMPLINGRATE_88_2;
+               break;
+            case 96000:
+               sr = SL_SAMPLINGRATE_96;
+               break;
+            case 192000:
+               sr = SL_SAMPLINGRATE_192;
+               break;
+            default:
+               return ::multimedia::result_error;
+            }
+
+            {
+
+               const SLInterfaceID ids[] = { SL_IID_VOLUME };
+               const SLboolean req[] = { SL_BOOLEAN_FALSE };
+               result = (*engineEngine)->CreateOutputMix(engineEngine, &(outputMixObject), 1, ids, req);
+               DEBUG_SND("engineEngine=%p", engineEngine);
+               ASSERT(!result);
+               if (result != SL_RESULT_SUCCESS) goto end_openaudio;
+
+               // realize the output mix
+               result = (*outputMixObject)->Realize(outputMixObject, SL_BOOLEAN_FALSE);
+               DEBUG_SND("Realize=%d", result);
+               ASSERT(!result);
+               if (result != SL_RESULT_SUCCESS) goto end_openaudio;
+
+               int speakers;
+               if (channels > 1)
+                  speakers = SL_SPEAKER_FRONT_LEFT | SL_SPEAKER_FRONT_RIGHT;
+               else speakers = SL_SPEAKER_FRONT_CENTER;
+               SLDataFormat_PCM format_pcm = { SL_DATAFORMAT_PCM,channels, sr,
+                  SL_PCMSAMPLEFORMAT_FIXED_16, SL_PCMSAMPLEFORMAT_FIXED_16,
+                  speakers, SL_BYTEORDER_LITTLEENDIAN };
+
+               SLDataSource audioSrc = { &loc_bufq, &format_pcm };
+
+               // configure audio sink
+               SLDataLocator_OutputMix loc_outmix = { SL_DATALOCATOR_OUTPUTMIX, outputMixObject };
+               SLDataSink audioSnk = { &loc_outmix, NULL };
+
+               // create audio player
+               const SLInterfaceID ids1[] = { SL_IID_ANDROIDSIMPLEBUFFERQUEUE, SL_IID_VOLUME };
+               const SLboolean req1[] = { SL_BOOLEAN_TRUE, SL_BOOLEAN_TRUE };
+               result = (*engineEngine)->CreateAudioPlayer(engineEngine,
+                  &(bqPlayerObject), &audioSrc, &audioSnk, 2, ids1, req1);
+               //DEBUG_SND("bqPlayerObject=%p", bqPlayerObject);
+               //ASSERT(!result);
+               if (result != SL_RESULT_SUCCESS) goto end_openaudio;
+
+               // realize the player
+               result = (*bqPlayerObject)->Realize(bqPlayerObject, SL_BOOLEAN_FALSE);
+               //DEBUG_SND("Realize=%d", result);
+               //ASSERT(!result);
+               if (result != SL_RESULT_SUCCESS) goto end_openaudio;
+
+               // get the play interface
+               result = (*bqPlayerObject)->GetInterface(bqPlayerObject, SL_IID_PLAY, &(bqPlayerPlay));
+               //DEBUG_SND("bqPlayerPlay=%p", bqPlayerPlay);
+               //ASSERT(!result);
+               if (result != SL_RESULT_SUCCESS) goto end_openaudio;
+
+               // get the volume interface
+               result = (*bqPlayerObject)->GetInterface(bqPlayerObject, SL_IID_VOLUME, &(bqPlayerVolume));
+               //DEBUG_SND("bqPlayerVolume=%p", bqPlayerVolume);
+               //ASSERT(!result);
+               if (result != SL_RESULT_SUCCESS) goto end_openaudio;
+
+               // get the buffer queue interface
+               result = (*bqPlayerObject)->GetInterface(bqPlayerObject, SL_IID_ANDROIDSIMPLEBUFFERQUEUE,
+                  &(bqPlayerBufferQueue));
+               //DEBUG_SND("bqPlayerBufferQueue=%p", bqPlayerBufferQueue);
+               //ASSERT(!result);
+               if (result != SL_RESULT_SUCCESS) goto end_openaudio;
+
+               // register callback on the buffer queue
+               result = (*bqPlayerBufferQueue)->RegisterCallback(bqPlayerBufferQueue, bqPlayerCallback, this);
+               //DEBUG_SND("bqPlayerCallback=%p", bqPlayerCallback);
+               //ASSERT(!result);
+               if (result != SL_RESULT_SUCCESS) goto end_openaudio;
+
+               // set the player's state to playing
+               result = (*bqPlayerPlay)->SetPlayState(bqPlayerPlay, SL_PLAYSTATE_PLAYING);
+               //DEBUG_SND("SetPlayState=%d", result);
+               //ASSERT(!result);
+
+            }
+
 
          iBufferSampleCount      = period_size;
 
@@ -290,55 +417,22 @@ namespace multimedia
 
          m_pprebuffer->SetMinL1BufferCount(wave_out_get_buffer()->GetBufferCount());
 
-         int err;
+         
 
-         snd_pcm_sw_params_alloca(&m_pswparams);
 
-         // get the current m_pswparams
-         if((err = snd_pcm_sw_params_current(m_ppcm, m_pswparams)) < 0)
-         {
-
-            TRACE("Unable to determine current m_pswparams for playback: %s\n", snd_strerror(err));
-
-            return result_error;
-
-         }
-
-         // start the transfer when the buffer is almost full:
-         if((err = snd_pcm_sw_params_set_start_threshold(m_ppcm, m_pswparams, buffer_size)) < 0)
-         {
-
-            TRACE("Unable to set start threshold mode for playback: %s\n", snd_strerror(err));
-
-            return result_error;
-
-         }
-
-         // allow the transfer when at least period_size samples can be processed
-         if((err = snd_pcm_sw_params_set_avail_min(m_ppcm, m_pswparams, period_size)) < 0)
-         {
-
-            TRACE("Unable to set avail min for playback: %s\n", snd_strerror(err));
-
-            return result_error;
-
-         }
-
-         // write the parameters to the playback device
-         if((err = snd_pcm_sw_params(m_ppcm, m_pswparams)) < 0)
-         {
-
-            TRACE("Unable to set sw params for playback: %s\n", snd_strerror(err));
-
-            return result_error;
-
-         }
 
          m_estate = state_opened;
 
          m_epurpose = epurpose;
-
-         return result_success;
+      end_openaudio:
+         if (result == SL_RESULT_SUCCESS)
+         {
+            return ::multimedia::result_success;
+         }
+         else
+         {
+            return ::multimedia::result_error;
+         }
 
       }
 
@@ -359,25 +453,25 @@ namespace multimedia
 
          ::multimedia::e_result mmr;
 
-/*         int32_t i, iSize;
 
-         iSize =  wave_out_get_buffer()->GetBufferCount();
+         // destroy buffer queue audio player object, and invalidate all associated interfaces
+         if (bqPlayerObject != NULL) {
+            (*bqPlayerObject)->Destroy(bqPlayerObject);
+            bqPlayerObject = NULL;
+            bqPlayerVolume = NULL;
+            bqPlayerPlay = NULL;
+            bqPlayerBufferQueue = NULL;
+            bqPlayerEffectSend = NULL;
+         }
 
-         for(i = 0; i < iSize; i++)
-         {
+         // destroy output mix object, and invalidate all associated interfaces
+         if (outputMixObject != NULL) {
+            (*outputMixObject)->Destroy(outputMixObject);
+            outputMixObject = NULL;
+         }
 
-            if(result_success != (mmr = waveOutUnprepareHeader(m_ppcm, wave_hdr(i), sizeof(WAVEHDR))))
-            {
-               TRACE("ERROR OPENING Unpreparing INPUT DEVICE buffer =%d", mmr);
-            }
 
-            delete wave_hdr(i);
-
-         }*/
-
-         mmr = this->snd_pcm_close();
-
-         m_ppcm = NULL;
+         destroy();
 
          ::multimedia::audio::wave_out::wave_out_close();
 
@@ -407,18 +501,18 @@ namespace multimedia
 
          // waveOutReset
          // The waveOutReset function stops playback on the given
-         // waveform-audio_alsa output device and resets the current position
+         // waveform-audio_opensles output device and resets the current position
          // to zero. All pending playback buffers are marked as done and
          // returned to the application.
-         m_mmr = translate_alsa(snd_pcm_drain(m_ppcm));
+         //m_mmr = translate_alsa(snd_pcm_drain(m_ppcm));
 
 
-         if(m_mmr == result_success)
-         {
+         //if(m_mmr == result_success)
+         //{
 
             m_estate = state_opened;
 
-         }
+//         }
 
          return m_mmr;
 
@@ -436,10 +530,10 @@ namespace multimedia
 
          // waveOutReset
          // The waveOutReset function stops playback on the given
-         // waveform-audio_alsa output device and resets the current position
+         // waveform-audio_opensles output device and resets the current position
          // to zero. All pending playback buffers are marked as done and
          // returned to the application.
-         m_mmr = translate_alsa(snd_pcm_pause(m_ppcm, 1));
+         //m_mmr = translate_alsa(snd_pcm_pause(m_ppcm, 1));
 
          ASSERT(m_mmr == result_success);
 
@@ -464,10 +558,10 @@ namespace multimedia
 
          // waveOutReset
          // The waveOutReset function stops playback on the given
-         // waveform-audio_alsa output device and resets the current position
+         // waveform-audio_opensles output device and resets the current position
          // to zero. All pending playback buffers are marked as done and
          // returned to the application.
-         m_mmr = translate_alsa(snd_pcm_pause(m_ppcm, 0));
+         //m_mmr = translate_alsa(snd_pcm_pause(m_ppcm, 0));
 
          ASSERT(m_mmr == result_success);
 
@@ -486,20 +580,22 @@ namespace multimedia
 
          single_lock sLock(&m_mutex, TRUE);
 
-         if(m_ppcm != NULL)
-         {
+         //if(m_ppcm != NULL)
+         //{
 
-            snd_pcm_sframes_t frames = snd_pcm_avail_update(m_ppcm);
+         //   snd_pcm_sframes_t frames = snd_pcm_avail_update(m_ppcm);
 
-            return frames * 1000 / m_pwaveformat->nSamplesPerSec;
+         //   return frames * 1000 / m_pwaveformat->nSamplesPerSec;
 
-         }
-         else
-         {
+         //}
+         //else
+         //{
 
-            return 0;
+         //   return 0;
 
-         }
+         //}
+
+         return 0;
 
       }
 
@@ -509,15 +605,15 @@ namespace multimedia
 
          single_lock sLock(&m_mutex, TRUE);
 
-         if(m_ppcm != NULL)
-         {
+         //if(m_ppcm != NULL)
+         //{
 
-            snd_pcm_sframes_t frames = snd_pcm_avail_update(m_ppcm);
+         //   snd_pcm_sframes_t frames = snd_pcm_avail_update(m_ppcm);
 
-            return frames;
+         //   return frames;
 
-         }
-         else
+         //}
+         //else
          {
 
             return 0;
@@ -549,20 +645,21 @@ namespace multimedia
 
 
 
-      snd_pcm_t * wave_out::wave_out_get_safe_PCM()
-      {
+      //snd_pcm_t * wave_out::wave_out_get_safe_PCM()
+      //{
 
-         if(this == NULL)
-            return NULL;
+      //   if(this == NULL)
+      //      return NULL;
 
-         return m_ppcm;
+      //   return m_ppcm;
 
-      }
+      //}
 
       void * wave_out::get_os_data()
       {
 
-         return m_ppcm;
+         //return m_ppcm;
+         return NULL;
 
       }
 
@@ -628,110 +725,7 @@ namespace multimedia
 
          }
 
-         {
-
-         int result = 0;
-
-         int cptr = period_size;
-
-         ::multimedia::e_result mmr = result_success;
-
-         snd_pcm_sframes_t avail = 0;
-
-         signed short * ptr = (signed short *) wave_out_get_buffer_data(iBuffer);
-
-
-         if(m_ppcm == NULL)
-         {
-
-            goto finalize;
-
-         }
-
-         while(avail >= 0 && avail < period_size)
-         {
-
-            if((result = snd_pcm_wait (m_ppcm, 1984)) < 0)
-            {
-
-               m_estate = state_opened;
-
-               m_mmr = result_error;
-
-               TRACE("alsa wave_out wait error: %s\n", snd_strerror(result));
-
-               goto finalize;
-
-            }
-
-            avail = snd_pcm_avail_update(m_ppcm);
-
-         }
-
-         /*
-
-         int l = 0;
-         for(int i = 0; i < period_size; i++)
-         {
-            if(l %  40 < 20)
-            {
-               ptr[0] = 1000;
-               ptr[1] = 1000;
-            }
-            else
-            {
-               ptr[0] = -1000;
-               ptr[1] = -1000;
-            }
-
-            ptr+=2;
-            l++;
-         }
-
-         ptr = (signed short *) wave_out_get_buffer_data(iBuffer);
-
-         */
-
-         while (cptr > 0)
-         {
-
-            result = snd_pcm_writei(m_ppcm, ptr, cptr);
-
-            if(result == -EAGAIN)
-            {
-
-               continue;
-
-            }
-
-            if(result < 0)
-            {
-
-               if((result = underrun_recovery(result)) < 0)
-               {
-
-                  m_estate = state_opened;
-
-                  m_mmr = result_error;
-
-                  TRACE("alsa wave_out Write error: %s\n", snd_strerror(result));
-
-               }
-
-               goto finalize;
-
-            }
-
-            m_pprebuffer->m_position += result;
-
-            ptr += result * m_pwaveformat->nChannels;
-
-            cptr -= result;
-
-
-         }
-
-         }
+         (*bqPlayerBufferQueue)->Enqueue(bqPlayerBufferQueue, wave_out_get_buffer_data(iBuffer), wave_out_get_buffer_size());
 
          finalize:
 
@@ -755,14 +749,14 @@ namespace multimedia
 
          int err = 0;
 
-         if ((err = snd_pcm_prepare (m_ppcm)) < 0)
-         {
+         //if ((err = snd_pcm_prepare (m_ppcm)) < 0)
+         //{
 
-            TRACE ("cannot prepare audio interface for use (%s)\n",snd_strerror (err));
+         //   TRACE ("cannot prepare audio interface for use (%s)\n",snd_strerror (err));
 
-            return result_error;
+         //   return result_error;
 
-         }
+         //}
 
          m_mmr = ::multimedia::audio::wave_out::wave_out_start(position);
 
@@ -798,42 +792,42 @@ return false;
          else if (err == -EPIPE)
          {
 
-            // under-run
-            err = snd_pcm_prepare(m_ppcm);
+            //// under-run
+            //err = snd_pcm_prepare(m_ppcm);
 
-            if (err < 0)
-            {
+            //if (err < 0)
+            //{
 
-               TRACE("Can't recovery from underrun, prepare failed: %s\n", snd_strerror(err));
+            //   TRACE("Can't recovery from underrun, prepare failed: %s\n", snd_strerror(err));
 
-            }
-            else if (err == -ESTRPIPE)
-            {
+            //}
+            //else if (err == -ESTRPIPE)
+            //{
 
-               while ((err = snd_pcm_resume(m_ppcm)) == -EAGAIN)
-               {
+            //   while ((err = snd_pcm_resume(m_ppcm)) == -EAGAIN)
+            //   {
 
-                  sleep(1); /* wait until the suspend flag is released */
+            //      sleep(1); /* wait until the suspend flag is released */
 
-               }
+            //   }
 
-               if (err < 0)
-               {
+            //   if (err < 0)
+            //   {
 
-                  err = snd_pcm_prepare(m_ppcm);
+            //      err = snd_pcm_prepare(m_ppcm);
 
-                  if (err < 0)
-                  {
+            //      if (err < 0)
+            //      {
 
-                     TRACE("Can't recovery from suspend, prepare failed: %s\n", snd_strerror(err));
+            //         TRACE("Can't recovery from suspend, prepare failed: %s\n", snd_strerror(err));
 
-                  }
+            //      }
 
-               }
+            //   }
 
-            }
+            //}
 
-            return 0;
+            //return 0;
 
          }
 
@@ -849,7 +843,7 @@ return false;
 
       }
 
-   } // namespace audio_alsa
+   } // namespace audio_opensles
 
 
 } // namespace multimedia
@@ -859,3 +853,16 @@ return false;
 
 
 
+
+
+  // this callback handler is called every time a buffer finishes playing
+void bqPlayerCallback(SLAndroidSimpleBufferQueueItf bq, void *context)
+{
+ /*  OPENSL_STREAM *p = (OPENSL_STREAM *)context;
+
+   assert(p);
+   assert(queue);
+
+   void *data = Queue_Dequeue(queue);
+   free(data);*/
+}

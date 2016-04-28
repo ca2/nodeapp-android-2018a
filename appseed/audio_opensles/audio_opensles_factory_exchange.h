@@ -5,7 +5,7 @@ namespace multimedia
 {
 
 
-   namespace audio_alsa
+   namespace audio_opensles
    {
 
 
@@ -21,7 +21,7 @@ namespace multimedia
       };
 
 
-   } // namespace audio_alsa
+   } // namespace audio_opensles
 
 
 } // namespace multimedia

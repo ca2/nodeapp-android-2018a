@@ -5,7 +5,7 @@ namespace multimedia
 {
 
 
-   namespace audio_alsa
+   namespace audio_opensles
    {
 
 
@@ -133,7 +133,7 @@ namespace multimedia
             }
             else if(mmr == WAVERR_BADFORMAT)
             {
-               TRACE("Attempted to open with an unsupported waveform-audio_alsa format.");
+               TRACE("Attempted to open with an unsupported waveform-audio_opensles format.");
             }
             TRACE("ERROR OPENING WAVE INPUT DEVICE");
             return mmr;
@@ -499,11 +499,11 @@ Opened:
 
 /*      LPWAVEHDR wave_in::wave_hdr(int iBuffer)
       {
-         return ::multimedia::audio_alsa::get_os_data(wave_in_get_buffer(), iBuffer);
+         return ::multimedia::audio_opensles::get_os_data(wave_in_get_buffer(), iBuffer);
       }*/
 
 
-   } // namespace audio_alsa
+   } // namespace audio_opensles
 
 
 } // namespace multimedia

@@ -4,7 +4,7 @@
 namespace multimedia
 {
 
-   namespace audio_alsa
+   namespace audio_opensles
    {
 
       void translate(WAVEFORMATEX & waveformatex, ::multimedia::audio::wave_format * pwaveformat)

@@ -5,7 +5,7 @@ namespace multimedia
 {
 
 
-   namespace audio_alsa
+   namespace audio_opensles
    {
 
 
@@ -17,7 +17,7 @@ namespace multimedia
       CLASS_DECL_AUDIO_MMSYSTEM ::multimedia::e_result translate_alsa(int err);
 
 
-   } // namespace audio_alsa
+   } // namespace audio_opensles
 
 
 } // namespace multimedia

@@ -5,12 +5,12 @@ namespace multimedia
 {
 
 
-   namespace audio_alsa
+   namespace audio_opensles
    {
 
 
       class  CLASS_DECL_AUDIO_MMSYSTEM wave_out :
-         virtual public snd_pcm,
+         virtual public engine,
          virtual public ::multimedia::audio::wave_out
       {
       public:
@@ -24,7 +24,21 @@ namespace multimedia
 
          };
 
+         // output mix interfaces
+         SLObjectItf outputMixObject;
 
+         // buffer queue player interfaces
+         SLObjectItf bqPlayerObject;
+         SLPlayItf bqPlayerPlay;
+         SLVolumeItf bqPlayerVolume;
+         SLAndroidSimpleBufferQueueItf bqPlayerBufferQueue;
+         SLEffectSendItf bqPlayerEffectSend;
+
+         unsigned int outchannels;
+         unsigned int sr;
+
+         unsigned int queuesize;
+         //wQueue *queue;
          bool                    m_bWrite;
          int                     m_iBuffer;
 
@@ -45,7 +59,6 @@ namespace multimedia
          virtual ::multimedia::e_result wave_out_pause() override;
          virtual ::multimedia::e_result wave_out_restart() override;
          virtual void * get_os_data();
-         snd_pcm_t * wave_out_get_safe_PCM();
 
          virtual void wave_out_on_playback_end() override;
          virtual void wave_out_buffer_ready(int iBuffer) override;
@@ -70,7 +83,7 @@ namespace multimedia
       };
 
 
-   } // namespace audio_alsa
+   } // namespace audio_opensles
 
 
 } // namespace multimedia

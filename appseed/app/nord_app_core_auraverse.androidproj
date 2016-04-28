@@ -74,7 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\app-core\appseed\audio_decode_spotify\nord_core_audio_decode_spotify.vcxproj" />
-    <ProjectReference Include="..\..\..\app-core\appseed\gcom\nord_gcom.vcxproj" />
+    <ProjectReference Include="..\..\..\app-core\appseed\auraverse\nord_core_auraverse.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\id3lib\nord_core_id3lib.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\multimedia\nord_multimedia.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\multimedia_playlist_spotify\nord_core_multimedia_playlist_spotify.vcxproj" />
@@ -83,7 +83,6 @@
     <ProjectReference Include="..\..\..\app-veriwell\appseed\audio_decode_libmpg123\nord_veriwell_audio_decode_libmpg123.vcxproj" />
     <ProjectReference Include="..\..\..\app-veriwell\appseed\libmpg123\nord_veriwell_libmpg123.vcxproj" />
     <ProjectReference Include="..\..\..\app-veriwell\appseed\multimedia\nord_veriwell_multimedia.vcxproj" />
-    <ProjectReference Include="..\..\..\app-veriwell\appseed\auraverse\nord_core_auraverse.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\aqua\nord_aqua.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\aura\nord_aura.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\axis\nord_axis.vcxproj" />
@@ -114,6 +113,7 @@
     <ProjectReference Include="..\..\..\app\axis\zlib\nord_axiszlib.vcxproj" />
     <ProjectReference Include="..\app.activity\app.activity.vcxproj" />
     <ProjectReference Include="..\app.launcher\app.launcher.vcxproj" />
+    <ProjectReference Include="..\audio_opensles\nord_audio_opensles.vcxproj" />
   </ItemGroup>
   <ItemGroup>
     <AntProjectPropertiesFile Include="project.properties" />
