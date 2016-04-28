@@ -3,6 +3,7 @@
 
 #include "get_platform.h"
 
+#define sync base_sync
 
 /**
 * \file		src/lib/pal/linux/thread_linux.hpp
@@ -120,6 +121,8 @@ return ::ca::thread_priority_normal;
 
 
 #include <semaphore.h>
+#include <unistd.h>
+#include <sys/types.h>
 
 
 #include "_stdint.h"
@@ -509,6 +512,7 @@ typedef void * PVOID;
 
 #undef index
 #undef user
+#undef sync
 
 
 // unichar should 16 bit wide - if wchar_t is 16 bit wide in the platform

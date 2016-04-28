@@ -73,10 +73,16 @@
     <Content Include="src\com\ca2\app.java" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\app-core\appseed\audio_decode_spotify\nord_core_audio_decode_spotify.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\gcom\nord_gcom.vcxproj" />
+    <ProjectReference Include="..\..\..\app-core\appseed\id3lib\nord_core_id3lib.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\multimedia\nord_multimedia.vcxproj" />
+    <ProjectReference Include="..\..\..\app-core\appseed\multimedia_playlist_spotify\nord_core_multimedia_playlist_spotify.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\wndfrm_core\nord_wndfrm_core.vcxproj" />
     <ProjectReference Include="..\..\..\app-veriwell\appseed\asciimedia\nord_veriwell_asciimedia.vcxproj" />
+    <ProjectReference Include="..\..\..\app-veriwell\appseed\audio_decode_libmpg123\nord_veriwell_audio_decode_libmpg123.vcxproj" />
+    <ProjectReference Include="..\..\..\app-veriwell\appseed\libmpg123\nord_veriwell_libmpg123.vcxproj" />
+    <ProjectReference Include="..\..\..\app-veriwell\appseed\multimedia\nord_veriwell_multimedia.vcxproj" />
     <ProjectReference Include="..\..\..\app-veriwell\appseed\waven\nord_veriwell_waven.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\aqua\nord_aqua.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\aura\nord_aura.vcxproj" />
