@@ -131,9 +131,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axis_image_png", "..\..\..\
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aurapcre", "..\..\..\app\aura\pcre\nord_aurapcre.vcxproj", "{E3ED74CC-506F-424F-AD39-25FBEDD98C7C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{02207BC4-C08B-4A2D-B754-F3BD46AD3098} = {02207BC4-C08B-4A2D-B754-F3BD46AD3098}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pcre", "..\..\..\app\appseed\pcre\nord_pcre.vcxproj", "{7EE7598E-8C77-4D1A-B248-6E65BD72A8F6}"
 	ProjectSection(ProjectDependencies) = postProject
+		{02207BC4-C08B-4A2D-B754-F3BD46AD3098} = {02207BC4-C08B-4A2D-B754-F3BD46AD3098}
 		{E3ED74CC-506F-424F-AD39-25FBEDD98C7C} = {E3ED74CC-506F-424F-AD39-25FBEDD98C7C}
 	EndProjectSection
 EndProject
@@ -145,7 +149,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "multimedia", "..\..\..\app-
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "audio_decode_spotify", "..\..\..\app-core\appseed\audio_decode_spotify\nord_core_audio_decode_spotify.vcxproj", "{0BC7913B-149A-4F19-B331-102ABE068F3F}"
 	ProjectSection(ProjectDependencies) = postProject
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26} = {39DB4324-AE6C-4B17-A54C-7AB1864A7D26}
 		{80499837-2589-411A-BA75-5A6EE85F7CD1} = {80499837-2589-411A-BA75-5A6EE85F7CD1}
 		{7FC32F6A-F640-47BE-9762-4F92903CEC50} = {7FC32F6A-F640-47BE-9762-4F92903CEC50}
 		{16AB3478-F401-43C0-8BF1-A19F28802711} = {16AB3478-F401-43C0-8BF1-A19F28802711}
@@ -165,6 +168,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "multimedia_playlist_spotify
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "baseid3lib", "..\..\..\app-core\appseed\id3lib\nord_core_id3lib.vcxproj", "{A2A4118F-5D46-489E-90BE-7A7F29FA51C9}"
 	ProjectSection(ProjectDependencies) = postProject
+		{02207BC4-C08B-4A2D-B754-F3BD46AD3098} = {02207BC4-C08B-4A2D-B754-F3BD46AD3098}
 		{032BD6DD-0DA1-4A1F-9D36-6512B4127F7A} = {032BD6DD-0DA1-4A1F-9D36-6512B4127F7A}
 	EndProjectSection
 EndProject
@@ -175,7 +179,19 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "audio_decode_libmpg123", ".
 		{80499837-2589-411A-BA75-5A6EE85F7CD1} = {80499837-2589-411A-BA75-5A6EE85F7CD1}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "veriwell_multimedia", "..\..\..\app-veriwell\appseed\multimedia\nord_veriwell_multimedia.vcxproj", "{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app_core_auraverse", "..\..\..\app-core\appseed\auraverse\nord_core_auraverse.vcxproj", "{A9EFFD1E-2E02-4BC0-BF89-D11F8409C8DF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{80499837-2589-411A-BA75-5A6EE85F7CD1} = {80499837-2589-411A-BA75-5A6EE85F7CD1}
+		{16AB3478-F401-43C0-8BF1-A19F28802711} = {16AB3478-F401-43C0-8BF1-A19F28802711}
+		{7EE7598E-8C77-4D1A-B248-6E65BD72A8F6} = {7EE7598E-8C77-4D1A-B248-6E65BD72A8F6}
+		{02207BC4-C08B-4A2D-B754-F3BD46AD3098} = {02207BC4-C08B-4A2D-B754-F3BD46AD3098}
+		{03207BC4-C08B-4A2D-B754-F3BD46AD3098} = {03207BC4-C08B-4A2D-B754-F3BD46AD3098}
+		{04207BC4-C08B-4A2D-B754-F3BD46AD3098} = {04207BC4-C08B-4A2D-B754-F3BD46AD3098}
+	EndProjectSection
+EndProject
+Project("{39E2626F-3545-4960-A6E8-258AD8476CE5}") = "nord_app_core_auraverse", "..\..\appseed\app\nord_app_core_auraverse.androidproj", "{19851115-1953-0422-AF6D-98A065770402}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "audio_opensles", "..\..\appseed\audio_opensles\nord_audio_opensles.vcxproj", "{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}"
 	ProjectSection(ProjectDependencies) = postProject
 		{80499837-2589-411A-BA75-5A6EE85F7CD1} = {80499837-2589-411A-BA75-5A6EE85F7CD1}
 		{16AB3478-F401-43C0-8BF1-A19F28802711} = {16AB3478-F401-43C0-8BF1-A19F28802711}
@@ -183,12 +199,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "veriwell_multimedia", "..\.
 		{03207BC4-C08B-4A2D-B754-F3BD46AD3098} = {03207BC4-C08B-4A2D-B754-F3BD46AD3098}
 		{04207BC4-C08B-4A2D-B754-F3BD46AD3098} = {04207BC4-C08B-4A2D-B754-F3BD46AD3098}
 	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app_core_auraverse", "..\..\..\app-core\appseed\auraverse\nord_core_auraverse.vcxproj", "{A9EFFD1E-2E02-4BC0-BF89-D11F8409C8DF}"
-EndProject
-Project("{39E2626F-3545-4960-A6E8-258AD8476CE5}") = "nord_app_core_auraverse", "..\..\appseed\app\nord_app_core_auraverse.androidproj", "{19851115-1953-0422-AF6D-98A065770402}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "audio_opensles", "..\..\appseed\audio_opensles\nord_audio_opensles.vcxproj", "{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1836,58 +1846,6 @@ Global
 		{FEFE13D1-3F9A-4B56-BEB9-51A844FB87D5}.static_profiler|x64.Build.0 = basis|x86
 		{FEFE13D1-3F9A-4B56-BEB9-51A844FB87D5}.static_profiler|x86.ActiveCfg = stage|x86
 		{FEFE13D1-3F9A-4B56-BEB9-51A844FB87D5}.static_profiler|x86.Build.0 = stage|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.basis|ARM.ActiveCfg = basis|ARM
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.basis|ARM.Build.0 = basis|ARM
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.basis|x64.ActiveCfg = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.basis|x86.ActiveCfg = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.basis|x86.Build.0 = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.codeanalysis|ARM.ActiveCfg = basis|ARM
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.codeanalysis|ARM.Build.0 = basis|ARM
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.codeanalysis|x64.ActiveCfg = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.codeanalysis|x64.Build.0 = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.codeanalysis|x86.ActiveCfg = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.codeanalysis|x86.Build.0 = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.memdleak|ARM.ActiveCfg = basis|ARM
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.memdleak|ARM.Build.0 = basis|ARM
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.memdleak|x64.ActiveCfg = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.memdleak|x64.Build.0 = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.memdleak|x86.ActiveCfg = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.memdleak|x86.Build.0 = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.no_precompiled_header|ARM.ActiveCfg = basis|ARM
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.no_precompiled_header|ARM.Build.0 = basis|ARM
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.no_precompiled_header|x64.ActiveCfg = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.no_precompiled_header|x64.Build.0 = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.no_precompiled_header|x86.ActiveCfg = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.no_precompiled_header|x86.Build.0 = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.profiler|ARM.ActiveCfg = basis|ARM
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.profiler|ARM.Build.0 = basis|ARM
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.profiler|x64.ActiveCfg = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.profiler|x64.Build.0 = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.profiler|x86.ActiveCfg = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.profiler|x86.Build.0 = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.Release|ARM.ActiveCfg = basis|ARM
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.Release|ARM.Build.0 = basis|ARM
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.Release|x64.ActiveCfg = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.Release|x64.Build.0 = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.Release|x86.ActiveCfg = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.Release|x86.Build.0 = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.stage|ARM.ActiveCfg = stage|ARM
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.stage|ARM.Build.0 = stage|ARM
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.stage|x64.ActiveCfg = stage|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.stage|x86.ActiveCfg = stage|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.stage|x86.Build.0 = stage|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.static_basis|ARM.ActiveCfg = basis|ARM
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.static_basis|ARM.Build.0 = basis|ARM
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.static_basis|x64.ActiveCfg = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.static_basis|x64.Build.0 = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.static_basis|x86.ActiveCfg = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.static_basis|x86.Build.0 = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.static_profiler|ARM.ActiveCfg = stage|ARM
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.static_profiler|ARM.Build.0 = stage|ARM
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.static_profiler|x64.ActiveCfg = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.static_profiler|x64.Build.0 = basis|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.static_profiler|x86.ActiveCfg = stage|x86
-		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.static_profiler|x86.Build.0 = stage|x86
 		{A9EFFD1E-2E02-4BC0-BF89-D11F8409C8DF}.basis|ARM.ActiveCfg = basis|ARM
 		{A9EFFD1E-2E02-4BC0-BF89-D11F8409C8DF}.basis|ARM.Build.0 = basis|ARM
 		{A9EFFD1E-2E02-4BC0-BF89-D11F8409C8DF}.basis|x64.ActiveCfg = basis|x86

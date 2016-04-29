@@ -82,7 +82,6 @@
     <ProjectReference Include="..\..\..\app-veriwell\appseed\asciimedia\nord_veriwell_asciimedia.vcxproj" />
     <ProjectReference Include="..\..\..\app-veriwell\appseed\audio_decode_libmpg123\nord_veriwell_audio_decode_libmpg123.vcxproj" />
     <ProjectReference Include="..\..\..\app-veriwell\appseed\libmpg123\nord_veriwell_libmpg123.vcxproj" />
-    <ProjectReference Include="..\..\..\app-veriwell\appseed\multimedia\nord_veriwell_multimedia.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\aqua\nord_aqua.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\aura\nord_aura.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\axis\nord_axis.vcxproj" />
