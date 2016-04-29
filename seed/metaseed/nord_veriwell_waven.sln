@@ -205,6 +205,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "veriwell_multimedia", "..\.
 		{04207BC4-C08B-4A2D-B754-F3BD46AD3098} = {04207BC4-C08B-4A2D-B754-F3BD46AD3098}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "audio_opensles", "..\..\appseed\audio_opensles\nord_audio_opensles.vcxproj", "{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		basis|ARM = basis|ARM
@@ -2136,6 +2138,58 @@ Global
 		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.static_profiler|x64.Build.0 = basis|x86
 		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.static_profiler|x86.ActiveCfg = stage|x86
 		{39DB4324-AE6C-4B17-A54C-7AB1864A7D26}.static_profiler|x86.Build.0 = stage|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.basis|ARM.ActiveCfg = basis|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.basis|ARM.Build.0 = basis|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.basis|x64.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.basis|x86.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.basis|x86.Build.0 = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.codeanalysis|ARM.ActiveCfg = basis|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.codeanalysis|ARM.Build.0 = basis|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.codeanalysis|x64.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.codeanalysis|x64.Build.0 = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.codeanalysis|x86.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.codeanalysis|x86.Build.0 = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.memdleak|ARM.ActiveCfg = basis|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.memdleak|ARM.Build.0 = basis|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.memdleak|x64.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.memdleak|x64.Build.0 = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.memdleak|x86.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.memdleak|x86.Build.0 = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.no_precompiled_header|ARM.ActiveCfg = basis|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.no_precompiled_header|ARM.Build.0 = basis|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.no_precompiled_header|x64.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.no_precompiled_header|x64.Build.0 = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.no_precompiled_header|x86.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.no_precompiled_header|x86.Build.0 = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.profiler|ARM.ActiveCfg = basis|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.profiler|ARM.Build.0 = basis|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.profiler|x64.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.profiler|x64.Build.0 = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.profiler|x86.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.profiler|x86.Build.0 = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.Release|ARM.ActiveCfg = basis|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.Release|ARM.Build.0 = basis|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.Release|x64.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.Release|x64.Build.0 = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.Release|x86.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.Release|x86.Build.0 = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.stage|ARM.ActiveCfg = stage|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.stage|ARM.Build.0 = stage|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.stage|x64.ActiveCfg = stage|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.stage|x86.ActiveCfg = stage|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.stage|x86.Build.0 = stage|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.static_basis|ARM.ActiveCfg = basis|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.static_basis|ARM.Build.0 = basis|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.static_basis|x64.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.static_basis|x64.Build.0 = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.static_basis|x86.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.static_basis|x86.Build.0 = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.static_profiler|ARM.ActiveCfg = stage|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.static_profiler|ARM.Build.0 = stage|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.static_profiler|x64.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.static_profiler|x64.Build.0 = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.static_profiler|x86.ActiveCfg = stage|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.static_profiler|x86.Build.0 = stage|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
