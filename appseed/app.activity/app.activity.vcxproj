@@ -34,8 +34,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <UseOfStl>gnustl_shared</UseOfStl>
     <PlatformToolset>Gcc_4_9</PlatformToolset>
-    <ThumbMode>Disabled</ThumbMode>
-    <AndroidAPILevel>android-18</AndroidAPILevel>
+    <AndroidAPILevel>android-19</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -43,12 +42,12 @@
     <UseOfStl>gnustl_shared</UseOfStl>
     <PlatformToolset>Gcc_4_9</PlatformToolset>
     <ThumbMode>ARM</ThumbMode>
+    <AndroidAPILevel>android-19</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <UseOfStl>gnustl_shared</UseOfStl>
-    <ThumbMode>Disabled</ThumbMode>
     <PlatformToolset>Gcc_4_9</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'" Label="Configuration">

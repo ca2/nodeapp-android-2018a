@@ -50,8 +50,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>Gcc_4_9</PlatformToolset>
     <UseOfStl>gnustl_shared</UseOfStl>
-    <ThumbMode>Disabled</ThumbMode>
-    <AndroidAPILevel>android-18</AndroidAPILevel>
+    <AndroidAPILevel>android-19</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -59,13 +58,13 @@
     <PlatformToolset>Gcc_4_9</PlatformToolset>
     <UseOfStl>gnustl_shared</UseOfStl>
     <ThumbMode>ARM</ThumbMode>
+    <AndroidAPILevel>android-19</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Gcc_4_9</PlatformToolset>
     <UseOfStl>gnustl_shared</UseOfStl>
-    <ThumbMode>Thumb</ThumbMode>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -129,7 +128,7 @@
     </Link>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <LibraryDependencies>gcom;pcre;aurapcre;core;base;axis;aura;$(StlLibraryName);android;m</LibraryDependencies>
+      <LibraryDependencies>multimedia;base;axis;aura;$(StlLibraryName);android;OpenSLES;m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">

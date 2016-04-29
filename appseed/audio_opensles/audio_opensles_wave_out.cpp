@@ -17,6 +17,7 @@ namespace multimedia
         wave_base(papp),
          engine(papp),
          ::multimedia::audio::wave_out(papp)
+
       {
 
          m_estate             = state_initial;
@@ -229,7 +230,8 @@ namespace multimedia
 
          m_pthreadCallback = pthreadCallback;
 
-         int period_size = 4096;
+         iBufferCount = 2;
+         int period_size = 2048;
          ASSERT(engineObject == NULL);
 
          ASSERT(m_estate == state_initial);
@@ -261,7 +263,7 @@ namespace multimedia
                SL_DATALOCATOR_ANDROIDSIMPLEBUFFERQUEUE,
                iBufferCount
             };
-
+            m_iBufferCount = iBufferCount;
             switch (sr) {
 
             case 8000:
@@ -306,17 +308,17 @@ namespace multimedia
 
             {
 
-               const SLInterfaceID ids[] = { SL_IID_VOLUME };
-               const SLboolean req[] = { SL_BOOLEAN_FALSE };
-               result = (*engineEngine)->CreateOutputMix(engineEngine, &(outputMixObject), 1, ids, req);
-               DEBUG_SND("engineEngine=%p", engineEngine);
+               //const SLInterfaceID ids[] = { SL_IID_VOLUME };
+               //const SLboolean req[] = { SL_BOOLEAN_FALSE };
+               //result = (*engineEngine)->CreateOutputMix(engineEngine, &(outputMixObject), 1, ids, req);
+               result = (*engineEngine)->CreateOutputMix(engineEngine, &(outputMixObject), 0, NULL, NULL);
+               output_debug_string("engineEngine="+ ::str::from(engineEngine));
                ASSERT(!result);
                if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
                // realize the output mix
                result = (*outputMixObject)->Realize(outputMixObject, SL_BOOLEAN_FALSE);
-               DEBUG_SND("Realize=%d", result);
-               ASSERT(!result);
+               output_debug_string("Realize" + ::str::from(result));
                if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
                int speakers;
@@ -338,46 +340,44 @@ namespace multimedia
                const SLboolean req1[] = { SL_BOOLEAN_TRUE, SL_BOOLEAN_TRUE };
                result = (*engineEngine)->CreateAudioPlayer(engineEngine,
                   &(bqPlayerObject), &audioSrc, &audioSnk, 2, ids1, req1);
-               //DEBUG_SND("bqPlayerObject=%p", bqPlayerObject);
+               output_debug_string("bqPlayerObject="+::str::from(bqPlayerObject));
                //ASSERT(!result);
                if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
                // realize the player
                result = (*bqPlayerObject)->Realize(bqPlayerObject, SL_BOOLEAN_FALSE);
-               //DEBUG_SND("Realize=%d", result);
+               output_debug_string("Realize="+::str::from(result));
                //ASSERT(!result);
                if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
                // get the play interface
                result = (*bqPlayerObject)->GetInterface(bqPlayerObject, SL_IID_PLAY, &(bqPlayerPlay));
-               //DEBUG_SND("bqPlayerPlay=%p", bqPlayerPlay);
+               output_debug_string("bqPlayerPlay=" + ::str::from(bqPlayerPlay));
                //ASSERT(!result);
                if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
                // get the volume interface
                result = (*bqPlayerObject)->GetInterface(bqPlayerObject, SL_IID_VOLUME, &(bqPlayerVolume));
-               //DEBUG_SND("bqPlayerVolume=%p", bqPlayerVolume);
+               output_debug_string("bqPlayerVolume=" + ::str::from(bqPlayerVolume));
                //ASSERT(!result);
                if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
                // get the buffer queue interface
                result = (*bqPlayerObject)->GetInterface(bqPlayerObject, SL_IID_ANDROIDSIMPLEBUFFERQUEUE,
                   &(bqPlayerBufferQueue));
-               //DEBUG_SND("bqPlayerBufferQueue=%p", bqPlayerBufferQueue);
+               ::output_debug_string("bqPlayerBufferQueue=" + ::str::from(bqPlayerBufferQueue));
                //ASSERT(!result);
                if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
                // register callback on the buffer queue
                result = (*bqPlayerBufferQueue)->RegisterCallback(bqPlayerBufferQueue, bqPlayerCallback, this);
-               //DEBUG_SND("bqPlayerCallback=%p", bqPlayerCallback);
+               output_debug_string("bqPlayerCallback=" + ::str::from(bqPlayerCallback));
                //ASSERT(!result);
                if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
 
             }
 
-
-         iBufferSampleCount      = period_size;
 
          if(true)
          {
@@ -388,6 +388,7 @@ namespace multimedia
                 buffer_size /= 2;
             }*/
             uiBufferSize = period_size;
+            iBufferSampleCount = period_size / (m_pwaveformat->nChannels * 2);
             uiAnalysisSize = 4 * 1 << uiBufferSizeLog2;
             if(iBufferCount > 0)
             {
@@ -435,10 +436,12 @@ namespace multimedia
       end_openaudio:
          if (result == SL_RESULT_SUCCESS)
          {
+            output_debug_string("wave_out::wave_out_open_ex success");
             return ::multimedia::result_success;
          }
          else
          {
+            output_debug_string("wave_out::wave_out_open_ex error");
             return ::multimedia::result_error;
          }
 
@@ -735,11 +738,13 @@ namespace multimedia
 
          (*bqPlayerBufferQueue)->Enqueue(bqPlayerBufferQueue, wave_out_get_buffer_data(iBuffer), wave_out_get_buffer_size());
 
+         //output_debug_string("buffer_size"+::str::from(wave_out_get_buffer_size()));
+
          finalize:
 
          sLock.unlock();
 
-         wave_out_out_buffer_done(iBuffer);
+         
 
       }
 
@@ -757,6 +762,8 @@ namespace multimedia
 
          int err = 0;
 
+         output_debug_string("wave_out::wave_out_start");
+
          //if ((err = snd_pcm_prepare (m_ppcm)) < 0)
          //{
 
@@ -765,6 +772,12 @@ namespace multimedia
          //   return result_error;
 
          //}
+
+         m_iPlayBuffer = 0;
+
+         m_iBufferedCount = 0;
+
+         //m_evBufferFull.ResetEvent();
 
          m_mmr = ::multimedia::audio::wave_out::wave_out_start(position);
 
@@ -875,11 +888,19 @@ return false;
   // this callback handler is called every time a buffer finishes playing
 void bqPlayerCallback(SLAndroidSimpleBufferQueueItf bq, void *context)
 {
- /*  OPENSL_STREAM *p = (OPENSL_STREAM *)context;
+   
+   multimedia::audio_opensles::wave_out *p = (multimedia::audio_opensles::wave_out *)context;
 
-   assert(p);
-   assert(queue);
+   SLAndroidSimpleBufferQueueState s;
 
-   void *data = Queue_Dequeue(queue);
-   free(data);*/
+   ZERO(s);
+
+   (*bq)->GetState(bq, &s);
+
+   output_debug_string("buffer_index" + ::str::from(s.index % p->m_iBufferCount));
+
+   p->wave_out_out_buffer_done(s.index % p->m_iBufferCount);
+
+
+   
 }

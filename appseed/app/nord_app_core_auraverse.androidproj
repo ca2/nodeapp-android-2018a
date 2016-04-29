@@ -73,6 +73,9 @@
     <Content Include="src\com\ca2\app.java" />
   </ItemGroup>
   <ItemGroup>
+    <AntProjectPropertiesFile Include="project.properties" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\..\app-core\appseed\audio_decode_wave\nord_audio_decode_wave.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\auraverse\nord_core_auraverse.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\id3lib\nord_core_id3lib.vcxproj" />
@@ -105,9 +108,6 @@
     <ProjectReference Include="..\app.activity\app.activity.vcxproj" />
     <ProjectReference Include="..\app.launcher\app.launcher.vcxproj" />
     <ProjectReference Include="..\audio_opensles\nord_audio_opensles.vcxproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <AntProjectPropertiesFile Include="project.properties" />
   </ItemGroup>
   <Import Project="$(AndroidTargetsPath)\Android.targets" />
   <ImportGroup Label="ExtensionTargets" />

@@ -34,10 +34,13 @@ namespace multimedia
          SLAndroidSimpleBufferQueueItf bqPlayerBufferQueue;
          SLEffectSendItf bqPlayerEffectSend;
 
+         //manual_reset_event      m_evBufferFull;
+
          bool                    m_bWrite;
          int                     m_iBuffer;
 
-
+         int m_iBufferCount;
+         int m_iPlayBuffer;
          wave_out(sp(::base::application) papp);
          virtual ~wave_out();
 
