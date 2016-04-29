@@ -27,6 +27,18 @@ namespace multimedia
          m_dwLostSampleCount  = 0;
          m_bWrite             = false;
 
+
+         // output mix interfaces
+         outputMixObject = NULL;
+
+         // buffer queue player interfaces
+         bqPlayerObject = NULL;
+         bqPlayerPlay = NULL;
+         bqPlayerVolume = NULL;
+         bqPlayerBufferQueue = NULL;
+         bqPlayerEffectSend = NULL;
+
+
       }
 
 
@@ -247,7 +259,7 @@ namespace multimedia
             SLDataLocator_AndroidSimpleBufferQueue loc_bufq =
             {
                SL_DATALOCATOR_ANDROIDSIMPLEBUFFERQUEUE,
-               queuesize
+               iBufferCount
             };
 
             switch (sr) {
@@ -361,10 +373,6 @@ namespace multimedia
                //ASSERT(!result);
                if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
-               // set the player's state to playing
-               result = (*bqPlayerPlay)->SetPlayState(bqPlayerPlay, SL_PLAYSTATE_PLAYING);
-               //DEBUG_SND("SetPlayState=%d", result);
-               //ASSERT(!result);
 
             }
 
@@ -688,7 +696,7 @@ namespace multimedia
 
          int iBuffer = pbase->m_wparam;
 
-         alsa_out_buffer_ready(iBuffer);
+         opensles_out_buffer_ready(iBuffer);
 
       }
 
@@ -700,12 +708,12 @@ namespace multimedia
 
          int iBuffer = pbase->m_wparam;
 
-         alsa_out_free(iBuffer);
+         opensles_out_free(iBuffer);
 
       }
 
 
-      void wave_out::alsa_out_buffer_ready(int iBuffer)
+      void wave_out::opensles_out_buffer_ready(int iBuffer)
       {
 
          single_lock sLock(&m_mutex, TRUE);
@@ -762,6 +770,15 @@ namespace multimedia
 
          if(failed(m_mmr))
             return m_mmr;
+
+         // set the player's state to playing
+         SLresult result = (*bqPlayerPlay)->SetPlayState(bqPlayerPlay, SL_PLAYSTATE_PLAYING);
+         //DEBUG_SND("SetPlayState=%d", result);
+         //ASSERT(!result);
+
+         if (result != SL_RESULT_SUCCESS)
+            return ::multimedia::result_error;
+
 
          return result_success;
 
@@ -836,7 +853,7 @@ return false;
       }
 
 
-      void wave_out::alsa_out_free(int iBuffer)
+      void wave_out::opensles_out_free(int iBuffer)
       {
 
          ::multimedia::audio::wave_out::wave_out_free(iBuffer);

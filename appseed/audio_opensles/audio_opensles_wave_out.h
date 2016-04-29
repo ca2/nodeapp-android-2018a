@@ -34,11 +34,6 @@ namespace multimedia
          SLAndroidSimpleBufferQueueItf bqPlayerBufferQueue;
          SLEffectSendItf bqPlayerEffectSend;
 
-         unsigned int outchannels;
-         unsigned int sr;
-
-         unsigned int queuesize;
-         //wQueue *queue;
          bool                    m_bWrite;
          int                     m_iBuffer;
 
@@ -62,9 +57,9 @@ namespace multimedia
 
          virtual void wave_out_on_playback_end() override;
          virtual void wave_out_buffer_ready(int iBuffer) override;
-         virtual void alsa_out_buffer_ready(int iBuffer);
+         virtual void opensles_out_buffer_ready(int iBuffer);
          virtual void wave_out_free(int iBuffer) override;
-         virtual void alsa_out_free(int iBuffer);
+         virtual void opensles_out_free(int iBuffer);
 
          virtual bool initialize_instance();
          virtual int32_t exit_instance();

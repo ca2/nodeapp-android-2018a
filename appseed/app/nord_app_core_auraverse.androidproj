@@ -73,6 +73,7 @@
     <Content Include="src\com\ca2\app.java" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\app-core\appseed\audio_decode_wave\nord_audio_decode_wave.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\auraverse\nord_core_auraverse.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\id3lib\nord_core_id3lib.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\multimedia\nord_multimedia.vcxproj" />
