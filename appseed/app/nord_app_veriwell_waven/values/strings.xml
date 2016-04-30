@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="app_name">waven</string>
-  <string name="cmd_line">app.exe "https://ca2.cc/public_html/01.mp3" : app=app-veriwell/waven full_screen client_only dont_add_to_playlist</string>
+  <string name="cmd_line">app.exe : app=app-veriwell/waven full_screen client_only</string>
   <string name="lib_name"></string>
 </resources>
