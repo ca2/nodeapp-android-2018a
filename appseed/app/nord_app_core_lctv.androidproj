@@ -86,8 +86,16 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\app-core\appseed\gcom\nord_gcom.vcxproj" />
+    <ProjectReference Include="..\..\..\app-core\appseed\id3lib\nord_core_id3lib.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\lctv\nord_core_lctv.vcxproj" />
+    <ProjectReference Include="..\..\..\app-core\appseed\multimedia\nord_multimedia.vcxproj" />
+    <ProjectReference Include="..\..\..\app-core\appseed\strophe\nord_strophe.vcxproj" />
+    <ProjectReference Include="..\..\..\app-core\appseed\vericard\nord_vericard.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\wndfrm_core\nord_wndfrm_core.vcxproj" />
+    <ProjectReference Include="..\..\..\app-core\appseed\xmpp\nord_xmpp.vcxproj" />
+    <ProjectReference Include="..\..\..\app-core\appseed\xmpp_client\nord_core_xmpp_client.vcxproj" />
+    <ProjectReference Include="..\..\..\app-veriwell\appseed\multimedia\nord_veriwell_multimedia.vcxproj" />
+    <ProjectReference Include="..\..\..\app-veriwell\appseed\verisimplevideo\nord_veriwell_verisimplevideo.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\aqua\nord_aqua.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\aura\nord_aura.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\axis\nord_axis.vcxproj" />
@@ -95,8 +103,10 @@
     <ProjectReference Include="..\..\..\app\appseed\core\nord_core.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\draw2d_cairo\nord_draw2d_cairo.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\pcre\nord_pcre.vcxproj" />
+    <ProjectReference Include="..\..\..\app\appseed\programming\nord_programming.vcxproj" />
     <ProjectReference Include="..\..\..\app\atom\iconv\nord_iconv.vcxproj" />
     <ProjectReference Include="..\..\..\app\aura\charguess\nord_auracharguess.vcxproj" />
+    <ProjectReference Include="..\..\..\app\aura\expat\nord_auraexpat.vcxproj" />
     <ProjectReference Include="..\..\..\app\aura\pcre\nord_aurapcre.vcxproj" />
     <ProjectReference Include="..\..\..\app\aura\sqlite\nord_aurasqlite.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\bzip2\nord_axisbzip2.vcxproj" />
@@ -112,6 +122,7 @@
     <ProjectReference Include="..\..\..\app\axis\zlib\nord_axiszlib.vcxproj" />
     <ProjectReference Include="..\app.activity\app.activity.vcxproj" />
     <ProjectReference Include="..\app.launcher\app.launcher.vcxproj" />
+    <ProjectReference Include="..\audio_opensles\nord_audio_opensles.vcxproj" />
   </ItemGroup>
   <Import Project="$(AndroidTargetsPath)\Android.targets" />
   <ImportGroup Label="ExtensionTargets" />
