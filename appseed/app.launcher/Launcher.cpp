@@ -169,10 +169,8 @@ void native_activity_android_start(android_init_data * pinitdata)
 	if (!defer_core_init())
 		return;
 
-	::core::system * psystem = new ::core::system();
+	::core::system * psystem = new ::core::system(NULL, pinitdata);
 
-   psystem->m_pandroidinitdata = pinitdata;
-   
    //	psystem->m_durationRunLock = millis(1);
 
 	//psystem->::exception::translator::attach();
