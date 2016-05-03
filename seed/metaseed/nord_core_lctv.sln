@@ -272,6 +272,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "audio_opensles", "..\..\app
 		{04207BC4-C08B-4A2D-B754-F3BD46AD3098} = {04207BC4-C08B-4A2D-B754-F3BD46AD3098}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "video_decode_ffmpeg", "..\..\..\app-veriwell\appseed\video_decode_ffmpeg\nord_veriwell_video_decode_ffmpeg.vcxproj", "{D32F49D7-37E8-4267-BC48-292403585636}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		basis|ARM = basis|ARM
@@ -687,6 +689,16 @@ Global
 		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.stage|x64.ActiveCfg = stage|x86
 		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.stage|x86.ActiveCfg = stage|x86
 		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.stage|x86.Build.0 = stage|x86
+		{D32F49D7-37E8-4267-BC48-292403585636}.basis|ARM.ActiveCfg = basis|ARM
+		{D32F49D7-37E8-4267-BC48-292403585636}.basis|ARM.Build.0 = basis|ARM
+		{D32F49D7-37E8-4267-BC48-292403585636}.basis|x64.ActiveCfg = basis|x86
+		{D32F49D7-37E8-4267-BC48-292403585636}.basis|x86.ActiveCfg = basis|x86
+		{D32F49D7-37E8-4267-BC48-292403585636}.basis|x86.Build.0 = basis|x86
+		{D32F49D7-37E8-4267-BC48-292403585636}.stage|ARM.ActiveCfg = stage|ARM
+		{D32F49D7-37E8-4267-BC48-292403585636}.stage|ARM.Build.0 = stage|ARM
+		{D32F49D7-37E8-4267-BC48-292403585636}.stage|x64.ActiveCfg = stage|x86
+		{D32F49D7-37E8-4267-BC48-292403585636}.stage|x86.ActiveCfg = stage|x86
+		{D32F49D7-37E8-4267-BC48-292403585636}.stage|x86.Build.0 = stage|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

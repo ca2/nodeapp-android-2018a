@@ -69,6 +69,30 @@
     </AntPackage>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Content Include="libavcodec.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libavdevice.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libavfilter.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libavformat.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libavutil.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="librtmp.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libswresample.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libswscale.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="nord_app_core_lctv\drawable\icon.png" />
     <Content Include="nord_app_core_lctv\values\strings.xml">
       <SubType>Designer</SubType>
@@ -96,6 +120,7 @@
     <ProjectReference Include="..\..\..\app-core\appseed\xmpp_client\nord_core_xmpp_client.vcxproj" />
     <ProjectReference Include="..\..\..\app-veriwell\appseed\multimedia\nord_veriwell_multimedia.vcxproj" />
     <ProjectReference Include="..\..\..\app-veriwell\appseed\verisimplevideo\nord_veriwell_verisimplevideo.vcxproj" />
+    <ProjectReference Include="..\..\..\app-veriwell\appseed\video_decode_ffmpeg\nord_veriwell_video_decode_ffmpeg.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\aqua\nord_aqua.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\aura\nord_aura.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\axis\nord_axis.vcxproj" />
