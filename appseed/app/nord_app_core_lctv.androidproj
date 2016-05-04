@@ -78,9 +78,7 @@
     </Content>
     <Content Include="libs\x86\libavformat-57.so" />
     <Content Include="libs\x86\libavutil-55.so" />
-    <Content Include="libs\x86\librtmp.so">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="libs\x86\librtmp-1.so" />
     <Content Include="libs\x86\libswresample-2.so" />
     <Content Include="libs\x86\libswscale.so">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
