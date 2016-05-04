@@ -79,9 +79,7 @@
     <Content Include="libs\x86\libavformat.so">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="libs\x86\libavutil.so">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="libs\x86\libavutil-55.so" />
     <Content Include="libs\x86\librtmp.so">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
