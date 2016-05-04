@@ -897,7 +897,7 @@ void bqPlayerCallback(SLAndroidSimpleBufferQueueItf bq, void *context)
 
    (*bq)->GetState(bq, &s);
 
-   output_debug_string("buffer_index" + ::str::from(s.index % p->m_iBufferCount));
+   //output_debug_string("buffer_index" + ::str::from(s.index % p->m_iBufferCount));
 
    p->wave_out_out_buffer_done(s.index % p->m_iBufferCount);
 
