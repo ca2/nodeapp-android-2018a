@@ -80,9 +80,7 @@
     <Content Include="libs\x86\libavutil-55.so" />
     <Content Include="libs\x86\librtmp-1.so" />
     <Content Include="libs\x86\libswresample-2.so" />
-    <Content Include="libs\x86\libswscale.so">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="libs\x86\libswscale-4.so" />
     <Content Include="nord_app_core_lctv\drawable\icon.png" />
     <Content Include="nord_app_core_lctv\values\strings.xml">
       <SubType>Designer</SubType>
