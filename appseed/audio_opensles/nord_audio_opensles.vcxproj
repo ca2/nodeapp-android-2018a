@@ -57,7 +57,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>Gcc_4_9</PlatformToolset>
     <UseOfStl>gnustl_shared</UseOfStl>
-    <ThumbMode>ARM</ThumbMode>
+    <ThumbMode>Disabled</ThumbMode>
     <AndroidAPILevel>android-19</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'" Label="Configuration">
@@ -71,6 +71,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Gcc_4_9</PlatformToolset>
     <UseOfStl>gnustl_shared</UseOfStl>
+    <ThumbMode>Disabled</ThumbMode>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings" />
@@ -105,7 +106,7 @@
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
-      <AdditionalOptions>-Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-comment -Wno-char-subscripts -Wno-unused-value -Wno-comment %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-comment -Wno-char-subscripts -Wno-unused-value -Wno-comment %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>
       </PreprocessorDefinitions>
       <CLanguageStandard>gnu11</CLanguageStandard>
@@ -130,6 +131,7 @@
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <ForcedIncludeFiles>$(SolutionDir)../../../nodeapp/operational_system/solution_arm_basis.h</ForcedIncludeFiles>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-value -Wno-reorder </AdditionalOptions>
     </ClCompile>
     <Link>
       <SharedLibrarySearchPath>$(OutDir)$(TargetName)$(TargetExt)</SharedLibrarySearchPath>
@@ -154,6 +156,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(ProjectDir)../../appseed;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir).;$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(SolutionDir)../../../nodeapp/operational_system/solution_x86_stage.h</ForcedIncludeFiles>
       <PreprocessorDefinitions />
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-value -Wno-reorder </AdditionalOptions>
     </ClCompile>
     <Link>
       <LibraryDependencies>multimedia;base;axis;aura;$(StlLibraryName);android;OpenSLES;m</LibraryDependencies>
@@ -175,6 +178,7 @@
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <PreprocessorDefinitions />
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-value -Wno-reorder </AdditionalOptions>
     </ClCompile>
     <Link>
       <LibraryDependencies>multimedia;base;axis;aura;$(StlLibraryName);android;OpenSLES;m</LibraryDependencies>

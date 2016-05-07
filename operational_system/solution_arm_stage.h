@@ -9,9 +9,10 @@
 // stage
 #undef DEBUG
 #undef _DEBUG
-#ifndef NDEBUG
-#define NDEBUG
+#ifdef NDEBUG
+#undef NDEBUG
 #endif
+#define NDEBUG 1
 
 
 
