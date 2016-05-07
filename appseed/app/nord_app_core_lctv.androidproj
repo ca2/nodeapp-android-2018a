@@ -34,6 +34,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'" Label="Configuration">
     <UseDebugLibraries>false</UseDebugLibraries>
     <TargetName>$(ProjectName)</TargetName>
+    <ConfigurationType>Application</ConfigurationType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">
     <UseDebugLibraries>true</UseDebugLibraries>
@@ -66,6 +67,11 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
     <AntPackage>
       <AndroidAppLibName />
+    </AntPackage>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
+    <AntPackage>
+      <AntTarget>release</AntTarget>
     </AntPackage>
   </ItemDefinitionGroup>
   <ItemGroup>

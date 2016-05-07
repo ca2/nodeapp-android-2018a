@@ -78,10 +78,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <UseMultiToolTask>true</UseMultiToolTask>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
     <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <UseMultiToolTask>true</UseMultiToolTask>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
     <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
@@ -91,6 +93,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
     <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <UseMultiToolTask>true</UseMultiToolTask>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <ClCompile>
@@ -100,16 +103,17 @@
       <AdditionalOptions>-Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-sometimes-uninitialized -Wno-unused-variable -Wno-incompatible-pointer-types  -Wno-pointer-sign -Wno-typedef-redefinition </AdditionalOptions>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(ProjectDir)../../appseed;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ANDROID;VSNORD;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CLanguageStandard>gnu11</CLanguageStandard>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
+      <ForcedIncludeFiles>$(SolutionDir)../../../nodeapp/operational_system/solution_arm_basis.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <LibraryDependencies>jnigraphics;$(StlLibraryName);m;GLESv1_CM;EGL;log;android</LibraryDependencies>
       <SharedLibrarySearchPath>$(OutDir);$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
-      <AdditionalLibraryDirectories>$(OutDir);$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
@@ -120,9 +124,17 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <DebugInformationFormat>FullDebug</DebugInformationFormat>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(ProjectDir)../../appseed;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(SolutionDir)../../../nodeapp/operational_system/solution_arm_stage.h</ForcedIncludeFiles>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CLanguageStandard>gnu11</CLanguageStandard>
+      <CppLanguageStandard>gnu++1y</CppLanguageStandard>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
     <Link>
-      <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;</LibraryDependencies>
+      <LibraryDependencies>jnigraphics;$(StlLibraryName);m;GLESv1_CM;EGL;log;android</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
@@ -136,12 +148,12 @@
       <CLanguageStandard>gnu11</CLanguageStandard>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
       <AdditionalOptions>-Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable</AdditionalOptions>
-      <PreprocessorDefinitions>_DEBUG</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
+      <ForcedIncludeFiles>$(SolutionDir)../../../nodeapp/operational_system/solution_x86_basis.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <LibraryDependencies>jnigraphics;$(StlLibraryName);m;GLESv1_CM;EGL;log;android</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(OutDir);$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -155,16 +167,19 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <CLanguageStandard>c11</CLanguageStandard>
-      <CppLanguageStandard>c++1y</CppLanguageStandard>
+      <CLanguageStandard>gnu11</CLanguageStandard>
+      <CppLanguageStandard>gnu++1y</CppLanguageStandard>
       <DebugInformationFormat>FullDebug</DebugInformationFormat>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(ProjectDir)../../appseed;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(SolutionDir)../../../nodeapp/operational_system/solution_x86_stage.h</ForcedIncludeFiles>
+      <PreprocessorDefinitions />
     </ClCompile>
     <Link>
-      <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;</LibraryDependencies>
+      <LibraryDependencies>jnigraphics;$(StlLibraryName);m;GLESv1_CM;EGL;log;android</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
