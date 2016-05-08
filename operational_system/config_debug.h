@@ -9,6 +9,8 @@
 
 //#define __MCRTDBG
 
+#define VARIADIC_TEMPLATE_FORMAT
+
 
 #ifndef _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
