@@ -111,7 +111,7 @@
       <ForcedIncludeFiles>$(SolutionDir)../../../nodeapp/operational_system/solution_arm_basis.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
-      <LibraryDependencies>jnigraphics;$(StlLibraryName);m;GLESv1_CM;EGL;log;android</LibraryDependencies>
+      <LibraryDependencies>ace;jnigraphics;$(StlLibraryName);m;GLESv1_CM;EGL;log;android</LibraryDependencies>
       <SharedLibrarySearchPath>$(OutDir);$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
@@ -135,7 +135,7 @@
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
-      <LibraryDependencies>jnigraphics;$(StlLibraryName);m;GLESv1_CM;EGL;log;android</LibraryDependencies>
+      <LibraryDependencies>ace;jnigraphics;$(StlLibraryName);m;GLESv1_CM;EGL;log;android</LibraryDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -154,7 +154,7 @@
       <ForcedIncludeFiles>$(SolutionDir)../../../nodeapp/operational_system/solution_x86_basis.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
-      <LibraryDependencies>jnigraphics;$(StlLibraryName);m;GLESv1_CM;EGL;log;android</LibraryDependencies>
+      <LibraryDependencies>ace;jnigraphics;$(StlLibraryName);m;GLESv1_CM;EGL;log;android</LibraryDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
@@ -181,7 +181,7 @@
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-value -Wno-reorder </AdditionalOptions>
     </ClCompile>
     <Link>
-      <LibraryDependencies>jnigraphics;$(StlLibraryName);m;GLESv1_CM;EGL;log;android</LibraryDependencies>
+      <LibraryDependencies>ace;jnigraphics;$(StlLibraryName);m;GLESv1_CM;EGL;log;android</LibraryDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>

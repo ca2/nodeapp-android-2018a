@@ -88,6 +88,7 @@
     <ProjectReference Include="..\..\..\app-core\appseed\gcom\nord_gcom.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\hellomultiverse\nord_core_hellomultiverse.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\wndfrm_core\nord_wndfrm_core.vcxproj" />
+    <ProjectReference Include="..\..\..\app\appseed\ace\nord_ace.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\aqua\nord_aqua.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\aura\nord_aura.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\axis\nord_axis.vcxproj" />

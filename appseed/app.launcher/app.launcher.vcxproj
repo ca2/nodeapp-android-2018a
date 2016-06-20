@@ -96,7 +96,7 @@
       <ForcedIncludeFiles>$(SolutionDir)../../../nodeapp/operational_system/solution_x86_basis.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
-      <LibraryDependencies>core;base;axis;aura;$(StlLibraryName);log;android</LibraryDependencies>
+      <LibraryDependencies>core;base;axis;aura;ace;$(StlLibraryName);log;android</LibraryDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -120,7 +120,7 @@
     </Link>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <LibraryDependencies>core;base;axis;aura;$(StlLibraryName);log;android</LibraryDependencies>
+      <LibraryDependencies>core;base;axis;aura;ace;$(StlLibraryName);log;android</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
@@ -142,7 +142,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <LibraryDependencies>core;base;axis;aura;$(StlLibraryName);log;android</LibraryDependencies>
+      <LibraryDependencies>core;base;axis;aura;ace;$(StlLibraryName);log;android</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
@@ -165,7 +165,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <LibraryDependencies>core;base;axis;aura;$(StlLibraryName);log;android</LibraryDependencies>
+      <LibraryDependencies>core;base;axis;aura;ace;$(StlLibraryName);log;android</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
