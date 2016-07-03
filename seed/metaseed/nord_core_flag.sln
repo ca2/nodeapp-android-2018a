@@ -1,9 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aqua", "..\..\..\app\appseed\aqua\nord_aqua.vcxproj", "{BD207BC4-C08B-4A2D-B754-F3BD46AD3098}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E99C9D52-0709-4ED7-9F14-180B18F66C46} = {E99C9D52-0709-4ED7-9F14-180B18F66C46}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aura", "..\..\..\app\appseed\aura\nord_aura.vcxproj", "{02207BC4-C08B-4A2D-B754-F3BD46AD3098}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -173,14 +176,36 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app_core_flag", "..\..\..\a
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axis_image_jpeg", "..\..\..\app\axis\image_jpeg\nord_axis_image_jpeg.vcxproj", "{3C4A93D3-9B9B-4EA9-8BCF-A53BE3A0F9B5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E99C9D52-0709-4ED7-9F14-180B18F66C46} = {E99C9D52-0709-4ED7-9F14-180B18F66C46}
+		{C07D1D57-669A-4302-B835-EA52557F15C8} = {C07D1D57-669A-4302-B835-EA52557F15C8}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axis_image_png", "..\..\..\app\axis\image_png\nord_axis_image_png.vcxproj", "{CD2A80BB-5B55-45FD-932D-404D2D76729B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{04238890-C8DF-43C8-A90C-4D19FA21286F} = {04238890-C8DF-43C8-A90C-4D19FA21286F}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aurapcre", "..\..\..\app\aura\pcre\nord_aurapcre.vcxproj", "{E3ED74CC-506F-424F-AD39-25FBEDD98C7C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pcre", "..\..\..\app\appseed\pcre\nord_pcre.vcxproj", "{7EE7598E-8C77-4D1A-B248-6E65BD72A8F6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E3ED74CC-506F-424F-AD39-25FBEDD98C7C} = {E3ED74CC-506F-424F-AD39-25FBEDD98C7C}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gcom", "..\..\..\app-core\appseed\gcom\nord_gcom.vcxproj", "{7F61A6F3-4ED9-4460-9270-4EA7CB00E634}"
+	ProjectSection(ProjectDependencies) = postProject
+		{16AB3478-F401-43C0-8BF1-A19F28802711} = {16AB3478-F401-43C0-8BF1-A19F28802711}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ace", "..\..\..\app\appseed\ace\nord_ace.vcxproj", "{E99C9D52-0709-4ED7-9F14-180B18F66C46}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axisjpeg", "..\..\..\app\axis\jpeg\nord_axisjpeg.vcxproj", "{C07D1D57-669A-4302-B835-EA52557F15C8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axispng", "..\..\..\app\axis\png\nord_axispng.vcxproj", "{04238890-C8DF-43C8-A90C-4D19FA21286F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{032BD6DD-0DA1-4A1F-9D36-6512B4127F7A} = {032BD6DD-0DA1-4A1F-9D36-6512B4127F7A}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -370,8 +395,7 @@ Global
 		{06207BC4-C08B-4A2D-B754-F3BD46AD3098}.stage|x86.Build.0 = stage|x86
 		{0365BD5F-5C57-4DB4-9270-D850D2A84FBB}.basis|ARM.ActiveCfg = basis|ARM
 		{0365BD5F-5C57-4DB4-9270-D850D2A84FBB}.basis|ARM.Build.0 = basis|ARM
-		{0365BD5F-5C57-4DB4-9270-D850D2A84FBB}.basis|x64.ActiveCfg = basis|x64
-		{0365BD5F-5C57-4DB4-9270-D850D2A84FBB}.basis|x64.Build.0 = basis|x64
+		{0365BD5F-5C57-4DB4-9270-D850D2A84FBB}.basis|x64.ActiveCfg = basis|x86
 		{0365BD5F-5C57-4DB4-9270-D850D2A84FBB}.basis|x86.ActiveCfg = basis|x86
 		{0365BD5F-5C57-4DB4-9270-D850D2A84FBB}.basis|x86.Build.0 = basis|x86
 		{0365BD5F-5C57-4DB4-9270-D850D2A84FBB}.stage|ARM.ActiveCfg = stage|ARM
@@ -515,6 +539,36 @@ Global
 		{7F61A6F3-4ED9-4460-9270-4EA7CB00E634}.stage|x64.ActiveCfg = stage|x86
 		{7F61A6F3-4ED9-4460-9270-4EA7CB00E634}.stage|x86.ActiveCfg = stage|x86
 		{7F61A6F3-4ED9-4460-9270-4EA7CB00E634}.stage|x86.Build.0 = stage|x86
+		{E99C9D52-0709-4ED7-9F14-180B18F66C46}.basis|ARM.ActiveCfg = basis|ARM
+		{E99C9D52-0709-4ED7-9F14-180B18F66C46}.basis|ARM.Build.0 = basis|ARM
+		{E99C9D52-0709-4ED7-9F14-180B18F66C46}.basis|x64.ActiveCfg = basis|x86
+		{E99C9D52-0709-4ED7-9F14-180B18F66C46}.basis|x86.ActiveCfg = basis|x86
+		{E99C9D52-0709-4ED7-9F14-180B18F66C46}.basis|x86.Build.0 = basis|x86
+		{E99C9D52-0709-4ED7-9F14-180B18F66C46}.stage|ARM.ActiveCfg = stage|ARM
+		{E99C9D52-0709-4ED7-9F14-180B18F66C46}.stage|ARM.Build.0 = stage|ARM
+		{E99C9D52-0709-4ED7-9F14-180B18F66C46}.stage|x64.ActiveCfg = stage|x86
+		{E99C9D52-0709-4ED7-9F14-180B18F66C46}.stage|x86.ActiveCfg = stage|x86
+		{E99C9D52-0709-4ED7-9F14-180B18F66C46}.stage|x86.Build.0 = stage|x86
+		{C07D1D57-669A-4302-B835-EA52557F15C8}.basis|ARM.ActiveCfg = basis|ARM
+		{C07D1D57-669A-4302-B835-EA52557F15C8}.basis|ARM.Build.0 = basis|ARM
+		{C07D1D57-669A-4302-B835-EA52557F15C8}.basis|x64.ActiveCfg = basis|x86
+		{C07D1D57-669A-4302-B835-EA52557F15C8}.basis|x86.ActiveCfg = basis|x86
+		{C07D1D57-669A-4302-B835-EA52557F15C8}.basis|x86.Build.0 = basis|x86
+		{C07D1D57-669A-4302-B835-EA52557F15C8}.stage|ARM.ActiveCfg = stage|ARM
+		{C07D1D57-669A-4302-B835-EA52557F15C8}.stage|ARM.Build.0 = stage|ARM
+		{C07D1D57-669A-4302-B835-EA52557F15C8}.stage|x64.ActiveCfg = stage|x86
+		{C07D1D57-669A-4302-B835-EA52557F15C8}.stage|x86.ActiveCfg = stage|x86
+		{C07D1D57-669A-4302-B835-EA52557F15C8}.stage|x86.Build.0 = stage|x86
+		{04238890-C8DF-43C8-A90C-4D19FA21286F}.basis|ARM.ActiveCfg = basis|ARM
+		{04238890-C8DF-43C8-A90C-4D19FA21286F}.basis|ARM.Build.0 = basis|ARM
+		{04238890-C8DF-43C8-A90C-4D19FA21286F}.basis|x64.ActiveCfg = basis|x86
+		{04238890-C8DF-43C8-A90C-4D19FA21286F}.basis|x86.ActiveCfg = basis|x86
+		{04238890-C8DF-43C8-A90C-4D19FA21286F}.basis|x86.Build.0 = basis|x86
+		{04238890-C8DF-43C8-A90C-4D19FA21286F}.stage|ARM.ActiveCfg = stage|ARM
+		{04238890-C8DF-43C8-A90C-4D19FA21286F}.stage|ARM.Build.0 = stage|ARM
+		{04238890-C8DF-43C8-A90C-4D19FA21286F}.stage|x64.ActiveCfg = stage|x86
+		{04238890-C8DF-43C8-A90C-4D19FA21286F}.stage|x86.ActiveCfg = stage|x86
+		{04238890-C8DF-43C8-A90C-4D19FA21286F}.stage|x86.Build.0 = stage|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
