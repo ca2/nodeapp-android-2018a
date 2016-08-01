@@ -120,9 +120,9 @@ public class app extends Activity
 
 		}
 
-		System.loadLibrary("axis_image_jpeg");
+		//System.loadLibrary("axis_image_jpeg");
 
-		System.loadLibrary("draw2d_cairo");
+		//System.loadLibrary("draw2d_cairo");
 
 		boolean bLoaded = false;
 
