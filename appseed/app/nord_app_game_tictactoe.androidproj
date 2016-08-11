@@ -46,10 +46,20 @@
   <ImportGroup Label="ExtensionSettings" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
-    <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\$(ProjectName)</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
-    <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\$(ProjectName)</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
+    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <AntPackage>
@@ -62,13 +72,12 @@
     </AntPackage>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Content Include="nord_app_game_tictactoe\values\strings.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <AntBuildXml Include="build.xml" />
     <AndroidManifest Include="AndroidManifest.xml">
       <SubType>Designer</SubType>
     </AndroidManifest>
+    <Content Include="nord_app_game_tictactoe\drawable\icon.png" />
+    <Content Include="nord_app_game_tictactoe\values\strings.xml" />
     <Content Include="src\com\ca2\app.java" />
   </ItemGroup>
   <ItemGroup>
@@ -108,7 +117,6 @@
     <ProjectReference Include="..\..\..\app\axis\openssl\nord_axisopenssl.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\pixman\nord_axispixman.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\png\nord_axispng.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\zlib\nord_axiszlib.vcxproj" />
     <ProjectReference Include="..\app.activity\app.activity.vcxproj" />
     <ProjectReference Include="..\app.launcher\app.launcher.vcxproj" />
     <ProjectReference Include="..\audio_opensles\nord_audio_opensles.vcxproj" />
