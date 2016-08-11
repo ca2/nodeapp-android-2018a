@@ -191,11 +191,6 @@
   <ItemGroup>
     <ClInclude Include="activity.h" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\app\appseed\ace\nord_ace.vcxproj">
-      <Project>{e99c9d52-0709-4ed7-9f14-180b18f66c46}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -22,7 +22,7 @@
     <RootNamespace>nord_app_game_tictactoe</RootNamespace>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <ProjectVersion>1.0</ProjectVersion>
-    <ProjectGuid>19841115-1951-0422-1977-98a065770402</ProjectGuid>
+    <ProjectGuid>e8c97ff3-00af-4f71-b738-9e938574ea54</ProjectGuid>
     <_PackagingProjectWithoutNativeComponent>true</_PackagingProjectWithoutNativeComponent>
     <LaunchActivity Condition="'$(LaunchActivity)' == ''">com.nord_game_tictactoe.nord_game_tictactoe</LaunchActivity>
   </PropertyGroup>
@@ -76,13 +76,14 @@
     <AndroidManifest Include="AndroidManifest.xml">
       <SubType>Designer</SubType>
     </AndroidManifest>
-    <Content Include="nord_app_game_tictactoe\drawable\icon.png" />
-    <Content Include="nord_app_game_tictactoe\values\strings.xml" />
+    <Content Include="nord_app_game_tetris\drawable\icon.png" />
+    <Content Include="nord_app_game_tetris\values\strings.xml" />
     <Content Include="src\com\ca2\app.java" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\app-core\appseed\audio_decode_spotify\nord_core_audio_decode_spotify.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\gcom\nord_gcom.vcxproj" />
+    <ProjectReference Include="..\..\..\app-core\appseed\hellomultiverse\nord_core_hellomultiverse.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\id3lib\nord_core_id3lib.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\multimedia\nord_multimedia.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\multimedia_playlist_spotify\nord_core_multimedia_playlist_spotify.vcxproj" />
@@ -96,7 +97,6 @@
     <ProjectReference Include="..\..\..\app\aura\pcre\nord_aurapcre.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\image_jpeg\nord_axis_image_jpeg.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\image_png\nord_axis_image_png.vcxproj" />
-    <ProjectReference Include="..\..\..\game\appseed\tictactoe\nord_game_tictactoe.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\wndfrm_core\nord_wndfrm_core.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\aqua\nord_aqua.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\aura\nord_aura.vcxproj" />
@@ -117,6 +117,7 @@
     <ProjectReference Include="..\..\..\app\axis\openssl\nord_axisopenssl.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\pixman\nord_axispixman.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\png\nord_axispng.vcxproj" />
+    <ProjectReference Include="..\..\..\game\appseed\tetris\nord_game_tetris.vcxproj" />
     <ProjectReference Include="..\app.activity\app.activity.vcxproj" />
     <ProjectReference Include="..\app.launcher\app.launcher.vcxproj" />
     <ProjectReference Include="..\audio_opensles\nord_audio_opensles.vcxproj" />
