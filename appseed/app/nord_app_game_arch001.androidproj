@@ -22,7 +22,7 @@
     <RootNamespace>nord_app_game_tictactoe</RootNamespace>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <ProjectVersion>1.0</ProjectVersion>
-    <ProjectGuid>e8c97ff3-00af-4f71-b738-9e938574ea54</ProjectGuid>
+    <ProjectGuid>161a8546-166f-47bb-af73-6384385eb38b</ProjectGuid>
     <_PackagingProjectWithoutNativeComponent>true</_PackagingProjectWithoutNativeComponent>
     <LaunchActivity Condition="'$(LaunchActivity)' == ''">com.nord_game_tictactoe.nord_game_tictactoe</LaunchActivity>
   </PropertyGroup>
@@ -76,6 +76,8 @@
     <AndroidManifest Include="AndroidManifest.xml">
       <SubType>Designer</SubType>
     </AndroidManifest>
+    <Content Include="nord_app_game_arch001\drawable\icon.png" />
+    <Content Include="nord_app_game_arch001\values\strings.xml" />
     <Content Include="src\com\ca2\app.java" />
   </ItemGroup>
   <ItemGroup>
@@ -90,10 +92,12 @@
     <ProjectReference Include="..\..\..\app-veriwell\appseed\multimedia\nord_veriwell_multimedia.vcxproj" />
     <ProjectReference Include="..\..\..\app-veriwell\appseed\waven\nord_veriwell_waven.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\ace\nord_ace.vcxproj" />
+    <ProjectReference Include="..\..\..\app\appseed\estamira\nord_estamira.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\pcre\nord_pcre.vcxproj" />
     <ProjectReference Include="..\..\..\app\aura\pcre\nord_aurapcre.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\image_jpeg\nord_axis_image_jpeg.vcxproj" />
     <ProjectReference Include="..\..\..\app\axis\image_png\nord_axis_image_png.vcxproj" />
+    <ProjectReference Include="..\..\..\game\appseed\arch001\nord_game_arch001.vcxproj" />
     <ProjectReference Include="..\..\..\game\appseed\tictactoe\nord_game_tictactoe.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\wndfrm_core\nord_wndfrm_core.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\aqua\nord_aqua.vcxproj" />
