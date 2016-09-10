@@ -524,3 +524,9 @@ typedef wchar_t         unichar32;
 
 
 
+#define WINBOOL int
+
+
+
+
+

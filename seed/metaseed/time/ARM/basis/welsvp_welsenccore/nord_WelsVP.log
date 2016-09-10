@@ -1,0 +1,12 @@
+﻿  ANDROID_HOME=C:\Program Files (x86)\Android\android-sdk
+  ANT_HOME=C:\Program Files (x86)\Microsoft Visual Studio 14.0\Apps\apache-ant-1.9.3\
+  JAVA_HOME=C:\Program Files (x86)\Java\jdk1.7.0_55
+  NDK_ROOT=C:\ProgramData\Microsoft\AndroidNDK64\android-ndk-r11c\
+  cpu.cpp
+cc1plus.exe : warning : command line option '-Wno-implicit-int' is valid for C/ObjC but not for C++
+cc1plus.exe : warning : command line option '-Wno-pointer-sign' is valid for C/ObjC but not for C++
+  codec\common\src\cpu.cpp:45:17: fatal error: cpu.h: No such file or directory
+   #include "cpu.h"
+                   ^
+  compilation terminated.
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.Cpp.Clang.targets(210,5): error MSB6006: "arm-linux-androideabi-gcc.exe" exited with code 1.
