@@ -95,23 +95,9 @@
     <ProjectReference Include="..\..\..\app\appseed\base\nord_base.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\core\nord_core.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\draw2d_cairo\nord_draw2d_cairo.vcxproj" />
-    <ProjectReference Include="..\..\..\app\appseed\pcre\nord_pcre.vcxproj" />
-    <ProjectReference Include="..\..\..\app\atom\iconv\nord_iconv.vcxproj" />
-    <ProjectReference Include="..\..\..\app\aura\charguess\nord_auracharguess.vcxproj" />
-    <ProjectReference Include="..\..\..\app\aura\pcre\nord_aurapcre.vcxproj" />
-    <ProjectReference Include="..\..\..\app\aura\sqlite\nord_aurasqlite.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\bzip2\nord_axisbzip2.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\cairo\nord_axiscairo.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\crypto\nord_axiscrypto.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\freeimage\nord_axisfreeimage.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\freetype\nord_freetype.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\idn\nord_axisidn.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\image_jpeg\nord_axis_image_jpeg.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\image_png\nord_axis_image_png.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\jpeg\nord_axisjpeg.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\openssl\nord_axisopenssl.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\pixman\nord_axispixman.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\png\nord_axispng.vcxproj" />
+    <ProjectReference Include="..\..\..\app\appseed\freeimage\nord_axisfreeimage.vcxproj" />
+    <ProjectReference Include="..\..\..\app\appseed\image_jpeg\nord_axis_image_jpeg.vcxproj" />
+    <ProjectReference Include="..\..\..\app\appseed\image_png\nord_axis_image_png.vcxproj" />
     <ProjectReference Include="..\app.activity\app.activity.vcxproj" />
     <ProjectReference Include="..\app.launcher\app.launcher.vcxproj" />
   </ItemGroup>
