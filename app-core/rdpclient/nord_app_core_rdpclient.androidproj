@@ -106,6 +106,11 @@
     <ProjectReference Include="..\..\..\app\appseed\base\nord_base.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\core\nord_core.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\draw2d_cairo\nord_draw2d_cairo.vcxproj" />
+    <ProjectReference Include="..\..\..\app\appseed\freeimage\nord_axisfreeimage.vcxproj" />
+    <ProjectReference Include="..\..\..\app\appseed\image_jpeg\nord_axis_image_jpeg.vcxproj" />
+    <ProjectReference Include="..\..\..\app\appseed\image_png\nord_axis_image_png.vcxproj" />
+    <ProjectReference Include="..\..\appseed\app.activity\app.activity.vcxproj" />
+    <ProjectReference Include="..\..\appseed\app.launcher\app.launcher.vcxproj" />
   </ItemGroup>
   <ItemGroup>
     <AntProjectPropertiesFile Include="project.properties" />
