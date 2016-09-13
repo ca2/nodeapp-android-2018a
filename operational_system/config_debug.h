@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "solution_include.h"
+
+
 #define MEMDLEAK 0
 #define STORE_LAST_BLOCK 0
 

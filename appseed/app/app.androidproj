@@ -19,20 +19,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <RootNamespace>app</RootNamespace>
+    <RootNamespace>nord_app_core_hellomultiverse</RootNamespace>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <ProjectVersion>1.0</ProjectVersion>
-    <ProjectGuid>{f934aa2e-87d8-459c-af6d-98a0656f2704}</ProjectGuid>
+    <ProjectGuid>19841115-1951-0422-af6d-98a0656f2704</ProjectGuid>
     <_PackagingProjectWithoutNativeComponent>true</_PackagingProjectWithoutNativeComponent>
-    <LaunchActivity Condition="'$(LaunchActivity)' == ''">com.app.app</LaunchActivity>
+    <LaunchActivity Condition="'$(LaunchActivity)' == ''">com.nord_app_core_hellomultiverse.nord_app_core_hellomultiverse</LaunchActivity>
   </PropertyGroup>
   <Import Project="$(AndroidTargetsPath)\Android.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
     <UseDebugLibraries>true</UseDebugLibraries>
-    <TargetName>$(RootNamespace)</TargetName>
+    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'" Label="Configuration">
     <UseDebugLibraries>false</UseDebugLibraries>
+    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">
     <UseDebugLibraries>true</UseDebugLibraries>
@@ -40,12 +41,22 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'" Label="Configuration">
     <UseDebugLibraries>false</UseDebugLibraries>
+    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <Import Project="$(AndroidTargetsPath)\Android.props" />
   <ImportGroup Label="ExtensionSettings" />
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
+    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\$(ProjectName)</OutDir>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
-    <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
+    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\$(ProjectName)</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
+    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <AntPackage>
@@ -58,37 +69,35 @@
     </AntPackage>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Content Include="res\values\strings.xml" />
+    <Content Include="nord_app_core_hellomultiverse\drawable\icon.png" />
+    <Content Include="nord_app_core_hellomultiverse\values\strings.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <AntBuildXml Include="build.xml">
       <SubType>Designer</SubType>
     </AntBuildXml>
-    <AndroidManifest Include="AndroidManifest.xml" />
-    <AntProjectPropertiesFile Include="project.properties" />
-    <Content Include="src\com\app\app.java" />
+    <AndroidManifest Include="AndroidManifest.xml">
+      <SubType>Designer</SubType>
+    </AndroidManifest>
+    <Content Include="src\com\ca2\app.java" />
   </ItemGroup>
   <ItemGroup>
+    <AntProjectPropertiesFile Include="project.properties" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\app-core\appseed\gcom\nord_gcom.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\hellomultiverse\nord_core_hellomultiverse.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\wndfrm_core\nord_wndfrm_core.vcxproj" />
+    <ProjectReference Include="..\..\..\app\appseed\ace\nord_ace.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\aqua\nord_aqua.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\aura\nord_aura.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\axis\nord_axis.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\base\nord_base.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\core\nord_core.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\draw2d_cairo\nord_draw2d_cairo.vcxproj" />
-    <ProjectReference Include="..\..\..\app\atom\iconv\nord_iconv.vcxproj" />
-    <ProjectReference Include="..\..\..\app\aura\charguess\nord_auracharguess.vcxproj" />
-    <ProjectReference Include="..\..\..\app\aura\sqlite\nord_aurasqlite.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\bzip2\nord_axisbzip2.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\cairo\nord_axiscairo.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\crypto\nord_axiscrypto.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\freeimage\nord_axisfreeimage.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\freetype\nord_freetype.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\idn\nord_axisidn.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\jpeg\nord_axisjpeg.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\openssl\nord_axisopenssl.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\pixman\nord_axispixman.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\png\nord_axispng.vcxproj" />
-    <ProjectReference Include="..\..\..\app\axis\zlib\nord_axiszlib.vcxproj" />
+    <ProjectReference Include="..\..\..\app\appseed\freeimage\nord_axisfreeimage.vcxproj" />
+    <ProjectReference Include="..\..\..\app\appseed\image_jpeg\nord_axis_image_jpeg.vcxproj" />
+    <ProjectReference Include="..\..\..\app\appseed\image_png\nord_axis_image_png.vcxproj" />
     <ProjectReference Include="..\app.activity\app.activity.vcxproj" />
     <ProjectReference Include="..\app.launcher\app.launcher.vcxproj" />
   </ItemGroup>

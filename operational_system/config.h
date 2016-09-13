@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "nodeapp/operational_system/config_debug.h"
+
+
 #define BSD_STYLE_SOCKETS
 #if !defined VARIADIC_TEMPLATE
 #define VARIADIC_TEMPLATE

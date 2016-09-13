@@ -44,6 +44,11 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "_welscommon", "..\..\..\third\appseed\openh264\nord_WelsCommon.vcxproj", "{3AED421D-9F4B-425B-8F9D-BA2645F64790}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "welsdecplus", "..\..\..\third\appseed\openh264\nord_WelsDecPlus.vcxproj", "{23D2F9B1-664A-4106-AD0A-5BAAEA70776C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3AED421D-9F4B-425B-8F9D-BA2645F64790} = {3AED421D-9F4B-425B-8F9D-BA2645F64790}
+		{E99C9D52-0709-4ED7-9F14-180B18F66C46} = {E99C9D52-0709-4ED7-9F14-180B18F66C46}
+		{D39E38E1-718F-4276-9306-5B197A324969} = {D39E38E1-718F-4276-9306-5B197A324969}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "_welsenccore", "..\..\..\third\appseed\openh264\nord_WelsEncCore.vcxproj", "{8B54FB04-F0CC-4DA4-8B90-3473EE947C36}"
 EndProject
@@ -62,10 +67,15 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axiswinpr", "..\..\..\third
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "welsencplus", "..\..\..\third\appseed\openh264\nord_WelsEncPlus.vcxproj", "{210DA5C4-9B97-4C41-A2BB-C7B04801F5CE}"
 	ProjectSection(ProjectDependencies) = postProject
+		{3AED421D-9F4B-425B-8F9D-BA2645F64790} = {3AED421D-9F4B-425B-8F9D-BA2645F64790}
+		{E99C9D52-0709-4ED7-9F14-180B18F66C46} = {E99C9D52-0709-4ED7-9F14-180B18F66C46}
 		{C8901976-D974-4D41-9CFE-5A2A1D4E4BEE} = {C8901976-D974-4D41-9CFE-5A2A1D4E4BEE}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "welsvp", "..\..\..\third\appseed\openh264\nord_WelsVP.vcxproj", "{C8901976-D974-4D41-9CFE-5A2A1D4E4BEE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E99C9D52-0709-4ED7-9F14-180B18F66C46} = {E99C9D52-0709-4ED7-9F14-180B18F66C46}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axisopenssl", "..\..\..\third\appseed\openssl\nord_axisopenssl.vcxproj", "{A2E70E72-5407-4131-AD91-881A861114ED}"
 	ProjectSection(ProjectDependencies) = postProject
