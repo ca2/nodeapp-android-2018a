@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "solution_include.h"
+#include "platform_configuration.h"
 
 
 #define MEMDLEAK 0

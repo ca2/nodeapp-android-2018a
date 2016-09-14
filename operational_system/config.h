@@ -81,6 +81,4 @@ typedef int int_bool;
 
 
 
-#define _strdup strdup
-
 

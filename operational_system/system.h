@@ -129,8 +129,6 @@ return ::ca::thread_priority_normal;
 
 
 
-#define _gmtime64 gmtime
-#define _stricmp  stricmp
 
 #ifndef _XSERVER64
 #ifndef _XTYPEDEF_XID
@@ -473,7 +471,6 @@ typedef unsigned long   u_long;
 
 #define OS32BIT
 #define OSBIT 32
-#define _X86_
 
 
 //typedef uint32_t dword_ptr;
