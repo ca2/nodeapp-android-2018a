@@ -28,6 +28,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axisfreerdp", "..\..\..\thi
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axisfreetype", "..\..\..\third\appseed\freetype\nord_freetype.vcxproj", "{AD0A44D0-7716-439B-AED5-48C654569171}"
+	ProjectSection(ProjectDependencies) = postProject
+		{04238890-C8DF-43C8-A90C-4D19FA21286F} = {04238890-C8DF-43C8-A90C-4D19FA21286F}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "atomiconv", "..\..\..\third\appseed\iconv\nord_iconv.vcxproj", "{A9D5FC74-A2D7-49BC-B658-CCD5610C5A96}"
 	ProjectSection(ProjectDependencies) = postProject
