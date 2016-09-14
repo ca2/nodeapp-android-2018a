@@ -1,0 +1,23 @@
+!SESSION 2016-09-14 04:34:53.908 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.7.0_55
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -application com.microsoft.javapkgsrv.application javapkgsrv-b60bf212-833b-438c-a22d-639700582a71
+Command-line arguments:  -consoleLog -application com.microsoft.javapkgsrv.application -data C:\nordroid\nodeapp\seed\metaseed\.workspace javapkgsrv-b60bf212-833b-438c-a22d-639700582a71
+
+!ENTRY org.eclipse.core.resources 2 10035 2016-09-14 05:38:42.508
+!MESSAGE The workspace will exit with unsaved changes in this session.
+!SESSION 2016-09-14 15:29:31.635 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.7.0_55
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -application com.microsoft.javapkgsrv.application javapkgsrv-6f64d514-05be-48b5-be36-030202feaab8
+Command-line arguments:  -consoleLog -application com.microsoft.javapkgsrv.application -data C:\nordroid\nodeapp\seed\metaseed\.workspace javapkgsrv-6f64d514-05be-48b5-be36-030202feaab8
+
+!ENTRY org.eclipse.core.resources 2 10035 2016-09-14 15:29:32.442
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.core.resources 2 10035 2016-09-14 17:14:34.167
+!MESSAGE The workspace will exit with unsaved changes in this session.

@@ -51,10 +51,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app_core_hellomultiverse", 
 		{02207BC4-C08B-4A2D-B754-F3BD46AD3098} = {02207BC4-C08B-4A2D-B754-F3BD46AD3098}
 		{03207BC4-C08B-4A2D-B754-F3BD46AD3098} = {03207BC4-C08B-4A2D-B754-F3BD46AD3098}
 		{04207BC4-C08B-4A2D-B754-F3BD46AD3098} = {04207BC4-C08B-4A2D-B754-F3BD46AD3098}
+		{7F61A6F3-4ED9-4460-9270-4EA7CB00E634} = {7F61A6F3-4ED9-4460-9270-4EA7CB00E634}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aura", "..\..\..\app\appseed\aura\nord_aura.vcxproj", "{02207BC4-C08B-4A2D-B754-F3BD46AD3098}"
 	ProjectSection(ProjectDependencies) = postProject
+		{E99C9D52-0709-4ED7-9F14-180B18F66C46} = {E99C9D52-0709-4ED7-9F14-180B18F66C46}
 		{BD207BC4-C08B-4A2D-B754-F3BD46AD3098} = {BD207BC4-C08B-4A2D-B754-F3BD46AD3098}
 	EndProjectSection
 EndProject
@@ -90,6 +92,10 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ace", "..\..\..\app\appseed\ace\nord_ace.vcxproj", "{E99C9D52-0709-4ED7-9F14-180B18F66C46}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axisfreeimage", "..\..\..\app\appseed\freeimage\nord_axisfreeimage.vcxproj", "{3F63B8BA-14B8-4147-A78A-0894B7207E37}"
+	ProjectSection(ProjectDependencies) = postProject
+		{02207BC4-C08B-4A2D-B754-F3BD46AD3098} = {02207BC4-C08B-4A2D-B754-F3BD46AD3098}
+		{BD207BC4-C08B-4A2D-B754-F3BD46AD3098} = {BD207BC4-C08B-4A2D-B754-F3BD46AD3098}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "image_decode_jpeg", "..\..\..\app\appseed\image_jpeg\nord_axis_image_jpeg.vcxproj", "{3C4A93D3-9B9B-4EA9-8BCF-A53BE3A0F9B5}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -104,6 +110,9 @@ EndProject
 Project("{39E2626F-3545-4960-A6E8-258AD8476CE5}") = "nord_app_core_hellomultiverse", "..\..\app-core\hellomultiverse\nord_app_core_hellomultiverse.androidproj", "{19841115-1951-0422-AF6D-98A0656F2704}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app_core_flag", "..\..\..\app-core\appseed\flag\nord_core_flag.vcxproj", "{19841115-2E02-4BC0-BF89-D11F8409C8DF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{85DD443E-1930-4C2D-A917-200E09D871E8} = {85DD443E-1930-4C2D-A917-200E09D871E8}
+	EndProjectSection
 EndProject
 Project("{39E2626F-3545-4960-A6E8-258AD8476CE5}") = "nord_app_core_flag", "..\..\app-core\flag\nord_app_core_flag.androidproj", "{B9EE40FC-3EBC-4D09-BF3A-0D329B651AC8}"
 EndProject
@@ -116,17 +125,32 @@ EndProject
 Project("{39E2626F-3545-4960-A6E8-258AD8476CE5}") = "nord_app_core_rdpclient", "..\..\app-core\rdpclient\nord_app_core_rdpclient.androidproj", "{19851115-1953-0422-AF6D-98A065770402}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app_cidadedecuritiba_alphaclock", "..\..\..\app-cidadedecuritiba\appseed\alphaclock\nord_cidadedecuritiba_alphaclock.vcxproj", "{19841115-1951-1977-0422-021F8409C8DF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{19841115-2E02-4BC0-BF89-D11F8409C8DF} = {19841115-2E02-4BC0-BF89-D11F8409C8DF}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app_core_clockverse", "..\..\..\app-core\appseed\clockverse\nord_core_clockverse.vcxproj", "{590F57D2-68FB-4197-BA30-E8FE47089A88}"
 	ProjectSection(ProjectDependencies) = postProject
+		{19841115-1951-1977-0422-021F8409C8DF} = {19841115-1951-1977-0422-021F8409C8DF}
 		{80499837-2589-411A-BA75-5A6EE85F7CD1} = {80499837-2589-411A-BA75-5A6EE85F7CD1}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "multimedia", "..\..\..\app-core\appseed\multimedia\nord_multimedia.vcxproj", "{80499837-2589-411A-BA75-5A6EE85F7CD1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{16AB3478-F401-43C0-8BF1-A19F28802711} = {16AB3478-F401-43C0-8BF1-A19F28802711}
+		{A2A4118F-5D46-489E-90BE-7A7F29FA51C9} = {A2A4118F-5D46-489E-90BE-7A7F29FA51C9}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "baseid3lib", "..\..\..\app-core\appseed\id3lib\nord_core_id3lib.vcxproj", "{A2A4118F-5D46-489E-90BE-7A7F29FA51C9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{02207BC4-C08B-4A2D-B754-F3BD46AD3098} = {02207BC4-C08B-4A2D-B754-F3BD46AD3098}
+		{03207BC4-C08B-4A2D-B754-F3BD46AD3098} = {03207BC4-C08B-4A2D-B754-F3BD46AD3098}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "audio_decode_wave", "..\..\..\app-core\appseed\audio_decode_wave\nord_audio_decode_wave.vcxproj", "{7E704D66-4B0E-4404-947B-0E494B0980BC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{80499837-2589-411A-BA75-5A6EE85F7CD1} = {80499837-2589-411A-BA75-5A6EE85F7CD1}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "audio_decode_libmpg123", "..\..\..\app-veriwell\appseed\audio_decode_libmpg123\nord_veriwell_audio_decode_libmpg123.vcxproj", "{FEFE13D1-3F9A-4B56-BEB9-51A844FB87D5}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -136,8 +160,26 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "audio_decode_libmpg123", ".
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app_core_projection", "..\..\..\app-core\appseed\projection\nord_core_projection.vcxproj", "{5C979D59-F31A-4830-93DD-CDADAE5347B7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{16AB3478-F401-43C0-8BF1-A19F28802711} = {16AB3478-F401-43C0-8BF1-A19F28802711}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app_core_rdpclient", "..\..\..\app-core\appseed\rdpclient\nord_core_rdpclient.vcxproj", "{A9EFFD1E-2E02-4BC0-BF89-D11F8409C8DF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{16AB3478-F401-43C0-8BF1-A19F28802711} = {16AB3478-F401-43C0-8BF1-A19F28802711}
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0} = {7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}
+		{04207BC4-C08B-4A2D-B754-F3BD46AD3098} = {04207BC4-C08B-4A2D-B754-F3BD46AD3098}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axisrdpclient", "..\..\..\app\appseed\rdpclient\nord_axisrdpclient.vcxproj", "{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E99C9D52-0709-4ED7-9F14-180B18F66C46} = {E99C9D52-0709-4ED7-9F14-180B18F66C46}
+		{16AB3478-F401-43C0-8BF1-A19F28802711} = {16AB3478-F401-43C0-8BF1-A19F28802711}
+		{02207BC4-C08B-4A2D-B754-F3BD46AD3098} = {02207BC4-C08B-4A2D-B754-F3BD46AD3098}
+		{03207BC4-C08B-4A2D-B754-F3BD46AD3098} = {03207BC4-C08B-4A2D-B754-F3BD46AD3098}
+		{04207BC4-C08B-4A2D-B754-F3BD46AD3098} = {04207BC4-C08B-4A2D-B754-F3BD46AD3098}
+		{BD207BC4-C08B-4A2D-B754-F3BD46AD3098} = {BD207BC4-C08B-4A2D-B754-F3BD46AD3098}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1075,6 +1117,34 @@ Global
 		{A9EFFD1E-2E02-4BC0-BF89-D11F8409C8DF}.stage|x64.ActiveCfg = stage|x86
 		{A9EFFD1E-2E02-4BC0-BF89-D11F8409C8DF}.stage|x86.ActiveCfg = stage|x86
 		{A9EFFD1E-2E02-4BC0-BF89-D11F8409C8DF}.stage|x86.Build.0 = stage|x86
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.basis|ARM.ActiveCfg = basis|ARM
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.basis|ARM.Build.0 = basis|ARM
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.basis|ARM64.ActiveCfg = basis|x86
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.basis|x64.ActiveCfg = basis|x86
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.basis|x86.ActiveCfg = basis|x86
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.basis|x86.Build.0 = basis|x86
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.Debug|ARM.ActiveCfg = basis|ARM
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.Debug|ARM.Build.0 = basis|ARM
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.Debug|ARM64.ActiveCfg = basis|x86
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.Debug|ARM64.Build.0 = basis|x86
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.Debug|x64.ActiveCfg = basis|x86
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.Debug|x64.Build.0 = basis|x86
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.Debug|x86.ActiveCfg = basis|x86
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.Debug|x86.Build.0 = basis|x86
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.Release|ARM.ActiveCfg = basis|ARM
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.Release|ARM.Build.0 = basis|ARM
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.Release|ARM64.ActiveCfg = basis|x86
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.Release|ARM64.Build.0 = basis|x86
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.Release|x64.ActiveCfg = basis|x86
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.Release|x64.Build.0 = basis|x86
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.Release|x86.ActiveCfg = basis|x86
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.Release|x86.Build.0 = basis|x86
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.stage|ARM.ActiveCfg = stage|ARM
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.stage|ARM.Build.0 = stage|ARM
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.stage|ARM64.ActiveCfg = stage|x86
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.stage|x64.ActiveCfg = stage|x86
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.stage|x86.ActiveCfg = stage|x86
+		{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}.stage|x86.Build.0 = stage|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

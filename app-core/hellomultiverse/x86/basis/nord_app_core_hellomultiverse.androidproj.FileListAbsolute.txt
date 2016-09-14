@@ -1,8 +1,5 @@
 C:\nordroid\time\x86\basis\nord_app_core_hellomultiverse.apk.recipe
 C:\nordroid\time\x86\basis\nord_app_core_hellomultiverse.apk.recipe.merged
-C:\nordroid\time\x86\basis\nord_app_core_hellomultiverse.apk
-C:\nordroid\time\x86\basis\nord_app_core_hellomultiverse.lastsuccessfuldeploy
-C:\nordroid\nodeapp\app-core\hellomultiverse\x86\basis\FileStringReplace.incremental
 C:\nordroid\time\x86\basis\Package\libs\x86\gdbserver
 C:\nordroid\time\x86\basis\Package\libs\x86\libgcom.so
 C:\nordroid\time\x86\basis\Package\libs\x86\libgnustl_shared.so
@@ -50,3 +47,6 @@ C:\nordroid\time\x86\basis\Package\src\com\ca2\app.java
 C:\nordroid\time\x86\basis\Package\AndroidManifest.xml
 C:\nordroid\time\x86\basis\Package\project.properties
 C:\nordroid\time\x86\basis\Package\build.xml
+C:\nordroid\time\x86\basis\nord_app_core_hellomultiverse.apk
+C:\nordroid\time\x86\basis\nord_app_core_hellomultiverse.lastsuccessfuldeploy
+C:\nordroid\nodeapp\app-core\hellomultiverse\x86\basis\FileStringReplace.incremental
