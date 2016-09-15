@@ -21,3 +21,13 @@ Command-line arguments:  -consoleLog -application com.microsoft.javapkgsrv.appli
 
 !ENTRY org.eclipse.core.resources 2 10035 2016-09-14 17:14:34.167
 !MESSAGE The workspace will exit with unsaved changes in this session.
+!SESSION 2016-09-14 23:47:11.678 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.7.0_55
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -application com.microsoft.javapkgsrv.application javapkgsrv-050ede11-0338-4040-b382-657435f05757
+Command-line arguments:  -consoleLog -application com.microsoft.javapkgsrv.application -data C:\nordroid\nodeapp\seed\metaseed\.workspace javapkgsrv-050ede11-0338-4040-b382-657435f05757
+
+!ENTRY org.eclipse.core.resources 2 10035 2016-09-14 23:47:12.585
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
