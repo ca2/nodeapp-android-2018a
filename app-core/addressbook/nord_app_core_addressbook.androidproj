@@ -22,7 +22,7 @@
     <RootNamespace>nord_app_core_hellomultiverse</RootNamespace>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <ProjectVersion>1.0</ProjectVersion>
-    <ProjectGuid>19841115-1951-0422-af6d-98a0656f2704</ProjectGuid>
+    <ProjectGuid>738497ba-78e0-4c58-a88c-051cf4113040</ProjectGuid>
     <_PackagingProjectWithoutNativeComponent>true</_PackagingProjectWithoutNativeComponent>
     <LaunchActivity Condition="'$(LaunchActivity)' == ''">com.nord_app_core_hellomultiverse.nord_app_core_hellomultiverse</LaunchActivity>
   </PropertyGroup>

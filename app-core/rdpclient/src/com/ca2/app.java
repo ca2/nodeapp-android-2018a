@@ -33,6 +33,8 @@ import android.graphics.drawable.BitmapDrawable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import android.app.WallpaperManager;
+
 
 public class app extends Activity
 {
@@ -458,7 +460,7 @@ class view extends EditText implements View.OnKeyListener
 		if(m_result.m_strWallpaper != null && m_result.m_strWallpaper.length() > 0)
 		{
 
-			setUserUrl(m_result.m_strWallpaper);
+			setUserWallpaper(m_result.m_strWallpaper);
 
 			m_result.m_strWallpaper = "";
 
@@ -651,7 +653,22 @@ class view extends EditText implements View.OnKeyListener
 	private void setUserWallpaper(String path)
 	{
 
-		InputStream input = new URL(path).openStream();
+		InputStream input = null;
+
+		try
+		{
+
+			input = new URL(path).openStream();
+    
+		}
+		catch (IOException e)
+		{
+			
+			e.printStackTrace();
+
+			return;
+
+		}
 
 		if(input == null)
 		{
@@ -678,7 +695,7 @@ class view extends EditText implements View.OnKeyListener
 
 		}
     
-		WallpaperManager m = WallpaperManager.getInstance(this);
+		WallpaperManager m = WallpaperManager.getInstance(getContext());
 
 		if(m == null)
 		{

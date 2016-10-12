@@ -110,17 +110,22 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
 
       fid = env->GetFieldID(cls,"m_strOpenUrl","Ljava/lang/String;");
 
-      // String
-      // Get the object given the Field ID
-      //jstring message = (*env)->GetObjectField(env,result,fid);
-      jstring message = env->NewStringUTF(g_initdata.m_pszOpenUrl);
-      if(NULL == message) return;
+      if (fid != NULL)
+      {
 
-      // modify the instance variables
-      env->SetObjectField(result,fid,message);
+         // String
+         // Get the object given the Field ID
+         //jstring message = (*env)->GetObjectField(env,result,fid);
+         jstring message = env->NewStringUTF(g_initdata.m_pszOpenUrl);
+         if (NULL == message) return;
+
+         // modify the instance variables
+         env->SetObjectField(result, fid, message);
 
 
-      free((void *) g_initdata.m_pszOpenUrl);
+         free((void *)g_initdata.m_pszOpenUrl);
+
+      }
 
       g_initdata.m_pszOpenUrl = NULL;
 
@@ -139,17 +144,22 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
 
       fid = env->GetFieldID(cls, "m_strWallpaper", "Ljava/lang/String;");
 
-      // String
-      // Get the object given the Field ID
-      //jstring message = (*env)->GetObjectField(env,result,fid);
-      jstring message = env->NewStringUTF(g_initdata.m_pszUserWallpaper);
-      if (NULL == message) return;
+      if (fid != NULL)
+      {
 
-      // modify the instance variables
-      env->SetObjectField(result, fid, message);
+         // String
+         // Get the object given the Field ID
+         //jstring message = (*env)->GetObjectField(env,result,fid);
+         jstring message = env->NewStringUTF(g_initdata.m_pszUserWallpaper);
+         if (NULL == message) return;
+
+         // modify the instance variables
+         env->SetObjectField(result, fid, message);
 
 
-      free((void *)g_initdata.m_pszUserWallpaper);
+         free((void *)g_initdata.m_pszUserWallpaper);
+
+      }
 
       g_initdata.m_pszUserWallpaper = NULL;
 
