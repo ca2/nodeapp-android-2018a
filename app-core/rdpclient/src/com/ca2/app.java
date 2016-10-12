@@ -28,7 +28,11 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.content.Intent;
 import android.util.Log;
-
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 
 public class app extends Activity
 {
@@ -199,6 +203,8 @@ class TakeInfoResult
    boolean	m_bHideKeyboard;
 
    String	m_strOpenUrl;
+
+   String	m_strWallpaper;
    
 }
 
@@ -444,6 +450,18 @@ class view extends EditText implements View.OnKeyListener
 		{
 
 			openUrl(m_result.m_strOpenUrl);
+
+			m_result.m_strOpenUrl = "";
+
+		}
+
+		if(m_result.m_strWallpaper != null && m_result.m_strWallpaper.length() > 0)
+		{
+
+			setUserUrl(m_result.m_strWallpaper);
+
+			m_result.m_strWallpaper = "";
+
 		}
 
     }
@@ -629,6 +647,60 @@ class view extends EditText implements View.OnKeyListener
 
     } 
 
+
+	private void setUserWallpaper(String path)
+	{
+
+		InputStream input = new URL(path).openStream();
+
+		if(input == null)
+		{
+
+			return;
+
+		}
+		
+		Bitmap bmp = BitmapFactory.decodeStream(input);
+
+		if(bmp == null)
+		{
+
+			return;
+
+		}
+    
+		BitmapDrawable bitmapDrawable = new BitmapDrawable(bmp);
+
+		if(bitmapDrawable == null)
+		{
+
+			return;	
+
+		}
+    
+		WallpaperManager m = WallpaperManager.getInstance(this);
+
+		if(m == null)
+		{
+
+			return;
+
+		}
+
+		try
+		{
+        
+			m.setBitmap(bmp);
+    
+		}
+		catch (IOException e)
+		{
+			
+			e.printStackTrace();
+
+		}
+		
+	}
 
 }
 
