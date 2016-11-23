@@ -219,7 +219,7 @@ void native_activity_android_start(android_init_data * pinitdata)
 
 	}
 
-   psystem->m_pbasesystem->m_posdata->m_pui = new ::user::interaction(psystem);
+   psystem->m_pbasesystem->m_possystemwindow->m_pui = new ::user::interaction(psystem);
 
    ::user::native_window_initialize initialize;
 
@@ -229,13 +229,13 @@ void native_activity_android_start(android_init_data * pinitdata)
    initialize.m_rect.bottom = pinitdata->m_iScreenHeight;
 
 
-   psystem->m_pbasesystem->m_posdata->m_pui->initialize(&initialize);
+   psystem->m_pbasesystem->m_possystemwindow->m_pui->initialize_native_window(&initialize);
 
    ::oswindow_data * pwindow = new oswindow_data;
 
    oswindow window = pwindow;
 
-   psystem->m_pbasesystem->m_posdata->m_oswindow = pwindow;
+   psystem->m_pbasesystem->m_possystemwindow->m_oswindow = pwindow;
 
 
 	try

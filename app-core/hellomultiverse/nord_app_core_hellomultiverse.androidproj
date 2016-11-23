@@ -87,13 +87,13 @@
     <Content Include="libs\x86\libaurasqlite.so" />
     <Content Include="libs\x86\libaxisbzip2.so" />
     <Content Include="libs\x86\libaxiscairo.so" />
-    <Content Include="libs\x86\libaxiscrypto.so" />
     <Content Include="libs\x86\libaxisfreetype.so" />
     <Content Include="libs\x86\libaxisidn.so" />
     <Content Include="libs\x86\libaxisjpeg.so" />
-    <Content Include="libs\x86\libaxisopenssl.so" />
     <Content Include="libs\x86\libaxispixman.so" />
     <Content Include="libs\x86\libaxispng.so" />
+    <Content Include="libs\x86\libnordcrypto.so" />
+    <Content Include="libs\x86\libnordopenssl.so" />
     <Content Include="nord_app_core_hellomultiverse\drawable\icon.png" />
     <Content Include="nord_app_core_hellomultiverse\values\strings.xml">
       <SubType>Designer</SubType>
