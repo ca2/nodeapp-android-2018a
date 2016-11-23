@@ -75,11 +75,9 @@
     <Content Include="libs\armeabi-v7a\libaurasqlite.so" />
     <Content Include="libs\armeabi-v7a\libaxisbzip2.so" />
     <Content Include="libs\armeabi-v7a\libaxiscairo.so" />
-    <Content Include="libs\armeabi-v7a\libaxiscrypto.so" />
     <Content Include="libs\armeabi-v7a\libaxisfreetype.so" />
     <Content Include="libs\armeabi-v7a\libaxisidn.so" />
     <Content Include="libs\armeabi-v7a\libaxisjpeg.so" />
-    <Content Include="libs\armeabi-v7a\libaxisopenssl.so" />
     <Content Include="libs\armeabi-v7a\libaxispixman.so" />
     <Content Include="libs\armeabi-v7a\libaxispng.so" />
     <Content Include="libs\x86\libatomiconv.so" />
