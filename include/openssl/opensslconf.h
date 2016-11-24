@@ -10,6 +10,8 @@
  * https://www.openssl.org/source/license.html
  */
 
+#define OPENSSL_MIN_API 0x10100000L
+
 #ifdef  __cplusplus
 extern "C" {
 #endif
