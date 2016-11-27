@@ -80,18 +80,42 @@
     <Content Include="libs\armeabi-v7a\libaxisjpeg.so" />
     <Content Include="libs\armeabi-v7a\libaxispixman.so" />
     <Content Include="libs\armeabi-v7a\libaxispng.so" />
-    <Content Include="libs\x86\libatomiconv.so" />
-    <Content Include="libs\x86\libaurapcre.so" />
-    <Content Include="libs\x86\libaurasqlite.so" />
-    <Content Include="libs\x86\libaxisbzip2.so" />
-    <Content Include="libs\x86\libaxiscairo.so" />
-    <Content Include="libs\x86\libaxisfreetype.so" />
-    <Content Include="libs\x86\libaxisidn.so" />
-    <Content Include="libs\x86\libaxisjpeg.so" />
-    <Content Include="libs\x86\libaxispixman.so" />
-    <Content Include="libs\x86\libaxispng.so" />
-    <Content Include="libs\x86\libnordcrypto.so" />
-    <Content Include="libs\x86\libnordopenssl.so" />
+    <Content Include="libs\x86\libatomiconv.so">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\x86\libaurapcre.so">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\x86\libaurasqlite.so">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\x86\libaxisbzip2.so">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\x86\libaxiscairo.so">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\x86\libaxisfreetype.so">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\x86\libaxisidn.so">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\x86\libaxisjpeg.so">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\x86\libaxispixman.so">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\x86\libaxispng.so">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\x86\libcrypto.so">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\x86\libssl.so">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="nord_app_core_hellomultiverse\drawable\icon.png" />
     <Content Include="nord_app_core_hellomultiverse\values\strings.xml">
       <SubType>Designer</SubType>

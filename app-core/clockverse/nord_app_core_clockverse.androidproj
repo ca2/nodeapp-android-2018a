@@ -130,6 +130,7 @@
     <ProjectReference Include="..\..\..\app\appseed\image_png\nord_axis_image_png.vcxproj" />
     <ProjectReference Include="..\..\appseed\app.activity\app.activity.vcxproj" />
     <ProjectReference Include="..\..\appseed\app.launcher\app.launcher.vcxproj" />
+    <ProjectReference Include="..\..\appseed\audio_opensles\nord_audio_opensles.vcxproj" />
   </ItemGroup>
   <ItemGroup>
     <AntProjectPropertiesFile Include="project.properties" />

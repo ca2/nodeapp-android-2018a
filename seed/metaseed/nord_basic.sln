@@ -170,6 +170,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app_core_rdpclient", "..\..
 		{04207BC4-C08B-4A2D-B754-F3BD46AD3098} = {04207BC4-C08B-4A2D-B754-F3BD46AD3098}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "audio_opensles", "..\..\appseed\audio_opensles\nord_audio_opensles.vcxproj", "{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		basis|ARM = basis|ARM
@@ -1106,6 +1108,34 @@ Global
 		{A9EFFD1E-2E02-4BC0-BF89-D11F8409C8DF}.stage|x64.ActiveCfg = stage|x86
 		{A9EFFD1E-2E02-4BC0-BF89-D11F8409C8DF}.stage|x86.ActiveCfg = stage|x86
 		{A9EFFD1E-2E02-4BC0-BF89-D11F8409C8DF}.stage|x86.Build.0 = stage|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.basis|ARM.ActiveCfg = basis|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.basis|ARM.Build.0 = basis|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.basis|ARM64.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.basis|x64.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.basis|x86.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.basis|x86.Build.0 = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.Debug|ARM.ActiveCfg = basis|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.Debug|ARM.Build.0 = basis|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.Debug|ARM64.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.Debug|ARM64.Build.0 = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.Debug|x64.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.Debug|x64.Build.0 = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.Debug|x86.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.Debug|x86.Build.0 = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.Release|ARM.ActiveCfg = basis|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.Release|ARM.Build.0 = basis|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.Release|ARM64.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.Release|ARM64.Build.0 = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.Release|x64.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.Release|x64.Build.0 = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.Release|x86.ActiveCfg = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.Release|x86.Build.0 = basis|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.stage|ARM.ActiveCfg = stage|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.stage|ARM.Build.0 = stage|ARM
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.stage|ARM64.ActiveCfg = stage|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.stage|x64.ActiveCfg = stage|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.stage|x86.ActiveCfg = stage|x86
+		{33EFB6A4-50AA-469A-97B5-EEEC49F30AD3}.stage|x86.Build.0 = stage|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

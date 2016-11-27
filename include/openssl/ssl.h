@@ -2523,6 +2523,8 @@ int ERR_load_SSL_strings(void);
 # define SSL_R_X509_LIB                                   268
 # define SSL_R_X509_VERIFICATION_SETUP_PROBLEMS           269
 
+void ssl_set_servername_done(SSL * s, int done);
+
 # ifdef  __cplusplus
 }
 # endif
