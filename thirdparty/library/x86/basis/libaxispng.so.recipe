@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <project>
-  <SOLibPaths>M:\nordroid\nodeapp\seed\metaseed\..\..\..\nodeapp\thirdparty\library\x86\basis\libaxispng.so;C:\ProgramData\Microsoft\AndroidNDK64\android-ndk-r11c\prebuilt\android-x86\gdbserver\gdbserver;C:\ProgramData\Microsoft\AndroidNDK64\android-ndk-r11c\sources\cxx-stl\gnu-libstdc++\4.9\libs\x86\libgnustl_shared.so</SOLibPaths>
+  <SOLibPaths>C:\nordroid\nodeapp\seed\metaseed\..\..\..\nodeapp\thirdparty\library\x86\basis\libaxispng.so;C:\ProgramData\Microsoft\AndroidNDK64\android-ndk-r13b\prebuilt\android-x86\gdbserver\gdbserver;C:\ProgramData\Microsoft\AndroidNDK64\android-ndk-r13b\sources\cxx-stl\gnu-libstdc++\4.9\libs\x86\libgnustl_shared.so</SOLibPaths>
   <AndroidLibPaths />
-  <OObjPaths>M:\nordroid\time\x86\basis\axispng</OObjPaths>
+  <OObjPaths>C:\nordroid\time\x86\basis\axispng</OObjPaths>
   <Configuration>basis</Configuration>
   <Platform>x86</Platform>
   <AndroidArchitecture>x86</AndroidArchitecture>

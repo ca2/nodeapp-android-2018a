@@ -25,7 +25,6 @@ namespace multimedia
          m_iBufferedCount     = 0;
          m_mmr                = result_success;
          m_peffect            = NULL;
-         m_dwLostSampleCount  = 0;
          m_bWrite             = false;
 
 
@@ -312,13 +311,13 @@ namespace multimedia
                //const SLboolean req[] = { SL_BOOLEAN_FALSE };
                //result = (*engineEngine)->CreateOutputMix(engineEngine, &(outputMixObject), 1, ids, req);
                result = (*engineEngine)->CreateOutputMix(engineEngine, &(outputMixObject), 0, NULL, NULL);
-               output_debug_string("engineEngine="+ ::str::from(engineEngine));
+               output_debug_string("engineEngine="+ ::str::from((uint_ptr)engineEngine));
                ASSERT(!result);
                if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
                // realize the output mix
                result = (*outputMixObject)->Realize(outputMixObject, SL_BOOLEAN_FALSE);
-               output_debug_string("Realize" + ::str::from(result));
+               output_debug_string("Realize" + ::str::from((uint_ptr)result));
                if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
                int speakers;
@@ -340,38 +339,38 @@ namespace multimedia
                const SLboolean req1[] = { SL_BOOLEAN_TRUE, SL_BOOLEAN_TRUE };
                result = (*engineEngine)->CreateAudioPlayer(engineEngine,
                   &(bqPlayerObject), &audioSrc, &audioSnk, 2, ids1, req1);
-               output_debug_string("bqPlayerObject="+::str::from(bqPlayerObject));
+               output_debug_string("bqPlayerObject="+::str::from((uint_ptr)bqPlayerObject));
                //ASSERT(!result);
                if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
                // realize the player
                result = (*bqPlayerObject)->Realize(bqPlayerObject, SL_BOOLEAN_FALSE);
-               output_debug_string("Realize="+::str::from(result));
+               output_debug_string("Realize="+::str::from((uint_ptr)result));
                //ASSERT(!result);
                if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
                // get the play interface
                result = (*bqPlayerObject)->GetInterface(bqPlayerObject, SL_IID_PLAY, &(bqPlayerPlay));
-               output_debug_string("bqPlayerPlay=" + ::str::from(bqPlayerPlay));
+               output_debug_string("bqPlayerPlay=" + ::str::from((uint_ptr) bqPlayerPlay));
                //ASSERT(!result);
                if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
                // get the volume interface
                result = (*bqPlayerObject)->GetInterface(bqPlayerObject, SL_IID_VOLUME, &(bqPlayerVolume));
-               output_debug_string("bqPlayerVolume=" + ::str::from(bqPlayerVolume));
+               output_debug_string("bqPlayerVolume=" + ::str::from((uint_ptr) bqPlayerVolume));
                //ASSERT(!result);
                if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
                // get the buffer queue interface
                result = (*bqPlayerObject)->GetInterface(bqPlayerObject, SL_IID_ANDROIDSIMPLEBUFFERQUEUE,
                   &(bqPlayerBufferQueue));
-               ::output_debug_string("bqPlayerBufferQueue=" + ::str::from(bqPlayerBufferQueue));
+               ::output_debug_string("bqPlayerBufferQueue=" + ::str::from((uint_ptr) bqPlayerBufferQueue));
                //ASSERT(!result);
                if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
                // register callback on the buffer queue
                result = (*bqPlayerBufferQueue)->RegisterCallback(bqPlayerBufferQueue, bqPlayerCallback, this);
-               output_debug_string("bqPlayerCallback=" + ::str::from(bqPlayerCallback));
+               output_debug_string("bqPlayerCallback=" + ::str::from((uint_ptr)bqPlayerCallback));
                //ASSERT(!result);
                if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
@@ -738,7 +737,7 @@ namespace multimedia
 
          (*bqPlayerBufferQueue)->Enqueue(bqPlayerBufferQueue, wave_out_get_buffer_data(iBuffer), wave_out_get_buffer_size());
 
-         //output_debug_string("buffer_size"+::str::from(wave_out_get_buffer_size()));
+         //output_debug_string("buffer_size"+::str::from((uint_ptr) wave_out_get_buffer_size()));
 
          finalize:
 

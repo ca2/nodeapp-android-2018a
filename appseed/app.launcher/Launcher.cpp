@@ -28,7 +28,8 @@
 #include "axis/os/android/android.h"
 #include "axis/node/android/android.h"
 #include "aura/aura/os/android/android_init_data.h"
-
+#include "base/user/user/user_interaction.h"
+#include "base/user/core_user.h"
 
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "AndroidProject1.NativeActivity", __VA_ARGS__))
 #define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "AndroidProject1.NativeActivity", __VA_ARGS__))
