@@ -157,6 +157,9 @@ static void engine_handle_cmd(struct android_app* app, int32_t cmd) {
 	}
 }
 
+
+extern unichar * g_pwszCommandLine;
+
 /**
 * This is the main entry point of a native application that is using
 * android_native_app_glue.  It runs in its own thread, with its own
@@ -197,6 +200,12 @@ void native_activity_android_start(android_init_data * pinitdata)
 		pinitmaindata->m_vssCommandLine = "app : app=app-core/hellomultiverse";
 
 	}
+
+   wstring wstrCommandLine(pinitmaindata->m_vssCommandLine);
+
+   g_pwszCommandLine = wcscpy(wstrCommandLine);
+
+   
 
 	pinitmaindata->m_nCmdShow = SW_SHOW;
 

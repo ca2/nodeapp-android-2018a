@@ -442,7 +442,7 @@ typedef unsigned long   u_long;
 
 //#define NULL 0
 
-#define _strcmpi strcasecmp
+#define _stricmp strcasecmp
 
 
 #define __forceinline inline
