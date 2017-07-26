@@ -113,9 +113,6 @@
     <Content Include="libs\x86\libcrypto.so">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="libs\x86\libssl.so">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="nord_app_core_hellomultiverse\drawable\icon.png" />
     <Content Include="nord_app_core_hellomultiverse\values\strings.xml">
       <SubType>Designer</SubType>

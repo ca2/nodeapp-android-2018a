@@ -203,9 +203,9 @@ void native_activity_android_start(android_init_data * pinitdata)
 
    wstring wstrCommandLine(pinitmaindata->m_vssCommandLine);
 
-   g_pwszCommandLine = wcscpy(wstrCommandLine);
+   g_pwszCommandLine = (unichar *) malloc((wstrCommandLine.length() + 1) * sizeof(unichar));
 
-   
+   wcscpy_dup(g_pwszCommandLine, wstrCommandLine);
 
 	pinitmaindata->m_nCmdShow = SW_SHOW;
 

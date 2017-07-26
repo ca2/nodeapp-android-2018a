@@ -7,5 +7,5 @@
   <Platform>x86</Platform>
   <AndroidArchitecture>x86</AndroidArchitecture>
   <!--links to other recipe files-->
-  <RecipeFiles>C:\nordroid\nodeapp\seed\metaseed\..\..\..\nodeapp\thirdparty\library\x86\basis\lib_welsenccore.a.recipe</RecipeFiles>
+  <RecipeFiles />
 </project>
