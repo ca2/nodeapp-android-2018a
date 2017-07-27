@@ -51,7 +51,18 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
    //stats_startFrame(&stats);
 
    /* Now fill the values with a nice little plasma */
-   g_android_fill_plasma(&info, pixels, time_ms);
+   try
+   {
+
+      g_android_fill_plasma(&info, pixels, time_ms);
+
+   }
+   catch (...)
+   {
+
+      LOGE("exception at g_android_fill_plasma");
+
+   }
 
    AndroidBitmap_unlockPixels(env, bitmap);
 

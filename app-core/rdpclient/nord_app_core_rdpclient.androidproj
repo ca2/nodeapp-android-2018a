@@ -85,9 +85,13 @@
     <Content Include="libs\x86\libaurapcre.so" />
     <Content Include="libs\x86\libaurasqlite.so" />
     <Content Include="libs\x86\libavcodec-57.so" />
+    <Content Include="libs\x86\libavcodec.so" />
     <Content Include="libs\x86\libavfilter-6.so" />
+    <Content Include="libs\x86\libavfilter.so" />
     <Content Include="libs\x86\libavformat-57.so" />
+    <Content Include="libs\x86\libavformat.so" />
     <Content Include="libs\x86\libavutil-55.so" />
+    <Content Include="libs\x86\libavutil.so" />
     <Content Include="libs\x86\libaxisbzip2.so" />
     <Content Include="libs\x86\libaxiscairo.so" />
     <Content Include="libs\x86\libaxisclientchannels.so" />
@@ -99,7 +103,9 @@
     <Content Include="libs\x86\libaxispng.so" />
     <Content Include="libs\x86\libaxiswinpr.so" />
     <Content Include="libs\x86\libswresample-2.so" />
+    <Content Include="libs\x86\libswresample.so" />
     <Content Include="libs\x86\libswscale-4.so" />
+    <Content Include="libs\x86\libswscale.so" />
     <Content Include="libs\x86\libwelsdecplus.so" />
     <Content Include="libs\x86\libwelsencplus.so" />
     <Content Include="libs\x86\libwelsvp.so" />
