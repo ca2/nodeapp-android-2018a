@@ -107,6 +107,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CLanguageStandard>gnu11</CLanguageStandard>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
+      <ObjectFileName>$(IntDir)%(Directory)%(Filename).o</ObjectFileName>
     </ClCompile>
     <Link>
       <LibraryDependencies>ace;jnigraphics;$(StlLibraryName);m;GLESv1_CM;EGL;log;android</LibraryDependencies>
@@ -128,6 +129,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-unused-private-field -Wno-inconsistent-missing-override -Wno-char-subscripts</AdditionalOptions>
       <Optimization>Disabled</Optimization>
+      <ObjectFileName>$(IntDir)%(Directory)%(Filename).o</ObjectFileName>
     </ClCompile>
     <Link>
       <LibraryDependencies>ace;jnigraphics;$(StlLibraryName);m;GLESv1_CM;EGL;log;android</LibraryDependencies>
@@ -145,6 +147,7 @@
       <CLanguageStandard>gnu11</CLanguageStandard>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-char-subscripts -Wno-unused-but-set-variable</AdditionalOptions>
+      <ObjectFileName>$(IntDir)%(Directory)%(Filename).o</ObjectFileName>
     </ClCompile>
     <Link>
       <LibraryDependencies>ace;jnigraphics;$(StlLibraryName);m;GLESv1_CM;EGL;log;android</LibraryDependencies>
@@ -170,6 +173,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/platform_configuration/$(Platform)/$(Configuration);$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(ProjectDir)../../appseed;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir).;$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions />
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-unused-private-field -Wno-inconsistent-missing-override -Wno-char-subscripts</AdditionalOptions>
+      <ObjectFileName>$(IntDir)%(Directory)%(Filename).o</ObjectFileName>
     </ClCompile>
     <Link>
       <LibraryDependencies>ace;jnigraphics;$(StlLibraryName);m;GLESv1_CM;EGL;log;android</LibraryDependencies>
