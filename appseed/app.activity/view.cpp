@@ -1,7 +1,26 @@
 #include "activity.h"
 
 
+// https://stackoverflow.com/questions/39823375/clarification-about-getfieldid
+// https://stackoverflow.com/users/192373/alex-cohn
+// 1
+// down vote
+// "I" here is the signature of the primitive integer type. Oracle provides a table of type signatures: http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/types.html#wp276
 
+// Z boolean
+// B byte
+// C char
+// S short
+// I int
+// J long
+// F float
+// D double
+// For non-primitive types, the signature is of form
+
+// L fully-qualified-class ;
+// For arrays, [ is added.
+
+// For methods, () are used to separate parameters from the return value.
 
 #define  LOG_TAG    "app.activity (view.cpp)"
 #define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
@@ -174,6 +193,70 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
 
       g_initdata.m_pszUserWallpaper = NULL;
 
+   }
+
+   if (g_initdata.m_bGetUserWallpaper)
+   {
+
+      jfieldID fid;
+
+      jmethodID mid;
+
+      jclass myclass;
+
+      jclass cls = env->GetObjectClass(result);
+
+      fid = env->GetFieldID(cls, "m_bGetWallpaper", "Z");
+
+      if (fid != NULL)
+      {
+
+         env->SetBooleanField(result, fid, g_initdata.m_bGetUserWallpaper);
+
+         g_initdata.m_bGetttingUserWallpaper = true;
+
+         g_initdata.m_bGetUserWallpaper = false;
+
+      }
+
+   }
+
+   if (g_initdata.m_bGettingUserWallpaper)
+   {
+      
+            jfieldID fid;
+      
+            jmethodID mid;
+      
+            jclass myclass;
+      
+            jclass cls = env->GetObjectClass(result);
+      
+            fid = env->GetFieldID(cls, "m_strGetWallpaper", "Ljava/lang/String;");
+      
+            if (fid != NULL)
+            {
+      
+               jstring jstr = env->GetObjectField(result, fid);
+
+               if(jstr != NULL)
+               {
+
+                  const char *nativeString = (*env)->GetStringUTFChars(env, jstr, 0);
+
+                  if(nativeString != NULL && *nativeString != '\0')
+                  {
+
+                     g_initdata.m_pszGetUserWallpaper = strdup(nativeString);
+
+                  }
+
+               }
+      
+            }
+      
+         }
+      
    }
 
 }
