@@ -1,4 +1,4 @@
-#include "activity.h"
+﻿#include "activity.h"
 
 
 #define  LOG_TAG    "app.activity (app.cpp)"
@@ -27,25 +27,23 @@ PFN_key key_up = NULL;
 
 PFN_text on_text = NULL;
 
-
-
 void * load_lib(const char * l)
 {
 
    void * handle = dlopen(l, RTLD_NOW | RTLD_GLOBAL);
-	
+
    if (handle)
-	{
-	
+   {
+
       LOGI("dlopen(\"%s\"){3}: Library Opened Successfully : %s", l, l);
-	
+
    }
-	else
+   else
    {
 
       LOGE("dlopen(\"%s\"): %s", l, strerror(errno));
 
-	}
+   }
 
    return handle;
 
@@ -55,8 +53,8 @@ void * load_lib(const char * l)
 
 void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, const char * pszCacheDir)
 {
-	
-	LOGI("start(%d, %d)", iScreenWidth, iScreenHeight);
+
+   LOGI("start(%d, %d)", iScreenWidth, iScreenHeight);
 
    PFN_native_activity_android_start main = NULL;
 
@@ -153,6 +151,43 @@ void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, con
 
    }
 
+   if (g_initdata.m_bGettingUserWallpaper)
+   {
+
+      jfieldID fid;
+
+      jmethodID mid;
+
+      jclass myclass;
+
+      jclass cls = env->GetObjectClass(dataexchange);
+
+      fid = env->GetFieldID(cls, "m_strGetWallpaper", "Ljava/lang/String;");
+
+      if (fid != NULL)
+      {
+
+         jstring jstr = (jstring)env->GetObjectField(dataexchange, fid);
+
+         if (jstr != NULL)
+         {
+
+            const char *nativeString = env->GetStringUTFChars(dataexchange, jstr, 0);
+
+            if (nativeString != NULL && *nativeString != '\0')
+            {
+
+               g_initdata.m_pszGetUserWallpaper = strdup(nativeString);
+
+            }
+
+         }
+
+      }
+
+   }
+
+
    {
 
       void * handle = load_lib("liblauncher.so");
@@ -196,7 +231,7 @@ void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, con
 
    initdata.m_pszOpenUrl      = NULL;
 
-	main(&initdata);
+   main(&initdata);
 
 }
 
@@ -205,15 +240,15 @@ void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, con
 //extern "C"
 //jint JNI_OnLoad(JavaVM* vm, void* reserved)
 //{
-//	JNIEnv* env;
-//	if (vm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6) != JNI_OK) {
-//		return -1;
-//	}
+// JNIEnv* env;
+// if (vm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6) != JNI_OK) {
+//    return -1;
+// }
 //
-//	// Get jclass with env->FindClass.
-//	// Register methods with env->RegisterNatives.
+// // Get jclass with env->FindClass.
+// // Register methods with env->RegisterNatives.
 //
-//	return JNI_VERSION_1_6;
+// return JNI_VERSION_1_6;
 //
 //}
 
@@ -224,7 +259,7 @@ const char * g_pszCacheDir = NULL;
 
 const char * jstrdup(JNIEnv * env, jstring jstr)
 {
-   
+
    const char * nativeString = env->GetStringUTFChars(jstr, NULL);
 
    const char * psz = strdup(nativeString);

@@ -1,6 +1,5 @@
-#pragma once
+﻿#pragma once
 
-//#include <android/native_activity.h>
 #include <android/log.h>
 #include <dlfcn.h>
 #include <errno.h>
@@ -15,7 +14,9 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include "aura/aura/os/android/android_init_data.h"
+
+#include "aura/aura/os/os_text.h"
+#include "aura/aura/os/android/android_data_exchange.h"
 
 
 
@@ -42,7 +43,7 @@ extern PFN_mouse l_button_up;
 
 
 
-typedef void FN_text(const wchar_t * pwch, size_t len);
+typedef void FN_text(enum e_os_text etext, const wchar_t * pwch, size_t len);
 
 typedef FN_text * PFN_text;
 
@@ -61,6 +62,7 @@ extern PFN_key key_up;
 
 
 
+
 extern int g_iScreenW;
 
 extern int g_iScreenH;
@@ -69,7 +71,7 @@ extern const char * g_pszCommandLine;
 
 extern const char * g_pszCacheDir;
 
-extern android_init_data g_initdata;
+extern android_data_exchange g_dataexchange;
 
 
 
