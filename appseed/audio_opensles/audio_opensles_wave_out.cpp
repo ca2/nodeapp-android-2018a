@@ -14,7 +14,7 @@ namespace multimedia
       wave_out::wave_out(sp(::base::application) papp) :
          object(papp),
          ::thread(papp),
-        wave_base(papp),
+         wave_base(papp),
          engine(papp),
          ::multimedia::audio::wave_out(papp)
 
@@ -49,13 +49,13 @@ namespace multimedia
       }
 
 
-      void wave_out::install_message_handling(::message::dispatch * pinterface)
+      void wave_out::install_message_routing(::message::sender * pinterface)
       {
 
-         ::multimedia::audio::wave_out::install_message_handling(pinterface);
+         ::multimedia::audio::wave_out::install_message_routing(pinterface);
 
-         IGUI_WIN_MSG_LINK(message_ready, pinterface, this, &wave_out::OnReady);
-         IGUI_WIN_MSG_LINK(message_free, pinterface, this, &wave_out::OnFree);
+         IGUI_MSG_LINK(message_ready, pinterface, this, &wave_out::OnReady);
+         IGUI_MSG_LINK(message_free, pinterface, this, &wave_out::OnFree);
 
       }
 
@@ -84,7 +84,7 @@ namespace multimedia
       {
          single_lock sLock(m_pmutex, TRUE);
          if(engineObject != NULL &&
-            m_estate != state_initial)
+               m_estate != state_initial)
             return result_success;
          m_pthreadCallback = pthreadCallback;
          ::multimedia::e_result mmr;
@@ -256,126 +256,128 @@ namespace multimedia
          if (create() != SL_RESULT_SUCCESS)
             return ::multimedia::result_error;
 
-            // configure audio source
-            SLDataLocator_AndroidSimpleBufferQueue loc_bufq =
-            {
-               SL_DATALOCATOR_ANDROIDSIMPLEBUFFERQUEUE,
-               iBufferCount
-            };
-            m_iBufferCount = iBufferCount;
-            switch (sr) {
+         // configure audio source
+         SLDataLocator_AndroidSimpleBufferQueue loc_bufq =
+         {
+            SL_DATALOCATOR_ANDROIDSIMPLEBUFFERQUEUE,
+            iBufferCount
+         };
+         m_iBufferCount = iBufferCount;
+         switch (sr)
+         {
 
-            case 8000:
-               sr = SL_SAMPLINGRATE_8;
-               break;
-            case 11025:
-               sr = SL_SAMPLINGRATE_11_025;
-               break;
-            case 16000:
-               sr = SL_SAMPLINGRATE_16;
-               break;
-            case 22050:
-               sr = SL_SAMPLINGRATE_22_05;
-               break;
-            case 24000:
-               sr = SL_SAMPLINGRATE_24;
-               break;
-            case 32000:
-               sr = SL_SAMPLINGRATE_32;
-               break;
-            case 44100:
-               sr = SL_SAMPLINGRATE_44_1;
-               break;
-            case 48000:
-               sr = SL_SAMPLINGRATE_48;
-               break;
-            case 64000:
-               sr = SL_SAMPLINGRATE_64;
-               break;
-            case 88200:
-               sr = SL_SAMPLINGRATE_88_2;
-               break;
-            case 96000:
-               sr = SL_SAMPLINGRATE_96;
-               break;
-            case 192000:
-               sr = SL_SAMPLINGRATE_192;
-               break;
-            default:
-               return ::multimedia::result_error;
-            }
+         case 8000:
+            sr = SL_SAMPLINGRATE_8;
+            break;
+         case 11025:
+            sr = SL_SAMPLINGRATE_11_025;
+            break;
+         case 16000:
+            sr = SL_SAMPLINGRATE_16;
+            break;
+         case 22050:
+            sr = SL_SAMPLINGRATE_22_05;
+            break;
+         case 24000:
+            sr = SL_SAMPLINGRATE_24;
+            break;
+         case 32000:
+            sr = SL_SAMPLINGRATE_32;
+            break;
+         case 44100:
+            sr = SL_SAMPLINGRATE_44_1;
+            break;
+         case 48000:
+            sr = SL_SAMPLINGRATE_48;
+            break;
+         case 64000:
+            sr = SL_SAMPLINGRATE_64;
+            break;
+         case 88200:
+            sr = SL_SAMPLINGRATE_88_2;
+            break;
+         case 96000:
+            sr = SL_SAMPLINGRATE_96;
+            break;
+         case 192000:
+            sr = SL_SAMPLINGRATE_192;
+            break;
+         default:
+            return ::multimedia::result_error;
+         }
 
-            {
+         {
 
-               //const SLInterfaceID ids[] = { SL_IID_VOLUME };
-               //const SLboolean req[] = { SL_BOOLEAN_FALSE };
-               //result = (*engineEngine)->CreateOutputMix(engineEngine, &(outputMixObject), 1, ids, req);
-               result = (*engineEngine)->CreateOutputMix(engineEngine, &(outputMixObject), 0, NULL, NULL);
-               output_debug_string("engineEngine="+ ::str::from((uint_ptr)engineEngine));
-               ASSERT(!result);
-               if (result != SL_RESULT_SUCCESS) goto end_openaudio;
+            //const SLInterfaceID ids[] = { SL_IID_VOLUME };
+            //const SLboolean req[] = { SL_BOOLEAN_FALSE };
+            //result = (*engineEngine)->CreateOutputMix(engineEngine, &(outputMixObject), 1, ids, req);
+            result = (*engineEngine)->CreateOutputMix(engineEngine, &(outputMixObject), 0, NULL, NULL);
+            output_debug_string("engineEngine="+ ::str::from((uint_ptr)engineEngine));
+            ASSERT(!result);
+            if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
-               // realize the output mix
-               result = (*outputMixObject)->Realize(outputMixObject, SL_BOOLEAN_FALSE);
-               output_debug_string("Realize" + ::str::from((uint_ptr)result));
-               if (result != SL_RESULT_SUCCESS) goto end_openaudio;
+            // realize the output mix
+            result = (*outputMixObject)->Realize(outputMixObject, SL_BOOLEAN_FALSE);
+            output_debug_string("Realize" + ::str::from((uint_ptr)result));
+            if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
-               int speakers;
-               if (channels > 1)
-                  speakers = SL_SPEAKER_FRONT_LEFT | SL_SPEAKER_FRONT_RIGHT;
-               else speakers = SL_SPEAKER_FRONT_CENTER;
-               SLDataFormat_PCM format_pcm = { SL_DATAFORMAT_PCM,channels, sr,
-                  SL_PCMSAMPLEFORMAT_FIXED_16, SL_PCMSAMPLEFORMAT_FIXED_16,
-                  speakers, SL_BYTEORDER_LITTLEENDIAN };
+            int speakers;
+            if (channels > 1)
+               speakers = SL_SPEAKER_FRONT_LEFT | SL_SPEAKER_FRONT_RIGHT;
+            else speakers = SL_SPEAKER_FRONT_CENTER;
+            SLDataFormat_PCM format_pcm = { SL_DATAFORMAT_PCM,channels, sr,
+                                            SL_PCMSAMPLEFORMAT_FIXED_16, SL_PCMSAMPLEFORMAT_FIXED_16,
+                                            speakers, SL_BYTEORDER_LITTLEENDIAN
+                                          };
 
-               SLDataSource audioSrc = { &loc_bufq, &format_pcm };
+            SLDataSource audioSrc = { &loc_bufq, &format_pcm };
 
-               // configure audio sink
-               SLDataLocator_OutputMix loc_outmix = { SL_DATALOCATOR_OUTPUTMIX, outputMixObject };
-               SLDataSink audioSnk = { &loc_outmix, NULL };
+            // configure audio sink
+            SLDataLocator_OutputMix loc_outmix = { SL_DATALOCATOR_OUTPUTMIX, outputMixObject };
+            SLDataSink audioSnk = { &loc_outmix, NULL };
 
-               // create audio player
-               const SLInterfaceID ids1[] = { SL_IID_ANDROIDSIMPLEBUFFERQUEUE, SL_IID_VOLUME };
-               const SLboolean req1[] = { SL_BOOLEAN_TRUE, SL_BOOLEAN_TRUE };
-               result = (*engineEngine)->CreateAudioPlayer(engineEngine,
-                  &(bqPlayerObject), &audioSrc, &audioSnk, 2, ids1, req1);
-               output_debug_string("bqPlayerObject="+::str::from((uint_ptr)bqPlayerObject));
-               //ASSERT(!result);
-               if (result != SL_RESULT_SUCCESS) goto end_openaudio;
+            // create audio player
+            const SLInterfaceID ids1[] = { SL_IID_ANDROIDSIMPLEBUFFERQUEUE, SL_IID_VOLUME };
+            const SLboolean req1[] = { SL_BOOLEAN_TRUE, SL_BOOLEAN_TRUE };
+            result = (*engineEngine)->CreateAudioPlayer(engineEngine,
+                     &(bqPlayerObject), &audioSrc, &audioSnk, 2, ids1, req1);
+            output_debug_string("bqPlayerObject="+::str::from((uint_ptr)bqPlayerObject));
+            //ASSERT(!result);
+            if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
-               // realize the player
-               result = (*bqPlayerObject)->Realize(bqPlayerObject, SL_BOOLEAN_FALSE);
-               output_debug_string("Realize="+::str::from((uint_ptr)result));
-               //ASSERT(!result);
-               if (result != SL_RESULT_SUCCESS) goto end_openaudio;
+            // realize the player
+            result = (*bqPlayerObject)->Realize(bqPlayerObject, SL_BOOLEAN_FALSE);
+            output_debug_string("Realize="+::str::from((uint_ptr)result));
+            //ASSERT(!result);
+            if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
-               // get the play interface
-               result = (*bqPlayerObject)->GetInterface(bqPlayerObject, SL_IID_PLAY, &(bqPlayerPlay));
-               output_debug_string("bqPlayerPlay=" + ::str::from((uint_ptr) bqPlayerPlay));
-               //ASSERT(!result);
-               if (result != SL_RESULT_SUCCESS) goto end_openaudio;
+            // get the play interface
+            result = (*bqPlayerObject)->GetInterface(bqPlayerObject, SL_IID_PLAY, &(bqPlayerPlay));
+            output_debug_string("bqPlayerPlay=" + ::str::from((uint_ptr) bqPlayerPlay));
+            //ASSERT(!result);
+            if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
-               // get the volume interface
-               result = (*bqPlayerObject)->GetInterface(bqPlayerObject, SL_IID_VOLUME, &(bqPlayerVolume));
-               output_debug_string("bqPlayerVolume=" + ::str::from((uint_ptr) bqPlayerVolume));
-               //ASSERT(!result);
-               if (result != SL_RESULT_SUCCESS) goto end_openaudio;
+            // get the volume interface
+            result = (*bqPlayerObject)->GetInterface(bqPlayerObject, SL_IID_VOLUME, &(bqPlayerVolume));
+            output_debug_string("bqPlayerVolume=" + ::str::from((uint_ptr) bqPlayerVolume));
+            //ASSERT(!result);
+            if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
-               // get the buffer queue interface
-               result = (*bqPlayerObject)->GetInterface(bqPlayerObject, SL_IID_ANDROIDSIMPLEBUFFERQUEUE,
-                  &(bqPlayerBufferQueue));
-               ::output_debug_string("bqPlayerBufferQueue=" + ::str::from((uint_ptr) bqPlayerBufferQueue));
-               //ASSERT(!result);
-               if (result != SL_RESULT_SUCCESS) goto end_openaudio;
+            // get the buffer queue interface
+            result = (*bqPlayerObject)->GetInterface(bqPlayerObject, SL_IID_ANDROIDSIMPLEBUFFERQUEUE,
+                     &(bqPlayerBufferQueue));
+            ::output_debug_string("bqPlayerBufferQueue=" + ::str::from((uint_ptr) bqPlayerBufferQueue));
+            //ASSERT(!result);
+            if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
-               // register callback on the buffer queue
-               result = (*bqPlayerBufferQueue)->RegisterCallback(bqPlayerBufferQueue, bqPlayerCallback, this);
-               output_debug_string("bqPlayerCallback=" + ::str::from((uint_ptr)bqPlayerCallback));
-               //ASSERT(!result);
-               if (result != SL_RESULT_SUCCESS) goto end_openaudio;
+            // register callback on the buffer queue
+            result = (*bqPlayerBufferQueue)->RegisterCallback(bqPlayerBufferQueue, bqPlayerCallback, this);
+            output_debug_string("bqPlayerCallback=" + ::str::from((uint_ptr)bqPlayerCallback));
+            //ASSERT(!result);
+            if (result != SL_RESULT_SUCCESS) goto end_openaudio;
 
 
-            }
+         }
 
 
          if(true)
@@ -425,14 +427,14 @@ namespace multimedia
 
          m_pprebuffer->SetMinL1BufferCount(wave_out_get_buffer()->GetBufferCount());
 
-         
+
 
 
 
          m_estate = state_opened;
 
          m_epurpose = epurpose;
-      end_openaudio:
+end_openaudio:
          if (result == SL_RESULT_SUCCESS)
          {
             output_debug_string("wave_out::wave_out_open_ex success");
@@ -465,7 +467,8 @@ namespace multimedia
 
 
          // destroy buffer queue audio player object, and invalidate all associated interfaces
-         if (bqPlayerObject != NULL) {
+         if (bqPlayerObject != NULL)
+         {
             (*bqPlayerObject)->Destroy(bqPlayerObject);
             bqPlayerObject = NULL;
             bqPlayerVolume = NULL;
@@ -475,7 +478,8 @@ namespace multimedia
          }
 
          // destroy output mix object, and invalidate all associated interfaces
-         if (outputMixObject != NULL) {
+         if (outputMixObject != NULL)
+         {
             (*outputMixObject)->Destroy(outputMixObject);
             outputMixObject = NULL;
          }
@@ -520,7 +524,7 @@ namespace multimedia
          //if(m_mmr == result_success)
          //{
 
-            m_estate = state_opened;
+         m_estate = state_opened;
 
 //         }
 
@@ -642,9 +646,9 @@ namespace multimedia
 
          //if(m_pprebuffer->m_pstreameffectOut != NULL)
          //{
-           // ::multimedia::iaudio::wave_stream_effect * peffect = m_pprebuffer->m_pstreameffectOut;
-            //m_pprebuffer->m_pstreameffectOut = NULL;
-            //delete peffect;
+         // ::multimedia::iaudio::wave_stream_effect * peffect = m_pprebuffer->m_pstreameffectOut;
+         //m_pprebuffer->m_pstreameffectOut = NULL;
+         //delete peffect;
          //}
 
          //m_eventStopped.SetEvent();
@@ -691,7 +695,7 @@ namespace multimedia
 
 
 
-      void wave_out::OnReady(::signal_details * pobj)
+      void wave_out::OnReady(::message::message * pobj)
       {
 
          SCAST_PTR(::message::base, pbase, pobj);
@@ -703,7 +707,7 @@ namespace multimedia
       }
 
 
-      void wave_out::OnFree(::signal_details * pobj)
+      void wave_out::OnFree(::message::message * pobj)
       {
 
          SCAST_PTR(::message::base, pbase, pobj);
@@ -721,7 +725,7 @@ namespace multimedia
          single_lock sLock(m_pmutex, TRUE);
 
          if(m_estate != audio::wave_out::state_playing
-         && m_estate != audio::wave_out::state_stopping)
+               && m_estate != audio::wave_out::state_stopping)
          {
 
             goto finalize;
@@ -739,11 +743,11 @@ namespace multimedia
 
          //output_debug_string("buffer_size"+::str::from((uint_ptr) wave_out_get_buffer_size()));
 
-         finalize:
+finalize:
 
          sLock.unlock();
 
-         
+
 
       }
 
@@ -801,7 +805,7 @@ namespace multimedia
       {
 
 //         return ::multimedia::audio::wave_out::on_run_step();
-return false;
+         return false;
 
       }
 
@@ -810,7 +814,7 @@ return false;
       {
 
          //if(verbose)
-           //printf("stream recovery\n");
+         //printf("stream recovery\n");
 
          if(m_pprebuffer->IsEOF() || wave_out_get_state() == state_stopping)
          {
@@ -884,10 +888,10 @@ return false;
 
 
 
-  // this callback handler is called every time a buffer finishes playing
+// this callback handler is called every time a buffer finishes playing
 void bqPlayerCallback(SLAndroidSimpleBufferQueueItf bq, void *context)
 {
-   
+
    multimedia::audio_opensles::wave_out *p = (multimedia::audio_opensles::wave_out *)context;
 
    SLAndroidSimpleBufferQueueState s;
@@ -901,5 +905,5 @@ void bqPlayerCallback(SLAndroidSimpleBufferQueueItf bq, void *context)
    p->wave_out_out_buffer_done(s.index % p->m_iBufferCount);
 
 
-   
+
 }

@@ -36,7 +36,7 @@ public class app extends Activity
 	view			m_view;
 
 	private static native void configureApp(String strCommandLine, String strCacheDir, int iScreenW, int iScreenH);
-    
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -46,7 +46,7 @@ public class app extends Activity
 		Display display = getWindowManager().getDefaultDisplay();
 
 		Point size = new Point();
-		
+
 		display.getSize(size);
 
 		//configureApp("app : app=app-core/hellomultiverse no_hello_edit client_only", getApplicationContext().getCacheDir().getAbsolutePath(), size.x, size.y);
@@ -61,9 +61,9 @@ public class app extends Activity
 		{
 
 			ApplicationInfo ai = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
-    
+
 			Bundle bundle = ai.metaData;
-		
+
 			prjname = bundle.getString("project_name");
 
 			cmdline = bundle.getString("command_line");
@@ -73,11 +73,11 @@ public class app extends Activity
 		}
 		catch (NameNotFoundException e)
 		{
-			
+
 		}
 		catch (NullPointerException e)
 		{
-			
+
 		}
 
 
@@ -101,12 +101,12 @@ public class app extends Activity
 
 		if(libname.length() > 0)
 		{
-			
+
 			String[] parts = libname.split(",");
 
 			for(int i = 0; i < parts.length; i++)
 			{
-				
+
 				String lib = parts[i];
 
 				if(lib.length() > 0)
@@ -142,7 +142,7 @@ public class app extends Activity
 			{
 
 			}
-		
+
 		}
 
 		if(!bLoaded)
@@ -160,7 +160,7 @@ public class app extends Activity
 				throw new UnsatisfiedLinkError(prjname);
 
 			}
-		
+
 			//try
 			{
 
@@ -181,7 +181,7 @@ public class app extends Activity
 		configureApp(cmdline, getApplicationContext().getCacheDir().getAbsolutePath(), size.x, size.y);
 
 		m_view = new view(this, size);
-		
+
         setContentView(m_view);
 
     }
@@ -199,7 +199,7 @@ class TakeInfoResult
    boolean	m_bHideKeyboard;
 
    String	m_strOpenUrl;
-   
+
 }
 
 
@@ -224,7 +224,7 @@ class view extends EditText implements View.OnKeyListener
 
 			MyEditable(CharSequence source)
 			{
-        
+
 				super(source);
 
 			}
@@ -243,7 +243,7 @@ class view extends EditText implements View.OnKeyListener
 				}
 				else if (end > start)
 				{
-            
+
 					super.replace(0, length(), "", 0, 0);
 
 					return super.replace(0, 0, DUMMY, 0, DUMMY.length());
@@ -259,13 +259,13 @@ class view extends EditText implements View.OnKeyListener
 		@Override
 		public Editable getEditable()
 		{
-    
+
 			if (Build.VERSION.SDK_INT < 14)
 				return super.getEditable();
 
 			if (mEditable == null)
 			{
-        
+
 				mEditable = this.new MyEditable(DUMMY);
 
 				Selection.setSelection(mEditable, DUMMY.length());
@@ -273,7 +273,7 @@ class view extends EditText implements View.OnKeyListener
 			}
 			else if (mEditable.length() == 0)
 			{
-        
+
 				mEditable.append(DUMMY);
 
 				Selection.setSelection(mEditable, DUMMY.length());
@@ -288,7 +288,7 @@ class view extends EditText implements View.OnKeyListener
 		@Override
 		public boolean deleteSurroundingText(int beforeLength, int afterLength)
 		{
-    
+
 			// Not called in latest Android version...
 
 			return super.deleteSurroundingText(beforeLength, afterLength);
@@ -369,7 +369,7 @@ class view extends EditText implements View.OnKeyListener
 //		            }
 
 //		            return false;
-	
+
 //				}
 
 //            });
@@ -399,7 +399,7 @@ class view extends EditText implements View.OnKeyListener
     @Override
 	protected void onDraw(Canvas canvas)
 	{
-        
+
 		renderImpact(m_bitmap, System.currentTimeMillis() - m_lStartTime, m_result);
 
         canvas.drawBitmap(m_bitmap, 0, 0, null);
@@ -414,7 +414,7 @@ class view extends EditText implements View.OnKeyListener
 			onReceivedShowKeyboard();
 
 			InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-				
+
 			imm.showSoftInput(this, InputMethodManager.SHOW_FORCED);
 
 		}
@@ -430,7 +430,7 @@ class view extends EditText implements View.OnKeyListener
 			onReceivedHideKeyboard();
 
 			InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-				
+
 //			imm.hideSoftInputFromWindow (getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);
 
 			imm.hideSoftInputFromWindow (getWindowToken(), 0);
@@ -444,6 +444,7 @@ class view extends EditText implements View.OnKeyListener
 		{
 
 			openUrl(m_result.m_strOpenUrl);
+            m_result.m_strOpenUrl= "";
 		}
 
     }
@@ -477,9 +478,9 @@ class view extends EditText implements View.OnKeyListener
 
             String s = keyEvent.getCharacters();
 
-            if (!s.equals(DUMMY) && !s.equals("\n")) 
+            if (!s.equals(DUMMY) && !s.equals("\n"))
 			{
-            
+
 			    onText(s);
 
             }
@@ -524,7 +525,7 @@ class view extends EditText implements View.OnKeyListener
 //	@Override
 //	public InputConnection onCreateInputConnection(EditorInfo outAttrs)
 //	{
-    
+
 //		outAttrs.actionLabel = null;
 
 //		outAttrs.label = "Test text";
@@ -541,7 +542,7 @@ class view extends EditText implements View.OnKeyListener
 //	@Override
 //	public boolean onCheckIsTextEditor()
 //	{
-    
+
 //		return true;
 
 //	}
@@ -561,7 +562,7 @@ class view extends EditText implements View.OnKeyListener
 //	}
 
 //  @Override
-//  public boolean onCheckIsTextEditor() 
+//  public boolean onCheckIsTextEditor()
 //	{
 //		return true;
 //  }
@@ -575,19 +576,19 @@ class view extends EditText implements View.OnKeyListener
 		{
 
 			lButtonDown(ev.getX(), ev.getY());
-		
+
 		}
 		else if(ev.getAction() == MotionEvent.ACTION_MOVE)
 		{
 
 			mouseMove(ev.getX(), ev.getY());
-		
+
 		}
 		else if(ev.getAction() == MotionEvent.ACTION_UP)
 		{
 
 			lButtonUp(ev.getX(), ev.getY());
-		
+
 		}
 
 		//return b;
@@ -602,15 +603,15 @@ class view extends EditText implements View.OnKeyListener
 		{
 
 			keyPreImeDown(keyCode, ev.getUnicodeChar());
-		
+
 		}
 		else if(ev.getAction() == KeyEvent.ACTION_UP)
 		{
 
 			keyPreImeUp(keyCode, ev.getUnicodeChar());
-		
+
 		}
-		
+
 		return true;
 
 	}
@@ -618,7 +619,7 @@ class view extends EditText implements View.OnKeyListener
 
     private void openUrl( String url )
     {
-        
+
 		Uri uriUrl = Uri.parse( url );
 
         Intent intent = new Intent(Intent.ACTION_VIEW, uriUrl);
@@ -627,7 +628,7 @@ class view extends EditText implements View.OnKeyListener
 
         getContext().startActivity( intent );
 
-    } 
+    }
 
 
 }

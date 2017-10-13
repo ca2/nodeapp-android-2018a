@@ -1,4 +1,4 @@
-﻿package com.ca2;
+package com.ca2;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -31,523 +31,529 @@ import android.util.Log;
 
 public class app extends Activity {
 
-	view m_view;
+   view m_view;
 
-	private static native void configureApp(String strCommandLine, String strCacheDir, int iScreenW, int iScreenH);
+   private static native void configureApp(String strCommandLine, String strCacheDir, int iScreenW, int iScreenH);
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
+   @Override
+   public void onCreate(Bundle savedInstanceState) {
 
-		super.onCreate(savedInstanceState);
+      super.onCreate(savedInstanceState);
 
-		Display display = getWindowManager().getDefaultDisplay();
+      Display display = getWindowManager().getDefaultDisplay();
 
-		Point size = new Point();
+      Point size = new Point();
 
-		display.getSize(size);
+      display.getSize(size);
 
-		//configureApp("app : app=app-core/hellomultiverse no_hello_edit client_only", getApplicationContext().getCacheDir().getAbsolutePath(), size.x, size.y);
+      //configureApp("app : app=app-core/hellomultiverse no_hello_edit client_only", getApplicationContext().getCacheDir().getAbsolutePath(), size.x, size.y);
 
-		String prjname = "";
+      String prjname = "";
 
-		String cmdline = "";
+      String cmdline = "";
 
-		String libname = "";
+      String libname = "";
 
-		try {
+      try {
 
-			ApplicationInfo ai = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
+         ApplicationInfo ai = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
 
-			Bundle bundle = ai.metaData;
+         Bundle bundle = ai.metaData;
 
-			prjname = bundle.getString("project_name");
+         prjname = bundle.getString("project_name");
 
-			cmdline = bundle.getString("command_line");
+         cmdline = bundle.getString("command_line");
 
-			libname = bundle.getString("library_name");
+         libname = bundle.getString("library_name");
 
-		} catch (NameNotFoundException e) {
+      } catch (NameNotFoundException e) {
 
-		} catch (NullPointerException e) {
+      } catch (NullPointerException e) {
 
-		}
+      }
 
-		if (prjname.substring(0, 5).equals("nord_")) {
+      if (prjname.substring(0, 5).equals("nord_")) {
 
-			prjname = prjname.substring(5);
+         prjname = prjname.substring(5);
 
-		}
+      }
 
-		System.loadLibrary("activity");
+      System.loadLibrary("activity");
 
-		//System.loadLibrary("axis");
+      //System.loadLibrary("axis");
 
-		//System.loadLibrary("core");
+      //System.loadLibrary("core");
 
-		//System.loadLibrary("axispixman");
+      //System.loadLibrary("axispixman");
 
-		//System.loadLibrary("axiscairo");
+      //System.loadLibrary("axiscairo");
 
-		if (libname.length() > 0) {
+      if (libname.length() > 0) {
 
-			String[] parts = libname.split(",");
+         String[] parts = libname.split(",");
 
-			for (int i = 0; i < parts.length; i++) {
+         for (int i = 0; i < parts.length; i++) {
 
-				String lib = parts[i];
+            String lib = parts[i];
 
-				if (lib.length() > 0) {
+            if (lib.length() > 0) {
 
-					System.loadLibrary(lib);
+               System.loadLibrary(lib);
 
-				}
+            }
 
-			}
+         }
 
-		}
+      }
 
-		//System.loadLibrary("axis_image_jpeg");
+      //System.loadLibrary("axis_image_jpeg");
 
-		//System.loadLibrary("draw2d_cairo");
+      //System.loadLibrary("draw2d_cairo");
 
-		boolean bLoaded = false;
+      boolean bLoaded = false;
 
-		if (!bLoaded) {
+      if (!bLoaded) {
 
-			try {
+         try {
 
-				System.loadLibrary(prjname);
+            System.loadLibrary(prjname);
 
-				bLoaded = true;
+            bLoaded = true;
 
-			} catch (UnsatisfiedLinkError e) {
+         } catch (UnsatisfiedLinkError e) {
 
-			}
+         }
 
-		}
+      }
 
-		if (!bLoaded) {
+      if (!bLoaded) {
 
-			if (prjname.substring(0, 4).equals("app_")) {
+         if (prjname.substring(0, 4).equals("app_")) {
 
-				prjname = prjname.substring(4);
+            prjname = prjname.substring(4);
 
-			} else {
+         } else {
 
-				throw new UnsatisfiedLinkError(prjname);
+            throw new UnsatisfiedLinkError(prjname);
 
-			}
+         }
 
-			//try
-			{
+         //try
+         {
 
-				System.loadLibrary(prjname);
+            System.loadLibrary(prjname);
 
-				bLoaded = true;
+            bLoaded = true;
 
-			}
-			//catch (UnsatisfiedLinkError e)
-			{
+         }
+         //catch (UnsatisfiedLinkError e)
+         {
 
-			}
+         }
 
-		}
+      }
 
-		System.loadLibrary("launcher");
+      System.loadLibrary("launcher");
 
-		configureApp(cmdline, getApplicationContext().getCacheDir().getAbsolutePath(), size.x, size.y);
+      configureApp(cmdline, getApplicationContext().getCacheDir().getAbsolutePath(), size.x, size.y);
 
-		m_view = new view(this, size);
+      m_view = new view(this, size);
 
-		setContentView(m_view);
+      setContentView(m_view);
 
-	}
+   }
 
 }
 
 class os_data_exchange
 {
 
-	boolean m_bShowKeyboard;
-
-	boolean m_bHideKeyboard;
+   boolean m_bShowKeyboard;
 
    boolean m_bHideKeyboard;
 
-	String m_strOpenUrl;
+   String m_strOpenUrl;
+
+   String m_strWallpaper;
+
+   boolean m_bGetWallpaper;
+
+   boolean m_bGettingWallpaper;
 
 }
 
 class view extends EditText implements View.OnKeyListener {
 
-	class MyInputConnection extends BaseInputConnection {
+   class MyInputConnection extends BaseInputConnection {
 
-		private MyEditable mEditable;
+      private MyEditable mEditable;
 
-		public MyInputConnection(View targetView, boolean fullEditor) {
+      public MyInputConnection(View targetView, boolean fullEditor) {
 
-			super(targetView, fullEditor);
+         super(targetView, fullEditor);
 
-		}
+      }
 
-		private class MyEditable extends SpannableStringBuilder {
+      private class MyEditable extends SpannableStringBuilder {
 
-			MyEditable(CharSequence source) {
+         MyEditable(CharSequence source) {
 
-				super(source);
+            super(source);
 
-			}
+         }
 
-			@Override
-			public SpannableStringBuilder replace(final int start, final int end, CharSequence tb, int tbstart,
-					int tbend) {
+         @Override
+         public SpannableStringBuilder replace(final int start, final int end, CharSequence tb, int tbstart,
+               int tbend) {
 
-				if (tbend > tbstart) {
+            if (tbend > tbstart) {
 
-					super.replace(0, length(), "", 0, 0);
+               super.replace(0, length(), "", 0, 0);
 
-					return super.replace(0, 0, tb, tbstart, tbend);
+               return super.replace(0, 0, tb, tbstart, tbend);
 
-				} else if (end > start) {
+            } else if (end > start) {
 
-					super.replace(0, length(), "", 0, 0);
+               super.replace(0, length(), "", 0, 0);
 
-					return super.replace(0, 0, DUMMY, 0, DUMMY.length());
+               return super.replace(0, 0, DUMMY, 0, DUMMY.length());
 
-				}
+            }
 
-				return super.replace(start, end, tb, tbstart, tbend);
+            return super.replace(start, end, tb, tbstart, tbend);
 
-			}
+         }
 
-		}
+      }
 
-		@Override
-		public Editable getEditable() {
+      @Override
+      public Editable getEditable() {
 
-			if (Build.VERSION.SDK_INT < 14)
-				return super.getEditable();
+         if (Build.VERSION.SDK_INT < 14)
+            return super.getEditable();
 
-			if (mEditable == null) {
+         if (mEditable == null) {
 
-				mEditable = this.new MyEditable(DUMMY);
+            mEditable = this.new MyEditable(DUMMY);
 
-				Selection.setSelection(mEditable, DUMMY.length());
+            Selection.setSelection(mEditable, DUMMY.length());
 
-			} else if (mEditable.length() == 0) {
+         } else if (mEditable.length() == 0) {
 
-				mEditable.append(DUMMY);
+            mEditable.append(DUMMY);
 
-				Selection.setSelection(mEditable, DUMMY.length());
+            Selection.setSelection(mEditable, DUMMY.length());
 
-			}
+         }
 
-			return mEditable;
+         return mEditable;
 
-		}
+      }
 
-		@Override
-		public boolean deleteSurroundingText(int beforeLength, int afterLength) {
+      @Override
+      public boolean deleteSurroundingText(int beforeLength, int afterLength) {
 
-			// Not called in latest Android version...
+         // Not called in latest Android version...
 
-			return super.deleteSurroundingText(beforeLength, afterLength);
+         return super.deleteSurroundingText(beforeLength, afterLength);
 
-		}
+      }
 
-	}
+   }
 
-	private Bitmap m_bitmap;
+   private Bitmap m_bitmap;
 
-	private long m_lStartTime;
+   private long m_lStartTime;
 
-	private int m_iScreenW;
+   private int m_iScreenW;
 
-	private int m_iScreenH;
+   private int m_iScreenH;
 
-	private TakeInfoResult m_result;
+   private os_data_exchange m_dataexchange;
 
-	private static native void renderImpact(Bitmap bitmap, long time_ms, os_data_exchange dataexchange);
+   private static native void renderImpact(Bitmap bitmap, long time_ms, os_data_exchange dataexchange);
 
-	private static native void lButtonDown(float x, float y);
+   private static native void lButtonDown(float x, float y);
 
-	private static native void mouseMove(float x, float y);
+   private static native void mouseMove(float x, float y);
 
-	private static native void lButtonUp(float x, float y);
+   private static native void lButtonUp(float x, float y);
 
-	private static native void keyDown(int keycode);
+   private static native void keyDown(int keycode);
 
-	private static native void keyUp(int keycode);
+   private static native void keyUp(int keycode);
 
-	private static native void keyPreImeDown(int keycode, int iUni);
+   private static native void keyPreImeDown(int keycode, int iUni);
 
-	private static native void keyPreImeUp(int keycode, int iUni);
+   private static native void keyPreImeUp(int keycode, int iUni);
 
-	private static native void onReceivedShowKeyboard();
+   private static native void onReceivedShowKeyboard();
 
-	private static native void onReceivedHideKeyboard();
+   private static native void onReceivedHideKeyboard();
 
-	private static native void onText(String str);
+   private static native void onText(String str);
 
-	private String DUMMY;
+   private static native void wallpaperResponse(String str);
 
-	public view(Context context, Point size) {
+   private String DUMMY;
 
-		super(context);
+   public view(Context context, Point size) {
 
-		m_result = new TakeInfoResult();
+      super(context);
 
-		//m_result.m_strOpenUrl = new String();
+      m_dataexchange = new os_data_exchange();
 
-		setFocusableInTouchMode(true);
+      //m_dataexchange.m_strOpenUrl = new String();
 
-		//		setOnKeyListener(new OnKeyListener()
-		//			{
+      setFocusableInTouchMode(true);
 
-		//				public boolean onKey(View v, int keyCode, KeyEvent event)
-		//				{
+      //		setOnKeyListener(new OnKeyListener()
+      //			{
 
-		//	                if (event.getAction() == KeyEvent.ACTION_DOWN)
-		//					{
+      //				public boolean onKey(View v, int keyCode, KeyEvent event)
+      //				{
 
-		//						keyDown(keyCode);
+      //	                if (event.getAction() == KeyEvent.ACTION_DOWN)
+      //					{
 
-		//	                    return true;
+      //						keyDown(keyCode);
 
-		//		            }
-		//	                else if (event.getAction() == KeyEvent.ACTION_UP)
-		//					{
+      //	                    return true;
 
-		//						keyUp(keyCode);
+      //		            }
+      //	                else if (event.getAction() == KeyEvent.ACTION_UP)
+      //					{
 
-		//	                    return true;
+      //						keyUp(keyCode);
 
-		//		            }
+      //	                    return true;
 
-		//		            return false;
+      //		            }
 
-		//				}
+      //		            return false;
 
-		//            });
+      //				}
 
-		m_iScreenW = size.x;
+      //            });
 
-		m_iScreenH = size.y;
+      m_iScreenW = size.x;
 
-		m_bitmap = Bitmap.createBitmap(m_iScreenW, m_iScreenH - 66, Bitmap.Config.ARGB_8888);
+      m_iScreenH = size.y;
 
-		m_lStartTime = System.currentTimeMillis();
+      m_bitmap = Bitmap.createBitmap(m_iScreenW, m_iScreenH - 66, Bitmap.Config.ARGB_8888);
 
-		this.setOnKeyListener(this);
+      m_lStartTime = System.currentTimeMillis();
 
-		// Generate a dummy buffer string
-		// Make longer or shorter as desired.
-		DUMMY = "";
-		for (int i = 0; i < 1000; i++)
-			DUMMY += "\0";
+      this.setOnKeyListener(this);
 
-	}
+      // Generate a dummy buffer string
+      // Make longer or shorter as desired.
+      DUMMY = "";
+      for (int i = 0; i < 1000; i++)
+         DUMMY += "\0";
 
-	@Override
-	protected void onDraw(Canvas canvas) {
+   }
 
-		renderImpact(m_bitmap, System.currentTimeMillis() - m_lStartTime, m_result);
+   @Override
+   protected void onDraw(Canvas canvas) {
 
-		canvas.drawBitmap(m_bitmap, 0, 0, null);
+      renderImpact(m_bitmap, System.currentTimeMillis() - m_lStartTime, m_dataexchange);
 
-		invalidate();
+      canvas.drawBitmap(m_bitmap, 0, 0, null);
 
-		if (m_result.m_bShowKeyboard) {
+      invalidate();
 
-			m_result.m_bShowKeyboard = false;
+      if (m_dataexchange.m_bShowKeyboard) {
 
-			onReceivedShowKeyboard();
+         m_dataexchange.m_bShowKeyboard = false;
 
-			InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+         onReceivedShowKeyboard();
 
-			imm.showSoftInput(this, InputMethodManager.SHOW_FORCED);
+         InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 
-		}
+         imm.showSoftInput(this, InputMethodManager.SHOW_FORCED);
 
-		if (m_result.m_bHideKeyboard) {
+      }
 
-			Log.d("com.ca2.app.view", "onDraw Start Hiding Soft Keyboard");
+      if (m_dataexchange.m_bHideKeyboard) {
 
-			m_result.m_bHideKeyboard = false;
+         Log.d("com.ca2.app.view", "onDraw Start Hiding Soft Keyboard");
 
-			onReceivedHideKeyboard();
+         m_dataexchange.m_bHideKeyboard = false;
 
-			InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+         onReceivedHideKeyboard();
 
-			//			imm.hideSoftInputFromWindow (getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);
+         InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 
-			imm.hideSoftInputFromWindow(getWindowToken(), 0);
+         //			imm.hideSoftInputFromWindow (getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);
 
-			Log.d("com.ca2.app.view", "onDraw Soft Keyboard (Should be) Hidden (2)");
+         imm.hideSoftInputFromWindow(getWindowToken(), 0);
 
-		}
+         Log.d("com.ca2.app.view", "onDraw Soft Keyboard (Should be) Hidden (2)");
 
-		if (m_result.m_strOpenUrl != null && m_result.m_strOpenUrl.length() > 0) {
+      }
 
-			openUrl(m_result.m_strOpenUrl);
-		}
+      if (m_dataexchange.m_strOpenUrl != null && m_dataexchange.m_strOpenUrl.length() > 0) {
 
-	}
+         openUrl(m_dataexchange.m_strOpenUrl);
+      }
 
-	@Override
-	public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
+   }
 
-		MyInputConnection ic = new MyInputConnection(this, false);
+   @Override
+   public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
 
-		outAttrs.inputType = InputType.TYPE_NULL;
+      MyInputConnection ic = new MyInputConnection(this, false);
 
-		//outAttrs.imeOptions = EditorInfo.IME_ACTION_DONE;
+      outAttrs.inputType = InputType.TYPE_NULL;
 
-		return ic;
+      //outAttrs.imeOptions = EditorInfo.IME_ACTION_DONE;
 
-	}
+      return ic;
 
-	@Override
-	public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+   }
 
-		int action = keyEvent.getAction();
+   @Override
+   public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
 
-		// Catch unicode characters (even character sequeneces)
-		// But make sure we aren't catching the dummy buffer.
-		if (action == KeyEvent.ACTION_MULTIPLE) {
+      int action = keyEvent.getAction();
 
-			String s = keyEvent.getCharacters();
+      // Catch unicode characters (even character sequeneces)
+      // But make sure we aren't catching the dummy buffer.
+      if (action == KeyEvent.ACTION_MULTIPLE) {
 
-			if (!s.equals(DUMMY) && !s.equals("\n")) {
+         String s = keyEvent.getCharacters();
 
-				onText(s);
+         if (!s.equals(DUMMY) && !s.equals("\n")) {
 
-			}
+            onText(s);
 
-		}
+         }
 
-		// Catch key presses...
-		else if (action == KeyEvent.ACTION_DOWN) {
+      }
 
-			keyPreImeDown(keyCode, keyEvent.getUnicodeChar());
+      // Catch key presses...
+      else if (action == KeyEvent.ACTION_DOWN) {
 
-			//            switch (keyCode) {
-			//                case KeyEvent.KEYCODE_DEL:
-			//                    ...
-			//                    break;
-			//                case KeyEvent.KEYCODE_ENTER:
-			//                    ...
-			//                    break;
-			//                case KeyEvent.KEYCODE_TAB:
-			//                    ...
-			//                    break;
-			//                default:
-			//                   char ch = (char)keyEvent.getUnicodeChar();
-			//                    if (ch != '\0') {
-			//                        ...
-			//                   }
-			//                    break;
-			//            }
-		} else if (action == KeyEvent.ACTION_UP) {
+         keyPreImeDown(keyCode, keyEvent.getUnicodeChar());
 
-			keyPreImeUp(keyCode, keyEvent.getUnicodeChar());
+         //            switch (keyCode) {
+         //                case KeyEvent.KEYCODE_DEL:
+         //                    ...
+         //                    break;
+         //                case KeyEvent.KEYCODE_ENTER:
+         //                    ...
+         //                    break;
+         //                case KeyEvent.KEYCODE_TAB:
+         //                    ...
+         //                    break;
+         //                default:
+         //                   char ch = (char)keyEvent.getUnicodeChar();
+         //                    if (ch != '\0') {
+         //                        ...
+         //                   }
+         //                    break;
+         //            }
+      } else if (action == KeyEvent.ACTION_UP) {
 
-		}
+         keyPreImeUp(keyCode, keyEvent.getUnicodeChar());
 
-		return false;
-	}
+      }
 
-	//	@Override
-	//	public InputConnection onCreateInputConnection(EditorInfo outAttrs)
-	//	{
+      return false;
+   }
 
-	//		outAttrs.actionLabel = null;
+   //	@Override
+   //	public InputConnection onCreateInputConnection(EditorInfo outAttrs)
+   //	{
 
-	//		outAttrs.label = "Test text";
+   //		outAttrs.actionLabel = null;
 
-	//		outAttrs.inputType = InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS;
+   //		outAttrs.label = "Test text";
 
-	//		outAttrs.imeOptions = EditorInfo.IME_ACTION_DONE;
+   //		outAttrs.inputType = InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS;
 
-	//		return new inputDislexia(this, true);
+   //		outAttrs.imeOptions = EditorInfo.IME_ACTION_DONE;
 
-	//	}
+   //		return new inputDislexia(this, true);
 
-	//	@Override
-	//	public boolean onCheckIsTextEditor()
-	//	{
+   //	}
 
-	//		return true;
+   //	@Override
+   //	public boolean onCheckIsTextEditor()
+   //	{
 
-	//	}
+   //		return true;
 
-	//   @Override
-	//   public InputConnection onCreateInputConnection(EditorInfo outAttrs)
-	//   {
-	//		BaseInputConnection fic = new BaseInputConnection(this, true); // avoid send raw events (avoid sending key up key down)
-	//		BaseInputConnection fic = new BaseInputConnection(this, false); // send raw events (key up key down)
-	//		outAttrs.actionLabel = null;
-	//      outAttrs.inputType = InputType.TYPE_CLASS_TEXT; // if is rich editable (offer suggestions?)
-	//		outAttrs.inputType = InputType.TYPE_NULL; // send raw events
-	//		outAttrs.imeOptions = EditorInfo.IME_ACTION_NEXT;
-	//		outAttrs.imeOptions = EditorInfo.IME_ACTION_DONE;
-	//      return fic;
-	//	}
+   //	}
 
-	//  @Override
-	//  public boolean onCheckIsTextEditor()
-	//	{
-	//		return true;
-	//  }
+   //   @Override
+   //   public InputConnection onCreateInputConnection(EditorInfo outAttrs)
+   //   {
+   //		BaseInputConnection fic = new BaseInputConnection(this, true); // avoid send raw events (avoid sending key up key down)
+   //		BaseInputConnection fic = new BaseInputConnection(this, false); // send raw events (key up key down)
+   //		outAttrs.actionLabel = null;
+   //      outAttrs.inputType = InputType.TYPE_CLASS_TEXT; // if is rich editable (offer suggestions?)
+   //		outAttrs.inputType = InputType.TYPE_NULL; // send raw events
+   //		outAttrs.imeOptions = EditorInfo.IME_ACTION_NEXT;
+   //		outAttrs.imeOptions = EditorInfo.IME_ACTION_DONE;
+   //      return fic;
+   //	}
 
-	public boolean onTouchEvent(final MotionEvent ev) {
-		// my Code
-		//boolean b = super.onTouchEvent(ev);
+   //  @Override
+   //  public boolean onCheckIsTextEditor()
+   //	{
+   //		return true;
+   //  }
 
-		if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+   public boolean onTouchEvent(final MotionEvent ev) {
+      // my Code
+      //boolean b = super.onTouchEvent(ev);
 
-			lButtonDown(ev.getX(), ev.getY());
+      if (ev.getAction() == MotionEvent.ACTION_DOWN) {
 
-		} else if (ev.getAction() == MotionEvent.ACTION_MOVE) {
+         lButtonDown(ev.getX(), ev.getY());
 
-			mouseMove(ev.getX(), ev.getY());
+      } else if (ev.getAction() == MotionEvent.ACTION_MOVE) {
 
-		} else if (ev.getAction() == MotionEvent.ACTION_UP) {
+         mouseMove(ev.getX(), ev.getY());
 
-			lButtonUp(ev.getX(), ev.getY());
+      } else if (ev.getAction() == MotionEvent.ACTION_UP) {
 
-		}
+         lButtonUp(ev.getX(), ev.getY());
 
-		//return b;
-		return true;
-	}
+      }
 
-	public boolean onKeyPreIme(int keyCode, KeyEvent ev) {
+      //return b;
+      return true;
+   }
 
-		if (ev.getAction() == KeyEvent.ACTION_DOWN) {
+   public boolean onKeyPreIme(int keyCode, KeyEvent ev) {
 
-			keyPreImeDown(keyCode, ev.getUnicodeChar());
+      if (ev.getAction() == KeyEvent.ACTION_DOWN) {
 
-		} else if (ev.getAction() == KeyEvent.ACTION_UP) {
+         keyPreImeDown(keyCode, ev.getUnicodeChar());
 
-			keyPreImeUp(keyCode, ev.getUnicodeChar());
+      } else if (ev.getAction() == KeyEvent.ACTION_UP) {
 
-		}
+         keyPreImeUp(keyCode, ev.getUnicodeChar());
 
-		return true;
+      }
 
-	}
+      return true;
 
-	private void openUrl(String url) {
+   }
 
-		Uri uriUrl = Uri.parse(url);
+   private void openUrl(String url) {
 
-		Intent intent = new Intent(Intent.ACTION_VIEW, uriUrl);
+      Uri uriUrl = Uri.parse(url);
 
-		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+      Intent intent = new Intent(Intent.ACTION_VIEW, uriUrl);
 
-		getContext().startActivity(intent);
+      intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-	}
+      getContext().startActivity(intent);
+
+   }
 
 }

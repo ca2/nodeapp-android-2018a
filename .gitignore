@@ -7,3 +7,4 @@
 *.ipch
 browse.vc.db
 solution.vc.db*
+*.recipe

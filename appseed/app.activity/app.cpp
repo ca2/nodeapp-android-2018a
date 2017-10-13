@@ -19,7 +19,7 @@ PFN_mouse mouse_move = NULL;
 
 PFN_mouse l_button_up = NULL;
 
-android_init_data g_initdata;
+android_data_exchange g_dataexchange;
 
 PFN_key key_down = NULL;
 
@@ -151,43 +151,6 @@ void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, con
 
    }
 
-   if (g_initdata.m_bGettingUserWallpaper)
-   {
-
-      jfieldID fid;
-
-      jmethodID mid;
-
-      jclass myclass;
-
-      jclass cls = env->GetObjectClass(dataexchange);
-
-      fid = env->GetFieldID(cls, "m_strGetWallpaper", "Ljava/lang/String;");
-
-      if (fid != NULL)
-      {
-
-         jstring jstr = (jstring)env->GetObjectField(dataexchange, fid);
-
-         if (jstr != NULL)
-         {
-
-            const char *nativeString = env->GetStringUTFChars(dataexchange, jstr, 0);
-
-            if (nativeString != NULL && *nativeString != '\0')
-            {
-
-               g_initdata.m_pszGetUserWallpaper = strdup(nativeString);
-
-            }
-
-         }
-
-      }
-
-   }
-
-
    {
 
       void * handle = load_lib("liblauncher.so");
@@ -215,23 +178,23 @@ void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, con
 
    }
 
-   android_init_data & initdata = g_initdata;
+   android_data_exchange & dataexchange = g_dataexchange;
 
-   initdata.m_iScreenWidth    = iScreenWidth;
+   dataexchange.m_iScreenWidth    = iScreenWidth;
 
-   initdata.m_iScreenHeight   = iScreenHeight;
+   dataexchange.m_iScreenHeight   = iScreenHeight;
 
-   initdata.m_pszCommandLine  = pszCommandLine;
+   dataexchange.m_pszCommandLine  = pszCommandLine;
 
-   initdata.m_pszCacheDir     = pszCacheDir;
+   dataexchange.m_pszCacheDir     = pszCacheDir;
 
    android_set_cache_dir(pszCacheDir);
 
-   initdata.m_bShowKeyboard   = false;
+   dataexchange.m_bShowKeyboard   = false;
 
-   initdata.m_pszOpenUrl      = NULL;
+   dataexchange.m_pszOpenUrl      = NULL;
 
-   main(&initdata);
+   main(&dataexchange);
 
 }
 

@@ -82,33 +82,23 @@
     <Content Include="libs\armeabi-v7a\libwelsencplus.so" />
     <Content Include="libs\armeabi-v7a\libwelsvp.so" />
     <Content Include="libs\x86\libatomiconv.so" />
+    <Content Include="libs\x86\libauraexpat.so" />
     <Content Include="libs\x86\libaurapcre.so" />
     <Content Include="libs\x86\libaurasqlite.so" />
     <Content Include="libs\x86\libavcodec-57.so" />
-    <Content Include="libs\x86\libavcodec.so" />
     <Content Include="libs\x86\libavfilter-6.so" />
-    <Content Include="libs\x86\libavfilter.so" />
     <Content Include="libs\x86\libavformat-57.so" />
-    <Content Include="libs\x86\libavformat.so" />
     <Content Include="libs\x86\libavutil-55.so" />
-    <Content Include="libs\x86\libavutil.so" />
     <Content Include="libs\x86\libaxisbzip2.so" />
     <Content Include="libs\x86\libaxiscairo.so" />
-    <Content Include="libs\x86\libaxisclientchannels.so" />
-    <Content Include="libs\x86\libaxisfreerdp.so" />
     <Content Include="libs\x86\libaxisfreetype.so" />
     <Content Include="libs\x86\libaxisidn.so" />
     <Content Include="libs\x86\libaxisjpeg.so" />
     <Content Include="libs\x86\libaxispixman.so" />
     <Content Include="libs\x86\libaxispng.so" />
-    <Content Include="libs\x86\libaxiswinpr.so" />
+    <Content Include="libs\x86\libbasempg123.so" />
     <Content Include="libs\x86\libswresample-2.so" />
-    <Content Include="libs\x86\libswresample.so" />
     <Content Include="libs\x86\libswscale-4.so" />
-    <Content Include="libs\x86\libswscale.so" />
-    <Content Include="libs\x86\libwelsdecplus.so" />
-    <Content Include="libs\x86\libwelsencplus.so" />
-    <Content Include="libs\x86\libwelsvp.so" />
     <Content Include="nord_app_core_rdpclient\drawable\icon.png" />
     <Content Include="nord_app_core_rdpclient\values\strings.xml">
       <SubType>Designer</SubType>
@@ -122,7 +112,10 @@
     <Content Include="src\com\ca2\app.java" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\app-core\appseed\id3lib\nord_core_id3lib.vcxproj" />
+    <ProjectReference Include="..\..\..\app-core\appseed\multimedia\nord_multimedia.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\rdpclient\nord_core_rdpclient.vcxproj" />
+    <ProjectReference Include="..\..\..\app-core\appseed\rdpsnd-client-audio_decode\nord_rdpsnd-client-audio_decode.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\wndfrm_core\nord_wndfrm_core.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\ace\nord_ace.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\aqua\nord_aqua.vcxproj" />
@@ -134,8 +127,12 @@
     <ProjectReference Include="..\..\..\app\appseed\freeimage\nord_axisfreeimage.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\image_jpeg\nord_axis_image_jpeg.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\image_png\nord_axis_image_png.vcxproj" />
+    <ProjectReference Include="..\..\..\third\appseed\clientchannels\nord_axisclientchannels.vcxproj" />
+    <ProjectReference Include="..\..\..\third\appseed\freerdp\nord_axisfreerdp.vcxproj" />
+    <ProjectReference Include="..\..\..\third\appseed\winpr\nord_axiswinpr.vcxproj" />
     <ProjectReference Include="..\..\appseed\app.activity\app.activity.vcxproj" />
     <ProjectReference Include="..\..\appseed\app.launcher\app.launcher.vcxproj" />
+    <ProjectReference Include="..\..\appseed\audio_opensles\nord_audio_opensles.vcxproj" />
   </ItemGroup>
   <ItemGroup>
     <AntProjectPropertiesFile Include="project.properties" />

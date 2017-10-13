@@ -85,7 +85,7 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
 
    //stats_endFrame(&stats);
 
-   if (g_initdata.m_bShowKeyboard)
+   if (g_dataexchange.m_bShowKeyboard)
    {
 
       jfieldID fid;
@@ -98,13 +98,13 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
 
       fid = env->GetFieldID(cls, "m_bShowKeyboard", "Z");
 
-      env->SetBooleanField(dataexchange, fid, g_initdata.m_bShowKeyboard);
+      env->SetBooleanField(dataexchange, fid, g_dataexchange.m_bShowKeyboard);
 
-      g_initdata.m_bShowKeyboard = false;
+      g_dataexchange.m_bShowKeyboard = false;
 
    }
 
-   if (g_initdata.m_bHideKeyboard)
+   if (g_dataexchange.m_bHideKeyboard)
    {
 
       jfieldID fid;
@@ -117,15 +117,15 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
 
       fid = env->GetFieldID(cls, "m_bHideKeyboard", "Z");
 
-      LOGI("%s\n", "Java_com_ca2_view_renderImpact g_initdata.m_bHideKeyboard : true");
+      LOGI("%s\n", "Java_com_ca2_view_renderImpact g_dataexchange.m_bHideKeyboard : true");
 
-      env->SetBooleanField(dataexchange, fid, g_initdata.m_bHideKeyboard);
+      env->SetBooleanField(dataexchange, fid, g_dataexchange.m_bHideKeyboard);
 
-      g_initdata.m_bHideKeyboard = false;
+      g_dataexchange.m_bHideKeyboard = false;
 
    }
 
-   if (g_initdata.m_pszOpenUrl != NULL)
+   if (g_dataexchange.m_pszOpenUrl != NULL)
    {
 
       jfieldID fid;
@@ -144,22 +144,22 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
          // String
          // Get the object given the Field ID
          //jstring message = (*env)->GetObjectField(env,dataexchange,fid);
-         jstring message = env->NewStringUTF(g_initdata.m_pszOpenUrl);
+         jstring message = env->NewStringUTF(g_dataexchange.m_pszOpenUrl);
          if (NULL == message) return;
 
          // modify the instance variables
          env->SetObjectField(dataexchange, fid, message);
 
 
-         free((void *)g_initdata.m_pszOpenUrl);
+         free((void *)g_dataexchange.m_pszOpenUrl);
 
       }
 
-      g_initdata.m_pszOpenUrl = NULL;
+      g_dataexchange.m_pszOpenUrl = NULL;
 
    }
 
-   if (g_initdata.m_pszUserWallpaper != NULL)
+   if (g_dataexchange.m_pszUserWallpaper != NULL)
    {
 
       jfieldID fid;
@@ -178,22 +178,22 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
          // String
          // Get the object given the Field ID
          //jstring message = (*env)->GetObjectField(env,dataexchange,fid);
-         jstring message = env->NewStringUTF(g_initdata.m_pszUserWallpaper);
+         jstring message = env->NewStringUTF(g_dataexchange.m_pszUserWallpaper);
          if (NULL == message) return;
 
          // modify the instance variables
          env->SetObjectField(dataexchange, fid, message);
 
 
-         free((void *)g_initdata.m_pszUserWallpaper);
+         free((void *)g_dataexchange.m_pszUserWallpaper);
 
       }
 
-      g_initdata.m_pszUserWallpaper = NULL;
+      g_dataexchange.m_pszUserWallpaper = NULL;
 
    }
 
-   if (g_initdata.m_bGetUserWallpaper)
+   if (g_dataexchange.m_bGetUserWallpaper)
    {
 
       jfieldID fid;
@@ -209,11 +209,11 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
       if (fid != NULL)
       {
 
-         env->SetBooleanField(dataexchange, fid, g_initdata.m_bGetUserWallpaper);
+         env->SetBooleanField(dataexchange, fid, g_dataexchange.m_bGetUserWallpaper);
 
-         g_initdata.m_bGettingUserWallpaper = true;
+         g_dataexchange.m_bGettingUserWallpaper = true;
 
-         g_initdata.m_bGetUserWallpaper = false;
+         g_dataexchange.m_bGetUserWallpaper = false;
 
       }
 
@@ -330,14 +330,14 @@ JNIEXPORT void JNICALL Java_com_ca2_view_onText(JNIEnv * env, jobject  obj, jstr
 
    size_t length = (size_t)env->GetStringLength(bytes);
 
-   on_text(android_text_keyboard, utf16, length);
+   on_text(os_text_keyboard, utf16, length);
 
    env->ReleaseStringChars(bytes, (jchar *)utf16);
 
 }
 
 extern "C"
-JNIEXPORT void JNICALL Java_com_ca2_view_wallpaperResponse(JNIEnv * env, jobject  obj, jstring strWallpaper)
+JNIEXPORT void JNICALL Java_com_ca2_view_wallpaperResponse(JNIEnv * env, jobject  obj, jstring bytes)
 {
 
    LOGI("%s\n", "Java_com_ca2_view_wallpaperResponse");
@@ -360,7 +360,7 @@ JNIEXPORT void JNICALL Java_com_ca2_view_wallpaperResponse(JNIEnv * env, jobject
 
    size_t length = (size_t)env->GetStringLength(bytes);
 
-   on_text(android_text_wallpaper, utf16, length);
+   on_text(os_text_wallpaper, utf16, length);
 
    env->ReleaseStringChars(bytes, (jchar *)utf16);
 

@@ -97,6 +97,7 @@
     <Content Include="libs\x86\libaxisopenssl.so" />
     <Content Include="libs\x86\libaxispixman.so" />
     <Content Include="libs\x86\libaxispng.so" />
+    <Content Include="libs\x86\libbasempg123.so" />
     <Content Include="nord_app_core_clockverse\drawable\icon.png" />
     <Content Include="nord_app_core_clockverse\values\strings.xml">
       <SubType>Designer</SubType>
@@ -116,6 +117,7 @@
     <ProjectReference Include="..\..\..\app-core\appseed\hellomultiverse\nord_core_hellomultiverse.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\id3lib\nord_core_id3lib.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\multimedia\nord_multimedia.vcxproj" />
+    <ProjectReference Include="..\..\..\app-core\appseed\tesseract\nord_tesseract.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\wndfrm_core\nord_wndfrm_core.vcxproj" />
     <ProjectReference Include="..\..\..\app-veriwell\appseed\audio_decode_libmpg123\nord_veriwell_audio_decode_libmpg123.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\ace\nord_ace.vcxproj" />
@@ -128,6 +130,7 @@
     <ProjectReference Include="..\..\..\app\appseed\freeimage\nord_axisfreeimage.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\image_jpeg\nord_axis_image_jpeg.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\image_png\nord_axis_image_png.vcxproj" />
+    <ProjectReference Include="..\..\..\app\appseed\sphere\nord_sphere.vcxproj" />
     <ProjectReference Include="..\..\appseed\app.activity\app.activity.vcxproj" />
     <ProjectReference Include="..\..\appseed\app.launcher\app.launcher.vcxproj" />
     <ProjectReference Include="..\..\appseed\audio_opensles\nord_audio_opensles.vcxproj" />

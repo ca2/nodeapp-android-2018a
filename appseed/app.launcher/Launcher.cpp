@@ -27,7 +27,7 @@
 #include "core/core/core/core.h"
 #include "axis/os/android/android.h"
 #include "axis/node/android/android.h"
-#include "aura/aura/os/android/android_init_data.h"
+#include "aura/aura/os/android/android_data_exchange.h"
 #include "base/user/user/user_interaction.h"
 
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "AndroidProject1.NativeActivity", __VA_ARGS__))
@@ -177,13 +177,13 @@ extern unichar * g_pwszCommandLine;
 */
 //void native_activity_android_start(struct android_app* state) {
 extern "C"
-void native_activity_android_start(android_init_data * pinitdata)
+void native_activity_android_start(android_data_exchange * pdataexchange)
 {
 
    if (!defer_core_init())
       return;
 
-   ::core::system * psystem = new ::core::system(NULL, pinitdata);
+   ::core::system * psystem = new ::core::system(NULL, pdataexchange);
 
    // psystem->m_durationRunLock = millis(1);
 
@@ -193,10 +193,10 @@ void native_activity_android_start(android_init_data * pinitdata)
 
    ::command::command * pcommandStartup = new ::command::command;
 
-   if (pinitdata != NULL)
+   if (pdataexchange != NULL)
    {
 
-      pcommandStartup->m_strCommandLine = pinitdata->m_pszCommandLine;
+      pcommandStartup->m_strCommandLine = pdataexchange->m_pszCommandLine;
 
    }
    else
@@ -242,9 +242,9 @@ void native_activity_android_start(android_init_data * pinitdata)
 
    initialize.m_rect.top = 0;
 
-   initialize.m_rect.right = pinitdata->m_iScreenWidth;
+   initialize.m_rect.right = pdataexchange->m_iScreenWidth;
 
-   initialize.m_rect.bottom = pinitdata->m_iScreenHeight;
+   initialize.m_rect.bottom = pdataexchange->m_iScreenHeight;
 
    psystem->m_pbasesystem->m_possystemwindow->m_pui->initialize_native_window(&initialize);
 

@@ -38,6 +38,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">
     <UseDebugLibraries>true</UseDebugLibraries>
     <TargetName>$(ProjectName)</TargetName>
+    <AndroidAPILevel>android-19</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'" Label="Configuration">
     <UseDebugLibraries>false</UseDebugLibraries>
@@ -142,6 +143,7 @@
     <ProjectReference Include="..\..\..\app\appseed\freeimage\nord_axisfreeimage.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\image_jpeg\nord_axis_image_jpeg.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\image_png\nord_axis_image_png.vcxproj" />
+    <ProjectReference Include="..\..\..\app\appseed\sphere\nord_sphere.vcxproj" />
     <ProjectReference Include="..\..\..\nodeapp\appseed\app.activity\app.activity.vcxproj" />
     <ProjectReference Include="..\..\..\nodeapp\appseed\app.launcher\app.launcher.vcxproj" />
   </ItemGroup>
