@@ -63,6 +63,14 @@ typedef int int_bool;
 #define localeconv system_localeconv
 
 
+#ifdef cplusplus
+
+#define LOG_THIS_TAG (demangle(typeid(*this).name()))
+#define LOG_MEMBER_PREFIX __FUNCTION__
+
+#endif
+
+
 
 #define static_inline inline
 
