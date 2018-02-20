@@ -125,8 +125,6 @@
     <ProjectReference Include="..\..\..\app\appseed\core\nord_core.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\draw2d_cairo\nord_draw2d_cairo.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\freeimage\nord_axisfreeimage.vcxproj" />
-    <ProjectReference Include="..\..\..\app\appseed\image_jpeg\nord_axis_image_jpeg.vcxproj" />
-    <ProjectReference Include="..\..\..\app\appseed\image_png\nord_axis_image_png.vcxproj" />
     <ProjectReference Include="..\..\..\third\appseed\clientchannels\nord_axisclientchannels.vcxproj" />
     <ProjectReference Include="..\..\..\third\appseed\freerdp\nord_axisfreerdp.vcxproj" />
     <ProjectReference Include="..\..\..\third\appseed\winpr\nord_axiswinpr.vcxproj" />
