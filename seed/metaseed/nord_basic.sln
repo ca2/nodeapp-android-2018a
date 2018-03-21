@@ -173,6 +173,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rdpsnd-client-audio_decode"
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axisclientchannels", "..\..\..\third\appseed\clientchannels\nord_axisclientchannels.vcxproj", "{BD2B9602-AC0C-4366-AA09-B83FCD2F1F2D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{949CC34A-39EE-4A2A-BDE7-2ACE8C2FC97A} = {949CC34A-39EE-4A2A-BDE7-2ACE8C2FC97A}
+		{C6A1ECCC-F929-4553-A72F-8FCB605744A3} = {C6A1ECCC-F929-4553-A72F-8FCB605744A3}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axisfreerdp", "..\..\..\third\appseed\freerdp\nord_axisfreerdp.vcxproj", "{949CC34A-39EE-4A2A-BDE7-2ACE8C2FC97A}"
 EndProject

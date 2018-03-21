@@ -6,4 +6,8 @@
     <AndroidDeviceID>169.254.138.177:5555;VS Emulator 5-inch KitKat (4.4) XXHDPI Phone</AndroidDeviceID>
     <DebuggerType>NativeOnly</DebuggerType>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
+    <DebuggerFlavor>AndroidDebugger</DebuggerFlavor>
+    <AndroidDeviceID>emulator-####;VisualStudio_android-23_x86_phone</AndroidDeviceID>
+  </PropertyGroup>
 </Project>
