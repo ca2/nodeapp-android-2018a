@@ -31,6 +31,8 @@ void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, con
 
 typedef int32_t  Fixed;
 
+
+
 extern "C"
 JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj, jobject bitmap, jlong  time_ms, jobject dataexchange)
 {
@@ -85,7 +87,7 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
 
    //stats_endFrame(&stats);
 
-   if (g_dataexchange.m_bShowKeyboard)
+   if (g_nodedataexchange.m_bShowKeyboard)
    {
 
       jfieldID fid;
@@ -98,13 +100,13 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
 
       fid = env->GetFieldID(cls, "m_bShowKeyboard", "Z");
 
-      env->SetBooleanField(dataexchange, fid, g_dataexchange.m_bShowKeyboard);
+      env->SetBooleanField(dataexchange, fid, g_nodedataexchange.m_bShowKeyboard);
 
-      g_dataexchange.m_bShowKeyboard = false;
+      g_nodedataexchange.m_bShowKeyboard = false;
 
    }
 
-   if (g_dataexchange.m_bHideKeyboard)
+   if (g_nodedataexchange.m_bHideKeyboard)
    {
 
       jfieldID fid;
@@ -119,13 +121,13 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
 
       LOGI("%s\n", "Java_com_ca2_view_renderImpact g_dataexchange.m_bHideKeyboard : true");
 
-      env->SetBooleanField(dataexchange, fid, g_dataexchange.m_bHideKeyboard);
+      env->SetBooleanField(dataexchange, fid, g_nodedataexchange.m_bHideKeyboard);
 
-      g_dataexchange.m_bHideKeyboard = false;
+      g_nodedataexchange.m_bHideKeyboard = false;
 
    }
 
-   if (g_dataexchange.m_pszOpenUrl != NULL)
+   if (g_nodedataexchange.m_pszOpenUrl != NULL)
    {
 
       jfieldID fid;
@@ -144,22 +146,22 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
          // String
          // Get the object given the Field ID
          //jstring message = (*env)->GetObjectField(env,dataexchange,fid);
-         jstring message = env->NewStringUTF(g_dataexchange.m_pszOpenUrl);
+         jstring message = env->NewStringUTF(g_nodedataexchange.m_pszOpenUrl);
          if (NULL == message) return;
 
          // modify the instance variables
          env->SetObjectField(dataexchange, fid, message);
 
 
-         free((void *)g_dataexchange.m_pszOpenUrl);
+         free((void *)g_nodedataexchange.m_pszOpenUrl);
 
       }
 
-      g_dataexchange.m_pszOpenUrl = NULL;
+      g_nodedataexchange.m_pszOpenUrl = NULL;
 
    }
 
-   if (g_dataexchange.m_pszUserWallpaper != NULL)
+   if (g_nodedataexchange.m_pszUserWallpaper != NULL)
    {
 
       jfieldID fid;
@@ -178,22 +180,22 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
          // String
          // Get the object given the Field ID
          //jstring message = (*env)->GetObjectField(env,dataexchange,fid);
-         jstring message = env->NewStringUTF(g_dataexchange.m_pszUserWallpaper);
+         jstring message = env->NewStringUTF(g_nodedataexchange.m_pszUserWallpaper);
          if (NULL == message) return;
 
          // modify the instance variables
          env->SetObjectField(dataexchange, fid, message);
 
 
-         free((void *)g_dataexchange.m_pszUserWallpaper);
+         free((void *)g_nodedataexchange.m_pszUserWallpaper);
 
       }
 
-      g_dataexchange.m_pszUserWallpaper = NULL;
+      g_nodedataexchange.m_pszUserWallpaper = NULL;
 
    }
 
-   if (g_dataexchange.m_bGetUserWallpaper)
+   if (g_nodedataexchange.m_bGetUserWallpaper)
    {
 
       jfieldID fid;
@@ -209,11 +211,11 @@ JNIEXPORT void JNICALL Java_com_ca2_view_renderImpact(JNIEnv * env, jobject  obj
       if (fid != NULL)
       {
 
-         env->SetBooleanField(dataexchange, fid, g_dataexchange.m_bGetUserWallpaper);
+         env->SetBooleanField(dataexchange, fid, g_nodedataexchange.m_bGetUserWallpaper);
 
-         g_dataexchange.m_bGettingUserWallpaper = true;
+         g_nodedataexchange.m_bGettingUserWallpaper = true;
 
-         g_dataexchange.m_bGetUserWallpaper = false;
+         g_nodedataexchange.m_bGetUserWallpaper = false;
 
       }
 

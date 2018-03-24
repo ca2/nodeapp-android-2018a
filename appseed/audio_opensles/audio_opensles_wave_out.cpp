@@ -60,166 +60,171 @@ namespace multimedia
       }
 
 
-
-      bool wave_out::initialize_thread()
+      bool wave_out::init_thread()
       {
 
-         if(!::multimedia::audio::wave_out::initialize_thread())
+         if (!::multimedia::audio::wave_out::init_thread())
+         {
+
             return false;
+
+         }
 
          return true;
 
       }
 
-      int32_t wave_out::exit_thread()
+
+      void wave_out::term_thread()
       {
 
-         ::multimedia::audio::wave_out::exit_thread();
+         ::multimedia::audio::wave_out::term_thread();
 
-         return thread::exit_thread();
+         thread::term_thread();
 
       }
 
-      ::multimedia::e_result wave_out::wave_out_open(thread * pthreadCallback, int32_t iBufferCount, int32_t iBufferSampleCount)
-      {
-         single_lock sLock(m_pmutex, TRUE);
-         if(engineObject != NULL &&
-               m_estate != state_initial)
-            return result_success;
-         m_pthreadCallback = pthreadCallback;
-         ::multimedia::e_result mmr;
-         ASSERT(engineObject == NULL);
-         ASSERT(m_estate == state_initial);
 
-         //m_pwaveformat->wFormatTag = WAVE_FORMAT_PCM;
-         m_pwaveformat->wFormatTag = 0;
-         m_pwaveformat->nChannels = 2;
-         m_pwaveformat->nSamplesPerSec = 44100;
-         m_pwaveformat->wBitsPerSample = sizeof(multimedia::audio::WAVEBUFFERDATA) * 8;
-         m_pwaveformat->nBlockAlign = m_pwaveformat->wBitsPerSample * m_pwaveformat->nChannels / 8;
-         m_pwaveformat->nAvgBytesPerSec = m_pwaveformat->nSamplesPerSec * m_pwaveformat->nBlockAlign;
-         m_pwaveformat->cbSize = 0;
+      //::multimedia::e_result wave_out::wave_out_open(thread * pthreadCallback, int32_t iBufferCount, int32_t iBufferSampleCount)
+      //{
+      //   single_lock sLock(m_pmutex, TRUE);
+      //   if(engineObject != NULL &&
+      //         m_estate != state_initial)
+      //      return result_success;
+      //   m_pthreadCallback = pthreadCallback;
+      //   ::multimedia::e_result mmr;
+      //   ASSERT(engineObject == NULL);
+      //   ASSERT(m_estate == state_initial);
 
-         //if((m_mmr = this->snd_pcm_open(SND_PCM_STREAM_PLAYBACK)) != result_success)
-         //{
+      //   //m_pwaveformat->wFormatTag = WAVE_FORMAT_PCM;
+      //   m_pwaveformat->wFormatTag = 0;
+      //   m_pwaveformat->nChannels = 2;
+      //   m_pwaveformat->nSamplesPerSec = 44100;
+      //   m_pwaveformat->wBitsPerSample = sizeof(multimedia::audio::WAVEBUFFERDATA) * 8;
+      //   m_pwaveformat->nBlockAlign = m_pwaveformat->wBitsPerSample * m_pwaveformat->nChannels / 8;
+      //   m_pwaveformat->nAvgBytesPerSec = m_pwaveformat->nSamplesPerSec * m_pwaveformat->nBlockAlign;
+      //   m_pwaveformat->cbSize = 0;
 
-         //   return result_error;
+      //   //if((m_mmr = this->snd_pcm_open(SND_PCM_STREAM_PLAYBACK)) != result_success)
+      //   //{
 
-         //}
+      //   //   return result_error;
 
-
-
-         //uint32_t uiBufferSizeLog2;
-         //uint32_t uiBufferSize;
-         //uint32_t uiAnalysisSize;
-         //uint32_t uiAllocationSize;
-         //uint32_t uiInterestSize;
-         //uint32_t uiSkippedSamplesCount;
-         //uint32_t uiBufferCount = iBufferCount;
-
-         //if(m_pwaveformat->nSamplesPerSec == 44100)
-         //{
-         //   uiBufferSizeLog2 = 16;
-         //   uiBufferSize = m_pwaveformat->nChannels * 2 * iBufferSampleCount; // 512 kbytes
-         //   uiAnalysisSize = 4 * 1 << uiBufferSizeLog2;
-         //   if(iBufferCount > 0)
-         //   {
-         //      uiAllocationSize = iBufferCount * uiAnalysisSize;
-         //   }
-         //   else
-         //   {
-         //      uiAllocationSize = 8 * uiAnalysisSize;
-         //   }
-         //   uiInterestSize = 200;
-         //   uiSkippedSamplesCount = 2;
-         //}
-         //else if(m_pwaveformat->nSamplesPerSec == 22050)
-         //{
-         //   uiBufferSizeLog2 = 10;
-         //   uiBufferSize = 4 * 1 << uiBufferSizeLog2;
-         //   uiAnalysisSize = 4 * 1 << uiBufferSizeLog2;
-         //   uiAllocationSize = 4 * uiAnalysisSize;
-         //   uiInterestSize = 200;
-         //   uiSkippedSamplesCount = 1;
-         //}
-         //else if(m_pwaveformat->nSamplesPerSec == 11025)
-         //{
-         //   uiBufferSizeLog2 = 10;
-         //   uiBufferSize = 2 * 1 << uiBufferSizeLog2;
-         //   uiAnalysisSize = 2 * 1 << uiBufferSizeLog2;
-         //   uiAllocationSize = 4 * uiAnalysisSize;
-         //   uiInterestSize = 200;
-         //   uiSkippedSamplesCount = 1;
-         //}
-
-         ////uiBufferCount = 1;
-
-         //wave_out_get_buffer()->PCMOutOpen(this, uiBufferSize, uiBufferCount, 128, m_pwaveformat, m_pwaveformat);
-
-         //m_pprebuffer->open(this, m_pwaveformat->nChannels, uiBufferCount, iBufferSampleCount); // group sample count
-
-         //int iFrameSize = (m_pwaveformat->nChannels * m_pwaveformat->wBitsPerSample) / 8;
-
-         //int err;
-
-         //snd_pcm_sw_params_alloca(&m_pswparams);
-
-         ///* get the current m_pswparams */
-         //err = snd_pcm_sw_params_current(m_ppcm, m_pswparams);
-
-         //if (err < 0)
-         //{
-
-         //   TRACE("Unable to determine current m_pswparams for playback: %s\n", snd_strerror(err));
-
-         //   return result_error;
-
-         //}
-
-
-         ///* start the transfer when the buffer is almost full: */
-         ///* (buffer_size / avail_min) * avail_min */
-         //err = snd_pcm_sw_params_set_start_threshold(m_ppcm, m_pswparams, (buffer_size / period_size) * period_size);
-         //if (err < 0)
-         //{
-
-         //   TRACE("Unable to set start threshold mode for playback: %s\n", snd_strerror(err));
-
-         //   return result_error;
-
-         //}
-
-         ///* allow the transfer when at least period_size samples can be processed */
-         //err = snd_pcm_sw_params_set_avail_min(m_ppcm, m_pswparams, period_size);
-         //if (err < 0)
-         //{
-
-         //   TRACE("Unable to set avail min for playback: %s\n", snd_strerror(err));
-
-         //   return result_error;
-
-         //}
-
-         ///* write the parameters to the playback device */
-         //err = snd_pcm_sw_params(m_ppcm, m_pswparams);
-         //if (err < 0)
-         //{
-
-         //   TRACE("Unable to set sw params for playback: %s\n", snd_strerror(err));
-
-         //   return result_error;
-
-         //}
-
-         m_estate = state_opened;
-         return result_success;
-      }
+      //   //}
 
 
 
+      //   //uint32_t uiBufferSizeLog2;
+      //   //uint32_t uiBufferSize;
+      //   //uint32_t uiAnalysisSize;
+      //   //uint32_t uiAllocationSize;
+      //   //uint32_t uiInterestSize;
+      //   //uint32_t uiSkippedSamplesCount;
+      //   //uint32_t uiBufferCount = iBufferCount;
+
+      //   //if(m_pwaveformat->nSamplesPerSec == 44100)
+      //   //{
+      //   //   uiBufferSizeLog2 = 16;
+      //   //   uiBufferSize = m_pwaveformat->nChannels * 2 * iBufferSampleCount; // 512 kbytes
+      //   //   uiAnalysisSize = 4 * 1 << uiBufferSizeLog2;
+      //   //   if(iBufferCount > 0)
+      //   //   {
+      //   //      uiAllocationSize = iBufferCount * uiAnalysisSize;
+      //   //   }
+      //   //   else
+      //   //   {
+      //   //      uiAllocationSize = 8 * uiAnalysisSize;
+      //   //   }
+      //   //   uiInterestSize = 200;
+      //   //   uiSkippedSamplesCount = 2;
+      //   //}
+      //   //else if(m_pwaveformat->nSamplesPerSec == 22050)
+      //   //{
+      //   //   uiBufferSizeLog2 = 10;
+      //   //   uiBufferSize = 4 * 1 << uiBufferSizeLog2;
+      //   //   uiAnalysisSize = 4 * 1 << uiBufferSizeLog2;
+      //   //   uiAllocationSize = 4 * uiAnalysisSize;
+      //   //   uiInterestSize = 200;
+      //   //   uiSkippedSamplesCount = 1;
+      //   //}
+      //   //else if(m_pwaveformat->nSamplesPerSec == 11025)
+      //   //{
+      //   //   uiBufferSizeLog2 = 10;
+      //   //   uiBufferSize = 2 * 1 << uiBufferSizeLog2;
+      //   //   uiAnalysisSize = 2 * 1 << uiBufferSizeLog2;
+      //   //   uiAllocationSize = 4 * uiAnalysisSize;
+      //   //   uiInterestSize = 200;
+      //   //   uiSkippedSamplesCount = 1;
+      //   //}
+
+      //   ////uiBufferCount = 1;
+
+      //   //wave_out_get_buffer()->PCMOutOpen(this, uiBufferSize, uiBufferCount, 128, m_pwaveformat, m_pwaveformat);
+
+      //   //m_pprebuffer->open(this, m_pwaveformat->nChannels, uiBufferCount, iBufferSampleCount); // group sample count
+
+      //   //int iFrameSize = (m_pwaveformat->nChannels * m_pwaveformat->wBitsPerSample) / 8;
+
+      //   //int err;
+
+      //   //snd_pcm_sw_params_alloca(&m_pswparams);
+
+      //   ///* get the current m_pswparams */
+      //   //err = snd_pcm_sw_params_current(m_ppcm, m_pswparams);
+
+      //   //if (err < 0)
+      //   //{
+
+      //   //   TRACE("Unable to determine current m_pswparams for playback: %s\n", snd_strerror(err));
+
+      //   //   return result_error;
+
+      //   //}
 
 
-      ::multimedia::e_result wave_out::wave_out_open_ex(thread * pthreadCallback, int32_t iBufferCount, int32_t iBufferSampleCount, uint32_t uiSamplesPerSec, uint32_t uiChannelCount, uint32_t uiBitsPerSample, ::multimedia::audio::e_purpose epurpose)
+      //   ///* start the transfer when the buffer is almost full: */
+      //   ///* (buffer_size / avail_min) * avail_min */
+      //   //err = snd_pcm_sw_params_set_start_threshold(m_ppcm, m_pswparams, (buffer_size / period_size) * period_size);
+      //   //if (err < 0)
+      //   //{
+
+      //   //   TRACE("Unable to set start threshold mode for playback: %s\n", snd_strerror(err));
+
+      //   //   return result_error;
+
+      //   //}
+
+      //   ///* allow the transfer when at least period_size samples can be processed */
+      //   //err = snd_pcm_sw_params_set_avail_min(m_ppcm, m_pswparams, period_size);
+      //   //if (err < 0)
+      //   //{
+
+      //   //   TRACE("Unable to set avail min for playback: %s\n", snd_strerror(err));
+
+      //   //   return result_error;
+
+      //   //}
+
+      //   ///* write the parameters to the playback device */
+      //   //err = snd_pcm_sw_params(m_ppcm, m_pswparams);
+      //   //if (err < 0)
+      //   //{
+
+      //   //   TRACE("Unable to set sw params for playback: %s\n", snd_strerror(err));
+
+      //   //   return result_error;
+
+      //   //}
+
+      //   m_estate = state_opened;
+      //   return result_success;
+      //}
+
+
+
+
+
+      ::multimedia::e_result wave_out::wave_out_open_ex(thread * pthreadCallback, uint32_t uiSamplesPerSec, uint32_t uiChannelCount, uint32_t uiBitsPerSample, ::multimedia::audio::e_purpose epurpose)
       {
 
          single_lock sLock(m_pmutex, TRUE);
@@ -228,6 +233,9 @@ namespace multimedia
             return result_success;
 
          m_pthreadCallback = pthreadCallback;
+
+         int32_t iBufferCount;
+         int32_t iBufferSampleCount;
 
          iBufferCount = 2;
          int period_size = 2048;
@@ -425,7 +433,7 @@ namespace multimedia
 
          m_pprebuffer->open(this, m_pwaveformat->nChannels, iBufferCount, iBufferSampleCount);
 
-         m_pprebuffer->SetMinL1BufferCount(wave_out_get_buffer()->GetBufferCount());
+         //m_pprebuffer->SetMinL1BufferCount(wave_out_get_buffer()->GetBufferCount());
 
 
 
@@ -509,7 +517,7 @@ end_openaudio:
 
          m_eventStopped.ResetEvent();
 
-         m_pprebuffer->Stop();
+         m_pprebuffer->stop();
 
          m_estate = state_stopping;
 
@@ -732,12 +740,6 @@ end_openaudio:
 
          }
 
-         if(m_peffect != NULL)
-         {
-
-            m_peffect->Process16bits((int16_t *) wave_out_get_buffer_data(iBuffer), wave_out_get_buffer_size());
-
-         }
 
          (*bqPlayerBufferQueue)->Enqueue(bqPlayerBufferQueue, wave_out_get_buffer_data(iBuffer), wave_out_get_buffer_size());
 
@@ -816,7 +818,7 @@ finalize:
          //if(verbose)
          //printf("stream recovery\n");
 
-         if(m_pprebuffer->IsEOF() || wave_out_get_state() == state_stopping)
+         if(m_pprebuffer->is_eof() || wave_out_get_state() == state_stopping)
          {
 
             return 0;

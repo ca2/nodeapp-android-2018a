@@ -19,7 +19,7 @@ PFN_mouse mouse_move = NULL;
 
 PFN_mouse l_button_up = NULL;
 
-android_data_exchange g_dataexchange;
+node_data_exchange g_nodedataexchange;
 
 PFN_key key_down = NULL;
 
@@ -49,6 +49,7 @@ void * load_lib(const char * l)
 
 }
 
+PFN_native_activity_android_end g_pfnEnd = NULL;
 
 
 void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, const char * pszCacheDir)
@@ -60,12 +61,12 @@ void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, con
 
    {
 
-      void * handle = load_lib("libbase.so");
+      void * handle = load_lib("libaura.so");
 
       if (!handle)
       {
 
-         LOGE("Fatal: Unable to reload shared library libbase.so. It should be already be loaded thorugh Java System.loadLibrary call (explicitly or implicitly)");
+         LOGE("Fatal: Unable to reload shared library libaura.so. It should be already be loaded thorugh Java System.loadLibrary call (explicitly or implicitly)");
 
          exit(1);
 
@@ -76,7 +77,7 @@ void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, con
       if (!g_android_fill_plasma)
       {
 
-         LOGE("Fatal: undefined symbol \"android_fill_plasma\" from libbase.so");
+         LOGE("Fatal: undefined symbol \"android_fill_plasma\" from libaura.so");
 
          exit(1);
 
@@ -87,7 +88,7 @@ void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, con
       if (!l_button_down)
       {
 
-         LOGE("Fatal: undefined symbol \"android_l_button_down\" from libbase.so");
+         LOGE("Fatal: undefined symbol \"android_l_button_down\" from libaura.so");
 
          exit(1);
 
@@ -98,7 +99,7 @@ void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, con
       if (!mouse_move)
       {
 
-         LOGE("Fatal: undefined symbol \"android_l_button_down\" from libbase.so");
+         LOGE("Fatal: undefined symbol \"android_l_button_down\" from libaura.so");
 
          exit(1);
 
@@ -109,7 +110,7 @@ void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, con
       if (!l_button_up)
       {
 
-         LOGE("Fatal: undefined symbol \"android_l_button_up\" from libbase.so");
+         LOGE("Fatal: undefined symbol \"android_l_button_up\" from libaura.so");
 
          exit(1);
 
@@ -120,7 +121,7 @@ void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, con
       if (!key_down)
       {
 
-         LOGE("Fatal: undefined symbol \"android_key_down\" from libbase.so");
+         LOGE("Fatal: undefined symbol \"android_key_down\" from libaura.so");
 
          exit(1);
 
@@ -131,7 +132,7 @@ void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, con
       if (!key_up)
       {
 
-         LOGE("Fatal: undefined symbol \"android_key_up\" from libbase.so");
+         LOGE("Fatal: undefined symbol \"android_key_up\" from libaura.so");
 
          exit(1);
 
@@ -143,7 +144,7 @@ void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, con
       if(!on_text)
       {
 
-         LOGE("Fatal: undefined symbol \"android_on_text\" from libbase.so");
+         LOGE("Fatal: undefined symbol \"android_on_text\" from libaura.so");
 
          exit(1);
 
@@ -176,25 +177,27 @@ void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, con
 
       }
 
+      g_pfnEnd = (PFN_native_activity_android_end)dlsym(handle, "native_activity_android_end");
+
    }
 
-   android_data_exchange & dataexchange = g_dataexchange;
+   node_data_exchange & nodedataexchange = g_nodedataexchange;
 
-   dataexchange.m_iScreenWidth    = iScreenWidth;
+   nodedataexchange.m_iScreenWidth    = iScreenWidth;
 
-   dataexchange.m_iScreenHeight   = iScreenHeight;
+   nodedataexchange.m_iScreenHeight   = iScreenHeight;
 
-   dataexchange.m_pszCommandLine  = pszCommandLine;
+   nodedataexchange.m_pszCommandLine  = pszCommandLine;
 
-   dataexchange.m_pszCacheDir     = pszCacheDir;
+   nodedataexchange.m_pszCacheDir     = pszCacheDir;
 
    android_set_cache_dir(pszCacheDir);
 
-   dataexchange.m_bShowKeyboard   = false;
+   nodedataexchange.m_bShowKeyboard   = false;
 
-   dataexchange.m_pszOpenUrl      = NULL;
+   nodedataexchange.m_pszOpenUrl      = NULL;
 
-   main(&dataexchange);
+   main(&nodedataexchange);
 
 }
 
@@ -232,6 +235,18 @@ const char * jstrdup(JNIEnv * env, jstring jstr)
    return psz;
 
 }
+
+extern "C"
+JNIEXPORT void JNICALL Java_com_ca2_app_end(JNIEnv * env, jobject  obj)
+{
+
+   if (g_pfnEnd)
+   {
+      (*g_pfnEnd)();
+   }
+
+}
+
 
 extern "C"
 JNIEXPORT void JNICALL Java_com_ca2_app_configureApp(JNIEnv * env, jobject  obj, jstring strCommandLine, jstring strCacheDir, jint iScreenW, jint iScreenH)

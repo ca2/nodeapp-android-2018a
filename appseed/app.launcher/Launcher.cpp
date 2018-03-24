@@ -28,7 +28,8 @@
 #include "axis/os/android/android.h"
 #include "axis/node/android/android.h"
 #include "aura/aura/os/android/android_data_exchange.h"
-#include "base/user/user/user_interaction.h"
+#include "aura/user/user/user_interaction.h"
+#include "aura/aura/os/android/android_windowing.h"
 
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "AndroidProject1.NativeActivity", __VA_ARGS__))
 #define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "AndroidProject1.NativeActivity", __VA_ARGS__))
@@ -176,110 +177,117 @@ extern unichar * g_pwszCommandLine;
 * event loop for receiving input events and doing other things.
 */
 //void native_activity_android_start(struct android_app* state) {
+
+class aura_aura * g_paura = NULL;
+
+class aura_main_data * g_pmaindata = NULL;
+
 extern "C"
-void native_activity_android_start(android_data_exchange * pdataexchange)
+void native_activity_android_end()
 {
 
-   if (!defer_core_init())
-      return;
+   if (g_pmaindata != NULL)
+   {
 
-   ::core::system * psystem = new ::core::system(NULL, pdataexchange);
+      delete g_pmaindata;
+
+      g_pmaindata = NULL;
+
+   }
+
+   if (g_paura != NULL)
+   {
+
+      g_paura->~aura_aura();
+
+      free(g_paura);
+
+      g_paura = NULL;
+
+   }
+
+}
+
+extern "C"
+void native_activity_android_start(node_data_exchange * pnodedataexchange)
+{
+
+   g_paura = (class aura_aura *)malloc(sizeof(class aura_aura));
+
+#undef new
+
+   new(g_paura) class aura_aura();
+
+   g_pmaindata = new aura_main_data((char *) pnodedataexchange->m_pszCommandLine);
+
+   g_pmaindata->m_pnodedataexchange = pnodedataexchange;
+
+   int iExitCode = aura_aura(g_pmaindata);
+
+   //exit(iExitCode);
+
+   //return iExitCode;
+
+//#else
+
+   //return (int)aura_aura(pmaindata);
+
+   //app_core
+   //app_core appcore(;
+
+   //if (!defer_core_init())
+   //   return;
+
+   //::core::system * psystem = new ::core::system(NULL, &appcore, );
 
    // psystem->m_durationRunLock = millis(1);
 
    //psystem->::exception::translator::attach();
 
-   int32_t nReturnCode = 0;
+   //int32_t nReturnCode = 0;
 
-   ::command::command * pcommandStartup = new ::command::command;
+   //::command::command * pcommandStartup = new ::command::command;
 
-   if (pdataexchange != NULL)
-   {
+   //if (pdataexchange != NULL)
+   //{
 
-      pcommandStartup->m_strCommandLine = pdataexchange->m_pszCommandLine;
+   //   pcommandStartup->m_strCommandLine = pdataexchange->m_pszCommandLine;
 
-   }
-   else
-   {
+   //}
+   //else
+   //{
 
-      pcommandStartup->m_strCommandLine = "app : app=app-core/hellomultiverse";
+   //   pcommandStartup->m_strCommandLine = "app : app=app-core/hellomultiverse";
 
-   }
+   //}
 
-   wstring wstrCommandLine(pcommandStartup->m_strCommandLine);
+   //wstring wstrCommandLine(pcommandStartup->m_strCommandLine);
 
-   g_pwszCommandLine = (unichar *) malloc((wstrCommandLine.length() + 1) * sizeof(unichar));
+   //g_pwszCommandLine = (unichar *) malloc((wstrCommandLine.length() + 1) * sizeof(unichar));
 
-   wcscpy_dup(g_pwszCommandLine, wstrCommandLine);
+   //wcscpy_dup(g_pwszCommandLine, wstrCommandLine);
 
-   //pcommandStartup->->m_nCmdShow = SW_SHOW;
+   ////pcommandStartup->->m_nCmdShow = SW_SHOW;
 
-   psystem->startup_command(pcommandStartup);
+   //psystem->startup_command(pcommandStartup);
 
-   bool bOk = true;
+   //bool bOk = true;
 
-   try
-   {
+   //try
+   //{
 
-      if (psystem->begin_synch())
-      {
+   //   if (psystem->begin_synch())
+   //   {
 
-         bOk = true;
+   //      bOk = true;
 
-      }
+   //   }
 
-   }
-   catch (...)
-   {
+   //}
+   //catch (...)
+   //{
 
-   }
-
-   psystem->m_pbasesystem->m_possystemwindow->m_pui = new ::user::interaction(psystem);
-
-   ::user::native_window_initialize initialize;
-
-   initialize.m_rect.left = 0;
-
-   initialize.m_rect.top = 0;
-
-   initialize.m_rect.right = pdataexchange->m_iScreenWidth;
-
-   initialize.m_rect.bottom = pdataexchange->m_iScreenHeight;
-
-   psystem->m_pbasesystem->m_possystemwindow->m_pui->initialize_native_window(&initialize);
-
-   ::oswindow_data * pwindow = new oswindow_data;
-
-   oswindow window = pwindow;
-
-   psystem->m_pbasesystem->m_possystemwindow->m_oswindow = pwindow;
-
-   try
-   {
-
-      if (!bOk)
-      {
-
-         if (psystem->m_iReturnCode == 0)
-         {
-
-            psystem->m_iReturnCode = -1;
-
-         }
-
-         return;
-
-      }
-
-   }
-   catch (...)
-   {
-
-      psystem->m_iReturnCode = -1;
-
-      return;
-
-   }
+   //}
 
    //engine & engine = pwindow->m_engine;
 

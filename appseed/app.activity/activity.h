@@ -71,7 +71,7 @@ extern const char * g_pszCommandLine;
 
 extern const char * g_pszCacheDir;
 
-extern android_data_exchange g_dataexchange;
+extern node_data_exchange g_nodedataexchange;
 
 
 

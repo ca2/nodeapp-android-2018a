@@ -35,6 +35,8 @@ public class app extends Activity {
 
    private static native void configureApp(String strCommandLine, String strCacheDir, int iScreenW, int iScreenH);
 
+   private static native void end();
+
    @Override
    public void onCreate(Bundle savedInstanceState) {
 
@@ -160,6 +162,16 @@ public class app extends Activity {
       m_view = new view(this, size);
 
       setContentView(m_view);
+
+   }
+   
+   @Override
+   public void onDestroy()
+   {
+      
+      end();
+
+      super.onDestroy();
 
    }
 
