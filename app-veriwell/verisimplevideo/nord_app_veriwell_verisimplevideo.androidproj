@@ -38,6 +38,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">
     <UseDebugLibraries>true</UseDebugLibraries>
     <TargetName>$(ProjectName)</TargetName>
+    <AndroidAPILevel>android-19</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'" Label="Configuration">
     <UseDebugLibraries>false</UseDebugLibraries>
@@ -76,22 +77,14 @@
     <Content Include="libs\x86\libatomiconv.so" />
     <Content Include="libs\x86\libaurapcre.so" />
     <Content Include="libs\x86\libaurasqlite.so" />
-    <Content Include="libs\x86\libavcodec-57.so" />
-    <Content Include="libs\x86\libavformat-57.so" />
-    <Content Include="libs\x86\libavutil-55.so" />
     <Content Include="libs\x86\libaxisbzip2.so" />
     <Content Include="libs\x86\libaxiscairo.so" />
     <Content Include="libs\x86\libaxiscrypto.so" />
     <Content Include="libs\x86\libaxisfreetype.so" />
     <Content Include="libs\x86\libaxisidn.so" />
-    <Content Include="libs\x86\libaxisjpeg.so" />
     <Content Include="libs\x86\libaxisopenssl.so" />
     <Content Include="libs\x86\libaxispixman.so" />
-    <Content Include="libs\x86\libaxispng.so" />
     <Content Include="libs\x86\libbasempg123.so" />
-    <Content Include="libs\x86\libswresample-2.so" />
-    <Content Include="libs\x86\libswscale-4.so" />
-    <Content Include="libs\x86\libwelsencplus.so.recipe" />
     <Content Include="nord_app_veriwell_verisimplevideo\drawable\icon.png" />
     <Content Include="nord_app_veriwell_verisimplevideo\values\strings.xml">
       <SubType>Designer</SubType>
@@ -106,6 +99,7 @@
     <ProjectReference Include="..\..\..\app-core\appseed\gcom\nord_gcom.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\id3lib\nord_core_id3lib.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\multimedia\nord_multimedia.vcxproj" />
+    <ProjectReference Include="..\..\..\app-core\appseed\tesseract\nord_tesseract.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\wndfrm_core\nord_wndfrm_core.vcxproj" />
     <ProjectReference Include="..\..\..\app-veriwell\appseed\audio_decode_libmpg123\nord_veriwell_audio_decode_libmpg123.vcxproj" />
     <ProjectReference Include="..\..\..\app-veriwell\appseed\multimedia\nord_veriwell_multimedia.vcxproj" />
@@ -118,9 +112,7 @@
     <ProjectReference Include="..\..\..\app\appseed\base\nord_base.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\core\nord_core.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\draw2d_cairo\nord_draw2d_cairo.vcxproj" />
-    <ProjectReference Include="..\..\..\app\appseed\freeimage\nord_axisfreeimage.vcxproj" />
-    <ProjectReference Include="..\..\..\app\appseed\image_jpeg\nord_axis_image_jpeg.vcxproj" />
-    <ProjectReference Include="..\..\..\app\appseed\image_png\nord_axis_image_png.vcxproj" />
+    <ProjectReference Include="..\..\..\app\appseed\sphere\nord_sphere.vcxproj" />
     <ProjectReference Include="..\..\appseed\app.activity\app.activity.vcxproj" />
     <ProjectReference Include="..\..\appseed\app.launcher\app.launcher.vcxproj" />
     <ProjectReference Include="..\..\appseed\audio_opensles\nord_audio_opensles.vcxproj" />

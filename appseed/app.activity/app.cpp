@@ -6,9 +6,9 @@
 #define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 
 extern "C"
-void android_set_cache_dir(const char * pszDir);
+void nodeos_set_cache_dir(const char * pszDir);
 extern "C"
-const char * android_get_cache_dir();
+const char * nodeos_get_cache_dir();
 
 
 PFN_android_fill_plasma g_android_fill_plasma = NULL;
@@ -191,7 +191,7 @@ void start(int iScreenWidth, int iScreenHeight, const char * pszCommandLine, con
 
    nodedataexchange.m_pszCacheDir     = pszCacheDir;
 
-   android_set_cache_dir(pszCacheDir);
+   nodeos_set_cache_dir(pszCacheDir);
 
    nodedataexchange.m_bShowKeyboard   = false;
 

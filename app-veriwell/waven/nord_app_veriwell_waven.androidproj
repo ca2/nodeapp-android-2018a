@@ -102,6 +102,7 @@
     <ProjectReference Include="..\..\..\app-core\appseed\gcom\nord_gcom.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\id3lib\nord_core_id3lib.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\multimedia\nord_multimedia.vcxproj" />
+    <ProjectReference Include="..\..\..\app-core\appseed\tesseract\nord_tesseract.vcxproj" />
     <ProjectReference Include="..\..\..\app-core\appseed\wndfrm_core\nord_wndfrm_core.vcxproj" />
     <ProjectReference Include="..\..\..\app-veriwell\appseed\asciimedia\nord_veriwell_asciimedia.vcxproj" />
     <ProjectReference Include="..\..\..\app-veriwell\appseed\audio_decode_libmpg123\nord_veriwell_audio_decode_libmpg123.vcxproj" />
@@ -114,9 +115,7 @@
     <ProjectReference Include="..\..\..\app\appseed\base\nord_base.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\core\nord_core.vcxproj" />
     <ProjectReference Include="..\..\..\app\appseed\draw2d_cairo\nord_draw2d_cairo.vcxproj" />
-    <ProjectReference Include="..\..\..\app\appseed\freeimage\nord_axisfreeimage.vcxproj" />
-    <ProjectReference Include="..\..\..\app\appseed\image_jpeg\nord_axis_image_jpeg.vcxproj" />
-    <ProjectReference Include="..\..\..\app\appseed\image_png\nord_axis_image_png.vcxproj" />
+    <ProjectReference Include="..\..\..\app\appseed\sphere\nord_sphere.vcxproj" />
     <ProjectReference Include="..\..\appseed\app.activity\app.activity.vcxproj" />
     <ProjectReference Include="..\..\appseed\app.launcher\app.launcher.vcxproj" />
     <ProjectReference Include="..\..\appseed\audio_opensles\nord_audio_opensles.vcxproj" />
