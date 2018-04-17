@@ -91,5 +91,5 @@ typedef int int_bool;
 
 
 
-
+#define STR_NEWLINE "\n"
 
